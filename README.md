@@ -8,3 +8,5 @@ Hello, I am computer science and biochem major. My interest in cs kind of wonder
 **Ho Ming Poon**
 I am a computer science major. I have experience with full stack development and Amazon web services. Beside work and schoo, I like travelling and cycling.
 
+**Tarik Weekes** 
+I am a CS major that is incredibly interested in cyber security. I enjoy solving problems using code as my instrument. Away from the keyboard I enjoy hanging out with friends and listening to Lo-Fi.
