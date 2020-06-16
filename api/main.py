@@ -1,4 +1,4 @@
-from flask import Flask, Response
+from flask import Flask, Response, render_template
 
 
 app = Flask(__name__)
@@ -10,4 +10,4 @@ app.config.from_object('config.Config')
 #   Testing if it worked
 @app.route('/')
 def home():
-    return Response(response="success",status=200)
+    return render_template('index.html')
