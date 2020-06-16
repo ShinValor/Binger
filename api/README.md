@@ -33,10 +33,11 @@ $ env\Scripts\activate
 
 ```
 $ pip install -r requirements.txt
-
 ```
 
 ## Running the live server on your pc
+
+**Note** Make sure to [build your Vue files for production](https://github.com/ShinValor/Binger/tree/dev/app) beforehand 
 
 The virtual environment has to be running. After it's activated enter the following:
 
