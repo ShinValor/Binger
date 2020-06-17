@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import Movie_Synopsis from "../views/MovieSynopsis.vue";
 
 Vue.use(VueRouter);
 
@@ -20,9 +21,9 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/About.vue")
   },
   {
-    path: "/move_synopsis",
+    path: "/movie_synopsis",
     name: "MovieSynopsis",
-    component: Movie-Synopsis
+    component: Movie_Synopsis
   }
 ];
 
