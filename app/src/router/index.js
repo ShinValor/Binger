@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Favorites from "../views/Favorites.vue";
+import Recommendations from "../views/Recommendations.vue";
 
 
 Vue.use(VueRouter);
@@ -25,6 +26,10 @@ const routes = [
     path: "/favorites",
     name: "Favorites",
     component: Favorites
+ {
+    path: "/recommendations",
+    name: "Recommendations",
+    component: Recommendations
   }
 ];
 
