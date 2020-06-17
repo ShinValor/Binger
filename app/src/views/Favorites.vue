@@ -5,9 +5,7 @@
 </template>
 
 <script>
-
-    export default {
-        name: "Favorites",
-    };
-
+export default {
+  name: "Favorites"
+};
 </script>
