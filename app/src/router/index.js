@@ -6,6 +6,7 @@ import Signup from "../views/Signup.vue";
 import User from "../views/User.vue";
 import Favorites from "../views/Favorites.vue";
 import Recommendations from "../views/Recommendations.vue";
+import NotFound from "../views/NotFound.vue";
 
 Vue.use(VueRouter);
 
@@ -48,6 +49,11 @@ const routes = [
     path: "/recommendations",
     name: "Recommendations",
     component: Recommendations
+  },
+  {
+    path: "**",
+    name: "NotFound",
+    component: NotFound
   }
 ];
 
