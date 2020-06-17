@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Login from "../views/Login.vue";
 import Signup from "../views/Signup.vue";
+import User from "../views/User.vue";
 import Favorites from "../views/Favorites.vue";
 import Recommendations from "../views/Recommendations.vue";
 
@@ -32,6 +33,11 @@ const routes = [
     path: "/signup",
     name: "Signup",
     component: Signup
+  },
+  {
+    path: "/user",
+    name: "User",
+    component: User
   },
   {
     path: "/favorites",
