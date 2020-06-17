@@ -1,9 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import User from "../views/User.vue";
 import Favorites from "../views/Favorites.vue";
 import Recommendations from "../views/Recommendations.vue";
-
 
 Vue.use(VueRouter);
 
@@ -21,6 +21,11 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue")
+  },
+  {
+    path: "/user",
+    name: "User",
+    component: User
   },
   {
     path: "/favorites",
