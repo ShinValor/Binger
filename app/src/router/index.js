@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
+import Favorites from "../views/Favorites.vue";
 import Recommendations from "../views/Recommendations.vue";
 
 
@@ -21,6 +22,10 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/About.vue")
   },
+  {
+    path: "/favorites",
+    name: "Favorites",
+    component: Favorites
  {
     path: "/recommendations",
     name: "Recommendations",
