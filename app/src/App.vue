@@ -6,7 +6,8 @@
       <router-link to="/login">Log in</router-link> |
       <router-link to="/signup">Sign Up</router-link> |
       <router-link to="/favorites">Favorites</router-link> |
-      <router-link to="/recommendations">Recommendations</router-link>
+      <router-link to="/recommendations">Recommendations</router-link> |
+      <router-link to="/movie-synopsis">Movie Synopsis</router-link>
     </div>
     <router-view />
   </div>
