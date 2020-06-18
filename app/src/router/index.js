@@ -43,6 +43,11 @@ const routes = [
     component: Signup
   },
   {
+    path: "/movie-synopsis",
+    name: "MovieSynopsis",
+    component: MovieSynopsis
+  },
+  {
     path: "/user",
     name: "User",
     component: User
