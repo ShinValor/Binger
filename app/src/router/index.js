@@ -7,6 +7,7 @@ import Signup from "../views/Signup.vue";
 import User from "../views/User.vue";
 import Favorites from "../views/Favorites.vue";
 import Recommendations from "../views/Recommendations.vue";
+import MovieSynopsis from "../views/MovieSynopsis.vue";
 import NotFound from "../views/NotFound.vue";
 
 Vue.use(VueRouter);
