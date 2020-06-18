@@ -25,7 +25,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Docker
 
-[Dockerize Vuejs app](https://vuejs.org/v2/cookbook/dockerize-vuejs-app.html)
+1) docker build -t vuejs-app .
+2) docker run -it -p 8080:8080 --rm --name vuejs-app vuejs-app
 
-1) docker build -t vuejs-cookbook/dockerize-vuejs-app .
-2) docker run -it -p 8080:8080 --rm --name dockerize-vuejs-app-1 vuejs-cookbook/dockerize-vuejs-app
+See [Dockerize Vuejs app](https://vuejs.org/v2/cookbook/dockerize-vuejs-app.html).
+
