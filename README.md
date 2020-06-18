@@ -1,5 +1,13 @@
 # Binger
 
+
+## Docker
+
+[How to dockerize Vuejs app](https://vuejs.org/v2/cookbook/dockerize-vuejs-app.html)
+
+docker build -t vuejs-cookbook/dockerize-vuejs-app .
+docker run -it -p 8080:8080 --rm --name dockerize-vuejs-app-1 vuejs-cookbook/dockerize-vuejs-app
+
 ## About Contributors
 
 **Ferdi Lesporis**\
