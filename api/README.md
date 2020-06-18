@@ -51,3 +51,9 @@ For Windows users:
 $ set FLASK_APP=main.py
 $ flask run
 ```
+
+## Docker
+
+1) docker build -t flask-app .
+2) docker run --rm -it -p 5000:5000 flask-app
+
