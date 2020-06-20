@@ -1,28 +1,32 @@
----
-name: Pull Request
-about: Propose changes to the product
-title: ""
-labels: ""
-assignees: ""
----
-The text below is less of a template and more of a reminder of what to include in a pull request description to make it clear to reviewers.
-## Overview
-Clear pull request descriptions give reviewers everything they need to QA changes and examine code. They:
-- Explain why these changes are needed
-- Explain how these changes effect users
-- Explain how these change effect developers
-- Explain–in detail–what PR reviewers need to do to thoroughly test and QA these changes
-**Provide user stories to explain effects on users**
-The “As a user...” style of describing behavior is a helpful way to shift your and reviewers' perspectives to that of the end user.
-- As a user what was the problem and what steps produced the problem?
-- As a user what steps do I need to take now to test this fix?
-- As a user what should I expect to see?
-**Link to Related Issue**
-Use keywords like related, relates, resolves, fixes followed by a link to the issue(s). ex fixes #456
-**Dependencies**
-List any new dependencies that may have been introduced and inform testers they will need to install them locally.
-**How To Test**
-Provide clear instructions for testing the changes.
-**Screenshots**
-If applicable, add screenshots to help show the outcomes of this solution.
+# Description
 
+Please include a summary of the change and which issue is fixed. Please also include relevant motivation and context. List any dependencies that are required for this change.
+
+Fixes # (issue)
+
+
+## Type of change
+
+Please check the options that are relevant.
+
+- [ ] Bug fix (non-breaking change which fixes an issue)
+- [ ] New feature (non-breaking change which adds functionality)
+- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
+- [ ] This change requires a documentation update
+
+
+# How Has This Been Tested?
+
+Please describe the tests that you ran to verify your changes. Provide instructions so we can reproduce. Please also list any relevant details for your test configuration
+
+
+# Checklist:
+
+- [ ] My code follows the style guidelines of this project
+- [ ] I have performed a self-review of my own code
+- [ ] I have commented my code, particularly in hard-to-understand areas
+- [ ] I have made corresponding changes to the documentation
+- [ ] My changes generate no new warnings
+- [ ] I have added tests that prove my fix is effective or that my feature works
+- [ ] New and existing unit tests pass locally with my changes
+- [ ] Any dependent changes have been merged and published in downstream modules
