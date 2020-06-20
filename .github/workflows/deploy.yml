@@ -1,0 +1,30 @@
+name: Build & Deploy to Production
+
+# Run when a dispatch event is created (e.g. from a CMS Webhook)
+# See https://developer.github.com/v3/repos/#create-a-repository-dispatch-event
+on:
+  push:
+    branches:
+    - master
+    - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1 # Equivalent to `git checkout master`
+    
+    - name: Install dependencies
+      run: npm install
+      working-directory: ./app
+    
+    - name: Build
+      run: npm build
+      working-directory: ./app
+    
+    - name: Deploy
+      run: now _build/ --prod -t ${{ secrets.ZEIT_TOKEN }}
+      
+      # The `_build/` argument is optional. In my case it's the directory where `yarn build` puts the final code to
+      # deploy. If you want to deploy the current directory instead, just remove this argument.
