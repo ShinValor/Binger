@@ -9,7 +9,7 @@ Hello, I am computer science and biochem major. My interest in cs kind of wander
 I am a computer science major. I have experience with full stack development and Amazon web services. Beside work and school, I like travelling and cycling.
 
 **Tarik Weekes**\
-I am a CS major that is incredibly interested in cyber security. I enjoy solving problems using code as my instrument. Away from the keyboard, I enjoy hanging out with friends and listening to Lo-Fi. This is a testing sentence.
+I am a CS major that is incredibly interested in cyber security. I enjoy solving problems using code as my instrument. Away from the keyboard, I enjoy hanging out with friends and listening to Lo-Fi.
 
 **Jun Qi Li**\
 CS Major interested in system architecture and database management. I enjoy reading web novels on my break time.
