@@ -1,18 +1,27 @@
 <template>
-  <div class="home">
-    <!--<img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" /> -->
-  </div>
+  <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
+    <NavBar />
+    <a-layout-content>
+      <Content msg="This is home page" />
+    </a-layout-content>
+    <Footer />
+  </a-layout>
 </template>
 
 <script>
 // @ is an alias to /src
-//import HelloWorld from "@/components/HelloWorld.vue";
+import NavBar from "@/components/NavBar.vue";
+import Content from "@/components/Content.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
   name: "Home",
   components: {
-    /*HelloWorld*/
+    NavBar,
+    Content,
+    Footer
   }
 };
 </script>
+
+<style></style>
