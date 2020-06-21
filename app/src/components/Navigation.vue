@@ -1,7 +1,10 @@
 <template>
   <a-layout-header class="header" :style="{ padding: '0' }">
     <h1 class="app-name">
-      <router-link to="/" :style="{ color: 'white' }">Binger</router-link>
+      <router-link to="/" :style="{ color: 'white' }">
+        <img src="../assets/logo32.png" />
+        Binger
+      </router-link>
     </h1>
     <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '64px' }">
       <a-menu-item :style="{ width: '100px' }">
