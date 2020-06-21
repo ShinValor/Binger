@@ -1,5 +1,7 @@
 <template>
-  <FourOFour />
+  <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
+    <FourOFour />
+  </a-layout>
 </template>
 
 <script>

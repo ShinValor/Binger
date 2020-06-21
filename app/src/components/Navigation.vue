@@ -4,10 +4,10 @@
       <router-link to="/" :style="{ color: 'white' }">Binger</router-link>
     </h1>
     <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '64px' }">
-      <a-menu-item key="1" :style="{ width: '100px' }">
+      <a-menu-item :style="{ width: '100px' }">
         <router-link to="/login">Login</router-link>
       </a-menu-item>
-      <a-menu-item key="2" :style="{ width: '100px' }">
+      <a-menu-item :style="{ width: '100px' }">
         <router-link to="/signup">Register</router-link>
       </a-menu-item>
     </a-menu>
@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: "NavBar"
+  name: "Navigation"
 };
 </script>
 
