@@ -1,12 +1,13 @@
 <template>
-  <a-layout-header class="header" :style="{ padding: '0px 15px 0px 15px' }">
-    <router-link class="logo" to="/"></router-link>
-    <h1 class="app-name">Binger</h1>
+  <a-layout-header class="header" :style="{ padding: '0' }">
+    <h1 class="app-name">
+      <router-link to="/" :style="{ color: 'white' }">Binger</router-link>
+    </h1>
     <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '64px' }">
-      <a-menu-item key="1">
+      <a-menu-item key="1" :style="{ width: '100px' }">
         <router-link to="/login">Login</router-link>
       </a-menu-item>
-      <a-menu-item key="2">
+      <a-menu-item key="2" :style="{ width: '100px' }">
         <router-link to="/signup">Register</router-link>
       </a-menu-item>
     </a-menu>
@@ -23,9 +24,8 @@ export default {
 .header {
   display: flex;
   justify-content: space-between;
-  /* position: fixed; */
-  /* z-index: 1; */
-  width: 100%;
+  /* position: fixed;
+  z-index: 1; */
 }
 
 .logo {
@@ -37,10 +37,14 @@ export default {
 
 .app-name {
   color: white;
-  margin: 0px 25px 0px 25px;
+  margin: 0px 25px;
 }
 
-router-link-exact-active {
-  color: #42b983;
+.ant-menu-item-selected {
+  background-color: transparent !important;
+}
+
+.ant-menu-item:hover {
+  background-color: #1890ff !important;
 }
 </style>
