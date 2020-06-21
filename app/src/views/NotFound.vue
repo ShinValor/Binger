@@ -1,11 +1,14 @@
 <template>
-  <div class="notfound">
-    <h1>Page Not Found</h1>
-  </div>
+  <FourOFour />
 </template>
 
 <script>
+import FourOFour from "@/components/FourOFour.vue";
+
 export default {
-  name: "NotFound"
+  name: "NotFound",
+  components: {
+    FourOFour
+  }
 };
 </script>
