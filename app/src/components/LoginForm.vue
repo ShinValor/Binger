@@ -1,6 +1,6 @@
 <template>
   <a-form
-    id="components-form-demo-normal-login"
+    id="components-form-login"
     :form="form"
     class="login-form"
     @submit="handleSubmit"
@@ -78,27 +78,27 @@ export default {
 </script>
 
 <style>
-#components-form-demo-normal-login {
+#components-form-login {
   margin: auto;
   width: 500px;
 }
 
-#components-form-demo-normal-login .login-form {
+#components-form-login .login-form {
   max-width: 300px;
 }
 
-#components-form-demo-normal-login .login-form-forgot {
+#components-form-login .login-form-forgot {
   float: right;
 }
 
-#components-form-demo-normal-login .login-form-button {
+#components-form-login .login-form-button {
   width: 100%;
 }
 
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */
 
-  #components-form-demo-normal-login {
+  #components-form-login {
     margin: auto;
     width: 250px;
   }
