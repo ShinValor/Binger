@@ -1,8 +1,24 @@
-# Binger
+<h1 align="center"><i>Binger</i></h1>
+<p align="center">
+  <img src="app/src/assets/logo256.png" alt="Binger - a movie recommendation application">
+  <br>
+  A movie recommendation application.
+</p>
 
-![Binger Logo](app/src/assets/logo256.png)
+<p align="center">
+  <a href="#how-to-use">How To Use</a> •
+  <a href="#installation">Installation</a> •
+  <a href="#project-goals-and-alternatives">Project goals, alternatives</a><br>
+</p>
 
-During the quarantine, people have watched all the movies and shows on their “watch later” queues and are left looking for something new to watch. Streaming services have huge libraries and it takes effort and time to find a show. There is no centralized “watch later” queue across different streaming services. Binger is designed for anyone looking to find something new to watch. Binger’s will provide a clean, easy, and pleasant way for its users to find new things to watch
+<p align="center">
+  During the quarantine, people have watched all the movies and shows on their “watch later” queues and are left looking for something new to watch. Streaming services have huge libraries and it takes effort and time to find a show. There is no centralized “watch later” queue across different streaming services. Binger is designed for anyone looking to find something new to watch. Binger’s will provide a clean, easy, and pleasant way for its users to find new things to watch.
+  <br>
+</p>
+
+## How to use
+
+## Installation
 
 ## Goals
 
@@ -10,7 +26,7 @@ During the quarantine, people have watched all the movies and shows on their “
 
 - Deploy website to Internet for public use.
 
-## Technologies we used
+## Technologies used
 
 - Vuejs
 - Ant Design System
