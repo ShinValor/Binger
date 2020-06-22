@@ -52,8 +52,10 @@ $ set FLASK_APP=main.py
 $ flask run
 ```
 
-## Docker
+## Running with Docker
 
-1) docker build -t flask-app .
-2) docker run -it -p 5000:5000 --rm --name flask-app flask-app
+```
+docker build -t flask-app .
+docker run -it -p 5000:5000 --rm --name flask-app flask-app
+```
 

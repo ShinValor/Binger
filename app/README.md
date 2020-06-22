@@ -23,8 +23,10 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
-### Docker
+## Running with Docker
 
-1) docker build -t vuejs-app .
-2) docker run -it -p 8080:8080 --rm --name vuejs-app vuejs-app
+```
+docker build -t vuejs-app .
+docker run -it -p 8080:8080 --rm --name vuejs-app vuejs-app
+```
 
