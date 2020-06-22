@@ -1,16 +1,16 @@
-<h1 align="center"><i>Binger</i></h1>
-<p align="center">
+<div align="center">
   <img src="app/src/assets/logo256.png" alt="Binger - a movie recommendation application">
-  <br>
+  <h1 align="center"><i>Binger</i></h1>
   A movie recommendation website
-</p>
+</div>
 
-<p align="center">
+<div align="center">
   <a href="#how-to-use">How To Use</a> •
   <a href="#installation">Installation</a> •
   <a href="#project-goals">Project goals</a>
-  <br>
-</p>
+</div>
+
+<br>
 
 <p align="center">
   During the quarantine, people have watched all the movies and shows on their “watch later” queues and are left looking for something new to watch. Streaming services have huge libraries and it takes effort and time to find a show. There is no centralized “watch later” queue across different streaming services. Binger is designed for anyone looking to find something new to watch. Binger will provide a clean, easy, and pleasant way for its users to find new things to watch.
@@ -19,7 +19,7 @@
 
 ## How to use
 
-A recommendation website
+Go to binger.vercel.app sign up and log in.
 
 ## Installation
 
