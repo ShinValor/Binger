@@ -45,10 +45,12 @@ npm run serve
 ## Technologies used
 
 - Vue.js
-- Ant Design System
+- Ant Design
 - Firebase
-- Flask
+- Flask API
 - Zeit Now
+- Jest Unit Testing
+- Cypress End To End Testing
 
 ## Contributors
 
