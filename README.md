@@ -9,17 +9,16 @@
   <a href="#installation">Installation</a> •
   <a href="#project-goals">Project goals</a>
 </div>
-
 <br>
 
 <p align="center">
   During the quarantine, people have watched all the movies and shows on their “watch later” queues and are left looking for something new to watch. Streaming services have huge libraries and it takes effort and time to find a show. There is no centralized “watch later” queue across different streaming services. Binger is designed for anyone looking to find something new to watch. Binger will provide a clean, easy, and pleasant way for its users to find new things to watch.
-  <br>
 </p>
+<br>
 
 ## How to use
 
-Go to binger.vercel.app sign up and log in.
+Go to [Binger](binger.vercel.app) to sign up and log in.
 
 ## Installation
 
@@ -40,12 +39,12 @@ npm run serve
 
 ## Project Goals
 
-- Website that works and provides the user with a clean interface to recommend shows and movies.
 - Deploy website to Internet for public use.
+- Provides the user with a clean interface to recommend shows and movies.
 
 ## Technologies used
 
-- Vuejs
+- Vue.js
 - Ant Design System
 - Firebase
 - Flask
@@ -53,7 +52,7 @@ npm run serve
 
 ## Contributors
 
-**Ferdi Lesporis**\
-**Ho Ming Poon**\
-**Tarik Weekes**\
-**Jun Qi Li**\
+**Ferdi Lesporis**  
+**Ho Ming Poon**  
+**Tarik Weekes**  
+**Jun Qi Li**  
