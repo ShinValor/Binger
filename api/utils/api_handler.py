@@ -68,10 +68,10 @@ class APIHandler:
 
         Args: 
             responses: API responses that are received from TMDB requests.
-            is_movie: Boolean to determine the type of "show" list is being created.
+            is_movie: Boolean to determine the type of "Show" list is being created.
 
         Returns: 
-            list_of_shows: A list of "show" objects that are to be returned.
+            list_of_shows: A list of "Show" objects that are to be returned.
         """
 
         list_of_shows = []
@@ -123,7 +123,7 @@ class APIHandler:
     def get_initial_shows_by_genre(self, genres, number_of_pages):
         """
         Handles the initial retrieval of Movies and TV Shows from the TMDB API and will
-        return a list of "show" objects. Utilizes the class function 'get_initial_show_requests'
+        return a list of "Show" objects. Utilizes the class function 'get_initial_show_requests'
         to return a list of the requests that will be set to the API.
 
         Args:
@@ -148,7 +148,7 @@ class APIHandler:
 
     def get_recommendation_by_show(self, show, number_of_pages=1):
         """
-        Function that will request "show" recommendations from the TMDB API.
+        Function that will request "Show" recommendations from the TMDB API.
 
         Args: 
             show: A show object
