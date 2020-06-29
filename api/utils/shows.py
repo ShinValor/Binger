@@ -53,7 +53,13 @@ class Show:
 
         return self.id == other.id
 
-    def __hash__(self): 
+    def __hash__(self):
+        """
+        Allows the "Show" object to be hashed and placed into hashed data strucutres.
+
+        Returns:
+            The hash of the "Show" objects id.
+        """
         return hash(self.id)
 
     def __lt__(self, other):
