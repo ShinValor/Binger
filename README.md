@@ -18,7 +18,7 @@
 
 ## How to use
 
-Go to [Binger](binger.vercel.app) to sign up and log in.
+Go to [Binger](https://binger.vercel.app) to sign up and log in.
 
 ## Installation
 
