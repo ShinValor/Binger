@@ -8,14 +8,14 @@
     <a-form-item>
       <a-input
         v-decorator="[
-          'userName',
+          'email',
           {
-            rules: [{ required: true, message: 'Please input your username!' }]
+            rules: [{ required: true, message: 'Please input your email!' }]
           }
         ]"
-        placeholder="Username"
+        placeholder="Email"
       >
-        <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" />
+        <a-icon slot="prefix" type="mail" style="color: rgba(0,0,0,.25)" />
       </a-input>
     </a-form-item>
     <a-form-item>
@@ -59,6 +59,8 @@
 </template>
 
 <script>
+import firebase from "firebase";
+
 export default {
   name: "LoginForm",
   beforeCreate() {
@@ -70,6 +72,16 @@ export default {
       this.form.validateFields((err, values) => {
         if (!err) {
           console.log("Received values of form: ", values);
+          firebase
+            .auth()
+            .signInWithEmailAndPassword(values.email, values.password)
+            .then(() => {
+              this.$router.replace({ name: "User" });
+            })
+            .catch(err => {
+              this.error = err.message;
+              alert(this.error);
+            });
         }
       });
     }
