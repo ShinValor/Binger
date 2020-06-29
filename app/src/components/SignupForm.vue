@@ -89,7 +89,10 @@
 </template>
 
 <script>
+import firebase from "firebase";
+
 export default {
+  name: "SignupForm",
   data() {
     return {
       confirmDirty: false,
@@ -127,6 +130,22 @@ export default {
       this.form.validateFieldsAndScroll((err, values) => {
         if (!err) {
           console.log("Received values of form: ", values);
+          firebase
+            .auth()
+            .createUserWithEmailAndPassword(values.email, values.password)
+            .then(data => {
+              data.user
+                .updateProfile({
+                  displayName: values.nickname
+                })
+                .then(() => {
+                  this.$router.replace({ name: "Login" });
+                });
+            })
+            .catch(err => {
+              this.error = err.message;
+              alert(this.error);
+            });
         }
       });
     },
