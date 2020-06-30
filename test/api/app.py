@@ -5,9 +5,9 @@ from firebase_admin import credentials, firestore, initialize_app
 app = Flask(__name__)
 
 # #Initialize Firestore DB
-# cred = credentials.Certificate('./key.json')
-# default_app = initialize_app(cred)
-# db = firestore.client()
+cred = credentials.Certificate('./key.json')
+default_app = initialize_app(cred)
+db = firestore.client()
 # todo_ref = db.collection('todos')
 
 @app.route('/')
