@@ -7,7 +7,7 @@ steps:
   args: ['push', 'gcr.io/binger-2910d/app']
   # Deploy container image to Cloud Run
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['beta', 'run', 'deploy', 'app', '--image', 'gcr.io/binger-2910d/app', '--region', 'us-central1', './test/api']
+  args: ['beta', 'run', 'deploy', 'app', '--image', 'gcr.io/binger-2910d/app', '--region', 'us-central1', '--platform', 'managed']
 images:
 - gcr.io/binger-2910d/app
 timeout: 1200s
