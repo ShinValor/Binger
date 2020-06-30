@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify
 import firebase_admin
 from firebase_admin import credentials
 
-cred = credentials.Certificate("key.json")
+cred = credentials.Certificate(${{ secrets.GOOGLE_APP_CREDENTIAL }})
 firebase_admin.initialize_app(cred)
 
 app = Flask(__name__)
