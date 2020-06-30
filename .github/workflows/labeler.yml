@@ -1,0 +1,8 @@
+Root:
+  - ./*
+
+API:
+- any: ['api/*']
+
+APP:
+- any: ['app/*']
