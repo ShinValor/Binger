@@ -1,92 +1,36 @@
 <template>
-  <div class="navbar-nav">
-    <div class="navbar-nav__item">
-      <router-link to="/user">{{displayName}}</router-link>
-      <button class="navbar-nav__icon" @click="onClick">
-        <icon name="chevron-down" />
-      </button>
-    </div>
-    <transition name="fade">
-      <ul class="navbar-nav__dropdown" v-show="isVisible">
-        <li class="navbar-nav__list-item">Account Settings</li>
-        <li class="navbar-nav__list-item">Logout</li>
-      </ul>
-    </transition>
-  </div>
+  <nav class="navbar">
+    <navbar-search />
+    <NavigationBarBar />
+  </nav>
 </template>
 
 <script>
-  
+  import NavbarSearch from "./NavbarSearch";
+  import NavigationBar_Bar from "./NavigationBarBar.vue";
+
   export default {
     name: "navbar",
-    props: {
-        displayName: {
-            type: String,
-            default: "Jane Doe"
-        }
-    },
-    data() {
-      return {
-        isVisible: false
-      };
-    },
-    methods: {
-      onClick() {
-        this.isVisible = !this.isVisible;
-        if (this.isVisible) {
-          setTimeout(
-            () => document.addEventListener("click", this.clickOutEvent),
-            100
-          );
-        } else {
-          this.close();
-        }
-      },
-      close: function() {
-        this.isVisible = false;
-        document.removeEventListener("click", this.clickOutEvent);
-      }
+
+    components: {
+      NavbarSearch,
+      NavigationBarBar
     }
   };
-
-
 </script>
 
 <style scoped lang="sass">
-  .navbar-nav
-    position: relative
-    z-index: 10
-    &__item
+
+  .navbar
+    display: flex
+    height: 40px
+    background: $c-shark
+
+    .navbar-search
       display: flex
       align-items: center
-      height: 40px
-    &__link
-      color: $c-white
-      font-size: 13px
-      &:hover
-        text-decoration: underline
-    &__icon
-      margin: 0 6px
-      color: $c-white
-      font-size: 12px
-      line-height: 0
-      outline: none
-      cursor: pointer
-    &__dropdown
-      font:
-        size: 13px
-        weight: normal
-      background: $c-tundora
-      box-shadow: -2px 2px 5px 0 rgba(0, 0, 0, .75)
-    &__list-item
-      padding: 10px
-      cursor: pointer
-      &:hover
-        background: $c-black-light
-    .fade-enter-active,
-    .fade-leave-active
-      transition: opacity .3s
-    .fade-enter,
-    .fade-leave-to
-      opacity: 0
+      margin-left: 6px
+
+    .navbar-nav
+      margin: auto 30px auto auto
 </style>

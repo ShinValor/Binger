@@ -1,6 +1,6 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
-    <Navigation />
+    <navbar />
     <div class="grid">
       <Card name="John" desc="I am a student." />
       <Card name="Jun" desc="I am a student." />
@@ -12,13 +12,13 @@
 
 <script>
 // @ is an alias to /src
-import Navigation from "@/components/Navigation.vue";
+import navbar from "@/components/NavigationBar.vue";
 import Card from "@/components/Card.vue";
 
 export default {
   name: "About",
   components: {
-    Navigation,
+    navbar,
     Card
   }
 };
