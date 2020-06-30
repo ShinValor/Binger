@@ -1,8 +1,14 @@
-# cloudbuild.yaml
 steps:
-  # build & push the container image
-- name: "gcr.io/kaniko-project/executor:latest"
-  args: ["--cache=true", "--cache-ttl=48h", "--destination=gcr.io/$PROJECT_ID/todo:latest"]
+  # build the container image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/binger-2910d/app', '.']
+  # push the container image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/binger-2910d/app']
   # Deploy container image to Cloud Run
-- name: "gcr.io/cloud-builders/gcloud"
-  args: ['beta', 'run', 'deploy', 'todo', '--image', 'gcr.io/$PROJECT_ID/todo:latest', '--region', 'us-central1', '--allow-unauthenticated', '--platform', 'managed']
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['beta', 'run', 'deploy', 'app', '--image', 'gcr.io/binger-2910d/app', '--region', 'us-central1']
+images:
+- gcr.io/binger-2910d/app
+timeout: 1200s
+
