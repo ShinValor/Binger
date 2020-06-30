@@ -14,6 +14,10 @@ app = Flask(__name__)
 def index():
     return "Hello World!"
 
+@app.route('/about')
+def about():
+    return "This is the about page!"
+
 # @app.route('/add', methods=['POST'])
 # def create():
 #     """
