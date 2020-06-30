@@ -1,8 +1,8 @@
 steps:
-  # build the container image
+  # Build the container image
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/binger-2910d/app', '.']
-  # push the container image to Container Registry
+  args: ['build', '-t', 'gcr.io/binger-2910d/app', './test/api']
+  # Push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/binger-2910d/app']
   # Deploy container image to Cloud Run
