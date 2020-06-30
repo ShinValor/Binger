@@ -16,7 +16,7 @@ def index():
 
 @app.route('/About')
 def index():
-    return "About Page"
+    return "This is the About Page"
 
 # @app.route('/add', methods=['POST'])
 # def create():
