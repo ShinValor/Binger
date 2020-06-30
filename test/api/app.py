@@ -14,10 +14,6 @@ app = Flask(__name__)
 def index():
     return "Hello World!"
 
-@app.route('/About')
-def index():
-    return "This is the About Page"
-
 # @app.route('/add', methods=['POST'])
 # def create():
 #     """
@@ -79,5 +75,6 @@ def index():
 #         return "An Error Occured"
 
 port=int(os.environ.get('PORT', 8080))
+
 if __name__ == '__main__':
     app.run(debug=True,host='0.0.0.0',port=port)
