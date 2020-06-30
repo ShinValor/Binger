@@ -6,11 +6,11 @@ import firebase_admin
 
 app = Flask(__name__)
 
-#   Read env variables from config.py	
+#   Read env variables from config.py
 app.config.from_object('config.Config')
 
-#   Update fbconfig.json with group firebase 
-cred = credentials.Certificate('fbconfig.json')
+#   Update fbconfig.json with group firebase
+cred = credentials.Certificate('key.json')
 firebase = firebase_admin.initialize_app(cred)
 
 
@@ -24,7 +24,7 @@ def check_token(f):
 
         """
         Attempts to verify idToken and if successful then access to protected route is granted.
-        Returns the appropriate error message. 
+        Returns the appropriate error message.
         """
         try:
             auth.verify_id_token(token, check_revoked=True)
@@ -76,7 +76,7 @@ def getUserShows():
     #   decode idToken
     #   get all of the user's interested shows from firestore
     #   format the data into json
-    #   return 
+    #   return
 
 @app.route('/addUserShows')
 @check_token
@@ -87,6 +87,4 @@ def addUserShows():
     #   verify that it was successfully added to firestore
     #   return
     return Response(response='success',status=200)
-
-
 
