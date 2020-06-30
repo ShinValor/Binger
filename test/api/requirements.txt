@@ -1,3 +1,2 @@
-# requirements.txt
 flask
 firebase_admin
