@@ -78,7 +78,7 @@ def getUserShows():
     #   format the data into json
     #   return 
 
-@app.route('addUserShows')
+@app.route('/addUserShows')
 @check_token
 def addUserShows():
     #   get idToken
@@ -87,3 +87,6 @@ def addUserShows():
     #   verify that it was successfully added to firestore
     #   return
     return Response(response='success',status=200)
+
+
+
