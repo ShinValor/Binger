@@ -62,11 +62,13 @@ def test():
 def tmdb():
     #   Access API handler for TMDB
     #   return shows user may be interested in
+    return Response(response='success',status=200)
 
 
 @app.route('/getUserShows')
 @check_token
 def getUserShows():
+    return Response(response='success',status=200)
     #   get idToken
     #   decode idToken
     #   get all of the user's interested shows from firestore
@@ -81,3 +83,4 @@ def addUserShows():
     #   add new show to user's firestore
     #   verify that it was successfully added to firestore
     #   return
+    return Response(response='success',status=200)
