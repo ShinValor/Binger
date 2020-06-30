@@ -6,6 +6,9 @@ import firebase_admin
 
 app = Flask(__name__)
 
+#   Read env variables from config.py	
+app.config.from_object('config.Config')
+
 #   Update fbconfig.json with group firebase 
 cred = credentials.Certificate('fbconfig.json')
 firebase = firebase_admin.initialize_app(cred)
