@@ -1,18 +1,18 @@
-from flask import Flask, Response, jsonify, request, make_response
+import os, json
 from functools import wraps
-import os,json
+from flask import Flask, Response, jsonify, request, make_response
+from flask_cors import CORS, cross_origin
 from firebase_admin import credentials, auth
 import firebase_admin
 
 app = Flask(__name__)
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
-#   Read env variables from config.py
+# Read env variables from config.py
 app.config.from_object('config.Config')
 
-#   Update fbconfig.json with group firebase
 cred = credentials.Certificate('key.json')
 firebase = firebase_admin.initialize_app(cred)
-
 
 def check_token(f):
     """
@@ -44,47 +44,48 @@ def check_token(f):
         return f(*args,**kwargs)
     return wrap
 
-
 @app.route('/')
 def home():
     return Response(response='success',status=200)
 
-
-#   Only accessible to auth users
-#   Example: /test?token=123456789
-#   Returns: idToken payload in json
+# Only accessible to auth users
+# Example: /test?token=123456789
+# Returns: idToken payload in json
 @app.route('/test')
 @check_token
 def test():
     token = request.args.get('token')
+    print("Token: ", token)
     decoded_token = auth.verify_id_token(token)
+    print("Decoded Token: ", decoded_token)
     return decoded_token
 
 @app.route('/tmdb')
 @check_token
 def tmdb():
-    #   Access API handler for TMDB
-    #   return shows user may be interested in
+    # Access API handler for TMDB
+    # return shows user may be interested in
     return Response(response='success',status=200)
-
 
 @app.route('/getUserShows')
 @check_token
 def getUserShows():
     return Response(response='success',status=200)
-    #   get idToken
-    #   decode idToken
-    #   get all of the user's interested shows from firestore
-    #   format the data into json
-    #   return
+    # get idToken
+    # decode idToken
+    # get all of the user's interested shows from firestore
+    # format the data into json
+    # return
 
 @app.route('/addUserShows')
 @check_token
 def addUserShows():
-    #   get idToken
-    #   decode idToken
-    #   add new show to user's firestore
-    #   verify that it was successfully added to firestore
-    #   return
+    # get idToken
+    # decode idToken
+    # add new show to user's firestore
+    # verify that it was successfully added to firestore
+    # return
     return Response(response='success',status=200)
 
+if __name__ == '__main__':
+    app.run(host='localhost', port=5000)

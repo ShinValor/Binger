@@ -33,3 +33,5 @@ webencodings==0.5.1
 Werkzeug==1.0.1
 zope.event==4.4
 zope.interface==5.1.0
+flask_cors
+
