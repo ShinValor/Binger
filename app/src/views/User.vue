@@ -31,11 +31,15 @@
     <a-button type="primary" v-on:click="reauthenticate()">
       Re-authenticate User
     </a-button> -->
+    <a-button type="primary" v-on:click="fetchApi()">
+      Fetch Api
+    </a-button>
   </div>
 </template>
 
 <script>
 import firebase from "firebase";
+import axios from "axios";
 
 export default {
   name: "User",
@@ -48,6 +52,12 @@ export default {
         this.$router.replace({ name: "Home" });
       }
     });
+  },
+  data() {
+    return {
+      info: null,
+      loading: true
+    };
   },
   methods: {
     logout() {
@@ -174,22 +184,51 @@ export default {
           this.error = error.message;
           alert(this.error);
         });
-    }
-  },
-  reauthenticate() {
-    const user = firebase.auth().currentUser;
-    let credential;
+    },
+    reauthenticate() {
+      const user = firebase.auth().currentUser;
+      let credential;
 
-    user
-      .reauthenticateWithCredential(credential)
-      .then(function() {
-        // User re-authenticated.
-        alert("User Re-authenticated");
-      })
-      .catch(error => {
-        this.error = error.message;
-        alert(this.error);
-      });
+      user
+        .reauthenticateWithCredential(credential)
+        .then(function() {
+          // User re-authenticated.
+          alert("User Re-authenticated");
+        })
+        .catch(error => {
+          this.error = error.message;
+          alert(this.error);
+        });
+    },
+    fetchApi() {
+      firebase
+        .auth()
+        .currentUser.getIdToken(/* forceRefresh */ true)
+        .then(token => {
+          console.log("Token: ", token);
+          axios
+            .get("http://127.0.0.1:5000/test", {
+              params: {
+                token: token
+              }
+            })
+            .then(response => {
+              this.info = response;
+              console.log("Response: ", this.info);
+            })
+            .catch(error => {
+              this.error = error.message;
+              alert(this.error);
+            })
+            .finally(() => {
+              this.loading = false;
+            });
+        })
+        .catch(error => {
+          this.error = error.message;
+          alert(this.error);
+        });
+    }
   }
 };
 </script>
