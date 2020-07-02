@@ -87,5 +87,3 @@ def addUserShows():
     # return
     return Response(response='success',status=200)
 
-if __name__ == '__main__':
-    app.run(host='localhost', port=5000)
