@@ -66,16 +66,6 @@ def test():
     return decoded_token
 
 
-
-@app.route('/tmdb',methods=['GET'])
-@check_token
-def tmdb():
-    # Access API handler for TMDB
-    # return shows user may be interested in
-    return Response(response='success',status=200)
-
-
-
 @app.route('/getUserShows',methods=['GET'])
 @check_token
 def getUserShows():
