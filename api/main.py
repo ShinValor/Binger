@@ -47,6 +47,8 @@ def check_token(f):
         return f(*args,**kwargs)
     return wrap
 
+
+
 @app.route('/')
 def home():
     return Response(response='success',status=200)
@@ -63,12 +65,16 @@ def test():
     print("Decoded Token: ", decoded_token)
     return decoded_token
 
+
+
 @app.route('/tmdb',methods=['GET'])
 @check_token
 def tmdb():
     # Access API handler for TMDB
     # return shows user may be interested in
     return Response(response='success',status=200)
+
+
 
 @app.route('/getUserShows',methods=['GET'])
 @check_token
@@ -96,6 +102,7 @@ def getUserShows():
     return jsonify(shows_list)
 
 
+
 @app.route('/getUserMovies',methods=['GET'])
 @check_token
 def getUserMovies():
@@ -121,9 +128,14 @@ def getUserMovies():
 
     return jsonify(movies_list)
 
+
+
 @app.route('/addUserShows',methods=['GET','POST'])
-#@check_token
+@check_token
 def addUserShows():
+    """
+    Add Tv show data into user's show collection in firestore
+    """
     data = request.get_json()
     title = data['title']
     
@@ -134,10 +146,10 @@ def addUserShows():
     decoded_token = auth.verify_id_token(token)
     uid = decoded_token['uid']
 
-    # add new show to user's firestore
+    # create a reference to a new document in the user's show collection
     doc_ref = db.collection('users').document(uid).collection('shows').document(title)
 
-
+    # Add the tv show data to the new document
     doc_ref.set({
          "id": data['id'],
          "genres": data['genres'],
@@ -150,8 +162,6 @@ def addUserShows():
          "is_movie": data['is_movie']
     })
     
-    # verify that it was successfully added to firestore
-    # return
     return Response(response='success',status=200)
 
 
