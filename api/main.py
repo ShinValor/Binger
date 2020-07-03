@@ -73,15 +73,18 @@ def tmdb():
 @app.route('/getUserShows',methods=['GET'])
 @check_token
 def getUserShows():
+    """
+    Retrieves all tv shows user is interested in from their shows collection on firestore
+    """
     shows_list = []
-
+    
     # get idToken
     token = request.args.get('token')
 
     # decode idToken
     decoded_token = auth.verify_id_token(token)
     uid = decoded_token['uid']
-    
+
     # get all of the user's interested shows from firestore
     user_shows = db.collection('users').document(uid).collection('shows').stream()
 
@@ -92,12 +95,61 @@ def getUserShows():
  
     return jsonify(shows_list)
 
-@app.route('/addUserShows',methods=['GET','POST'])
+
+@app.route('/getUserMovies',methods=['GET'])
 @check_token
-def addUserShows():
+def getUserMovies():
+    """
+    Retrieves all movies user is interested in from their movie collection on firestore
+    """
+    movies_list = []
+
     # get idToken
+    token = request.args.get('token')
+
     # decode idToken
+    decoded_token = auth.verify_id_token(token)
+    uid = decoded_token['uid']
+
+    # get all of the user's interested shows from firestore
+    user_movies = db.collection('users').document(uid).collection('movies').stream()
+
+    # Append all data into a list and return as json array
+    # If user or data doesn't exist, an empty json array will be returned
+    for movie in user_movies:
+        movies_list.append(movie.to_dict())
+
+    return jsonify(movies_list)
+
+@app.route('/addUserShows',methods=['GET','POST'])
+#@check_token
+def addUserShows():
+    data = request.get_json()
+    title = data['title']
+    
+    # get idToken
+    token = request.args.get('token')
+
+    # decode idToken
+    decoded_token = auth.verify_id_token(token)
+    uid = decoded_token['uid']
+
     # add new show to user's firestore
+    doc_ref = db.collection('users').document(uid).collection('shows').document(title)
+
+
+    doc_ref.set({
+         "id": data['id'],
+         "genres": data['genres'],
+         "overview": data['overview'],
+         "popularity": data['popularity'],
+         "poster_path": data['poster_path'],
+         "release_year": data['release_year'],
+         "score": data['score'],
+         "title": data['title'],
+         "is_movie": data['is_movie']
+    })
+    
     # verify that it was successfully added to firestore
     # return
     return Response(response='success',status=200)
