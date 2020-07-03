@@ -108,3 +108,4 @@ Base URLs used by TMDB to get recommendations based on "Show" ids.
 """
 MOVIE_RECOMMENDATION_URL = "https://api.themoviedb.org/3/movie/{}/recommendations"
 TV_SHOW_RECOMMENDATION_URL = "https://api.themoviedb.org/3/tv/{}/recommendations"
+
