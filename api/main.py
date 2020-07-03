@@ -156,16 +156,3 @@ def addUserShows():
 
 
 
-def quickstart_add_data_two():
-    uid = 'user2'
-    # [START quickstart_add_data_two]
-    doc_ref = db.collection('users').document(uid).collection('shows').document("movieName1")
-
-    # Must be "" for valid json withour error
-    doc_ref.set({
-        "NameOfMovie":"The Lord of the Rings",
-    }, merge=True)
-
-
-
-#quickstart_add_data_two()
