@@ -98,3 +98,13 @@ Reference: https://developers.themoviedb.org/3/movies/get-similar-movies
 """
 MOVIE_SIMILAR_URL = "https://api.themoviedb.org/3/movie/{}/similar"
 TV_SHOW_SIMILAR_URL = "https://api.themoviedb.org/3/tv/{}/similar"
+
+"""
+MOVIE_DISCOVER_URL = "https://api.themoviedb.org/3/discover/movie"
+TV_SHOW_DISCOVER_URL = "https://api.themoviedb.org/3/discover/tv"
+
+"""
+Base URLs used by TMDB to get recommendations based on "show" ids.
+"""
+MOVIE_RECOMMENDATION_URL = "https://api.themoviedb.org/3/movie/{}/recommendations"
+TV_SHOW_RECOMMENDATION_URL = "https://api.themoviedb.org/3/tv/{}/recommendations"

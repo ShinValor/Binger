@@ -1,11 +1,16 @@
 <template>
-  <div class="notfound">
-    <h1>Page Not Found</h1>
-  </div>
+  <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
+    <FourOFour />
+  </a-layout>
 </template>
 
 <script>
+import FourOFour from "@/components/FourOFour.vue";
+
 export default {
-  name: "NotFound"
+  name: "NotFound",
+  components: {
+    FourOFour
+  }
 };
 </script>

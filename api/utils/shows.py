@@ -97,6 +97,7 @@ def create_show(result_dict, is_movie):
 
     Returns:
         A "Show" class object. 
+
     """
     
     show = Show(result_dict["id"],

@@ -1,11 +1,22 @@
 <template>
-  <div class="login">
-    <h1>This page will be built later</h1>
-  </div>
+  <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
+    <Navigation />
+    <LoginForm />
+  </a-layout>
 </template>
 
 <script>
+// @ is an alias to /src
+import Navigation from "@/components/Navigation.vue";
+import LoginForm from "@/components/LoginForm.vue";
+
 export default {
-  name: "Login"
+  name: "Login",
+  components: {
+    Navigation,
+    LoginForm
+  }
 };
 </script>
+
+<style></style>

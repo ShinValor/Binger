@@ -2,18 +2,37 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ master ]
+    branches:
+      - '*'
   pull_request:
-    branches: [ master ]
+    branches:
+      - '*'
 
 jobs:
 
-  build:
+  build1:
+    name: Vue App
 
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      working-directory: ./app
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      run: |
+        cd app/
+        docker run --privileged -d docker:dind
+        docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+
+  build2:
+    name: Flask App
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: |
+        cd api/
+        docker run --privileged -d docker:dind
+        docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+

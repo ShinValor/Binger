@@ -1,15 +1,60 @@
-# Binger
+<div align="center">
+  <img src="app/src/assets/logo256.png" alt="Binger - a movie recommendation application">
+  <h1 align="center"><i>Binger</i></h1>
+  A movie recommendation website
+</div>
 
-## About Contributors
+<div align="center">
+  <a href="#how-to-use">How To Use</a> •
+  <a href="#installation">Installation</a> •
+  <a href="#project-goals">Project goals</a>
+</div>
+<br>
 
-**Ferdi Lesporis**\
-Hello, I am computer science and biochem major. My interest in cs kind of wanders around, but for now i mostly enjoy learning new things about different areas in computer science. So far i have experienced AI, ML and CV and next semester I will be trying out computational Linguistics. I am also a very active person and the current sports I enjoy playing are tennis and running.
+<p align="center">
+  During the quarantine, people have watched all the movies and shows on their “watch later” queues and are left looking for something new to watch. Streaming services have huge libraries and it takes effort and time to find a show. There is no centralized “watch later” queue across different streaming services. Binger is designed for anyone looking to find something new to watch. Binger will provide a clean, easy, and pleasant way for its users to find new things to watch.
+</p>
+<br>
 
-**Ho Ming Poon**\
-I am a computer science major. I have experience with full stack development and Amazon web services. Beside work and school, I like travelling and cycling.
+## How to use
 
-**Tarik Weekes**\
-I am a CS major that is incredibly interested in cyber security. I enjoy solving problems using code as my instrument. Away from the keyboard, I enjoy hanging out with friends and listening to Lo-Fi. This is a testing sentence.
+Go to [Binger](https://binger.vercel.app) to sign up and log in.
 
-**Jun Qi Li**\
-CS Major interested in system architecture and database management. I enjoy reading web novels on my break time.
+## Installation
+
+```
+cd api
+pip install virtualenv
+virtualenv env
+source env/bin/activate
+pip install -r requirements.txt
+flask run
+```
+
+```
+cd app
+npm install
+npm run serve
+```
+
+## Project Goals
+
+- Deploy website to Internet for public use.
+- Provides the user with a clean interface to recommend shows and movies.
+
+## Technologies used
+
+- Vue.js
+- Ant Design
+- Firebase
+- Flask API
+- Zeit Now
+- Jest Unit Testing
+- Cypress End To End Testing
+
+## Contributors
+
+**Ferdi Lesporis**  
+**Ho Ming Poon**  
+**Tarik Weekes**  
+**Jun Qi Li**  

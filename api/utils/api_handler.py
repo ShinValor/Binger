@@ -35,7 +35,7 @@ class APIHandler:
         Initializes the api handler. 
 
         By default, number_of_sessions is 10 but you can pass an optional int to alter
-        the number of sessions the ApiHandler will use. Each of the sessions defined 
+        the number of sessions the APIHandler will use. Each of the sessions defined 
         will also be sent over https with a maximum number of retries.
         """
 
@@ -96,13 +96,13 @@ class APIHandler:
         Returns:
             show_requests: A list of requests to be sent to the API.
         """
-
         session_id = 0
         show_requests = []
 
+        options = copy.deepcopy(consts.DEFAULT_OPTIONS)
+        
         for i in range(1, (number_of_pages + 1)):
             for genre in genres:
-                options = copy.deepcopy(consts.DEFAULT_OPTIONS)
                 options["with_genres"] = genre
                 options["page"] = i
 
@@ -181,3 +181,4 @@ class APIHandler:
         show_list.extend(self.build_show_list(recommendation_responses, show.is_movie))
 
         return show_list            
+
