@@ -1,10 +1,3 @@
-"""
-Module that will hold the constants for the application.
-
-'os' module is used because the api key requires is stored in an environment 
-variable.
-"""
-
 import os
 
 """
