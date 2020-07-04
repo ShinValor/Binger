@@ -1,14 +1,10 @@
 FROM python:3.7-slim
 
-COPY ./requirements.txt /api/requirements.txt
+WORKDIR API
 
-ENV API_HOME /api
-ENV PORT 5000
-
-WORKDIR /api
+COPY . ./
 
 RUN pip install -r requirements.txt
 
-COPY . /api
+CMD flask run
 
-CMD flask run --host=0.0.0.0
