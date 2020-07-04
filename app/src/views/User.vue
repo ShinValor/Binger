@@ -1,7 +1,7 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
     <Navigation></Navigation>
-    <div class="container">
+    <div class="setting">
       <Profile class="profile"></Profile>
       <Card name="John" desc="I am a student." />
     </div>
@@ -180,21 +180,38 @@ export default {
 </script>
 
 <style>
-.container {
+.setting {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .profile {
   width: 700px;
-  margin: 50px !important;
+  margin: 50px 20px !important;
+}
+
+.profile-card {
+  height: 400px;
+  width: 400px;
+  margin: 50px 20px !important;
 }
 
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */
 
+  .setting {
+    flex-direction: column-reverse;
+  }
+
   .profile {
     width: 250px;
+    margin: 0 auto !important;
+  }
+
+  .profile-card {
+    height: 300px;
+    width: 300px;
+    margin: 15px auto !important;
   }
 }
 </style>

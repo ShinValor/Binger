@@ -1,6 +1,5 @@
 <template>
   <div class="recommendations">
-    <h1>This page will be built later</h1>
     <div class="draggable-container">
       <Vue2InteractDraggable
         @draggedLeft="draggedLeft"

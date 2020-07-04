@@ -1,6 +1,5 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
-    <h1>This page will be built later</h1>
     <chart :options="polar" />
   </a-layout>
 </template>
