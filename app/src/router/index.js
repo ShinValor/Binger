@@ -8,7 +8,7 @@ import User from "../views/User.vue";
 import Favorites from "../views/Favorites.vue";
 import Recommendations from "../views/Recommendations.vue";
 import MovieSynopsis from "../views/MovieSynopsis.vue";
-import NotFound from "../views/NotFound.vue";
+import PageNotFound from "../views/PageNotFound.vue";
 
 Vue.use(VueRouter);
 
@@ -64,8 +64,8 @@ const routes = [
   },
   {
     path: "**",
-    name: "NotFound",
-    component: NotFound
+    name: "PageNotFound",
+    component: PageNotFound
   }
 ];
 
