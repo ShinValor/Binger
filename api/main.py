@@ -11,7 +11,8 @@ cors = CORS(app, resources={r"/*": {"origins": "*"}})
 app.config.from_object('config.Config')
 
 # cred = credentials.Certificate('key.json')
-firebase_app = initialize_app(cred)
+# firebase_app = initialize_app(cred)
+firebase_app = initialize_app()
 
 def check_token(f):
     """
