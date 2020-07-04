@@ -2,7 +2,7 @@ import os, json
 from functools import wraps
 from flask import Flask, Response, jsonify, request, make_response
 from flask_cors import CORS, cross_origin
-from firebase_admin import credentials, auth
+from firebase_admin import credentials, auth, firestore, initialize_app
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
