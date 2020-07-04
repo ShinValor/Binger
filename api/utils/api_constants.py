@@ -1,7 +1,7 @@
 """
 Module that will hold the constants for the application.
 
-os module is used because the api key requires is stored in an environment 
+'os' module is used because the api key requires is stored in an environment 
 variable.
 """
 
@@ -10,10 +10,12 @@ import os
 """
 All the available genres from TMDB, Placed in constant var for easy access
 instead of requesting API everytime a genre id needs to be resolved.
-Acquired using TMDB API endpoints:
 
+Acquired using TMDB API endpoints:
 /genre/movie/list
 /genre/tv/list
+
+Reference: https://developers.themoviedb.org/3/genres
 """
 GENRE_IDS_TO_NAME = {
     12    : "Adventure",
@@ -68,18 +70,31 @@ DEFAULT_OPTIONS = {
 }
 
 """ 
-Base URL used by TMDB to resolve "show's" poster.
+Base URL used by TMDB to resolve "Show's" poster.
 """
 TMDB_IMAGE_URL = "https://image.tmdb.org/t/p/w500{}"
 
 """ 
-Base URLs used by TMDB to discover initial "shows".
+Base URLs used by TMDB to discover initial "Shows".
+
+Reference: https://developers.themoviedb.org/3/discover/movie-discover
 """
 MOVIE_DISCOVER_URL = "https://api.themoviedb.org/3/discover/movie"
-TV_SHOW_DISCOVER_URL = "https://api.themoviedb.org/3/discover/tv"
+TV_SHOW_DISCOVER_URL = "https://api.themoviedb.org/3/discover/tv/"
 
 """
-Base URLs used by TMDB to get recommendations based on "show" ids.
+Base URLs used by TMDB to get recommendations based on "Show" ids.
+
+Reference: https://developers.themoviedb.org/3/movies/get-movie-recommendations
 """
 MOVIE_RECOMMENDATION_URL = "https://api.themoviedb.org/3/movie/{}/recommendations"
 TV_SHOW_RECOMMENDATION_URL = "https://api.themoviedb.org/3/tv/{}/recommendations"
+
+"""
+Base URLs used by TMDB to get similar movies, these are not the same as recommendations. 
+"Shows" that are fetched only have similar keywords and genres.
+
+Reference: https://developers.themoviedb.org/3/movies/get-similar-movies
+"""
+MOVIE_SIMILAR_URL = "https://api.themoviedb.org/3/movie/{}/similar"
+TV_SHOW_SIMILAR_URL = "https://api.themoviedb.org/3/tv/{}/similar"

@@ -11,21 +11,21 @@ class Show:
     Class to encapsulate data from TMDB query response.
 
     Attributes: 
-        id: How TMDB identifies each "show".
-        genres: Genres for "shows" that are a list of genre ids from the TMDB API.
-        overview: Brief description of the "show".
-        popularity: The rating of the "show" in the TMDB API
-        poster_path: Path for the "show's" poster.
+        id: How TMDB identifies each "Show".
+        genres: Genres for "Shows" that are a list of genre ids from the TMDB API.
+        overview: Brief description of the "Show".
+        popularity: The rating of the "Show" in the TMDB API
+        poster_path: Path for the "Show's" poster.
         release_year: The year the show was released or first aired.
         score: An int that will determine the likability score. If a show is in the RecommendationQueue
         and the API is to added it again, the score is increased instead. default is 1.
-        title: The title of the "show".
-        is_movie: Boolean to determine if a "show" is a Movie or TV Show.
+        title: The title of the "Show".
+        is_movie: Boolean to determine if a "Show" is a Movie or TV Show.
     """
 
     def __init__(self, id, genres, overview, popularity, poster_path, release_year, title, is_movie=True):
         """
-        Initializes a show class with the information passed in by the constructor.
+        Initializes a "Show" class with the information passed in by the constructor.
         
         The genres that are passed are typically as a list of ids so they are 
         resolved into a list of genres with words using the 'GENRE_IDS_TO_NAME' dictionary
@@ -48,14 +48,17 @@ class Show:
     def __eq__(self, other): 
         """
         Allows for show classes to be compared to one another. If the attribute id is
-        the same then the 'shows' are the same.
+        the same then the "Shows" are the same.
         """
 
         return self.id == other.id
 
+    def __hash__(self): 
+        return hash(self.id)
+
     def __lt__(self, other):
         """
-        Allows the 'show' objects' scores to be compared to one another for sorting.
+        Allows the 'Show' objects' scores to be compared to one another for sorting.
         """
 
         if self.score == other.score:
@@ -65,14 +68,16 @@ class Show:
 
     def display_info(self):
         """
-        Prints information of the "show". Primarily a troubleshooting tool most likely won't 
+        Prints information of the "Show". Primarily a troubleshooting tool most likely won't 
         be used in prod.
         """
 
-        show_information = f"ID: {self.id}\nTitle: {self.title} ({self.release_year})\nGenres: {self.genres}\nOverview: {self.overview}"
+        show_information = f"ID: {self.id}\nTitle: {self.title} ({self.release_year})\nGenres: {self.genres}"
+        show_information += f"\nOverview: {self.overview}"
         show_information += f"\nPopularity: {self.popularity}"
         show_information += f"\nImage: {self.poster_path}"
-        show_information += f"\nIs Movie: {self.is_movie}\n"
+        show_information += f"\nIs Movie: {self.is_movie}"
+        show_information += f"\nScore: {self.score}\n"
 
         print(show_information)
 
@@ -82,10 +87,10 @@ def create_show(result_dict, is_movie):
 
     Args: 
         result_dict: A dictionary from the API that will be used to turn into a Show class.
-        is_movie: A boolean that will determine if this "show" is a Movie or not.
+        is_movie: A boolean that will determine if this "Show" is a Movie or not.
 
     Returns:
-        A show class object. 
+        A "Show" class object. 
     """
     
     show = Show(result_dict["id"],
@@ -107,15 +112,15 @@ def create_show(result_dict, is_movie):
 
 def create_show_list(list_of_results, is_movie):
     """
-    Creates a list of "shows" from the API response.
+    Creates a list of "Shows" from the API response.
 
     Args: 
         list_of_results: A list of dictionaries from the API response.
-        is_movie: A boolean that decides what where or not a "show" is a Movie
+        is_movie: A boolean that decides what where or not a "Show" is a Movie
         or a TV Show.
 
     Returns:
-        Returns a list of objects of type Show.
+        Returns a list of "Show" objects.
     """
 
     returned_list = []
