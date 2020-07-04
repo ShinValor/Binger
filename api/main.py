@@ -2,8 +2,7 @@ import os, json
 from functools import wraps
 from flask import Flask, Response, jsonify, request, make_response
 from flask_cors import CORS, cross_origin
-from firebase_admin import credentials, auth
-import firebase_admin
+from firebase_admin import credentials, auth, firestore, initialize_app
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
@@ -11,8 +10,9 @@ cors = CORS(app, resources={r"/*": {"origins": "*"}})
 # Read env variables from config.py
 app.config.from_object('config.Config')
 
-cred = credentials.Certificate('key.json')
-firebase = firebase_admin.initialize_app(cred)
+# cred = credentials.Certificate('key.json')
+# firebase_app = initialize_app(cred)
+firebase_app = initialize_app()
 
 def check_token(f):
     """
