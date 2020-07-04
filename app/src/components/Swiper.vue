@@ -2,6 +2,7 @@
   <div>
     <div class="draggable-container">
       <Vue2InteractDraggable
+        class="card"
         @draggedLeft="draggedLeft"
         @draggedRight="draggedRight"
         :interact-max-rotation="15"
@@ -10,7 +11,6 @@
         :interact-event-bus-events="interactEventBusEvents"
         :interact-lock-y-axis="true"
         v-if="isShowing"
-        class="card"
       >
       </Vue2InteractDraggable>
     </div>
@@ -72,13 +72,13 @@ export default {
 <style>
 .draggable-container {
   display: flex;
-  margin: auto;
+  margin: 0 auto;
 }
 
 .card {
   height: 600px;
   width: 400px;
-  margin: auto;
+  margin: 0 auto;
   background-image: url("../imgs/movie.jpg");
   background-size: contain;
   background-repeat: no-repeat;
