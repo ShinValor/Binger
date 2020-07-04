@@ -133,7 +133,7 @@ def addUserShows():
     # decode idToken
     decoded_token = auth.verify_id_token(token)
     uid = decoded_token['uid']
-
+    
     # create a reference to a new document in the user's show collection
     doc_ref = db.collection('users').document(uid).collection('shows').document(title)
 
