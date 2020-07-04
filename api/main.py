@@ -2,9 +2,7 @@ import os, json
 from functools import wraps
 from flask import Flask, Response, jsonify, request, make_response
 from flask_cors import CORS, cross_origin
-from firebase_admin import credentials, auth
-from firebase_admin import firestore
-import firebase_admin
+from firebase_admin import credentials, auth, firestore, initialize_app
 
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
@@ -13,7 +11,7 @@ cors = CORS(app, resources={r"/*": {"origins": "*"}})
 app.config.from_object('config.Config')
 
 cred = credentials.Certificate('key.json')
-firebase = firebase_admin.initialize_app(cred)
+firebase = initialize_app(cred)
 
 db = firestore.client()
 
