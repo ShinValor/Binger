@@ -15,6 +15,8 @@ app.config.from_object('config.Config')
 # firebase_app = initialize_app(cred)
 firebase_app = initialize_app()
 
+db = firestore.client()
+
 
 def check_token(f):
     """
