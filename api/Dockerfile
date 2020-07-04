@@ -1,8 +1,7 @@
-FROM ubuntu:16.04
+FROM python:3.7-slim
 
 RUN apt-get update -y && apt-get install -y python-pip python-dev
 
-# We copy just the requirements.txt first to leverage Docker cache
 COPY ./requirements.txt /api/requirements.txt
 
 WORKDIR /api
