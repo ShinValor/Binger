@@ -172,7 +172,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #components-form-signup {
   margin: auto;
   width: 700px;
@@ -182,7 +182,6 @@ export default {
   /* applies styles to any device screen sizes below 800px wide */
 
   #components-form-signup {
-    margin: auto;
     width: 250px;
   }
 }

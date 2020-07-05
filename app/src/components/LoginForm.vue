@@ -51,9 +51,9 @@
         Log in
       </a-button>
       Or
-      <a href="">
-        register now!
-      </a>
+      <router-link to="/signup">
+        Register now!
+      </router-link>
     </a-form-item>
   </a-form>
 </template>
@@ -89,7 +89,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #components-form-login {
   margin: auto;
   width: 500px;

@@ -1,7 +1,7 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
     <Navigation />
-    <div class="grid">
+    <div class="about">
       <Card class="about-card" name="John" desc="I am a student." />
       <Card class="about-card" name="Jun" desc="I am a student." />
       <Card class="about-card" name="Ferdi" desc="I am a student." />
@@ -24,12 +24,12 @@ export default {
 };
 </script>
 
-<style>
-.grid {
+<style scoped>
+.about {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  margin: 50px;
+  margin: 100px 50px;
 }
 
 .about-card {

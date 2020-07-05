@@ -1,6 +1,6 @@
 <template>
   <a-layout-footer
-    style="display: flex; align-items: flex-end; justify-content: center; height: 300px;"
+    style="display: flex; align-items: flex-end; justify-content: center; height: 200px;"
   >
     Binger ©2020 Created by Binger Team
   </a-layout-footer>
@@ -12,4 +12,4 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped></style>

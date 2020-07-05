@@ -1,16 +1,25 @@
 <template>
-  <a-layout-header class="header" :style="{ padding: '0' }">
-    <h1 class="app-name">
+  <a-layout-header class="navigation-bar">
+    <h1 :style="{color: 'white', margin: '0px 25px'}">
       <router-link to="/" :style="{ color: 'white' }">
-        <img src="../assets/logo32.png" />
+        <img src="@/assets/logo32.png" />
         Binger
       </router-link>
     </h1>
-    <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '64px' }">
-      <a-menu-item :style="{ width: '100px' }">
+    <a-menu theme="dark" mode="horizontal" :style="{lineHeight: '64px'}">
+      <a-menu-item class="tab">
+        <router-link to="/about">About</router-link>
+      </a-menu-item>
+      <a-menu-item class="tab">
+        <router-link to="/">Services</router-link>
+      </a-menu-item>
+      <a-menu-item class="tab">
+        <router-link to="/">Contact</router-link>
+      </a-menu-item>
+      <a-menu-item class="tab">
         <router-link to="/login">Login</router-link>
       </a-menu-item>
-      <a-menu-item :style="{ width: '100px' }">
+      <a-menu-item class="tab">
         <router-link to="/signup">Register</router-link>
       </a-menu-item>
     </a-menu>
@@ -19,28 +28,33 @@
 
 <script>
 export default {
-  name: "Navigation"
+  name: "Navigation",
+  data() {
+    return {
+      collapsed: false,
+    };
+  },
 };
 </script>
 
-<style>
-.header {
+<style scoped>
+.navigation-bar {
+  width: 100%;
+  padding: 0px;
   display: flex;
   justify-content: space-between;
-  /* position: fixed;
-  z-index: 1; */
+  position: fixed;
+  z-index: 1;
 }
 
 .logo {
   width: 120px;
-  height: 31px;
-  background: rgba(255, 255, 255, 0.2);
-  margin: 16px 28px 16px 0;
+  height: 30px;
+  margin: 16px 28px 16px 0px;
 }
 
-.app-name {
-  color: white;
-  margin: 0px 25px;
+.tab {
+  width: 100px;
 }
 
 .ant-menu-item-selected {

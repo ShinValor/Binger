@@ -69,7 +69,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .draggable-container {
   display: flex;
   margin: 0 auto;

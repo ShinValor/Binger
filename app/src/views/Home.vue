@@ -2,7 +2,17 @@
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
     <Navigation />
     <a-layout-content>
-      <Content msg="This is home page" />
+      <div :style="{height: '500px', 'margin-top': '64px'}">
+        <img src="@/imgs/banner.jpg" alt="Binger Banner" :style="{'object-fit': 'cover', height: '100%', width: '100%'}">
+      </div>
+      <Content msg="Welcome To Binger" />
+      <div class="container">
+        <div class="item1">header</div>
+        <div class="item2">header 2</div>
+        <div class="item3">advert</div>
+        <div class="item4">content</div>
+        <div class="item5">footer</div>
+      </div>
       <flickity class="carousel" ref="flickity" :options="flickityOptions">
         <div class="carousel-cell">
           <img
@@ -71,15 +81,16 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .carousel {
   background: #fafafa;
   margin: 25px;
+  height: 250px;
 }
 
 .carousel-cell {
   width: 66%;
-  height: 300px;
+  height: 250px;
   margin-right: 10px;
   background: #333;
 }
@@ -97,5 +108,43 @@ export default {
 .carousel-cell-image.flickity-lazyloaded,
 .carousel-cell-image.flickity-lazyerror {
   opacity: 1;
+}
+
+.container {
+  height: 500px;
+  margin: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-gap: 10px;
+  grid-template-areas:
+    "header header2 advert"
+    "content content advert"
+    "footer footer footer";
+}
+
+.item1 {
+  background: LightSkyBlue;
+  grid-area: header;
+}
+
+.item2 {
+  background: LightSkyBlue;
+  grid-area: header2;
+}
+
+.item3 {
+  background: LightSalmon;
+  grid-area: advert;
+}
+
+.item4 {
+  background: PaleTurquoise;
+  grid-area: content;
+}
+
+.item5 {
+  background: lightpink;
+  grid-area: footer;
 }
 </style>

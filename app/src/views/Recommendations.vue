@@ -2,18 +2,18 @@
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
     <Navigation></Navigation>
     <a-input-search
-      :style="{ width: '50%', margin: '25px auto' }"
+      :style="{ width: '50%', 'margin': '100px auto 25px auto' }"
       placeholder="Search Movies"
       enter-button
       @search="onSearch"
     />
-    <div :style="{margin: '10px 30px'}">
+    <div :style="{margin: '10px auto', width: '75%'}">
       <a-menu v-model="current" mode="horizontal">
-        <a-menu-item key="mail"> <a-icon type="mail" />Navigation One </a-menu-item>
-        <a-menu-item key="app" disabled> <a-icon type="appstore" />Navigation Two </a-menu-item>
+        <a-menu-item key="mail"> <a-icon type="mail" />Tags</a-menu-item>
+        <a-menu-item key="app" disabled> <a-icon type="appstore" />Top Rated </a-menu-item>
         <a-sub-menu>
           <span slot="title" class="submenu-title-wrapper"
-            ><a-icon type="setting" />Navigation Three - Submenu</span
+            ><a-icon type="setting" />Most Viewed</span
           >
           <a-menu-item-group title="Item 1">
             <a-menu-item key="setting:1">
@@ -34,7 +34,7 @@
         </a-sub-menu>
         <a-menu-item key="alipay">
           <a href="https://antdv.com" target="_blank" rel="noopener noreferrer"
-            >Navigation Four - Link</a
+            >Your Favorite</a
           >
         </a-menu-item>
       </a-menu>
@@ -115,9 +115,15 @@ export default {
 
 <style scoped>
 h1 {
-  text-align: left;
   margin: 30px 0px 0px 30px;
+  text-align: left;
   font-size: 30px;
+}
+
+img {
+  object-fit: cover;
+  width:100%;
+  height:100%;
 }
 
 .movie-poster {
@@ -131,12 +137,6 @@ h1 {
 .movie-poster .poster-col {
   width: 25%;
   margin: 10px;
-}
-
-img {
-  object-fit: cover;
-  width:100%;
-  height:100%;
 }
 
 .movie-slider {

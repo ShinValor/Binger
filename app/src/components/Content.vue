@@ -1,7 +1,7 @@
 <template>
   <!-- <a-layout-content :style="{ padding: '0 50px' }"> -->
-  <div :style="{ background: '#fff', margin: '24px', minHeight: '380px' }">
-    {{ msg }}
+  <div class="center">
+    <h1>{{msg}}</h1>
   </div>
   <!-- </a-layout-content> -->
 </template>
@@ -15,4 +15,18 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.center {
+  background: #fff;
+  height: 500px;
+  margin: 30px;
+  line-height: 500px;
+  text-align: center;
+}
+
+/* If the text has multiple lines, add the following: */
+.center h1 {
+  display: inline-block;
+  vertical-align: middle;
+}
+</style>
