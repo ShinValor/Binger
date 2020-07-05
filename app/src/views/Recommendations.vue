@@ -2,15 +2,17 @@
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
     <Navigation></Navigation>
     <a-input-search
-      :style="{ width: '50%', 'margin': '100px auto 25px auto' }"
+      :style="{ width: '50%', margin: '100px auto 25px auto' }"
       placeholder="Search Movies"
       enter-button
       @search="onSearch"
     />
-    <div :style="{margin: '10px auto', width: '75%'}">
+    <div :style="{ margin: '10px auto', width: '75%' }">
       <a-menu v-model="current" mode="horizontal">
         <a-menu-item key="mail"> <a-icon type="mail" />Tags</a-menu-item>
-        <a-menu-item key="app" disabled> <a-icon type="appstore" />Top Rated </a-menu-item>
+        <a-menu-item key="app" disabled>
+          <a-icon type="appstore" />Top Rated
+        </a-menu-item>
         <a-sub-menu>
           <span slot="title" class="submenu-title-wrapper"
             ><a-icon type="setting" />Most Viewed</span
@@ -43,33 +45,36 @@
     <div class="movie-poster">
       <div class="poster-row">
         <div class="poster-col">
-          <img src="@/imgs/aladdin.jpg" alt="Aladdin">
+          <img src="@/imgs/aladdin.jpg" alt="Aladdin" />
         </div>
         <div class="poster-col">
-          <img src="@/imgs/starwar.jpg" alt="Star War">
+          <img src="@/imgs/starwar.jpg" alt="Star War" />
         </div>
         <div class="poster-col">
-          <img src="@/imgs/logan.jpg" alt="Logan">
+          <img src="@/imgs/logan.jpg" alt="Logan" />
         </div>
         <div class="poster-col">
-          <img src="@/imgs/wonder-woman.jpg" alt="Wonder Woman">
+          <img src="@/imgs/wonder-woman.jpg" alt="Wonder Woman" />
         </div>
       </div>
       <div class="poster-row">
         <div class="poster-col">
-          <img src="@/imgs/black-panther.jpg" alt="Black Panther">
+          <img src="@/imgs/black-panther.jpg" alt="Black Panther" />
         </div>
         <div class="poster-col">
-          <img src="@/imgs/joker.jpg" alt="Joker">
+          <img src="@/imgs/joker.jpg" alt="Joker" />
         </div>
         <div class="poster-col">
-          <img src="@/imgs/6-underground.jpg" alt="6-underground">
+          <img src="@/imgs/6-underground.jpg" alt="6-underground" />
         </div>
         <div class="poster-col">
-          <img src="@/imgs/black-widow.jpg" alt="Black Widow">
+          <img src="@/imgs/black-widow.jpg" alt="Black Widow" />
         </div>
       </div>
-      <a-button type="primary" :style="{width: '100px', 'margin': '10px', float: 'right'}">
+      <a-button
+        type="primary"
+        :style="{ width: '100px', margin: '10px', float: 'right' }"
+      >
         More ...
       </a-button>
     </div>
@@ -102,7 +107,7 @@ export default {
   },
   data() {
     return {
-      current: ['mail'],
+      current: ["mail"]
     };
   },
   methods: {
@@ -122,8 +127,8 @@ h1 {
 
 img {
   object-fit: cover;
-  width:100%;
-  height:100%;
+  width: 100%;
+  height: 100%;
 }
 
 .movie-poster {

@@ -15,7 +15,7 @@ export default {
   name: "Modal",
   data() {
     return {
-      visible: false,
+      visible: false
     };
   },
   methods: {
@@ -25,8 +25,8 @@ export default {
     handleOk(e) {
       console.log(e);
       this.visible = false;
-    },
-  },
+    }
+  }
 };
 </script>
 <style scoped></style>

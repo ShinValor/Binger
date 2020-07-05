@@ -4,7 +4,7 @@
   </a-layout>
 </template>
 
-<script>
+<script scoped>
 export default {
   name: "MovieSynopsis"
 };

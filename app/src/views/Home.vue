@@ -2,8 +2,12 @@
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
     <Navigation />
     <a-layout-content>
-      <div :style="{height: '500px', 'margin-top': '64px'}">
-        <img src="@/imgs/banner.jpg" alt="Binger Banner" :style="{'object-fit': 'cover', height: '100%', width: '100%'}">
+      <div :style="{ height: '450px', 'margin-top': '64px' }">
+        <img
+          src="@/imgs/banner.jpg"
+          alt="Binger Banner"
+          :style="{ 'object-fit': 'cover', height: '100%', width: '100%' }"
+        />
       </div>
       <Content msg="Welcome To Binger" />
       <div class="container">
@@ -13,41 +17,145 @@
         <div class="item4">content</div>
         <div class="item5">footer</div>
       </div>
+      <div class="container2">
+        <div class="item1">header</div>
+        <div class="item3">advert</div>
+      </div>
       <flickity class="carousel" ref="flickity" :options="flickityOptions">
         <div class="carousel-cell">
           <img
+            src="../imgs/wonder-woman.jpg"
+            :style="{
+              'object-fit': 'cover',
+              'max-height': '100%',
+              'max-width': '100%'
+            }"
+          />
+          <!-- <img
             class="carousel-cell-image"
             data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/tulip.jpg"
             alt="tulip"
-          />
+          /> -->
         </div>
         <div class="carousel-cell">
           <img
+            src="../imgs/terminator.jpg"
+            :style="{
+              'object-fit': 'cover',
+              'max-height': '100%',
+              'max-width': '100%'
+            }"
+          />
+          <!-- <img
             class="carousel-cell-image"
             data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/grapes.jpg"
             alt="grapes"
-          />
+          /> -->
         </div>
         <div class="carousel-cell">
           <img
+            src="../imgs/logan.jpg"
+            :style="{
+              'object-fit': 'cover',
+              'max-height': '100%',
+              'max-width': '100%'
+            }"
+          />
+          <!-- <img
             class="carousel-cell-image"
             data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/raspberries.jpg"
             alt="raspberries"
-          />
+          /> -->
         </div>
         <div class="carousel-cell">
           <img
+            src="../imgs/6-underground.jpg"
+            :style="{
+              'object-fit': 'cover',
+              'max-height': '100%',
+              'max-width': '100%'
+            }"
+          />
+          <!-- <img
             class="carousel-cell-image"
             data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/wolf.jpg"
             alt="wolf"
-          />
+          /> -->
         </div>
         <div class="carousel-cell">
           <img
+            src="../imgs/joker.jpg"
+            :style="{
+              'object-fit': 'cover',
+              'max-height': '100%',
+              'max-width': '100%'
+            }"
+          />
+          <!-- <img
             class="carousel-cell-image"
             data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/leaf-droplets.jpg"
             alt="leaf droplets"
+          /> -->
+        </div>
+        <div class="carousel-cell">
+          <img
+            src="../imgs/black-panther.jpg"
+            :style="{
+              'object-fit': 'cover',
+              'max-height': '100%',
+              'max-width': '100%'
+            }"
           />
+          <!-- <img
+            class="carousel-cell-image"
+            data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/leaf-droplets.jpg"
+            alt="leaf droplets"
+          /> -->
+        </div>
+        <div class="carousel-cell">
+          <img
+            src="../imgs/black-widow.jpg"
+            :style="{
+              'object-fit': 'cover',
+              'max-height': '100%',
+              'max-width': '100%'
+            }"
+          />
+          <!-- <img
+            class="carousel-cell-image"
+            data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/wolf.jpg"
+            alt="wolf"
+          /> -->
+        </div>
+        <div class="carousel-cell">
+          <img
+            src="../imgs/starwar.jpg"
+            :style="{
+              'object-fit': 'cover',
+              'max-height': '100%',
+              'max-width': '100%'
+            }"
+          />
+          <!-- <img
+            class="carousel-cell-image"
+            data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/leaf-droplets.jpg"
+            alt="leaf droplets"
+          /> -->
+        </div>
+        <div class="carousel-cell">
+          <img
+            src="../imgs/aladdin.jpg"
+            :style="{
+              'object-fit': 'cover',
+              'max-height': '100%',
+              'max-width': '100%'
+            }"
+          />
+          <!-- <img
+            class="carousel-cell-image"
+            data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/leaf-droplets.jpg"
+            alt="leaf droplets"
+          /> -->
         </div>
       </flickity>
     </a-layout-content>
@@ -73,8 +181,11 @@ export default {
   data() {
     return {
       flickityOptions: {
-        initialIndex: 2,
-        lazyLoad: true
+        initialIndex: 0,
+        // lazyLoad: true,
+        autoPlay: 3000,
+        groupCells: 3,
+        freeScroll: true
       }
     };
   }
@@ -85,12 +196,12 @@ export default {
 .carousel {
   background: #fafafa;
   margin: 25px;
-  height: 250px;
+  height: 500px;
 }
 
 .carousel-cell {
-  width: 66%;
-  height: 250px;
+  width: 33%;
+  height: 500px;
   margin-right: 10px;
   background: #333;
 }
@@ -111,8 +222,8 @@ export default {
 }
 
 .container {
-  height: 500px;
-  margin: 30px;
+  height: 700px;
+  margin: 50px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
@@ -146,5 +257,19 @@ export default {
 .item5 {
   background: lightpink;
   grid-area: footer;
+}
+
+.container2 {
+  height: 500px;
+  margin: 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-gap: 100px;
+  grid-template-areas:
+    "header advert"
+    "header advert"
+    "header advert";
+  justify-content: space-between;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
     <Navigation />
-    <SignupForm/>
+    <SignupForm />
   </a-layout>
 </template>
 

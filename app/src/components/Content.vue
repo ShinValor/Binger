@@ -1,7 +1,7 @@
 <template>
   <!-- <a-layout-content :style="{ padding: '0 50px' }"> -->
   <div class="center">
-    <h1>{{msg}}</h1>
+    <h1>{{ msg }}</h1>
   </div>
   <!-- </a-layout-content> -->
 </template>
