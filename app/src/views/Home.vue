@@ -108,7 +108,7 @@
               margin: '20px auto'
             }"
           />
-          <h1>Sign up and Log in</h1>
+          <h1>1) Sign up and Log in</h1>
         </div>
         <div :style="{ 'grid-area': 'header2' }">
           <img
@@ -120,7 +120,7 @@
               margin: '20px auto'
             }"
           />
-          <h1>Update Profile</h1>
+          <h1>2) Update Profile</h1>
         </div>
         <div :style="{ 'grid-area': 'advert' }">
           <img
@@ -160,7 +160,7 @@
               margin: '10px 50px'
             }"
           />
-          <h1>Select Your Favorite Movie Genre</h1>
+          <h1>3) Select Your Favorite Movie Genre</h1>
         </div>
         <div :style="{ 'grid-area': 'footer' }">
           <a-steps
@@ -187,7 +187,7 @@
               <a-icon slot="icon" type="smile-o" />
             </a-step>
           </a-steps>
-          <h1>Recommend Using Our Movie Recommendation Engine</h1>
+          <h1>4) Pick Movies Based On Our Recommendation Engine</h1>
         </div>
       </div>
       <h1 :style="{ 'font-size': '30px' }">Type of Services</h1>
