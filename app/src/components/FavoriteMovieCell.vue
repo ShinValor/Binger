@@ -1,6 +1,6 @@
 <template>
   <li>
-    <img :src="item.img" />
+    <img :src="item.poster_path" />
     <br />
     <div>
       <a class="title">{{ item.title }}</a>
@@ -19,3 +19,87 @@
   </li>
 </template>
 
+<script>
+export default {
+    props: {
+        item: {
+            type: Object,
+            required: true
+        }
+    },
+    computed: {
+        genres: function() {
+            var _genres = [];
+            this.item.genres.forEach(function(genre) {
+                _genres.push(genre.name);
+            });
+            return _genres.join(', ');
+        }
+    }
+};
+</script>
+
+<style lang="scss">
+.area {
+	margin-top: 0.5em;
+}
+
+.d-flex {
+	display: flex;
+
+	&.items-center {
+		align-items: center;
+	}
+}
+
+.separator::before {
+	color: #dddddd;
+	margin-left: 0.3em;
+	margin-right: 0.3em;
+    content: '|';
+}
+
+li {
+    display: flex;
+    align-items: flex-start;
+    padding: 1em;
+    &:hover {
+        background-color: #ececec;
+    }
+}
+a {
+    color: black;
+}
+img {
+    height: 170px;
+    margin-right: 1em;
+}
+.muted {
+    font-size: 0.8em;
+    color: lighten(black, 60%);
+}
+p {
+    margin: 0;
+}
+.title {
+    font-size: 1.2em;
+}
+.plot {
+    color: lighten(black, 20%);
+}
+.rating {
+    color: lighten(black, 40%);
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    &--star {
+        background: url(https://m.media-amazon.com/images/G/01/imdb/images/listo/sprite-2426358703._V_.png)
+            no-repeat 0 -241px;
+        display: inline-block;
+        height: 12px;
+        margin-right: 0.3em;
+        vertical-align: middle;
+        width: 12px;
+    }
+}
+</style>
