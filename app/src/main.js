@@ -5,10 +5,12 @@ import store from "./store";
 import Antd from "ant-design-vue";
 import "ant-design-vue/dist/antd.css";
 import * as firebase from "firebase";
-
+import Vuesax from "vuesax";
+import "vuesax/dist/vuesax.css";
 Vue.config.productionTip = false;
 
 Vue.use(Antd);
+Vue.use(Vuesax);
 
 const firebaseConfig = {
   apiKey: "AIzaSyDHOUq-c694Z3-0uHuxPutfR7Erd6u-lOg",

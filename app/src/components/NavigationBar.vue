@@ -5,28 +5,61 @@
         <img src="../assets/logo32.png" />
         Binger
       </router-link>
+      <vs-sidebar
+        parent="body"
+        default-index="1"
+        color="primary"
+        class="sidebarx"
+        spacer
+        v-model="active"
+      >
+        <div class="header-sidebar" slot="header">
+          <vs-avatar size="70px" src="https://randomuser.me/api/portraits/women/85.jpg" />
+          <h4>{{ displayName }}</h4>
+        </div>
+        <vs-sidebar-item index="1">Home</vs-sidebar-item>
+        <vs-sidebar-item index="2">Recommendations</vs-sidebar-item>
+        <vs-sidebar-item index="3">Favorites</vs-sidebar-item>
+        <vs-divider></vs-divider>
+        <vs-sidebar-item index="4">Configurations</vs-sidebar-item>
+        <vs-sidebar-item index="5">Profile</vs-sidebar-item>
+
+        <div class="footer-sidebar" slot="footer">
+          <vs-button color="danger" type="border">log out</vs-button>
+          <vs-button color="primary" type="border">Settings</vs-button>
+        </div>
+      </vs-sidebar>
+      <div class="main-menu" style="padding: 0px 10px 0px 0px;">
+        <a-dropdown>
+          <a class="ant-dropdown-link" @click="active=!active">
+            <a-icon type="menu" />
+            <!-- <span>Menu</span> -->
+            <!-- <a-icon type="down" /> -->
+          </a>
+        </a-dropdown>
+      </div>
     </h1>
-    <div class="searchBox">
-      <a-input-search placeholder="search" class="search" size="large" style="width: 200px; height: 50px" />
-    </div>
     <div class="name-menu">
-    <a-dropdown>
-      <a class="ant-dropdown-link" @click="e => e.preventDefault()">
-        {{displayName}}
-        <a-icon type="down" />
-      </a>
-      <a-menu slot="overlay" @click="onClick">
-        <a-menu-item key="1">Account Settings</a-menu-item>
-        <a-menu-item key="2">Logout</a-menu-item>
-      </a-menu>
-    </a-dropdown>
+      <a-dropdown>
+        <a class="ant-dropdown-user-menu" @click="e => e.preventDefault()">
+          {{ displayName }}
+          <a-icon type="down" />
+        </a>
+        <a-menu slot="overlay" @click="onClick">
+          <a-menu-item key="1">Account Settings</a-menu-item>
+          <a-menu-item key="2">Logout</a-menu-item>
+        </a-menu>
+      </a-dropdown>
     </div>
   </a-layout-header>
 </template>
 
 <script>
 export default {
-  name: "navbar",
+  name: "NavigationBar",
+  data: () => ({
+    active: false
+  }),
   props: {
     displayName: {
       type: String,
@@ -42,19 +75,12 @@ export default {
   justify-content: space-between;
 }
 
-.logo {
-  width: 120px;
-  height: 31px;
-  background: rgba(255, 255, 255, 0.2);
-  margin: 16px 28px 16px 0;
-}
-
 .app-name {
   color: white;
   margin: 0px 25px;
 }
 .name-menu {
-  float:right
+  margin: 0px 25px;
 }
 
 .search {
@@ -65,21 +91,45 @@ export default {
   /* float: right; */
 }
 
-.ant-dropdown-link {
+.ant-dropdown-user-menus {
   margin: 10px 28px 10px 10px;
 }
 
 .searchBox {
   margin: 1px 0px;
-  float: right
+  float: right;
   /* padding: 5px; */
 }
 
-.ant-menu-item-selected {
-  background-color: transparent !important;
+.main-menu {
+  float: left;
 }
 
-.ant-menu-item:hover {
-  background-color: #1890ff !important;
+.header-sidebar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+}
+.header-sidebar h4 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.header-sidebar h4 > button {
+  margin-left: 10px;
+}
+.footer-sidebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.footer-sidebar > button {
+  border: 0px solid rgba(0, 0, 0, 0) !important;
+  border-left: 1px solid rgba(0, 0, 0, 0.07) !important;
+  border-radius: 0px !important;
 }
 </style>
