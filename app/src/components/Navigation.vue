@@ -1,8 +1,8 @@
 <template>
   <a-layout-header class="navigation-bar">
-    <div>
+    <div :style="{ display: 'flex', 'justify-content': 'center' }">
       <Menu />
-      <h1 class="logo">
+      <h1>
         <router-link to="/" :style="{ color: 'white' }">
           <img src="@/assets/logo32.png" />
           Binger
@@ -43,17 +43,9 @@ export default {
 <style>
 .navigation-bar {
   width: 100%;
-  /* margin-bottom: 64px; */
   padding: 0px;
   display: flex;
   justify-content: space-between;
-  /* position: fixed;
-  z-index: 1; */
-}
-
-.logo {
-  width: 120px;
-  height: 30px;
 }
 
 .tab {
