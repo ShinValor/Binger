@@ -79,7 +79,7 @@ export default {
   height: 600px;
   width: 400px;
   margin: 0 auto;
-  background-image: url("../imgs/movie.jpg");
+  background-image: url("../imgs/aladdin.jpg");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
