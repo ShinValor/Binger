@@ -170,7 +170,9 @@ class APIHandler:
             api_url = consts.TV_SHOW_RECOMMENDATION_URL
 
         for i in range(1, (number_of_pages + 1)):
+            options = copy.deepcopy(consts.DEFAULT_OPTIONS)
             options["page"] = i
+            
             recommendation_requests.append(self.async_request(api_url.format(show.id), 
                                             session_id, options))
             session_id += 1
