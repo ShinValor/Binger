@@ -9,8 +9,8 @@
           :style="{ 'object-fit': 'cover', height: '100%', width: '100%' }"
         />
       </div>
-      <Content msg="Welcome To Binger" :style="{ 'margin-bottom': '200px' }" />
-      <div class="container3">
+      <Content msg="Welcome To Binger" />
+      <div class="container2">
         <div
           :style="{
             width: '50%',
@@ -23,7 +23,8 @@
           <p>
             All our illustrations come in different styles, and you can change
             the main color. Just choose the one you like the most for your
-            project.
+            project. Some styles allow you to select a simple background, a more
+            one, or remove it altogether. Give it a try!
           </p>
         </div>
         <div :style="{ width: '50%' }">
@@ -37,7 +38,7 @@
           />
         </div>
       </div>
-      <div class="container3">
+      <div class="container2">
         <div :style="{ width: '50%' }">
           <img
             src="../assets/movie-night.png"
@@ -59,11 +60,13 @@
           <h1>Movie Nights</h1>
           <p>
             Do you want the illustrations to come to life on your website? You
-            can animate them directly with our online editor!
+            can animate them directly with our online editor! Some styles allow
+            you to select a simple background, a more detailed one, or remove it
+            altogether. Give it a try!
           </p>
         </div>
       </div>
-      <div class="container3">
+      <div class="container2">
         <div
           :style="{
             width: '50%',
@@ -75,7 +78,9 @@
           <h1>Watch With Friends</h1>
           <p>
             Some styles allow you to select a simple background, a more detailed
-            one, or remove it altogether. Give it a try!
+            one, or remove it altogether. Give it a try! Some styles allow you
+            to select a simple background, a more detailed one, or remove it
+            altogether. Give it a try!
           </p>
         </div>
         <div :style="{ width: '50%' }">
@@ -191,7 +196,7 @@
           :style="{
             width: '33%',
             'background-color': 'white',
-            'border-radius': '10%'
+            'border-radius': '5%'
           }"
         >
           <a-result
@@ -213,12 +218,12 @@
           :style="{
             width: '33%',
             'background-color': 'white',
-            'border-radius': '10%'
+            'border-radius': '5%'
           }"
         >
           <a-result
             status="success"
-            title="Pro"
+            title="Professional"
             sub-title="Order number: 2017182818828182881 Cloud server configuration takes 1-5 minutes, please wait."
           >
             <template #extra>
@@ -235,7 +240,7 @@
           :style="{
             width: '33%',
             'background-color': 'white',
-            'border-radius': '10%'
+            'border-radius': '5%'
           }"
         >
           <a-result
@@ -254,7 +259,7 @@
           </a-result>
         </div>
       </div>
-      <h1 :style="{ 'font-size': '30px' }">Latest Premiere</h1>
+      <h1 :style="{ 'font-size': '30px' }">Latest Premieres</h1>
       <flickity class="carousel" ref="flickity" :options="flickityOptions">
         <div class="carousel-cell">
           <img
@@ -431,13 +436,6 @@ export default {
 .container2 {
   height: 500px;
   margin: 10px 50px 100px 50px;
-  display: flex;
-  justify-content: space-between;
-}
-
-.container3 {
-  height: 500px;
-  margin: 10px 50px 200px 50px;
   display: flex;
   justify-content: space-between;
 }

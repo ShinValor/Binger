@@ -19,14 +19,10 @@ export default {
 .center {
   background: #fff;
   height: 500px;
-  margin: 30px;
-  line-height: 500px;
+  margin: 30px 30px 100px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   text-align: center;
-}
-
-/* If the text has multiple lines, add the following: */
-.center h1 {
-  display: inline-block;
-  vertical-align: middle;
 }
 </style>

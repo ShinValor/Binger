@@ -2,7 +2,7 @@
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
     <Navigation></Navigation>
     <a-input-search
-      :style="{ width: '50%', margin: '100px auto 25px auto' }"
+      :style="{ width: '50%', margin: '25px auto' }"
       placeholder="Search Movies"
       enter-button
       @search="onSearch"
