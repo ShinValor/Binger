@@ -6,6 +6,8 @@ as there is no universal term that refers to both.
 
 import api_constants as consts
 
+from json import dumps
+
 class Show:
     """
     Class to encapsulate data from TMDB query response.
@@ -80,6 +82,15 @@ class Show:
         show_information += f"\nScore: {self.score}\n"
 
         print(show_information)
+
+    def to_json(self):
+        """
+        Converts a "Show" object into a json object.
+        """
+        json = dumps(vars(self), indent=4)
+        
+        return json
+
 
 def create_show(result_dict, is_movie):
     """
