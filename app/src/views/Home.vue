@@ -18,8 +18,9 @@
         <div class="item5">footer</div>
       </div>
       <div class="container2">
-        <div class="item1">header</div>
-        <div class="item3">advert</div>
+        <div class="item6">header</div>
+        <div class="item7">advert</div>
+        <div class="item8">content</div>
       </div>
       <flickity class="carousel" ref="flickity" :options="flickityOptions">
         <div class="carousel-cell">
@@ -262,14 +263,22 @@ export default {
 .container2 {
   height: 500px;
   margin: 50px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr;
-  grid-gap: 100px;
-  grid-template-areas:
-    "header advert"
-    "header advert"
-    "header advert";
+  display: flex;
   justify-content: space-between;
+}
+
+.item6 {
+  background: lightgreen;
+  width: 33%;
+}
+
+.item7 {
+  background: lightsteelblue;
+  width: 33%;
+}
+
+.item8 {
+  background: lightgoldenrodyellow;
+  width: 33%;
 }
 </style>
