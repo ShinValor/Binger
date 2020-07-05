@@ -1,10 +1,6 @@
 <template>
-  <a-form
-    id="components-form-login"
-    :form="form"
-    class="login-form"
-    @submit="handleSubmit"
-  >
+  <a-form class="login-form" :form="form" @submit="handleSubmit">
+    <h1>Log In</h1>
     <a-form-item>
       <a-input
         v-decorator="[
@@ -44,10 +40,10 @@
       >
         Remember me
       </a-checkbox>
-      <a class="login-form-forgot" href="">
+      <a :style="{ float: 'right' }" href="">
         Forgot password
       </a>
-      <a-button type="primary" html-type="submit" class="login-form-button">
+      <a-button type="primary" html-type="submit" :style="{ width: '100%' }">
         Log in
       </a-button>
       Or
@@ -90,28 +86,15 @@ export default {
 </script>
 
 <style scoped>
-#components-form-login {
+.login-form {
   margin: auto;
   width: 500px;
-}
-
-#components-form-login .login-form {
-  max-width: 300px;
-}
-
-#components-form-login .login-form-forgot {
-  float: right;
-}
-
-#components-form-login .login-form-button {
-  width: 100%;
 }
 
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */
 
-  #components-form-login {
-    margin: auto;
+  .login-form {
     width: 250px;
   }
 }

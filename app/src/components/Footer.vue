@@ -65,9 +65,9 @@ export default {
 <style scoped>
 .footer {
   height: 100%;
+  margin-top: 100px;
   display: flex;
   justify-content: space-between;
-  /* background: gray; */
 }
 
 .section1 {

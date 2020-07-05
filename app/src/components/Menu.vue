@@ -29,17 +29,16 @@ export default {
   height: 20px;
   top: 0;
   left: 0;
-  margin: 20px;
+  margin: 25px;
 }
 
 .bm-burger-bars {
-  /* background-color: rgba(255, 255, 255, 0.65); */
   background-color: white;
 }
 
 .line-style {
   position: absolute;
-  height: 20%;
+  height: 1%;
   left: 0;
   right: 0;
 }

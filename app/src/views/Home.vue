@@ -2,26 +2,259 @@
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
     <Navigation />
     <a-layout-content>
-      <div :style="{ height: '450px', 'margin-top': '64px' }">
+      <div :style="{ height: '450px' }">
         <img
           src="@/imgs/banner.jpg"
           alt="Binger Banner"
           :style="{ 'object-fit': 'cover', height: '100%', width: '100%' }"
         />
       </div>
-      <Content msg="Welcome To Binger" />
+      <Content msg="Welcome To Binger" :style="{ 'margin-bottom': '200px' }" />
+      <div class="container3">
+        <div
+          :style="{
+            width: '50%',
+            display: 'flex',
+            'flex-direction': 'column',
+            'justify-content': 'center'
+          }"
+        >
+          <h1>Optimized Movie Search Engine</h1>
+          <p>
+            All our illustrations come in different styles, and you can change
+            the main color. Just choose the one you like the most for your
+            project.
+          </p>
+        </div>
+        <div :style="{ width: '50%' }">
+          <img
+            src="../assets/fast-loading.png"
+            :style="{
+              'object-fit': 'cover',
+              'max-height': '100%',
+              'max-width': '100%'
+            }"
+          />
+        </div>
+      </div>
+      <div class="container3">
+        <div :style="{ width: '50%' }">
+          <img
+            src="../assets/movie-night.png"
+            :style="{
+              'object-fit': 'cover',
+              'max-height': '100%',
+              'max-width': '100%'
+            }"
+          />
+        </div>
+        <div
+          :style="{
+            width: '50%',
+            display: 'flex',
+            'flex-direction': 'column',
+            'justify-content': 'center'
+          }"
+        >
+          <h1>Movie Nights</h1>
+          <p>
+            Do you want the illustrations to come to life on your website? You
+            can animate them directly with our online editor!
+          </p>
+        </div>
+      </div>
+      <div class="container3">
+        <div
+          :style="{
+            width: '50%',
+            display: 'flex',
+            'flex-direction': 'column',
+            'justify-content': 'center'
+          }"
+        >
+          <h1>Watch With Friends</h1>
+          <p>
+            Some styles allow you to select a simple background, a more detailed
+            one, or remove it altogether. Give it a try!
+          </p>
+        </div>
+        <div :style="{ width: '50%' }">
+          <img
+            src="../assets/friendship.png"
+            :style="{
+              'object-fit': 'cover',
+              'max-height': '100%',
+              'max-width': '100%'
+            }"
+          />
+        </div>
+      </div>
+      <h1 :style="{ 'font-size': '40px' }">
+        <strong> How It Works </strong>
+      </h1>
       <div class="container">
-        <div class="item1">header</div>
-        <div class="item2">header 2</div>
-        <div class="item3">advert</div>
-        <div class="item4">content</div>
-        <div class="item5">footer</div>
+        <div :style="{ 'grid-area': 'header' }">
+          <img
+            src="../assets/login.svg"
+            :style="{
+              'object-fit': 'cover',
+              height: '100px',
+              width: '100px',
+              margin: '20px auto'
+            }"
+          />
+          <h1>Sign up and Log in</h1>
+        </div>
+        <div :style="{ 'grid-area': 'header2' }">
+          <img
+            src="../assets/profile.svg"
+            :style="{
+              'object-fit': 'cover',
+              height: '100px',
+              width: '100px',
+              margin: '20px auto'
+            }"
+          />
+          <h1>Update Profile</h1>
+        </div>
+        <div :style="{ 'grid-area': 'advert' }">
+          <img
+            src="../assets/watch-movie.svg"
+            :style="{
+              'object-fit': 'cover',
+              height: '400px',
+              width: '500px'
+            }"
+          />
+        </div>
+        <div :style="{ 'grid-area': 'content' }">
+          <img
+            src="../assets/arrow.svg"
+            :style="{
+              'object-fit': 'cover',
+              height: '100px',
+              width: '100px',
+              margin: '10px 50px'
+            }"
+          />
+          <img
+            src="../assets/movie-tape.svg"
+            :style="{
+              'object-fit': 'cover',
+              height: '100px',
+              width: '100px',
+              margin: '10px 50px'
+            }"
+          />
+          <img
+            src="../assets/list.svg"
+            :style="{
+              'object-fit': 'cover',
+              height: '100px',
+              width: '100px',
+              margin: '10px 50px'
+            }"
+          />
+          <h1>Select Your Favorite Movie Genre</h1>
+        </div>
+        <div :style="{ 'grid-area': 'footer' }">
+          <a-steps
+            :style="{
+              'margin-top': '25px',
+              'margin-bottom': '75px',
+              'margin-left': '-60px'
+            }"
+          >
+            <a-step status="finish" title="Login">
+              <a-icon slot="icon" type="user" />
+            </a-step>
+            <a-step
+              status="finish"
+              title="Select 
+              Movie Genre"
+            >
+              <a-icon slot="icon" type="solution" />
+            </a-step>
+            <a-step status="process" title="Processing">
+              <a-icon slot="icon" type="loading" />
+            </a-step>
+            <a-step status="wait" title="Done">
+              <a-icon slot="icon" type="smile-o" />
+            </a-step>
+          </a-steps>
+          <h1>Recommend Using Our Movie Recommendation Engine</h1>
+        </div>
       </div>
+      <h1 :style="{ 'font-size': '30px' }">Type of Services</h1>
       <div class="container2">
-        <div class="item6">header</div>
-        <div class="item7">advert</div>
-        <div class="item8">content</div>
+        <div
+          :style="{
+            width: '33%',
+            'background-color': 'white',
+            'border-radius': '10%'
+          }"
+        >
+          <a-result
+            status="success"
+            title="Basic"
+            sub-title="Order number: 2017182818828182881 Cloud server configuration takes 1-5 minutes, please wait."
+          >
+            <template #extra>
+              <a-button key="console" type="primary">
+                Go Console
+              </a-button>
+              <a-button key="buy">
+                Buy Again
+              </a-button>
+            </template>
+          </a-result>
+        </div>
+        <div
+          :style="{
+            width: '33%',
+            'background-color': 'white',
+            'border-radius': '10%'
+          }"
+        >
+          <a-result
+            status="success"
+            title="Pro"
+            sub-title="Order number: 2017182818828182881 Cloud server configuration takes 1-5 minutes, please wait."
+          >
+            <template #extra>
+              <a-button key="console" type="primary">
+                Go Console
+              </a-button>
+              <a-button key="buy">
+                Buy Again
+              </a-button>
+            </template>
+          </a-result>
+        </div>
+        <div
+          :style="{
+            width: '33%',
+            'background-color': 'white',
+            'border-radius': '10%'
+          }"
+        >
+          <a-result
+            status="success"
+            title="Enterprise"
+            sub-title="Order number: 2017182818828182881 Cloud server configuration takes 1-5 minutes, please wait."
+          >
+            <template #extra>
+              <a-button key="console" type="primary">
+                Go Console
+              </a-button>
+              <a-button key="buy">
+                Buy Again
+              </a-button>
+            </template>
+          </a-result>
+        </div>
       </div>
+      <h1 :style="{ 'font-size': '30px' }">Latest Premiere</h1>
       <flickity class="carousel" ref="flickity" :options="flickityOptions">
         <div class="carousel-cell">
           <img
@@ -47,11 +280,6 @@
               'max-width': '100%'
             }"
           />
-          <!-- <img
-            class="carousel-cell-image"
-            data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/grapes.jpg"
-            alt="grapes"
-          /> -->
         </div>
         <div class="carousel-cell">
           <img
@@ -62,11 +290,6 @@
               'max-width': '100%'
             }"
           />
-          <!-- <img
-            class="carousel-cell-image"
-            data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/raspberries.jpg"
-            alt="raspberries"
-          /> -->
         </div>
         <div class="carousel-cell">
           <img
@@ -77,11 +300,6 @@
               'max-width': '100%'
             }"
           />
-          <!-- <img
-            class="carousel-cell-image"
-            data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/wolf.jpg"
-            alt="wolf"
-          /> -->
         </div>
         <div class="carousel-cell">
           <img
@@ -92,11 +310,6 @@
               'max-width': '100%'
             }"
           />
-          <!-- <img
-            class="carousel-cell-image"
-            data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/leaf-droplets.jpg"
-            alt="leaf droplets"
-          /> -->
         </div>
         <div class="carousel-cell">
           <img
@@ -107,11 +320,6 @@
               'max-width': '100%'
             }"
           />
-          <!-- <img
-            class="carousel-cell-image"
-            data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/leaf-droplets.jpg"
-            alt="leaf droplets"
-          /> -->
         </div>
         <div class="carousel-cell">
           <img
@@ -122,11 +330,6 @@
               'max-width': '100%'
             }"
           />
-          <!-- <img
-            class="carousel-cell-image"
-            data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/wolf.jpg"
-            alt="wolf"
-          /> -->
         </div>
         <div class="carousel-cell">
           <img
@@ -137,11 +340,6 @@
               'max-width': '100%'
             }"
           />
-          <!-- <img
-            class="carousel-cell-image"
-            data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/leaf-droplets.jpg"
-            alt="leaf droplets"
-          /> -->
         </div>
         <div class="carousel-cell">
           <img
@@ -152,11 +350,6 @@
               'max-width': '100%'
             }"
           />
-          <!-- <img
-            class="carousel-cell-image"
-            data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/leaf-droplets.jpg"
-            alt="leaf droplets"
-          /> -->
         </div>
       </flickity>
     </a-layout-content>
@@ -224,7 +417,7 @@ export default {
 
 .container {
   height: 700px;
-  margin: 50px;
+  margin: 10px 50px 100px 50px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
@@ -235,50 +428,17 @@ export default {
     "footer footer footer";
 }
 
-.item1 {
-  background: LightSkyBlue;
-  grid-area: header;
-}
-
-.item2 {
-  background: LightSkyBlue;
-  grid-area: header2;
-}
-
-.item3 {
-  background: LightSalmon;
-  grid-area: advert;
-}
-
-.item4 {
-  background: PaleTurquoise;
-  grid-area: content;
-}
-
-.item5 {
-  background: lightpink;
-  grid-area: footer;
-}
-
 .container2 {
   height: 500px;
-  margin: 50px;
+  margin: 10px 50px 100px 50px;
   display: flex;
   justify-content: space-between;
 }
 
-.item6 {
-  background: lightgreen;
-  width: 33%;
-}
-
-.item7 {
-  background: lightsteelblue;
-  width: 33%;
-}
-
-.item8 {
-  background: lightgoldenrodyellow;
-  width: 33%;
+.container3 {
+  height: 500px;
+  margin: 10px 50px 200px 50px;
+  display: flex;
+  justify-content: space-between;
 }
 </style>

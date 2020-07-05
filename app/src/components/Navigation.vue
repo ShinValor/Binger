@@ -43,11 +43,12 @@ export default {
 <style>
 .navigation-bar {
   width: 100%;
+  /* margin-bottom: 64px; */
   padding: 0px;
   display: flex;
   justify-content: space-between;
-  position: fixed;
-  z-index: 1;
+  /* position: fixed;
+  z-index: 1; */
 }
 
 .logo {
@@ -59,7 +60,7 @@ export default {
   width: 100px;
 }
 
-.ant-menu-item > a{
+.ant-menu-item > a {
   color: white !important;
 }
 
@@ -68,8 +69,11 @@ export default {
 }
 
 .ant-menu-item-selected > a {
-  /* color: rgba(255, 255, 255, 0.65) !important; */
   color: white !important;
+}
+
+.ant-menu-item > a:hover {
+  color: lightpink !important;
 }
 
 /* .ant-menu-item:hover {
