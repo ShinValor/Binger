@@ -12,7 +12,7 @@
       <div class="d-flex items-center area">
         <p class="rating" title="Rating" v-show="item.popularity">
           <span class="rating--star"></span>
-          {{ item.rating }}
+          {{ item.popularity }}
         </p>
       </div>
     </div>
@@ -31,7 +31,7 @@ export default {
         genres: function() {
             var _genres = [];
             this.item.genres.forEach(function(genre) {
-                _genres.push(genre.name);
+                _genres.push(genre);
             });
             return _genres.join(', ');
         }
@@ -39,67 +39,63 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style>
 .area {
-	margin-top: 0.5em;
+	 margin-top: 0.5em;
 }
-
-.d-flex {
-	display: flex;
-
-	&.items-center {
-		align-items: center;
-	}
+ .d-flex {
+	 display: flex;
 }
-
-.separator::before {
-	color: #dddddd;
-	margin-left: 0.3em;
-	margin-right: 0.3em;
-    content: '|';
+ .d-flex.items-center {
+	 align-items: center;
 }
-
-li {
-    display: flex;
-    align-items: flex-start;
-    padding: 1em;
-    &:hover {
-        background-color: #ececec;
-    }
+ .separator::before {
+	 color: #ddd;
+	 margin-left: 0.3em;
+	 margin-right: 0.3em;
+	 content: '|';
 }
-a {
-    color: black;
+ li {
+	 display: flex;
+	 align-items: flex-start;
+	 padding: 1em;
 }
-img {
-    height: 170px;
-    margin-right: 1em;
+ li:hover {
+	 background-color: #ececec;
 }
-.muted {
-    font-size: 0.8em;
-    color: lighten(black, 60%);
+ a {
+	 color: black;
 }
-p {
-    margin: 0;
+ img {
+	 height: 170px;
+	 margin-right: 1em;
 }
-.title {
-    font-size: 1.2em;
+ .muted {
+	 font-size: 0.8em;
+	 color: #999;
 }
-.plot {
-    color: lighten(black, 20%);
+ p {
+	 margin: 0;
 }
-.rating {
-    color: lighten(black, 40%);
-    font-size: 0.9em;
-    display: flex;
-    align-items: center;
-    &--star {
-        background: url(https://m.media-amazon.com/images/G/01/imdb/images/listo/sprite-2426358703._V_.png)
-            no-repeat 0 -241px;
-        display: inline-block;
-        height: 12px;
-        margin-right: 0.3em;
-        vertical-align: middle;
-        width: 12px;
-    }
+ .title {
+	 font-size: 1.2em;
 }
+ .plot {
+	 color: #333;
+}
+ .rating {
+	 color: #666;
+	 font-size: 0.9em;
+	 display: flex;
+	 align-items: center;
+}
+ .rating--star {
+	 background: url(https://m.media-amazon.com/images/G/01/imdb/images/listo/sprite-2426358703._V_.png) no-repeat 0 -241px;
+	 display: inline-block;
+	 height: 12px;
+	 margin-right: 0.3em;
+	 vertical-align: middle;
+	 width: 12px;
+}
+ 
 </style>
