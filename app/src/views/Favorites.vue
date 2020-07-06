@@ -1,6 +1,7 @@
 <template>
   <div class="favorites">
     <h1>This page will be built later</h1>
+    <FavoriteMovieList />
   </div>
 </template>
 
@@ -9,8 +10,8 @@ import FavoriteMovieList from "@/components/FavoriteMovieList.vue";
 
 export default {
   name: "Favorites",
-   components: {
+  components: {
     FavoriteMovieList
-  },
+  }
 };
 </script>
