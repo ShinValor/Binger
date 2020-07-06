@@ -62,7 +62,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 /**
  * The default size is 600px×400px, for responsive charts
  * you may need to set percentage values as follows (also

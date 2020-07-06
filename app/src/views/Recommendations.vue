@@ -1,101 +1,174 @@
 <template>
-  <div class="recommendations">
-    <div class="draggable-container">
-      <Vue2InteractDraggable
-        @draggedLeft="draggedLeft"
-        @draggedRight="draggedRight"
-        :interact-max-rotation="15"
-        :interact-out-of-sight-x-coordinate="500"
-        :interact-x-threshold="200"
-        :interact-event-bus-events="interactEventBusEvents"
-        :interact-lock-y-axis="true"
-        v-if="isShowing"
-        class="card"
+  <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
+    <Navigation></Navigation>
+    <a-input-search
+      :style="{ width: '50%', margin: '25px auto' }"
+      placeholder="Search Movies"
+      enter-button
+      @search="onSearch"
+    />
+    <div :style="{ margin: '10px auto', width: '75%' }">
+      <a-menu v-model="current" mode="horizontal">
+        <a-menu-item key="mail"> <a-icon type="mail" />Tags</a-menu-item>
+        <a-menu-item key="app" disabled>
+          <a-icon type="appstore" />Top Rated
+        </a-menu-item>
+        <a-sub-menu>
+          <span slot="title" class="submenu-title-wrapper"
+            ><a-icon type="setting" />Most Viewed</span
+          >
+          <a-menu-item-group title="Item 1">
+            <a-menu-item key="setting:1">
+              Option 1
+            </a-menu-item>
+            <a-menu-item key="setting:2">
+              Option 2
+            </a-menu-item>
+          </a-menu-item-group>
+          <a-menu-item-group title="Item 2">
+            <a-menu-item key="setting:3">
+              Option 3
+            </a-menu-item>
+            <a-menu-item key="setting:4">
+              Option 4
+            </a-menu-item>
+          </a-menu-item-group>
+        </a-sub-menu>
+        <a-menu-item key="alipay">
+          <a href="https://antdv.com" target="_blank" rel="noopener noreferrer"
+            >Your Favorite</a
+          >
+        </a-menu-item>
+      </a-menu>
+    </div>
+    <h1>Top Movie Pick</h1>
+    <div class="movie-poster">
+      <div class="poster-row">
+        <div class="poster-col">
+          <img src="@/imgs/aladdin.jpg" alt="Aladdin" />
+        </div>
+        <div class="poster-col">
+          <img src="@/imgs/starwar.jpg" alt="Star War" />
+        </div>
+        <div class="poster-col">
+          <img src="@/imgs/logan.jpg" alt="Logan" />
+        </div>
+        <div class="poster-col">
+          <img src="@/imgs/wonder-woman.jpg" alt="Wonder Woman" />
+        </div>
+      </div>
+      <div class="poster-row">
+        <div class="poster-col">
+          <img src="@/imgs/black-panther.jpg" alt="Black Panther" />
+        </div>
+        <div class="poster-col">
+          <img src="@/imgs/joker.jpg" alt="Joker" />
+        </div>
+        <div class="poster-col">
+          <img src="@/imgs/6-underground.jpg" alt="6-underground" />
+        </div>
+        <div class="poster-col">
+          <img src="@/imgs/black-widow.jpg" alt="Black Widow" />
+        </div>
+      </div>
+      <a-button
+        type="primary"
+        :style="{ width: '100px', margin: '10px', float: 'right' }"
       >
-      </Vue2InteractDraggable>
+        More ...
+      </a-button>
     </div>
-    <h1>Swipe</h1>
-    <div class="buttons">
-      <a-icon type="arrow-left" class="event-button" @click="dragLeft" />
-      <a-icon type="arrow-right" class="event-button" @click="dragRight" />
+    <div class="movie-slider">
+      <Carousel></Carousel>
     </div>
-  </div>
+    <div class="movie-swiper">
+      <Swiper></Swiper>
+    </div>
+    <Modal></Modal>
+    <Footer></Footer>
+  </a-layout>
 </template>
 
 <script>
-import { Vue2InteractDraggable, InteractEventBus } from "vue2-interact";
-
-const INTERACT_DRAGGED_LEFT = "INTERACT_DRAGGED_LEFT";
-const INTERACT_DRAGGED_RIGHT = "INTERACT_DRAGGED_RIGHT";
+import Navigation from "@/components/Navigation.vue";
+import Swiper from "@/components/Swiper.vue";
+import Carousel from "@/components/Carousel.vue";
+import Modal from "@/components/Modal.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
   name: "Recommendations",
   components: {
-    Vue2InteractDraggable
+    Navigation,
+    Swiper,
+    Carousel,
+    Modal,
+    Footer
   },
   data() {
     return {
-      isShowing: true,
-      interactEventBusEvents: {
-        draggedLeft: INTERACT_DRAGGED_LEFT,
-        draggedRight: INTERACT_DRAGGED_RIGHT
-      }
+      current: ["mail"]
     };
   },
   methods: {
-    draggedLeft() {
-      console.log("dragged left!");
-      this.hideCard();
-    },
-    draggedRight() {
-      console.log("dragged right!");
-      this.hideCard();
-    },
-    hideCard() {
-      setTimeout(() => {
-        this.isShowing = false;
-      }, 200);
-      setTimeout(() => {
-        this.isShowing = true;
-      }, 1000);
-    },
-    dragLeft() {
-      InteractEventBus.$emit(INTERACT_DRAGGED_LEFT);
-    },
-    dragRight() {
-      InteractEventBus.$emit(INTERACT_DRAGGED_RIGHT);
+    onSearch(value) {
+      console.log(value);
     }
   }
 };
 </script>
 
-<style>
-.draggable-container {
-  display: flex;
-  margin: auto;
+<style scoped>
+h1 {
+  margin: 30px 0px 0px 30px;
+  text-align: left;
+  font-size: 30px;
 }
 
-.card {
-  height: 600px;
-  width: 400px;
-  margin: auto;
-  background-image: url("../imgs/movie.jpg");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 
-.buttons {
-  display: flex;
-  justify-content: center;
+.movie-poster {
   margin: 20px;
 }
 
-.event-button {
-  border: 2px solid skyblue;
-  border-radius: 50%;
-  padding: 10px;
-  font-size: 30px;
-  margin: 0 75px;
+.movie-poster .poster-row {
+  display: flex;
+}
+
+.movie-poster .poster-col {
+  width: 25%;
+  margin: 10px;
+}
+
+.movie-slider {
+  height: 500px;
+}
+
+@media screen and (max-width: 500px) {
+  /* applies styles to any device screen sizes below 800px wide */
+
+  h1 {
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .movie-poster .poster-row {
+    flex-direction: column;
+  }
+
+  .movie-poster .poster-col {
+    width: 100%;
+    margin: 5px auto;
+  }
+
+  .movie-slider {
+    height: 300px;
+    width: 300px;
+    margin: 0 auto;
+  }
 }
 </style>
