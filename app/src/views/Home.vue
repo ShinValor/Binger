@@ -62,53 +62,40 @@
         <strong> How It Works </strong>
       </h1>
       <div class="container1">
-        <div :style="{ 'grid-area': 'header' }">
-          <div class="section3">
-            <img src="../assets/login.svg" />
-          </div>
-          <h2>1) Sign up and Log in</h2>
+        <div class="section3" :style="{ 'grid-area': 'content' }">
+          <p>
+            All our illustrations come in different styles, and you can change
+            the main color. Just choose the one you like the most for your
+            project. Some styles allow you to select a simple background, a more
+            one, or remove it altogether. Give it a try!
+          </p>
         </div>
-        <div :style="{ 'grid-area': 'header2' }">
-          <div class="section3">
-            <img src="../assets/profile.svg" />
-          </div>
-          <h2>2) Update Profile</h2>
+        <div class="section3" :style="{ 'grid-area': 'header' }">
+          <img class="steps" src="../assets/login.png" />
+          <h2>1. Sign up and Log in</h2>
         </div>
-        <div :style="{ 'grid-area': 'advert' }">
-          <div class="section3">
-            <img src="../assets/watch-movie.svg" />
-          </div>
-          <h2>5) Watch Movie</h2>
+        <div class="section3" :style="{ 'grid-area': 'header2' }">
+          <img class="steps" src="../assets/profile.png" />
+          <h2>2. Update Profile</h2>
         </div>
-        <div :style="{ 'grid-area': 'content' }">
-          <div class="section3">
-            <!-- <img src="../assets/arrow.svg" /> -->
-            <!-- <img src="../assets/movie-tape.svg" /> -->
-            <!-- <img src="../assets/list.svg" /> -->
-          </div>
-          <h2>3) Select Movie Genre</h2>
+        <div class="section3" :style="{ 'grid-area': 'footer' }">
+          <img class="steps" src="../assets/stopwatch.png" />
+          <h2>3. Wait For Recommendations</h2>
+          <a-steps :current="1" class="progress-bar">
+            <a-step title="Finished" description="You can hover on the dot." />
+            <a-step
+              title="In Progress"
+              description="You can hover on the dot."
+            />
+            <a-step title="Waiting" description="You can hover on the dot." />
+            <a-step title="Waiting" description="You can hover on the dot." />
+          </a-steps>
         </div>
-        <div :style="{ 'grid-area': 'footer' }">
-          <div class="section3">
-            <a-steps :current="1">
-              <a-step>
-                <template slot="title">
-                  Finished
-                </template>
-                <span slot="description">This is a description.</span>
-              </a-step>
-              <a-step
-                title="In Progress"
-                sub-title="Left 00:00:08"
-                description="This is a description."
-              />
-              <a-step title="Waiting" description="This is a description." />
-            </a-steps>
-          </div>
-          <h2>4) Pick Movies Based On Our Recommendation Engine</h2>
+        <div class="section3" :style="{ 'grid-area': 'advert' }">
+          <img class="watch-movie" src="../assets/watch-movie.svg" />
         </div>
       </div>
-      <h1>Service Plan</h1>
+      <h1 class="margin-top">Service Plans</h1>
       <div class="container3">
         <div class="section2">
           <h2>Basic</h2>
@@ -120,7 +107,7 @@
           <h2>Enterprise</h2>
         </div>
       </div>
-      <h1>Latest Premieres</h1>
+      <h1 class="margin-top">Latest Premieres</h1>
       <flickity class="carousel" ref="flickity" :options="flickityOptions">
         <div class="carousel-cell">
           <img src="../imgs/wonder-woman.jpg" />
@@ -129,6 +116,36 @@
             data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/tulip.jpg"
             alt="tulip"
           /> -->
+        </div>
+        <div class="carousel-cell">
+          <img src="../imgs/terminator.jpg" />
+        </div>
+        <div class="carousel-cell">
+          <img src="../imgs/logan.jpg" />
+        </div>
+        <div class="carousel-cell">
+          <img src="../imgs/6-underground.jpg" />
+        </div>
+        <div class="carousel-cell">
+          <img src="../imgs/joker.jpg" />
+        </div>
+        <div class="carousel-cell">
+          <img src="../imgs/black-panther.jpg" />
+        </div>
+        <div class="carousel-cell">
+          <img src="../imgs/black-widow.jpg" />
+        </div>
+        <div class="carousel-cell">
+          <img src="../imgs/starwar.jpg" />
+        </div>
+        <div class="carousel-cell">
+          <img src="../imgs/aladdin.jpg" />
+        </div>
+      </flickity>
+      <h1 class="margin-top">Most Popular</h1>
+      <flickity class="carousel" ref="flickity" :options="flickityOptions">
+        <div class="carousel-cell">
+          <img src="../imgs/wonder-woman.jpg" />
         </div>
         <div class="carousel-cell">
           <img src="../imgs/terminator.jpg" />
@@ -237,7 +254,7 @@ img {
 }
 
 .carousel {
-  background: #fafafa;
+  /* background: #fafafa; */
   height: 500px;
   margin: 25px;
 }
@@ -269,13 +286,13 @@ img {
 .container1 {
   margin: 10px 50px 100px 50px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   grid-gap: 10px;
   grid-template-areas:
-    "header header2 advert"
-    "content content advert"
-    "footer footer footer";
+    "header header2 advert advert"
+    "content content advert advert"
+    "footer footer footer footer";
 }
 
 .container2 {
@@ -308,18 +325,39 @@ img {
 }
 
 .section3 {
-  height: 250px;
-  width: 50%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  margin: 0 auto;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.steps {
+  height: 128px;
+  width: 128px;
+}
+
+.progress-bar {
+  margin-left: -100px;
+}
+
+.watch-movie {
+  height: 500px;
+  width: 500px;
+}
+
+.margin-top {
+  margin-top: 150px;
 }
 
 @media screen and (max-width: 800px) {
   /* applies styles to any device screen sizes below 800px wide */
   h1 {
+    font-size: 20px;
+  }
+
+  h2 {
     font-size: 15px;
+    margin: 5px;
   }
 
   p {
@@ -334,6 +372,7 @@ img {
     margin: 40px 10px 10px 10px;
     width: 100px;
     color: white;
+    font-size: 15px;
   }
 
   .sub-heading {
@@ -362,6 +401,7 @@ img {
     margin: 10px 10px 50px 10px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
   }
 
   .container2 {
@@ -384,7 +424,26 @@ img {
   }
 
   .section3 {
-    height: 150px;
+    margin: 25px auto;
+  }
+
+  .steps {
+    height: 64px;
+    width: 64px;
+  }
+
+  .progress-bar {
+    margin: 50px 0px;
+  }
+
+  .watch-movie {
+    margin-top: -100px;
+    height: 250px;
+    width: 250px;
+  }
+
+  .margin-top {
+    margin-top: 50px;
   }
 }
 </style>
