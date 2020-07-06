@@ -316,7 +316,7 @@ img {
   margin: 0 auto;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 800px) {
   /* applies styles to any device screen sizes below 800px wide */
   h1 {
     font-size: 15px;
@@ -328,7 +328,6 @@ img {
 
   .banner {
     height: 250px;
-    width: 100%;
   }
 
   .heading {
