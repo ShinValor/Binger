@@ -181,6 +181,7 @@ export default {
 
 <style>
 .setting {
+  margin-top: 64px;
   display: flex;
   justify-content: center;
 }

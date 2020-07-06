@@ -1,12 +1,13 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
     <Navigation />
-    <div class="grid">
+    <div class="about">
       <Card class="about-card" name="John" desc="I am a student." />
       <Card class="about-card" name="Jun" desc="I am a student." />
       <Card class="about-card" name="Ferdi" desc="I am a student." />
       <Card class="about-card" name="Tarik" desc="I am a student." />
     </div>
+    <Footer />
   </a-layout>
 </template>
 
@@ -14,18 +15,20 @@
 // @ is an alias to /src
 import Navigation from "@/components/Navigation.vue";
 import Card from "@/components/Card.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
   name: "About",
   components: {
     Navigation,
-    Card
+    Card,
+    Footer
   }
 };
 </script>
 
-<style>
-.grid {
+<style scoped>
+.about {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
@@ -33,27 +36,18 @@ export default {
 }
 
 .about-card {
-  height: 450px;
-  width: 500px;
-  margin: 50px !important;
+  height: 400px;
+  width: 400px;
+  margin: 20px 50px !important;
 }
 
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */
 
   .about-card {
-    height: 400px;
     width: 300px;
-    margin: 15px auto !important;
-  }
-}
-
-@media screen and (max-width: 300px) {
-  /* applies styles to any device screen sizes below 800px wide */
-
-  .about-card {
-    height: 300px;
-    margin: 5px auto !important;
+    height: 250px;
+    margin: 10px auto !important;
   }
 }
 </style>
