@@ -54,7 +54,7 @@ npm run serve
 
 ## Contributors
 
-**Ferdi Lesporis**  
-**Ho Ming Poon**  
-**Tarik Weekes**  
-**Jun Qi Li**  
+Ferdi Lesporis  
+Ho Ming Poon  
+Tarik Weekes  
+Jun Qi Li  
