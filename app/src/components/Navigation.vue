@@ -1,31 +1,33 @@
 <template>
   <a-layout-header class="navigation-bar">
-    <div :style="{ display: 'flex', 'justify-content': 'center' }">
+    <div class="section">
       <Menu />
-      <h1 class="binger">
+      <h1 class="app-name">
         <router-link to="/" :style="{ color: 'white' }">
           <img class="logo" src="@/assets/logo.svg" />
           Binger
         </router-link>
       </h1>
     </div>
-    <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '64px' }">
-      <a-menu-item class="tab">
-        <router-link to="/about">About</router-link>
-      </a-menu-item>
-      <a-menu-item class="tab">
-        <router-link to="/">Services</router-link>
-      </a-menu-item>
-      <a-menu-item class="tab">
-        <router-link to="/">Contact</router-link>
-      </a-menu-item>
-      <a-menu-item class="tab">
-        <router-link to="/login">Login</router-link>
-      </a-menu-item>
-      <a-menu-item class="tab">
-        <router-link to="/signup">Register</router-link>
-      </a-menu-item>
-    </a-menu>
+    <div class="section">
+      <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '64px' }">
+        <a-menu-item class="tab">
+          <router-link to="/about">About</router-link>
+        </a-menu-item>
+        <a-menu-item class="tab">
+          <router-link to="/">Services</router-link>
+        </a-menu-item>
+        <a-menu-item class="tab">
+          <router-link to="/">Contact</router-link>
+        </a-menu-item>
+        <a-menu-item class="tab">
+          <router-link to="/login">Login</router-link>
+        </a-menu-item>
+        <a-menu-item class="tab">
+          <router-link to="/signup">Register</router-link>
+        </a-menu-item>
+      </a-menu>
+    </div>
   </a-layout-header>
 </template>
 
@@ -46,6 +48,10 @@ export default {
   padding: 0px;
   display: flex;
   justify-content: space-between;
+}
+
+.section {
+  display: flex;
 }
 
 .logo {
@@ -79,8 +85,8 @@ export default {
 
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */
-  .binger {
-    font-size: 5px;
+  .app-name {
+    font-size: 15px;
   }
 
   .logo {
@@ -89,9 +95,7 @@ export default {
   }
 
   .tab {
-    font-size: 5px;
-    width: 50px;
-    padding: 0px;
+    width: 100%;
   }
 }
 </style>

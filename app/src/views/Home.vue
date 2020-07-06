@@ -76,7 +76,7 @@
             <!-- <img src="../assets/movie-tape.svg" /> -->
             <!-- <img src="../assets/list.svg" /> -->
           </div>
-          <h2>3) Select Your Favorite Movie Genre</h2>
+          <h2>3) Select Movie Genre</h2>
         </div>
         <div :style="{ 'grid-area': 'footer' }">
           <div class="section3">
@@ -98,11 +98,17 @@
           <h2>4) Pick Movies Based On Our Recommendation Engine</h2>
         </div>
       </div>
-      <h1>Type of Services</h1>
+      <h1>Service Plan</h1>
       <div class="container3">
-        <div class="section2">Service</div>
-        <div class="section2">Service</div>
-        <div class="section2">Service</div>
+        <div class="section2">
+          <h2>Basic</h2>
+        </div>
+        <div class="section2">
+          <h2>Professional</h2>
+        </div>
+        <div class="section2">
+          <h2>Enterprise</h2>
+        </div>
       </div>
       <h1>Latest Premieres</h1>
       <flickity class="carousel" ref="flickity" :options="flickityOptions">
@@ -219,7 +225,6 @@ img {
 }
 
 .container1 {
-  /* height: 700px; */
   margin: 10px 50px 100px 50px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -232,7 +237,6 @@ img {
 }
 
 .container2 {
-  /* height: 500px; */
   margin: 10px 50px 100px 50px;
   display: flex;
   justify-content: space-between;
@@ -291,14 +295,12 @@ img {
   }
 
   .container1 {
-    /* height: 500px; */
     margin: 10px 10px 50px 10px;
     display: flex;
     flex-direction: column;
   }
 
   .container2 {
-    /* height: 400px; */
     margin: 10px 10px 50px 10px;
   }
 
@@ -309,7 +311,7 @@ img {
   }
 
   .section1 {
-    height: 300px;
+    height: 200px;
   }
 
   .section2 {

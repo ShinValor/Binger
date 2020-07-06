@@ -1,6 +1,9 @@
 <template>
   <Slide>
     <a href="#">
+      <span>Home</span>
+    </a>
+    <a href="#">
       <span>Search</span>
     </a>
     <a href="#">
