@@ -5,7 +5,12 @@
 </template>
 
 <script>
+import FavoriteMovieList from "@/components/FavoriteMovieList.vue";
+
 export default {
-  name: "Favorites"
+  name: "Favorites",
+   components: {
+    FavoriteMovieList
+  },
 };
 </script>
