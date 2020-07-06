@@ -205,7 +205,7 @@ img {
 }
 
 .banner {
-  height: 700px;
+  height: 600px;
   width: 100%;
   background-image: url("../imgs/banner.jpg");
   background-repeat: no-repeat;
@@ -217,7 +217,7 @@ img {
 .heading {
   color: white;
   float: left;
-  margin: 400px 0px 0px 50px;
+  margin: 320px 0px 0px 30px;
   width: 500px;
   text-align: left;
 }
@@ -226,12 +226,12 @@ img {
   color: white;
   width: 500px;
   text-align: left;
-  margin: 30px 0px 0px 50px;
+  margin: 30px 0px 0px 30px;
 }
 
 .heading-button {
   width: 200px;
-  margin: 10px 20px 20px 50px;
+  margin: 10px 20px 20px 30px;
   background-color: transparent;
   text-align: center;
 }
