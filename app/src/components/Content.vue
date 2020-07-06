@@ -25,4 +25,13 @@ export default {
   justify-content: center;
   text-align: center;
 }
+
+@media screen and (max-width: 500px) {
+  /* applies styles to any device screen sizes below 800px wide */
+
+  .center {
+    height: 200px;
+    margin: 15px;
+  }
+}
 </style>

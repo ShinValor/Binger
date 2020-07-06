@@ -2,9 +2,9 @@
   <a-layout-header class="navigation-bar">
     <div :style="{ display: 'flex', 'justify-content': 'center' }">
       <Menu />
-      <h1>
+      <h1 class="binger">
         <router-link to="/" :style="{ color: 'white' }">
-          <img src="@/assets/logo32.png" />
+          <img class="logo" src="@/assets/logo.svg" />
           Binger
         </router-link>
       </h1>
@@ -48,6 +48,11 @@ export default {
   justify-content: space-between;
 }
 
+.logo {
+  height: 32px;
+  width: 32px;
+}
+
 .tab {
   width: 100px;
 }
@@ -71,4 +76,22 @@ export default {
 /* .ant-menu-item:hover {
   background-color: #1890ff !important;
 } */
+
+@media screen and (max-width: 500px) {
+  /* applies styles to any device screen sizes below 800px wide */
+  .binger {
+    font-size: 5px;
+  }
+
+  .logo {
+    height: 16px;
+    width: 16px;
+  }
+
+  .tab {
+    font-size: 5px;
+    width: 50px;
+    padding: 0px;
+  }
+}
 </style>

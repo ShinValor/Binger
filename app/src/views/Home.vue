@@ -2,23 +2,12 @@
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
     <Navigation />
     <a-layout-content>
-      <div :style="{ height: '450px' }">
-        <img
-          src="@/imgs/banner.jpg"
-          alt="Binger Banner"
-          :style="{ 'object-fit': 'cover', height: '100%', width: '100%' }"
-        />
+      <div>
+        <img src="@/imgs/banner.jpg" alt="Binger Banner" />
       </div>
       <Content msg="Welcome To Binger" />
       <div class="container2">
-        <div
-          :style="{
-            width: '50%',
-            display: 'flex',
-            'flex-direction': 'column',
-            'justify-content': 'center'
-          }"
-        >
+        <div class="section1">
           <h1>Optimized Movie Search Engine</h1>
           <p>
             All our illustrations come in different styles, and you can change
@@ -27,36 +16,15 @@
             one, or remove it altogether. Give it a try!
           </p>
         </div>
-        <div :style="{ width: '50%' }">
-          <img
-            src="../assets/fast-loading.png"
-            :style="{
-              'object-fit': 'cover',
-              'max-height': '100%',
-              'max-width': '100%'
-            }"
-          />
+        <div class="section1">
+          <img src="../assets/fast-loading.png" />
         </div>
       </div>
       <div class="container2">
-        <div :style="{ width: '50%' }">
-          <img
-            src="../assets/movie-night.png"
-            :style="{
-              'object-fit': 'cover',
-              'max-height': '100%',
-              'max-width': '100%'
-            }"
-          />
+        <div class="section1">
+          <img src="../assets/movie-night.png" />
         </div>
-        <div
-          :style="{
-            width: '50%',
-            display: 'flex',
-            'flex-direction': 'column',
-            'justify-content': 'center'
-          }"
-        >
+        <div class="section1">
           <h1>Movie Nights</h1>
           <p>
             Do you want the illustrations to come to life on your website? You
@@ -67,14 +35,7 @@
         </div>
       </div>
       <div class="container2">
-        <div
-          :style="{
-            width: '50%',
-            display: 'flex',
-            'flex-direction': 'column',
-            'justify-content': 'center'
-          }"
-        >
+        <div class="section1">
           <h1>Watch With Friends</h1>
           <p>
             Some styles allow you to select a simple background, a more detailed
@@ -83,193 +44,70 @@
             altogether. Give it a try!
           </p>
         </div>
-        <div :style="{ width: '50%' }">
-          <img
-            src="../assets/friendship.png"
-            :style="{
-              'object-fit': 'cover',
-              'max-height': '100%',
-              'max-width': '100%'
-            }"
-          />
+        <div class="section1">
+          <img src="../assets/friendship.png" />
         </div>
       </div>
-      <h1 :style="{ 'font-size': '40px' }">
+      <h1>
         <strong> How It Works </strong>
       </h1>
-      <div class="container">
+      <div class="container1">
         <div :style="{ 'grid-area': 'header' }">
-          <img
-            src="../assets/login.svg"
-            :style="{
-              'object-fit': 'cover',
-              height: '100px',
-              width: '100px',
-              margin: '20px auto'
-            }"
-          />
-          <h1>1) Sign up and Log in</h1>
+          <div class="section3">
+            <img src="../assets/login.svg" />
+          </div>
+          <h2>1) Sign up and Log in</h2>
         </div>
         <div :style="{ 'grid-area': 'header2' }">
-          <img
-            src="../assets/profile.svg"
-            :style="{
-              'object-fit': 'cover',
-              height: '100px',
-              width: '100px',
-              margin: '20px auto'
-            }"
-          />
-          <h1>2) Update Profile</h1>
+          <div class="section3">
+            <img src="../assets/profile.svg" />
+          </div>
+          <h2>2) Update Profile</h2>
         </div>
         <div :style="{ 'grid-area': 'advert' }">
-          <img
-            src="../assets/watch-movie.svg"
-            :style="{
-              'object-fit': 'cover',
-              height: '400px',
-              width: '500px'
-            }"
-          />
+          <div class="section3">
+            <img src="../assets/watch-movie.svg" />
+          </div>
+          <h2>5) Watch Movie</h2>
         </div>
         <div :style="{ 'grid-area': 'content' }">
-          <img
-            src="../assets/arrow.svg"
-            :style="{
-              'object-fit': 'cover',
-              height: '100px',
-              width: '100px',
-              margin: '10px 50px'
-            }"
-          />
-          <img
-            src="../assets/movie-tape.svg"
-            :style="{
-              'object-fit': 'cover',
-              height: '100px',
-              width: '100px',
-              margin: '10px 50px'
-            }"
-          />
-          <img
-            src="../assets/list.svg"
-            :style="{
-              'object-fit': 'cover',
-              height: '100px',
-              width: '100px',
-              margin: '10px 50px'
-            }"
-          />
-          <h1>3) Select Your Favorite Movie Genre</h1>
+          <div class="section3">
+            <!-- <img src="../assets/arrow.svg" /> -->
+            <!-- <img src="../assets/movie-tape.svg" /> -->
+            <!-- <img src="../assets/list.svg" /> -->
+          </div>
+          <h2>3) Select Your Favorite Movie Genre</h2>
         </div>
         <div :style="{ 'grid-area': 'footer' }">
-          <a-steps
-            :style="{
-              'margin-top': '25px',
-              'margin-bottom': '75px',
-              'margin-left': '-60px'
-            }"
-          >
-            <a-step status="finish" title="Login">
-              <a-icon slot="icon" type="user" />
-            </a-step>
-            <a-step
-              status="finish"
-              title="Select 
-              Movie Genre"
-            >
-              <a-icon slot="icon" type="solution" />
-            </a-step>
-            <a-step status="process" title="Processing">
-              <a-icon slot="icon" type="loading" />
-            </a-step>
-            <a-step status="wait" title="Done">
-              <a-icon slot="icon" type="smile-o" />
-            </a-step>
-          </a-steps>
-          <h1>4) Pick Movies Based On Our Recommendation Engine</h1>
+          <div class="section3">
+            <a-steps :current="1">
+              <a-step>
+                <template slot="title">
+                  Finished
+                </template>
+                <span slot="description">This is a description.</span>
+              </a-step>
+              <a-step
+                title="In Progress"
+                sub-title="Left 00:00:08"
+                description="This is a description."
+              />
+              <a-step title="Waiting" description="This is a description." />
+            </a-steps>
+          </div>
+          <h2>4) Pick Movies Based On Our Recommendation Engine</h2>
         </div>
       </div>
-      <h1 :style="{ 'font-size': '30px' }">Type of Services</h1>
-      <div class="container2">
-        <div
-          :style="{
-            width: '33%',
-            'background-color': 'white',
-            'border-radius': '5%'
-          }"
-        >
-          <a-result
-            status="success"
-            title="Basic"
-            sub-title="Order number: 2017182818828182881 Cloud server configuration takes 1-5 minutes, please wait."
-          >
-            <template #extra>
-              <a-button key="console" type="primary">
-                Go Console
-              </a-button>
-              <a-button key="buy">
-                Buy Again
-              </a-button>
-            </template>
-          </a-result>
-        </div>
-        <div
-          :style="{
-            width: '33%',
-            'background-color': 'white',
-            'border-radius': '5%'
-          }"
-        >
-          <a-result
-            status="success"
-            title="Professional"
-            sub-title="Order number: 2017182818828182881 Cloud server configuration takes 1-5 minutes, please wait."
-          >
-            <template #extra>
-              <a-button key="console" type="primary">
-                Go Console
-              </a-button>
-              <a-button key="buy">
-                Buy Again
-              </a-button>
-            </template>
-          </a-result>
-        </div>
-        <div
-          :style="{
-            width: '33%',
-            'background-color': 'white',
-            'border-radius': '5%'
-          }"
-        >
-          <a-result
-            status="success"
-            title="Enterprise"
-            sub-title="Order number: 2017182818828182881 Cloud server configuration takes 1-5 minutes, please wait."
-          >
-            <template #extra>
-              <a-button key="console" type="primary">
-                Go Console
-              </a-button>
-              <a-button key="buy">
-                Buy Again
-              </a-button>
-            </template>
-          </a-result>
-        </div>
+      <h1>Type of Services</h1>
+      <div class="container3">
+        <div class="section2">Service</div>
+        <div class="section2">Service</div>
+        <div class="section2">Service</div>
       </div>
-      <h1 :style="{ 'font-size': '30px' }">Latest Premieres</h1>
+      <h1>Latest Premieres</h1>
       <flickity class="carousel" ref="flickity" :options="flickityOptions">
         <div class="carousel-cell">
-          <img
-            src="../imgs/wonder-woman.jpg"
-            :style="{
-              'object-fit': 'cover',
-              'max-height': '100%',
-              'max-width': '100%'
-            }"
-          />
+          <img src="../imgs/wonder-woman.jpg" />
           <!-- <img
             class="carousel-cell-image"
             data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/tulip.jpg"
@@ -277,84 +115,28 @@
           /> -->
         </div>
         <div class="carousel-cell">
-          <img
-            src="../imgs/terminator.jpg"
-            :style="{
-              'object-fit': 'cover',
-              'max-height': '100%',
-              'max-width': '100%'
-            }"
-          />
+          <img src="../imgs/terminator.jpg" />
         </div>
         <div class="carousel-cell">
-          <img
-            src="../imgs/logan.jpg"
-            :style="{
-              'object-fit': 'cover',
-              'max-height': '100%',
-              'max-width': '100%'
-            }"
-          />
+          <img src="../imgs/logan.jpg" />
         </div>
         <div class="carousel-cell">
-          <img
-            src="../imgs/6-underground.jpg"
-            :style="{
-              'object-fit': 'cover',
-              'max-height': '100%',
-              'max-width': '100%'
-            }"
-          />
+          <img src="../imgs/6-underground.jpg" />
         </div>
         <div class="carousel-cell">
-          <img
-            src="../imgs/joker.jpg"
-            :style="{
-              'object-fit': 'cover',
-              'max-height': '100%',
-              'max-width': '100%'
-            }"
-          />
+          <img src="../imgs/joker.jpg" />
         </div>
         <div class="carousel-cell">
-          <img
-            src="../imgs/black-panther.jpg"
-            :style="{
-              'object-fit': 'cover',
-              'max-height': '100%',
-              'max-width': '100%'
-            }"
-          />
+          <img src="../imgs/black-panther.jpg" />
         </div>
         <div class="carousel-cell">
-          <img
-            src="../imgs/black-widow.jpg"
-            :style="{
-              'object-fit': 'cover',
-              'max-height': '100%',
-              'max-width': '100%'
-            }"
-          />
+          <img src="../imgs/black-widow.jpg" />
         </div>
         <div class="carousel-cell">
-          <img
-            src="../imgs/starwar.jpg"
-            :style="{
-              'object-fit': 'cover',
-              'max-height': '100%',
-              'max-width': '100%'
-            }"
-          />
+          <img src="../imgs/starwar.jpg" />
         </div>
         <div class="carousel-cell">
-          <img
-            src="../imgs/aladdin.jpg"
-            :style="{
-              'object-fit': 'cover',
-              'max-height': '100%',
-              'max-width': '100%'
-            }"
-          />
+          <img src="../imgs/aladdin.jpg" />
         </div>
       </flickity>
     </a-layout-content>
@@ -392,27 +174,43 @@ export default {
 </script>
 
 <style scoped>
+h1 {
+  font-size: 40px;
+}
+
+p {
+  font-size: 20px;
+}
+
+img {
+  object-fit: cover;
+  max-height: 100%;
+  max-width: 100%;
+}
+
 .carousel {
   background: #fafafa;
-  margin: 25px;
   height: 500px;
+  margin: 25px;
 }
 
 .carousel-cell {
-  width: 33%;
   height: 500px;
-  margin-right: 10px;
+  width: 33%;
+  margin: 0px 15px;
   background: #333;
+  display: flex;
+  justify-content: center;
 }
 
 .carousel-cell-image {
   display: block;
   max-height: 100%;
-  margin: 0 auto;
   max-width: 100%;
+  margin: 0 auto;
   opacity: 0;
-  -webkit-transition: opacity 0.4s;
   transition: opacity 0.4s;
+  -webkit-transition: opacity 0.4s;
 }
 
 .carousel-cell-image.flickity-lazyloaded,
@@ -420,8 +218,8 @@ export default {
   opacity: 1;
 }
 
-.container {
-  height: 700px;
+.container1 {
+  /* height: 700px; */
   margin: 10px 50px 100px 50px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -434,9 +232,93 @@ export default {
 }
 
 .container2 {
-  height: 500px;
+  /* height: 500px; */
   margin: 10px 50px 100px 50px;
   display: flex;
   justify-content: space-between;
+}
+
+.container3 {
+  margin: 10px 50px 100px 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.section1 {
+  height: 500px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.section2 {
+  height: 500px;
+  width: 33%;
+  background-color: white;
+  border-radius: 2%;
+  margin: 10px;
+}
+
+.section3 {
+  height: 250px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 500px) {
+  /* applies styles to any device screen sizes below 800px wide */
+  h1 {
+    font-size: 15px;
+  }
+
+  p {
+    font-size: 10px;
+  }
+
+  .carousel {
+    height: 150px;
+    margin: 5px;
+  }
+
+  .carousel-cell {
+    height: 150px;
+    margin: 0px 5px;
+  }
+
+  .container1 {
+    /* height: 500px; */
+    margin: 10px 10px 50px 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container2 {
+    /* height: 400px; */
+    margin: 10px 10px 50px 10px;
+  }
+
+  .container3 {
+    margin: 20px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .section1 {
+    height: 300px;
+  }
+
+  .section2 {
+    height: 300px;
+    width: 250px;
+  }
+
+  .section3 {
+    height: 150px;
+  }
 }
 </style>

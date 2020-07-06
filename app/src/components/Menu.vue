@@ -94,4 +94,13 @@ export default {
   font-weight: 700;
   color: white;
 }
+
+@media screen and (max-width: 500px) {
+  /* applies styles to any device screen sizes below 800px wide */
+  .bm-burger-button {
+    width: 15px;
+    height: 10px;
+    margin: 25px 5px;
+  }
+}
 </style>
