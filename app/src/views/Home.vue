@@ -2,8 +2,18 @@
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
     <Navigation />
     <a-layout-content>
-      <div>
-        <img src="@/imgs/banner.jpg" alt="Binger Banner" />
+      <div class="banner">
+        <h1 class="heading">
+          <b>Movie Recommendation to power up your life</b>
+        </h1>
+        <p class="sub-heading">
+          Hundreds of illustrated concepts to make your landing page, app, or
+          presentation more attractive
+        </p>
+        <a-button class="heading-button" type="primary">
+          <b>Learn More</b>
+        </a-button>
+        <!-- <img src="@/imgs/banner.jpg" alt="Binger Banner" /> -->
       </div>
       <Content msg="Welcome To Binger" />
       <div class="container2">
@@ -194,6 +204,38 @@ img {
   max-width: 100%;
 }
 
+.banner {
+  height: 700px;
+  width: 100%;
+  background-image: url("../imgs/banner.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+}
+
+.heading {
+  color: white;
+  float: left;
+  margin: 400px 0px 0px 50px;
+  width: 500px;
+  text-align: left;
+}
+
+.sub-heading {
+  color: white;
+  width: 500px;
+  text-align: left;
+  margin: 30px 0px 0px 50px;
+}
+
+.heading-button {
+  width: 200px;
+  margin: 10px 20px 20px 50px;
+  background-color: transparent;
+  text-align: center;
+}
+
 .carousel {
   background: #fafafa;
   height: 500px;
@@ -282,6 +324,29 @@ img {
 
   p {
     font-size: 10px;
+  }
+
+  .banner {
+    height: 250px;
+    width: 100%;
+  }
+
+  .heading {
+    margin: 40px 10px 10px 10px;
+    width: 100px;
+    color: white;
+  }
+
+  .sub-heading {
+    width: 200px;
+    margin: 10px 10px 5px 10px;
+    color: white;
+  }
+
+  .heading-button {
+    width: 100px;
+    margin: 5px 10px;
+    padding: 0;
   }
 
   .carousel {

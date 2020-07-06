@@ -5,7 +5,7 @@
       <h1 class="app-name">
         <router-link to="/" :style="{ color: 'white' }">
           <img class="logo" src="@/assets/logo.svg" />
-          Binger
+          Binger <i :style="{ color: 'gray', 'font-size': '15px' }">By Lala</i>
         </router-link>
       </h1>
     </div>
