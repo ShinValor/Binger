@@ -58,8 +58,7 @@ export default {
     Navigation,
     Content,
     Footer,
-    Flickity,
-    FavoriteMovieList
+    Flickity
   },
   data() {
     return {
