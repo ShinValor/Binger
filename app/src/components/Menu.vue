@@ -1,17 +1,17 @@
 <template>
   <Slide>
-    <a href="#">
+    <router-link to="/">
       <span>Home</span>
-    </a>
-    <a href="#">
+    </router-link>
+    <router-link to="/about">
+      <span>About</span>
+    </router-link>
+    <router-link to="/recommendations">
       <span>Search</span>
-    </a>
-    <a href="#">
-      <span>Movies</span>
-    </a>
-    <a href="#">
-      <span>Shows</span>
-    </a>
+    </router-link>
+    <router-link to="/login">
+      <span>Log in</span>
+    </router-link>
   </Slide>
 </template>
 
@@ -28,21 +28,21 @@ export default {
 
 <style>
 .bm-burger-button {
-  width: 25px;
-  height: 20px;
-  top: 0;
-  left: 0;
-  margin: 25px;
-  position: relative;
+  top: 0 !important;
+  left: 0 !important;
+  width: 25px !important;
+  height: 20px !important;
+  margin: 25px 10px !important;
+  position: relative !important;
 }
 
 .bm-burger-bars {
-  background-color: white;
+  background-color: white !important;
 }
 
 .line-style {
   position: absolute;
-  height: 1%;
+  height: 1% !important;
   left: 0;
   right: 0;
 }
@@ -64,13 +64,13 @@ export default {
 }
 
 .bm-menu {
+  background-color: rgb(63, 63, 65, 0.85) !important;
+  top: 0;
+  left: 0;
   height: 100%; /* 100% Full-height */
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
   z-index: 1000; /* Stay on top */
-  top: 0;
-  left: 0;
-  background-color: rgb(63, 63, 65); /* Black*/
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Place content 60px from the top */
   transition: 0.5s; /*0.5 second transition effect to slide in the sidenav*/
@@ -82,8 +82,8 @@ export default {
 
 .bm-item-list {
   color: #b8b7ad;
-  margin-left: 10%;
-  font-size: 20px;
+  margin-left: 5% !important;
+  font-size: 18px !important;
 }
 
 .bm-item-list > * {
@@ -101,9 +101,21 @@ export default {
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */
   .bm-burger-button {
-    width: 15px;
-    height: 10px;
-    margin: 25px 5px;
+    width: 15px !important;
+    height: 10px !important;
+    margin: 33px 5px !important;
+  }
+
+  .bm-menu {
+    width: 200px !important; /* 0 width - change this with JavaScript */
+  }
+
+  .bm-item-list {
+    font-size: 15px !important;
+  }
+
+  .bm-item-list > * {
+    padding: 0em !important;
   }
 }
 </style>
