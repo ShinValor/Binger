@@ -330,6 +330,11 @@ img {
   align-items: center;
 }
 
+.section4 {
+  display: flex;
+  flex-direction: column;
+}
+
 .steps {
   height: 128px;
   width: 128px;
@@ -382,7 +387,7 @@ img {
 
   .sub-button {
     width: 100px;
-    margin: 20px 10px 5px 15px;
+    margin: 20px 10px 10px 10px;
     padding: 0;
   }
 
@@ -427,8 +432,9 @@ img {
   }
 
   .section4 {
-    display: flex;
     margin-top: 35px;
+    flex-direction: row;
+    justify-content: space-between;
   }
 
   .steps {
