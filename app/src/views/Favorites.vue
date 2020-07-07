@@ -1,6 +1,6 @@
 <template>
   <div class="favorites">
-    <h1>This page will be built later</h1>
+    <h1>Favorites</h1>
     <FavoriteMovieList />
   </div>
 </template>
@@ -15,3 +15,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+h1 {
+  font-size: 30px;
+}
+</style>
