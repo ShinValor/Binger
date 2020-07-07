@@ -1,5 +1,5 @@
 <template>
-  <Slide>
+  <Slide width="250">
     <router-link to="/">
       <span>Home</span>
     </router-link>
@@ -98,16 +98,13 @@ export default {
   color: white;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 800px) {
   /* applies styles to any device screen sizes below 800px wide */
+
   .bm-burger-button {
     width: 15px !important;
     height: 10px !important;
-    margin: 33px 5px !important;
-  }
-
-  .bm-menu {
-    width: 200px !important; /* 0 width - change this with JavaScript */
+    margin: 33px 10px !important;
   }
 
   .bm-item-list {
