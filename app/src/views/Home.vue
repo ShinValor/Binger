@@ -6,13 +6,15 @@
         <h1 class="heading">
           <b>Movie Recommendation to power up your life</b>
         </h1>
-        <p class="sub-heading">
-          Hundreds of illustrated concepts to make your landing page, app, or
-          presentation more attractive
-        </p>
-        <a-button class="heading-button" type="primary">
-          <b>Learn More</b>
-        </a-button>
+        <div class="section4">
+          <p class="sub-heading">
+            Hundreds of illustrated concepts to make your landing page, app, or
+            presentation more attractive
+          </p>
+          <a-button class="sub-button" type="primary">
+            <b>Learn More</b>
+          </a-button>
+        </div>
         <!-- <img src="@/imgs/banner.jpg" alt="Binger Banner" /> -->
       </div>
       <Content msg="Welcome To Binger" />
@@ -82,13 +84,10 @@
           <img class="steps" src="../assets/stopwatch.png" />
           <h2>3. Wait For Recommendations</h2>
           <a-steps :current="1" class="progress-bar">
-            <a-step title="Finished" description="You can hover on the dot." />
-            <a-step
-              title="In Progress"
-              description="You can hover on the dot."
-            />
-            <a-step title="Waiting" description="You can hover on the dot." />
-            <a-step title="Waiting" description="You can hover on the dot." />
+            <a-step title="Finished" description="Logged In" />
+            <a-step title="In Progress" description="Updating Profile" />
+            <a-step title="Waiting" description="Select Favorite Movie Genre" />
+            <a-step title="Waiting" description="Search Movie . . ." />
           </a-steps>
         </div>
         <div class="section3" :style="{ 'grid-area': 'advert' }">
@@ -246,7 +245,7 @@ img {
   margin: 30px 0px 0px 30px;
 }
 
-.heading-button {
+.sub-button {
   width: 200px;
   margin: 10px 20px 20px 30px;
   background-color: transparent;
@@ -331,6 +330,11 @@ img {
   align-items: center;
 }
 
+.section4 {
+  display: flex;
+  flex-direction: column;
+}
+
 .steps {
   height: 128px;
   width: 128px;
@@ -369,7 +373,7 @@ img {
   }
 
   .heading {
-    margin: 40px 10px 10px 10px;
+    margin: 50px 10px 10px 15px;
     width: 100px;
     color: white;
     font-size: 15px;
@@ -377,13 +381,13 @@ img {
 
   .sub-heading {
     width: 200px;
-    margin: 10px 10px 5px 10px;
+    margin: 10px 10px 5px 15px;
     color: white;
   }
 
-  .heading-button {
+  .sub-button {
     width: 100px;
-    margin: 5px 10px;
+    margin: 20px 10px 10px 10px;
     padding: 0;
   }
 
@@ -425,6 +429,12 @@ img {
 
   .section3 {
     margin: 25px auto;
+  }
+
+  .section4 {
+    margin-top: 35px;
+    flex-direction: row;
+    justify-content: space-between;
   }
 
   .steps {

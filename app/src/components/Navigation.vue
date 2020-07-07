@@ -9,25 +9,23 @@
         </router-link>
       </h1>
     </div>
-    <div class="section">
-      <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '64px' }">
-        <a-menu-item class="tab">
-          <router-link to="/about">About</router-link>
-        </a-menu-item>
-        <a-menu-item class="tab">
-          <router-link to="/">Services</router-link>
-        </a-menu-item>
-        <a-menu-item class="tab">
-          <router-link to="/">Contact</router-link>
-        </a-menu-item>
-        <a-menu-item class="tab">
-          <router-link to="/login">Login</router-link>
-        </a-menu-item>
-        <a-menu-item class="tab">
-          <router-link to="/signup">Register</router-link>
-        </a-menu-item>
-      </a-menu>
-    </div>
+    <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '64px' }">
+      <a-menu-item class="tab">
+        <router-link to="/about">About</router-link>
+      </a-menu-item>
+      <a-menu-item class="tab">
+        <router-link to="/">Services</router-link>
+      </a-menu-item>
+      <a-menu-item class="tab">
+        <router-link to="/">Contact</router-link>
+      </a-menu-item>
+      <a-menu-item class="tab">
+        <router-link to="/login">Login</router-link>
+      </a-menu-item>
+      <a-menu-item class="tab">
+        <router-link to="/signup">Register</router-link>
+      </a-menu-item>
+    </a-menu>
   </a-layout-header>
 </template>
 
@@ -42,7 +40,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .navigation-bar {
   width: 100%;
   padding: 0px;
@@ -52,6 +50,11 @@ export default {
 
 .section {
   display: flex;
+  justify-content: center;
+}
+
+.app-name {
+  margin: 5px 0px;
 }
 
 .logo {
