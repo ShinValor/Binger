@@ -3,77 +3,86 @@ Module is responsible for handling the recommendation system.
 
 Module has a custom data structure to emulate a queuing system.
 """
-
+ 
 import shows
+import new_api_handler
 
-from api_handler import APIHandler
-
-class RecomendationQueue:
+class RecommendationQueue:
     """
-    The custom data stucture, ReccomendationQueue, has been defined to be used as the data structure.
+    The custom data stucture, RecommendationQueue, has been defined to be used as the data structure.
     This class is an encapsulated dict to maintain insertion order but allow for constant access, 
     deletion and insertion.
     """
 
-    def __init__(self, genres=[]):
+    def __init__(self):
         """
-        Initializes a dictionary of "Show" ids as keys and the actual "Show" object as the value. The 
-        dictionary is populated with "Show" objects that are retrieved from the TMDB API using the 
-        genres that are passed in by the constructor.
+        Initializes a dictionary of "Show" ids as keys and the "Show" object as the value.
 
         Attributes: 
-            show_dict: This dictionary will have a key value of the ID for movies and the value will
-            be the show object. Will have a structure of "Show" id being the key and the actual "Show" 
-            object being the value.
-            api_handler: Class that handles all the API calls and returns "clean" data to be used for the 
-            "RecommendationQueue".
+            queue: This dictionary will have a key value of the ID for "Shows" and the value will
+            be the "Show" object. Will have a structure of "S" id being the key and the "ShowData" being the value.
+            This decision was made because the "Show" objects were very memory intensive.
+            blacklist: Contrary to its name, this attribute is a set that will hold all the ids for the "Shows"
+            that have been removed from the "RecommendationQueue" so as to avoid duplicates.
+            is_initialized: A boolean that determines if the "RecommendationQueue" has had the initial recommendations
+            added to it. False by default.
         """
 
-        self.show_dict = dict()
-        self.api_handler = APIHandler()
-                
-        initial_recommendations = self.api_handler.get_initial_shows_by_genre(genres, 3)
+        self.queue = dict()
+        self.blacklist = set()
+        self.is_initialized = False
+
+    def initialize_recommendations(self, genre_ids):
+        """
+        Populates the 'queue' attribute with the initial recommendations based 
+        on the genre ids that are passed.
+
+        Args:
+            genre_ids: List of the ids that are for genres in TMDB.       
+        """
+
+        if not self.is_initialized:
+            self.add_multiple_recommendations(new_api_handler.get_discover_shows(genre_ids))
+            self.is_initialized = True
+
+    def add_multiple_recommendations(self, item_list):
+        """
+        Adds multiple items via a list to the "RecommendationQueue". If the item that is
+        being added to the recommendation queue is already in the queue then the 'score' attribute for 
+        that object is incremented. If the 'id' of the new item is not in the 'blacklist' then a new "Show" entry
+        is added to the RecommendationQueue.
+
+        Args:
+            item_list: A list of show objects to be added to the "RecommendationQueue". Assumes that
+            item_list will be a list of "Show" objects.
+        """
+
+        if type(item_list) != list:
+            return
         
-        self.add(initial_recommendations)
+        for item in item_list:
+            if item.id in self.queue.keys():
+                self.queue[item.id].score += 1
 
-    def add(self, to_be_added):
+            if item.id not in self.blacklist and item.id not in self.queue.keys():
+                self.queue[item.id] = item
+            
+    def delete_recommendation(self, show_id):
         """
-        Adds a single item or multiple items via a list to the "RecommendationQueue". If the item that is
-        being added to the recommendation queue is already in the recommendationqueue then the score for 
-        that show is incremented.
+        Deletes recommendation from the "RecommendationQueue". Also adds the recommendation's id to 
+        the 'blacklist', so the recommendation that is removed from the 'queue' is not added again.
 
         Args:
-            to_be_added: The item(s) to be added to the "RecommendationQueue". Assumes that
-            to_be_added will be a "Show" object.
+            show_id: Item that will be deleted from the "RecommendationQueue". Assumes that 'show_id' 
+            will be an id for a "Show" object.
         """
 
-        if type(to_be_added) == list:
-            for item in to_be_added:
-                self.add(item)
-        else:
-            if to_be_added in self.show_dict.values():
-                self.show_dict[to_be_added.id].score += 1
-            else:
-                self.show_dict[to_be_added.id] = to_be_added
+        if not self.is_initialized:
+            return 
 
-    def delete_recommendation(self, to_be_deleted):
-        """
-        Deletes recommendation from the "RecommendationQueue".
+        self.blacklist.add(show_id)
+        self.queue.pop(show_id)
 
-        Args:
-            to_be_deleted: Item that will be deleted from the "RecommendationQueue".Assumes that
-            to_be_deleted will be a "Show" object.
-        """
-
-        self.show_dict.pop(to_be_deleted)
-
-    def length(self): 
-        """
-        Returns: 
-            The length of the "RecommendationQueue".
-        """
-
-        return len(list(self.show_dict.keys()))
     
     def current_recommendation(self):
         """
@@ -81,26 +90,27 @@ class RecomendationQueue:
         user will be decided if they are interested or not. 
 
         Returns:    
-            The first item of the sorted "Show" objects that are the values of the attribute "show_dict". 
+            The first item of the sorted "ShowData" objects that are the values of the attribute 'queue'. 
         """
-
+        if not self.is_initialized:
+            return
+        
         return self.sorted_queue()[0]
 
     def dislike_recommendation(self):
         """
-        Handles the user disliking a recommendation. The score for the "Show" object 
-        will be decreased to -1, indicating that this show should be the lowest priority. If the 
-        user comes across the "Show" again and dislikes it then the "Show" is removed from the "RecommendationQueue".
-
-        STUB:
-            Since a user has the ability to dislike something twice, with the second time resulting in the removal of the 
-            item. There should also be a way to permit this "Show" from being added back to the user's "RecommendationQueue".
-            Perhaps using another dicitonary or a set to determine membership in constant time.
+        Handles the user disliking a recommendation. The score for the "ShowData" object 
+        will be decreased to -1, indicating that this "Show" should be the lowest priority. If the 
+        user comes across the "Show" again and dislikes it then the "Show" is removed from the "RecommendationQueue"
+        and the "Show's" id is added to the 'blacklist'.
         """
+
+        if not self.is_initialized:
+            return
 
         current_recommendation = self.current_recommendation()
 
-        if current_recommendation.score == -1:
+        if current_recommendation.score < 0:
             self.delete_recommendation(current_recommendation.id)
         else:
             current_recommendation.score = -1
@@ -110,33 +120,44 @@ class RecomendationQueue:
         Handles the user liking a recommendation. If the user likes the recommendations then the entry will be removed
         and recommended movies will be fetched from TMDB API and added to the "RecommendationQueue". If the recommendations are 
         already in the "RecommendationQueue" then the score is increased giving them a higher weight so they can be recommended to 
-        the user. Depending on how many recommendations the user has in the queue, determines how many pages of results will be fetched,
-        There is also a chance that there may be no recommendations.
+        the user.
 
         STUB: The liked movie will also need to be saved to the user's profile.
         """
-        if self.length() > 200: 
-            page_number = 2
-        else: 
-            page_number = 4
+        
+        if not self.is_initialized:
+            return
 
-        new_recs = self.api_handler.get_recommendation_by_show(self.current_recommendation(), page_number)
-        self.add(new_recs)
+        new_recs = new_api_handler.get_recommendations(self.current_recommendation())
+
+        self.delete_recommendation(self.current_recommendation().id)
+        self.add_multiple_recommendations(new_recs)
 
     def sorted_queue(self): 
         """
-        Sorts the attribute the values of "show_dict".
+        Sorts the attribute the values of 'queue'.
 
         Returns:
-             the keys of the dictionary in a sorted list.
+            The keys of the dictionary in a sorted list.
         """
 
-        return sorted(list(self.show_dict.values()), reverse=True)
+        return sorted(list(self.queue.values()), reverse=True)
 
     def print_queue(self):
         """
         Prints all the items that are in the queue in order. Used for debugging the data structure.
         """
 
+        if not self.is_initialized:
+            return
+
         for item in self.sorted_queue():
-            item.display_info()
+            print(item)
+
+    def length(self): 
+        """
+        Returns: 
+            The length of the "RecommendationQueue".
+        """
+        
+        return len(list(self.queue.keys()))
