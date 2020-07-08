@@ -1,4 +1,3 @@
-
 import json
 import copy
 
@@ -6,8 +5,6 @@ import api_constants as consts
 import shows as s
 import grequests
 import requests
-
-from firebase_admin import credentials, auth, firestore, initialize_app
 
 def discover_requests(genre_ids, number_of_pages=3, is_movie=True):
     """
@@ -118,7 +115,7 @@ def get_recommendations(show):
 
     return recommendations
 
-def get_show(show_data):
+def resolve_show(show_data):
     """
     Function that will fetch the complete data for a "Show" based on the "ShowData"
     object.
@@ -138,7 +135,6 @@ def get_show(show_data):
     
     req = requests.get(url=api_url.format(show_data.id), params=options)
 
-    # print(req.json())
     return s.create_show(req.json(), show_data.is_movie)
 
 def create_show_data_list(api_responses, is_movie):
