@@ -6,6 +6,8 @@ as there is no universal term that refers to both.
 
 import api_constants as consts
 
+from json import dumps
+
 class Show:
     """
     Class to encapsulate data from TMDB query response.
@@ -17,8 +19,6 @@ class Show:
         popularity: The rating of the "Show" in the TMDB API
         poster_path: Path for the "Show's" poster.
         release_year: The year the show was released or first aired.
-        score: An int that will determine the likability score. If a show is in the RecommendationQueue
-        and the API is to added it again, the score is increased instead. default is 1.
         title: The title of the "Show".
         is_movie: Boolean to determine if a "Show" is a Movie or TV Show.
     """
@@ -38,7 +38,6 @@ class Show:
         self.popularity = popularity
         self.poster_path = consts.TMDB_IMAGE_URL.format(poster_path)
         self.release_year = release_year
-        self.score = 0
         self.title = title
         self.is_movie = is_movie
 
@@ -56,16 +55,6 @@ class Show:
     def __hash__(self): 
         return hash(self.id)
 
-    def __lt__(self, other):
-        """
-        Allows the 'Show' objects' scores to be compared to one another for sorting.
-        """
-
-        if self.score == other.score:
-            return self.popularity < other.popularity
-
-        return self.score < other.score
-
     def display_info(self):
         """
         Prints information of the "Show". Primarily a troubleshooting tool most likely won't 
@@ -76,10 +65,17 @@ class Show:
         show_information += f"\nOverview: {self.overview}"
         show_information += f"\nPopularity: {self.popularity}"
         show_information += f"\nImage: {self.poster_path}"
-        show_information += f"\nIs Movie: {self.is_movie}"
-        show_information += f"\nScore: {self.score}\n"
+        show_information += f"\nIs Movie: {self.is_movie}\n"
 
         print(show_information)
+
+    def to_json(self):
+        """
+        Converts a "Show" object into a json object.
+        """
+        json = dumps(vars(self), indent=4)
+        
+        return json
 
 def create_show(result_dict, is_movie):
     """
@@ -92,9 +88,14 @@ def create_show(result_dict, is_movie):
     Returns:
         A "Show" class object. 
     """
+    genre_ids = []
+    genres = result_dict["genres"]
     
+    for genre in genres: 
+        genre_ids.append(genre["id"])
+
     show = Show(result_dict["id"],
-        result_dict["genre_ids"],
+        genre_ids,
         result_dict["overview"], 
         result_dict["vote_average"],
         result_dict["poster_path"], "", "", "")
@@ -123,12 +124,65 @@ def create_show_list(list_of_results, is_movie):
         Returns a list of "Show" objects.
     """
 
-    returned_list = []
+    items = []
     
     if len(list_of_results) == 0:
-        return returned_list
+        return items
 
     for result in list_of_results:
-        returned_list.append(create_show(result, is_movie))
+        items.append(create_show(result, is_movie))
 
-    return returned_list
+    return items
+
+class ShowData:
+    """
+    Class to encapsulate only the important information that is in the "Show" class
+    Due to "Show" objects being rather large this class was created to handle the 
+    reommendations and will be used to query the database for the full information
+    of the "Show"
+
+    Attributes:
+        id: How TMDB identifies each "Show"
+        popularity: The user popularity score from TMDB
+        is_movie: A boolean that decides whether the "Show" is a movie or not.
+        score: The likelihood that a user would enjoy the "Show" based on their choices.
+        see 'recommendations.py' for more information.
+    """
+    
+    def __init__(self, id, popularity, is_movie=True):
+        """
+        Initializes a "ShowData" class with the information passed in by the constructor.
+        """
+
+        self.id = id
+        self.popularity = popularity
+        self.is_movie = is_movie
+        self.score = 0
+    
+    def __eq__(self, other):
+        """
+        Allows for equality comparison.
+
+        Returns:
+            True if equal, False if not    
+        """
+        return self.id == other.id
+
+    def __lt__(self, other):
+        """
+        Allows for less than or equal to comparison. Needed for sorting algos.
+
+        Returns:
+            If scores are the same then compares popularity. Otherwise, compares scores.
+        """
+        if self.score == other.score:
+            return self.popularity <= other.popularity
+        
+        return self.score < other.score
+
+    def __repr__(self):
+        """
+        Class string representation.
+        """
+        return (f"( {self.id} : {self.popularity} : {self.score} : {self.is_movie} )")
+
