@@ -7,7 +7,7 @@
           <b>Movie Recommendation to power up your life</b>
         </h1>
         <div class="section4">
-          <p class="sub-heading">
+          <p class="sub-heading content">
             Hundreds of illustrated concepts to make your landing page, app, or
             presentation more attractive
           </p>
@@ -20,8 +20,8 @@
       <Content msg="Welcome To Binger" />
       <div class="container2">
         <div class="section1">
-          <h1>Optimized Movie Search Engine</h1>
-          <p>
+          <h1 class="title"><b>Optimized Movie Search Engine</b></h1>
+          <p class="content">
             All our illustrations come in different styles, and you can change
             the main color. Just choose the one you like the most for your
             project. Some styles allow you to select a simple background, a more
@@ -29,16 +29,16 @@
           </p>
         </div>
         <div class="section1">
-          <img src="../assets/fast-loading.png" />
+          <img class="large-image" src="../assets/fast-loading.png" />
         </div>
       </div>
       <div class="container2">
         <div class="section1">
-          <img src="../assets/movie-night.png" />
+          <img class="large-image" src="../assets/movie-night.png" />
         </div>
         <div class="section1">
-          <h1>Movie Nights</h1>
-          <p>
+          <h1 class="title"><b>Movie Nights</b></h1>
+          <p class="content">
             Do you want the illustrations to come to life on your website? You
             can animate them directly with our online editor! Some styles allow
             you to select a simple background, a more detailed one, or remove it
@@ -48,8 +48,8 @@
       </div>
       <div class="container2">
         <div class="section1">
-          <h1>Watch With Friends</h1>
-          <p>
+          <h1 class="title"><b>Watch With Friends</b></h1>
+          <p class="content">
             Some styles allow you to select a simple background, a more detailed
             one, or remove it altogether. Give it a try! Some styles allow you
             to select a simple background, a more detailed one, or remove it
@@ -57,15 +57,15 @@
           </p>
         </div>
         <div class="section1">
-          <img src="../assets/friendship.png" />
+          <img class="large-image" src="../assets/friendship.png" />
         </div>
       </div>
-      <h1>
+      <h1 class="title">
         <strong> How It Works </strong>
       </h1>
       <div class="container1">
         <div class="section3" :style="{ 'grid-area': 'content' }">
-          <p>
+          <p class="content">
             All our illustrations come in different styles, and you can change
             the main color. Just choose the one you like the most for your
             project. Some styles allow you to select a simple background, a more
@@ -73,16 +73,16 @@
           </p>
         </div>
         <div class="section3" :style="{ 'grid-area': 'header' }">
-          <img class="steps" src="../assets/login.png" />
-          <h2>1. Sign up and Log in</h2>
+          <img class="small-image" src="../assets/login.png" />
+          <h2 class="sub-title">1. Sign up and Log in</h2>
         </div>
         <div class="section3" :style="{ 'grid-area': 'header2' }">
-          <img class="steps" src="../assets/profile.png" />
-          <h2>2. Update Profile</h2>
+          <img class="small-image" src="../assets/profile.png" />
+          <h2 class="sub-title">2. Update Profile</h2>
         </div>
         <div class="section3" :style="{ 'grid-area': 'footer' }">
-          <img class="steps" src="../assets/stopwatch.png" />
-          <h2>3. Wait For Recommendations</h2>
+          <img class="small-image" src="../assets/stopwatch.png" />
+          <h2 class="sub-title">3. Wait For Recommendations</h2>
           <a-steps :current="1" class="progress-bar">
             <a-step title="Finished" description="Logged In" />
             <a-step title="In Progress" description="Updating Profile" />
@@ -91,86 +91,22 @@
           </a-steps>
         </div>
         <div class="section3" :style="{ 'grid-area': 'advert' }">
-          <img class="watch-movie" src="../assets/watch-movie.svg" />
+          <img class="large-image" src="../assets/watch-movie.svg" />
+          <h2 class="sub-title">4. Enjoy Your Movie</h2>
         </div>
       </div>
-      <h1 class="margin-top">Service Plans</h1>
+      <h1 class="title"><b>Service Plans</b></h1>
       <div class="container3">
         <div class="section2">
-          <h2>Basic</h2>
+          <h2 class="sub-title">Basic</h2>
         </div>
         <div class="section2">
-          <h2>Professional</h2>
+          <h2 class="sub-title">Professional</h2>
         </div>
         <div class="section2">
-          <h2>Enterprise</h2>
+          <h2 class="sub-title">Enterprise</h2>
         </div>
       </div>
-      <h1 class="margin-top">Latest Premieres</h1>
-      <flickity class="carousel" ref="flickity" :options="flickityOptions">
-        <div class="carousel-cell">
-          <img src="../imgs/wonder-woman.jpg" />
-          <!-- <img
-            class="carousel-cell-image"
-            data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/tulip.jpg"
-            alt="tulip"
-          /> -->
-        </div>
-        <div class="carousel-cell">
-          <img src="../imgs/terminator.jpg" />
-        </div>
-        <div class="carousel-cell">
-          <img src="../imgs/logan.jpg" />
-        </div>
-        <div class="carousel-cell">
-          <img src="../imgs/6-underground.jpg" />
-        </div>
-        <div class="carousel-cell">
-          <img src="../imgs/joker.jpg" />
-        </div>
-        <div class="carousel-cell">
-          <img src="../imgs/black-panther.jpg" />
-        </div>
-        <div class="carousel-cell">
-          <img src="../imgs/black-widow.jpg" />
-        </div>
-        <div class="carousel-cell">
-          <img src="../imgs/starwar.jpg" />
-        </div>
-        <div class="carousel-cell">
-          <img src="../imgs/aladdin.jpg" />
-        </div>
-      </flickity>
-      <h1 class="margin-top">Most Popular</h1>
-      <flickity class="carousel" ref="flickity" :options="flickityOptions">
-        <div class="carousel-cell">
-          <img src="../imgs/wonder-woman.jpg" />
-        </div>
-        <div class="carousel-cell">
-          <img src="../imgs/terminator.jpg" />
-        </div>
-        <div class="carousel-cell">
-          <img src="../imgs/logan.jpg" />
-        </div>
-        <div class="carousel-cell">
-          <img src="../imgs/6-underground.jpg" />
-        </div>
-        <div class="carousel-cell">
-          <img src="../imgs/joker.jpg" />
-        </div>
-        <div class="carousel-cell">
-          <img src="../imgs/black-panther.jpg" />
-        </div>
-        <div class="carousel-cell">
-          <img src="../imgs/black-widow.jpg" />
-        </div>
-        <div class="carousel-cell">
-          <img src="../imgs/starwar.jpg" />
-        </div>
-        <div class="carousel-cell">
-          <img src="../imgs/aladdin.jpg" />
-        </div>
-      </flickity>
     </a-layout-content>
     <Footer />
   </a-layout>
@@ -181,15 +117,13 @@
 import Navigation from "@/components/Navigation.vue";
 import Content from "@/components/Content.vue";
 import Footer from "@/components/Footer.vue";
-import Flickity from "vue-flickity";
 
 export default {
   name: "Home",
   components: {
     Navigation,
     Content,
-    Footer,
-    Flickity
+    Footer
   },
   data() {
     return {
@@ -206,16 +140,14 @@ export default {
 </script>
 
 <style scoped>
-h1 {
-  font-size: 40px;
+.small-image {
+  height: 128px;
+  width: 128px;
 }
 
-p {
-  font-size: 20px;
-}
-
-img {
-  object-fit: cover;
+.large-image {
+  height: 500px;
+  width: 500px;
   max-height: 100%;
   max-width: 100%;
 }
@@ -236,6 +168,7 @@ img {
   margin: 320px 0px 0px 30px;
   width: 500px;
   text-align: left;
+  font-size: 40px;
 }
 
 .sub-heading {
@@ -252,35 +185,12 @@ img {
   text-align: center;
 }
 
-.carousel {
-  /* background: #fafafa; */
-  height: 500px;
-  margin: 25px;
+.title {
+  font-size: 35px;
 }
 
-.carousel-cell {
-  height: 500px;
-  width: 33%;
-  margin: 0px 15px;
-  background: #333;
-  display: flex;
-  justify-content: center;
-}
-
-.carousel-cell-image {
-  display: block;
-  max-height: 100%;
-  max-width: 100%;
-  margin: 0 auto;
-  opacity: 0;
-  transition: opacity 0.4s;
-  -webkit-transition: opacity 0.4s;
-}
-
-.carousel-cell-image.flickity-lazyloaded,
-.carousel-cell-image.flickity-lazyerror {
-  opacity: 1;
-}
+/* .sub-title {
+} */
 
 .container1 {
   margin: 10px 50px 100px 50px;
@@ -301,7 +211,7 @@ img {
 }
 
 .container3 {
-  margin: 10px 50px 100px 50px;
+  margin: 10px 50px 50px 50px;
   display: flex;
   justify-content: space-between;
 }
@@ -335,38 +245,16 @@ img {
   flex-direction: column;
 }
 
-.steps {
-  height: 128px;
-  width: 128px;
+.content {
+  font-size: 20px;
 }
 
 .progress-bar {
   margin-left: -100px;
 }
 
-.watch-movie {
-  height: 500px;
-  width: 500px;
-}
-
-.margin-top {
-  margin-top: 150px;
-}
-
 @media screen and (max-width: 800px) {
   /* applies styles to any device screen sizes below 800px wide */
-  h1 {
-    font-size: 20px;
-  }
-
-  h2 {
-    font-size: 15px;
-    margin: 5px;
-  }
-
-  p {
-    font-size: 10px;
-  }
 
   .banner {
     height: 250px;
@@ -391,14 +279,13 @@ img {
     padding: 0;
   }
 
-  .carousel {
-    height: 150px;
-    margin: 5px;
+  .title {
+    font-size: 20px;
   }
 
-  .carousel-cell {
-    height: 150px;
-    margin: 0px 5px;
+  .sub-title {
+    font-size: 15px;
+    margin: 5px;
   }
 
   .container1 {
@@ -428,32 +315,31 @@ img {
   }
 
   .section3 {
-    margin: 25px auto;
+    margin: 10px auto;
   }
 
   .section4 {
-    margin-top: 35px;
+    margin-top: 15px;
     flex-direction: row;
     justify-content: space-between;
   }
 
-  .steps {
+  .content {
+    font-size: 10px;
+  }
+
+  .small-image {
     height: 64px;
     width: 64px;
   }
 
-  .progress-bar {
-    margin: 50px 0px;
-  }
-
-  .watch-movie {
-    margin-top: -100px;
+  .large-image {
     height: 250px;
     width: 250px;
   }
 
-  .margin-top {
-    margin-top: 50px;
+  .progress-bar {
+    margin: 50px 0px 0px 0px;
   }
 }
 </style>

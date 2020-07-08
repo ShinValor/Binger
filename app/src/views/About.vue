@@ -29,25 +29,19 @@ export default {
 
 <style scoped>
 .about {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
   margin: 50px;
-}
-
-.about-card {
-  height: 400px;
-  width: 400px;
-  margin: 20px 50px !important;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */
 
-  .about-card {
-    width: 300px;
-    height: 250px;
-    margin: 10px auto !important;
+  .about {
+    margin: 25px 0px 0px 0px;
+    flex-direction: column;
+    flex-wrap: nowrap;
   }
 }
 </style>
