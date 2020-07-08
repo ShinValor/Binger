@@ -4,6 +4,8 @@ from flask import Flask, Response, jsonify, request, make_response
 from flask_cors import CORS, cross_origin
 from firebase_admin import credentials, auth, firestore, initialize_app
 
+from utils.recommendations import RecommendationQueue
+
 app = Flask(__name__)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
