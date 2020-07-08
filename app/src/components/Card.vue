@@ -1,5 +1,5 @@
 <template>
-  <a-card class="profile-card" hoverable>
+  <a-card class="card" hoverable>
     <img
       slot="cover"
       alt="example"
@@ -26,4 +26,20 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.card {
+  height: 400px;
+  width: 400px;
+  margin: 50px !important;
+}
+
+@media screen and (max-width: 500px) {
+  /* applies styles to any device screen sizes below 800px wide */
+
+  .card {
+    height: 250px;
+    width: 250px;
+    margin: 25px auto !important;
+  }
+}
+</style>

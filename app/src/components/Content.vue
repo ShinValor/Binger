@@ -1,6 +1,6 @@
 <template>
   <!-- <a-layout-content :style="{ padding: '0 50px' }"> -->
-  <div class="center">
+  <div class="content">
     <h1>{{ msg }}</h1>
   </div>
   <!-- </a-layout-content> -->
@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style scoped>
-.center {
+.content {
   background: #fff;
   height: 500px;
   margin: 30px 30px 100px 30px;
@@ -29,7 +29,7 @@ export default {
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */
 
-  .center {
+  .content {
     height: 200px;
     margin: 15px;
   }

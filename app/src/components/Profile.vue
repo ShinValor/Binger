@@ -1,5 +1,10 @@
 <template>
-  <a-form-model :model="form" :label-col="labelCol" :wrapper-col="wrapperCol">
+  <a-form-model
+    class="profile"
+    :model="form"
+    :label-col="labelCol"
+    :wrapper-col="wrapperCol"
+  >
     <a-form-model-item label="Nick Name">
       <a-input v-model="form.name" />
     </a-form-model-item>
@@ -94,4 +99,18 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.profile {
+  width: 700px;
+  margin: 50px 20px !important;
+}
+
+@media screen and (max-width: 500px) {
+  /* applies styles to any device screen sizes below 800px wide */
+
+  .profile {
+    width: 250px;
+    margin: 0 auto !important;
+  }
+}
+</style>

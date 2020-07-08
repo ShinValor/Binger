@@ -1,58 +1,108 @@
 <template>
-  <a-carousel arrows dots-class="slick-dots slick-thumb">
-    <a slot="customPaging" slot-scope="props">
-      <img :src="getImgUrl(props.i)" />
-    </a>
-    <div v-for="item in 4" :key="item">
-      <img :src="baseUrl + 'abstract0' + item + '.jpg'" />
+  <flickity class="carousel" ref="flickity" :options="flickityOptions">
+    <div class="carousel-cell">
+      <img class="carousel-cell-image" src="../imgs/wonder-woman.jpg" />
+      <!-- <img
+        class="carousel-cell-image"
+        data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/tulip.jpg"
+        alt="tulip"
+      /> -->
     </div>
-  </a-carousel>
+    <div class="carousel-cell">
+      <img class="carousel-cell-image" src="../imgs/terminator.jpg" />
+    </div>
+    <div class="carousel-cell">
+      <img class="carousel-cell-image" src="../imgs/logan.jpg" />
+    </div>
+    <div class="carousel-cell">
+      <img class="carousel-cell-image" src="../imgs/6-underground.jpg" />
+    </div>
+    <div class="carousel-cell">
+      <img class="carousel-cell-image" src="../imgs/joker.jpg" />
+    </div>
+    <div class="carousel-cell">
+      <img class="carousel-cell-image" src="../imgs/black-panther.jpg" />
+    </div>
+    <div class="carousel-cell">
+      <img class="carousel-cell-image" src="../imgs/black-widow.jpg" />
+    </div>
+    <div class="carousel-cell">
+      <img class="carousel-cell-image" src="../imgs/starwar.jpg" />
+    </div>
+    <div class="carousel-cell">
+      <img class="carousel-cell-image" src="../imgs/aladdin.jpg" />
+    </div>
+    <div class="carousel-cell">
+      <img class="carousel-cell-image" src="../imgs/black-widow.jpg" />
+    </div>
+    <div class="carousel-cell">
+      <img class="carousel-cell-image" src="../imgs/black-panther.jpg" />
+    </div>
+    <div class="carousel-cell">
+      <img class="carousel-cell-image" src="../imgs/black-widow.jpg" />
+    </div>
+  </flickity>
 </template>
 <script>
-const baseUrl =
-  "https://raw.githubusercontent.com/vueComponent/ant-design-vue/master/components/vc-slick/assets/img/react-slick/";
+import Flickity from "vue-flickity";
+
 export default {
   name: "Carousel",
+  components: {
+    Flickity
+  },
   data() {
     return {
-      baseUrl
+      flickityOptions: {
+        initialIndex: 0,
+        // lazyLoad: true,
+        autoPlay: 3000,
+        groupCells: 4,
+        freeScroll: true
+      }
     };
-  },
-  methods: {
-    getImgUrl(i) {
-      return `${baseUrl}abstract0${i + 1}.jpg`;
-    }
   }
 };
 </script>
 <style scoped>
-.ant-carousel >>> .slick-dots {
-  height: auto;
+.carousel {
+  /* background: #fafafa; */
+  /* height: 400px; */
+  margin: 20px;
 }
 
-.ant-carousel >>> .slick-slide img {
-  border: 5px solid #fff;
+.carousel-cell {
+  height: 400px;
+  width: 25%;
+  margin: 0px 10px;
+  /* background: #333; */
+  display: flex;
+  justify-content: center;
+}
+
+.carousel-cell-image {
+  max-height: 100%;
+  max-width: 100%;
+  margin: 0 auto;
   display: block;
-  margin: auto;
-  max-width: 80%;
+  object-fit: cover;
 }
 
-.ant-carousel >>> .slick-thumb {
-  bottom: -45px;
+.carousel-cell-image.flickity-lazyloaded,
+.carousel-cell-image.flickity-lazyerror {
+  opacity: 1;
 }
 
-.ant-carousel >>> .slick-thumb li {
-  width: 60px;
-  height: 45px;
-}
+@media screen and (max-width: 800px) {
+  /* applies styles to any device screen sizes below 800px wide */
+  .carousel {
+    height: 150px;
+    margin: 5px;
+  }
 
-.ant-carousel >>> .slick-thumb li img {
-  width: 100%;
-  height: 100%;
-  filter: grayscale(100%);
-}
-
-.ant-carousel >>> .slick-thumb li.slick-active img {
-  filter: grayscale(0%);
+  .carousel-cell {
+    height: 150px;
+    margin: 0px 5px;
+  }
 }
 </style>

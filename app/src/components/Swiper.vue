@@ -78,7 +78,7 @@ export default {
 .card {
   height: 600px;
   width: 400px;
-  margin: 0 auto;
+  margin: 50px auto;
   background-image: url("../imgs/aladdin.jpg");
   background-size: contain;
   background-repeat: no-repeat;

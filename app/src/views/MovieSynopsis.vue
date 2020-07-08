@@ -9,3 +9,4 @@ export default {
   name: "MovieSynopsis"
 };
 </script>
+<style scoped></style>

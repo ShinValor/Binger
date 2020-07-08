@@ -41,34 +41,50 @@
         </a-menu-item>
       </a-menu>
     </div>
-    <h1>Top Movie Pick</h1>
-    <div class="movie-poster">
-      <div class="poster-row">
-        <div class="poster-col">
-          <img src="@/imgs/aladdin.jpg" alt="Aladdin" />
+    <h1 class="title">Top Movie Pick</h1>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <img class="small-image" src="@/imgs/aladdin.jpg" alt="Aladdin" />
         </div>
-        <div class="poster-col">
-          <img src="@/imgs/starwar.jpg" alt="Star War" />
+        <div class="col">
+          <img class="small-image" src="@/imgs/starwar.jpg" alt="Star War" />
         </div>
-        <div class="poster-col">
-          <img src="@/imgs/logan.jpg" alt="Logan" />
+        <div class="col">
+          <img class="small-image" src="@/imgs/logan.jpg" alt="Logan" />
         </div>
-        <div class="poster-col">
-          <img src="@/imgs/wonder-woman.jpg" alt="Wonder Woman" />
+        <div class="col">
+          <img
+            class="small-image"
+            src="@/imgs/wonder-woman.jpg"
+            alt="Wonder Woman"
+          />
         </div>
       </div>
-      <div class="poster-row">
-        <div class="poster-col">
-          <img src="@/imgs/black-panther.jpg" alt="Black Panther" />
+      <div class="row">
+        <div class="col">
+          <img
+            class="small-image"
+            src="@/imgs/black-panther.jpg"
+            alt="Black Panther"
+          />
         </div>
-        <div class="poster-col">
-          <img src="@/imgs/joker.jpg" alt="Joker" />
+        <div class="col">
+          <img class="small-image" src="@/imgs/joker.jpg" alt="The Joker" />
         </div>
-        <div class="poster-col">
-          <img src="@/imgs/6-underground.jpg" alt="6-underground" />
+        <div class="col">
+          <img
+            class="small-image"
+            src="@/imgs/6-underground.jpg"
+            alt="6-underground"
+          />
         </div>
-        <div class="poster-col">
-          <img src="@/imgs/black-widow.jpg" alt="Black Widow" />
+        <div class="col">
+          <img
+            class="small-image"
+            src="@/imgs/black-widow.jpg"
+            alt="Black Widow"
+          />
         </div>
       </div>
       <a-button
@@ -78,12 +94,8 @@
         More ...
       </a-button>
     </div>
-    <div class="movie-slider">
-      <Carousel></Carousel>
-    </div>
-    <div class="movie-swiper">
-      <Swiper></Swiper>
-    </div>
+    <Carousel></Carousel>
+    <Swiper></Swiper>
     <Modal></Modal>
     <Footer></Footer>
   </a-layout>
@@ -91,8 +103,8 @@
 
 <script>
 import Navigation from "@/components/Navigation.vue";
-import Swiper from "@/components/Swiper.vue";
 import Carousel from "@/components/Carousel.vue";
+import Swiper from "@/components/Swiper.vue";
 import Modal from "@/components/Modal.vue";
 import Footer from "@/components/Footer.vue";
 
@@ -100,8 +112,8 @@ export default {
   name: "Recommendations",
   components: {
     Navigation,
-    Swiper,
     Carousel,
+    Swiper,
     Modal,
     Footer
   },
@@ -119,56 +131,46 @@ export default {
 </script>
 
 <style scoped>
-h1 {
+.title {
   margin: 30px 0px 0px 30px;
   text-align: left;
   font-size: 30px;
 }
 
-img {
+.small-image {
   object-fit: cover;
   width: 100%;
   height: 100%;
 }
 
-.movie-poster {
+.container {
   margin: 20px;
 }
 
-.movie-poster .poster-row {
+.container .row {
   display: flex;
 }
 
-.movie-poster .poster-col {
+.container .row .col {
   width: 25%;
   margin: 10px;
-}
-
-.movie-slider {
-  height: 500px;
 }
 
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */
 
-  h1 {
+  .title {
     text-align: center;
     margin: 0 auto;
   }
 
-  .movie-poster .poster-row {
+  .container .row {
     flex-direction: column;
   }
 
-  .movie-poster .poster-col {
+  .container .row .col {
     width: 100%;
     margin: 5px auto;
-  }
-
-  .movie-slider {
-    height: 300px;
-    width: 300px;
-    margin: 0 auto;
   }
 }
 </style>
