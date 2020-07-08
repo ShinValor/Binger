@@ -74,6 +74,14 @@ Base URL used by TMDB to resolve "Show's" poster.
 """
 TMDB_IMAGE_URL = "https://image.tmdb.org/t/p/w500{}"
 
+"""
+Base URL for fetching the details for a "Show" based on the id.
+
+Reference: https://developers.themoviedb.org/3/movies/get-movie-details
+"""
+MOVIE_DETAILS_URL = "https://api.themoviedb.org/3/movie/{}"
+TV_SHOW_DETAILS_URL = "https://api.themoviedb.org/3/show/{}"
+
 """ 
 Base URLs used by TMDB to discover initial "Shows".
 
