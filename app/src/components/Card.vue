@@ -1,16 +1,12 @@
 <template>
   <a-card class="card" hoverable>
     <img
+      class="large-image"
       slot="cover"
       alt="example"
-      src="https://gw.alipayobjects.com/zos/rmsportal/JiqGstEfoWAOHiTxclqi.png"
+      src="../assets/friendship.png"
     />
-    <a-card-meta :title="name" :description="desc">
-      <a-avatar
-        slot="avatar"
-        src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-      />
-    </a-card-meta>
+    <a-card-meta :title="name" :description="desc" />
   </a-card>
 </template>
 
@@ -30,7 +26,13 @@ export default {
 .card {
   height: 400px;
   width: 400px;
-  margin: 50px !important;
+  margin: 50px;
+}
+
+.large-image {
+  height: 300px;
+  width: 300px;
+  margin: 0 auto;
 }
 
 @media screen and (max-width: 500px) {
@@ -39,7 +41,7 @@ export default {
   .card {
     height: 250px;
     width: 250px;
-    margin: 25px auto !important;
+    margin: 25px auto;
   }
 }
 </style>

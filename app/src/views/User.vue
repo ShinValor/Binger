@@ -1,6 +1,5 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
-    <Navigation></Navigation>
     <div class="container">
       <Profile></Profile>
       <Card name="John" desc="I am a student." />
@@ -32,14 +31,12 @@
 <script>
 import firebase from "firebase";
 import axios from "axios";
-import Navigation from "@/components/Navigation.vue";
 import Profile from "@/components/Profile.vue";
 import Card from "@/components/Card.vue";
 
 export default {
   name: "User",
   components: {
-    Navigation,
     Profile,
     Card
   },

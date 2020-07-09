@@ -9,6 +9,9 @@
     <router-link to="/recommendations">
       <span>Search</span>
     </router-link>
+    <router-link to="/favorites">
+      <span>Dashboard</span>
+    </router-link>
     <router-link to="/login">
       <span>Log in</span>
     </router-link>

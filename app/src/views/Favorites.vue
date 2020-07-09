@@ -1,6 +1,6 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
-    <chart :options="polar" />
+    <chart :options="option" />
   </a-layout>
 </template>
 
@@ -16,46 +16,88 @@ export default {
     chart: ECharts
   },
   data() {
-    let data = [];
-    for (let i = 0; i <= 360; i++) {
-      let t = (i / 180) * Math.PI;
-      let r = Math.sin(2 * t) * Math.cos(2 * t);
-      data.push([r, i]);
-    }
     return {
-      polar: {
+      option: {
         title: {
-          text: "Polar"
-        },
-        legend: {
-          data: ["line"]
-        },
-        polar: {
-          center: ["50%", "54%"]
+          text: "Most Searched Movie Genre",
+          subtext: "Compared With Other Users",
+          left: "center"
         },
         tooltip: {
-          trigger: "axis",
-          axisPointer: {
-            type: "cross"
+          trigger: "item",
+          formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+          left: "center",
+          top: "bottom",
+          data: [
+            "Action",
+            "Comedy",
+            "Thriller",
+            "Crime Film",
+            "Drama",
+            "Horror",
+            "Adventure",
+            "Night Shows"
+          ]
+        },
+        toolbox: {
+          show: true,
+          feature: {
+            mark: { show: true },
+            dataView: { show: true, readOnly: false },
+            magicType: {
+              show: true,
+              type: ["pie", "funnel"]
+            },
+            restore: { show: true },
+            saveAsImage: { show: true }
           }
-        },
-        angleAxis: {
-          type: "value",
-          startAngle: 0
-        },
-        radiusAxis: {
-          min: 0
         },
         series: [
           {
-            coordinateSystem: "polar",
-            name: "line",
-            type: "line",
-            showSymbol: false,
-            data: data
+            name: "Other",
+            type: "pie",
+            radius: [20, 110],
+            center: ["25%", "50%"],
+            roseType: "radius",
+            label: {
+              show: false
+            },
+            emphasis: {
+              label: {
+                show: true
+              }
+            },
+            data: [
+              { value: 10, name: "Action" },
+              { value: 5, name: "Comedy" },
+              { value: 15, name: "Thriller" },
+              { value: 25, name: "Crime Film" },
+              { value: 20, name: "Drama" },
+              { value: 35, name: "Horror" },
+              { value: 30, name: "Adventure" },
+              { value: 40, name: "Night Shows" }
+            ]
+          },
+          {
+            name: "You",
+            type: "pie",
+            radius: [30, 110],
+            center: ["75%", "50%"],
+            roseType: "area",
+            data: [
+              { value: 10, name: "Action" },
+              { value: 5, name: "Comedy" },
+              { value: 15, name: "Thriller" },
+              { value: 25, name: "Crime Film" },
+              { value: 20, name: "Drama" },
+              { value: 35, name: "Horror" },
+              { value: 30, name: "Adventure" },
+              { value: 40, name: "Night Shows" }
+            ]
           }
-        ],
-        animationDuration: 2000
+        ]
       }
     };
   }
@@ -69,6 +111,17 @@ export default {
  * don't forget to provide a size for the container).
  */
 .echarts {
+  width: 800px;
+  height: 400px;
   margin: 100px auto;
+}
+
+@media screen and (max-width: 500px) {
+  /* applies styles to any device screen sizes below 800px wide */
+
+  .echarts {
+    width: 600px;
+    margin: 0px auto;
+  }
 }
 </style>

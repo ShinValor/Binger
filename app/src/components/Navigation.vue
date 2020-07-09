@@ -1,30 +1,31 @@
 <template>
-  <a-layout-header class="navigation-bar">
+  <a-layout-header class="nav-bar">
     <div class="section">
       <Menu />
       <h1 class="app-name">
         <router-link to="/" :style="{ color: 'white' }">
-          <img class="logo" src="@/assets/logo.svg" />
+          <img class="small-image" src="@/assets/logo.svg" />
           Binger <i :style="{ color: 'gray', 'font-size': '15px' }">By Lala</i>
         </router-link>
       </h1>
     </div>
     <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '64px' }">
-      <a-menu-item class="tab">
+      <a-menu-item class="nav-button">
         <router-link to="/about">About</router-link>
       </a-menu-item>
-      <a-menu-item class="tab">
-        <router-link to="/">Services</router-link>
+      <a-menu-item class="nav-button">
+        <router-link to="/#services">Services</router-link>
       </a-menu-item>
-      <a-menu-item class="tab">
-        <router-link to="/">Contact</router-link>
+      <a-menu-item class="nav-button">
+        <!-- <router-link to="/">Contact</router-link> -->
+        <a href="https://github.com/ShinValor/Binger">Contact</a>
       </a-menu-item>
-      <a-menu-item class="tab">
+      <a-menu-item class="nav-button">
         <router-link to="/login">Login</router-link>
       </a-menu-item>
-      <a-menu-item class="tab">
+      <!-- <a-menu-item class="tab">
         <router-link to="/signup">Register</router-link>
-      </a-menu-item>
+      </a-menu-item> -->
     </a-menu>
   </a-layout-header>
 </template>
@@ -41,28 +42,29 @@ export default {
 </script>
 
 <style scoped>
-.navigation-bar {
+.nav-bar {
   width: 100%;
   padding: 0px;
   display: flex;
   justify-content: space-between;
 }
 
+.app-name {
+  margin: 0px;
+}
+
 .section {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
-.app-name {
-  margin: 5px 0px;
-}
-
-.logo {
+.small-image {
   height: 32px;
   width: 32px;
 }
 
-.tab {
+.nav-button {
   width: 100px;
 }
 
@@ -92,12 +94,12 @@ export default {
     font-size: 15px;
   }
 
-  .logo {
+  .small-image {
     height: 16px;
     width: 16px;
   }
 
-  .tab {
+  .nav-button {
     width: 100%;
   }
 }
