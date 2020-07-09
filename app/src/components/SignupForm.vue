@@ -1,5 +1,6 @@
 <template>
-  <a-form id="components-form-signup" :form="form" @submit="handleSubmit">
+  <a-form class="signup-form" :form="form" @submit="handleSubmit">
+    <h1>Sign up</h1>
     <a-form-item v-bind="formItemLayout" label="E-mail">
       <a-input
         v-decorator="[
@@ -172,17 +173,16 @@ export default {
 };
 </script>
 
-<style>
-#components-form-signup {
-  margin: auto;
+<style scoped>
+.signup-form {
   width: 700px;
+  margin: 100px auto 0;
 }
 
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */
 
-  #components-form-signup {
-    margin: auto;
+  .signup-form {
     width: 250px;
   }
 }

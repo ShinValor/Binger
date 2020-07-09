@@ -1,11 +1,12 @@
 <template>
-  <div class="movie-synopsis">
+  <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
     <h1>This page will be built later</h1>
-  </div>
+  </a-layout>
 </template>
 
-<script>
+<script scoped>
 export default {
   name: "MovieSynopsis"
 };
 </script>
+<style scoped></style>

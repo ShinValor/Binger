@@ -1,23 +1,20 @@
 <template>
-  <div class="user">
-    <h1>This page will be built later</h1>
-    <a-button type="primary" v-on:click="logout()">
+  <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
+    <div class="container">
+      <Profile></Profile>
+      <Card name="John" desc="I am a student." />
+    </div>
+    <!-- <a-button type="primary" v-on:click="logout()">
       Log out
-    </a-button>
-    <a-button type="primary" v-on:click="profile()">
+    </a-button> -->
+    <!-- <a-button type="primary" v-on:click="profile()">
       Get Profile
     </a-button>
-    <a-button type="primary" v-on:click="providerProfile()">
-      User Provider
-    </a-button>
-    <!-- <a-button type="primary" v-on:click="updateProfile()">
+    <a-button type="primary" v-on:click="updateProfile()">
       Update Profile
     </a-button>
     <a-button type="primary" v-on:click="updateEmail()">
       Update Email
-    </a-button>
-    <a-button type="primary" v-on:click="verifyEmail()">
-      Verify Email
     </a-button>
     <a-button type="primary" v-on:click="setPassword()">
       Set Password
@@ -25,20 +22,24 @@
     <a-button type="primary" v-on:click="resetPassword()">
       Reset Password
     </a-button>
-    <a-button type="primary" v-on:click="deleteUser()">
-      Delete User
-    </a-button>
-    <a-button type="primary" v-on:click="reauthenticate()">
-      Re-authenticate User
+    <a-button type="primary" v-on:click="fetchApi()">
+      Fetch Api
     </a-button> -->
-  </div>
+  </a-layout>
 </template>
 
 <script>
 import firebase from "firebase";
+import axios from "axios";
+import Profile from "@/components/Profile.vue";
+import Card from "@/components/Card.vue";
 
 export default {
   name: "User",
+  components: {
+    Profile,
+    Card
+  },
   created() {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
@@ -48,6 +49,12 @@ export default {
         this.$router.replace({ name: "Home" });
       }
     });
+  },
+  data() {
+    return {
+      info: null,
+      loading: true
+    };
   },
   methods: {
     logout() {
@@ -78,19 +85,6 @@ export default {
         console.log("Uid: ", uid);
       }
     },
-    providerProfile() {
-      const user = firebase.auth().currentUser;
-
-      if (user != null) {
-        user.providerData.forEach(profile => {
-          console.log("Sign-in provider: " + profile.providerId);
-          console.log("  Provider-specific UID: " + profile.uid);
-          console.log("  Name: " + profile.displayName);
-          console.log("  Email: " + profile.email);
-          console.log("  Photo URL: " + profile.photoURL);
-        });
-      }
-    },
     updateProfile() {
       const user = firebase.auth().currentUser;
 
@@ -114,19 +108,6 @@ export default {
         .updateEmail("user@example.com")
         .then(() => {
           alert("Updated Email");
-        })
-        .catch(error => {
-          this.error = error.message;
-          alert(this.error);
-        });
-    },
-    verifyEmail() {
-      const user = firebase.auth().currentUser;
-
-      user
-        .sendEmailVerification()
-        .then(() => {
-          alert("Email Sent");
         })
         .catch(error => {
           this.error = error.message;
@@ -162,34 +143,51 @@ export default {
           alert(this.error);
         });
     },
-    deleteUser() {
-      const user = firebase.auth().currentUser;
-
-      user
-        .delete()
-        .then(() => {
-          alert("User Deleted");
+    fetchApi() {
+      firebase
+        .auth()
+        .currentUser.getIdToken(/* forceRefresh */ true)
+        .then(token => {
+          console.log("Token: ", token);
+          axios
+            .get("http://127.0.0.1:5000/test", {
+              params: {
+                token: token
+              }
+            })
+            .then(response => {
+              this.info = response;
+              console.log("Response: ", this.info);
+            })
+            .catch(error => {
+              this.error = error.message;
+              alert(this.error);
+            })
+            .finally(() => {
+              this.loading = false;
+            });
         })
         .catch(error => {
           this.error = error.message;
           alert(this.error);
         });
     }
-  },
-  reauthenticate() {
-    const user = firebase.auth().currentUser;
-    let credential;
-
-    user
-      .reauthenticateWithCredential(credential)
-      .then(function() {
-        // User re-authenticated.
-        alert("User Re-authenticated");
-      })
-      .catch(error => {
-        this.error = error.message;
-        alert(this.error);
-      });
   }
 };
 </script>
+
+<style>
+.container {
+  margin-top: 64px;
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 500px) {
+  /* applies styles to any device screen sizes below 800px wide */
+
+  .container {
+    flex-direction: column-reverse;
+  }
+}
+</style>

@@ -58,6 +58,6 @@ flask run
 ## Running with Docker
 
 ```
-docker build -t flask-app .
-docker run -it -p 5000:5000 --rm --name flask-app flask-app
+docker build -t flask-api .
+docker run -it -p 5000:5000 --rm --name flask-api flask-api
 ```
