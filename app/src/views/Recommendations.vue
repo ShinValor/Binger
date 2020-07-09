@@ -1,130 +1,212 @@
 <template>
-  <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
-    <Navigation></Navigation>
-    <a-input-search
-      :style="{ width: '50%', margin: '25px auto' }"
-      placeholder="Search Movies"
-      enter-button
-      @search="onSearch"
-    />
-    <div :style="{ margin: '10px auto', width: '75%' }">
-      <a-menu v-model="current" mode="horizontal">
-        <a-menu-item key="mail"> <a-icon type="mail" />Tags</a-menu-item>
-        <a-menu-item key="app" disabled>
-          <a-icon type="appstore" />Top Rated
-        </a-menu-item>
-        <a-sub-menu>
-          <span slot="title" class="submenu-title-wrapper"
-            ><a-icon type="setting" />Most Viewed</span
-          >
-          <a-menu-item-group title="Item 1">
-            <a-menu-item key="setting:1">
-              Option 1
-            </a-menu-item>
-            <a-menu-item key="setting:2">
-              Option 2
-            </a-menu-item>
-          </a-menu-item-group>
-          <a-menu-item-group title="Item 2">
-            <a-menu-item key="setting:3">
-              Option 3
-            </a-menu-item>
-            <a-menu-item key="setting:4">
-              Option 4
-            </a-menu-item>
-          </a-menu-item-group>
-        </a-sub-menu>
-        <a-menu-item key="alipay">
-          <a href="https://antdv.com" target="_blank" rel="noopener noreferrer"
-            >Your Favorite</a
-          >
-        </a-menu-item>
-      </a-menu>
+  <a-layout
+    :style="{
+      minHeight: '100%',
+      overflow: 'auto',
+      display: 'flex',
+      'flex-direction': 'column',
+      'justify-content': 'space-between'
+    }"
+  >
+    <div>
+      <a-input-search
+        :style="{ width: '50%', margin: '50px auto 25px' }"
+        placeholder="Search Movies"
+        enter-button
+        @search="onSearch"
+      />
+      <a-tabs>
+        <a-tab-pane key="1" tab="Random">
+          <h1 class="title">Movies You Might Like</h1>
+          <Carousel />
+          <h1 class="title">Movies Other Liked</h1>
+          <Carousel />
+        </a-tab-pane>
+        <a-tab-pane key="2" tab="Top Rated">
+          Top Rated
+          <!-- <a-checkable-tag v-model="action" @change="handleChange">
+            Action
+          </a-checkable-tag>
+          <a-checkable-tag v-model="drama" @change="handleChange">
+            Drama
+          </a-checkable-tag>
+          <a-checkable-tag v-model="comedy" @change="handleChange">
+            Comedy
+          </a-checkable-tag>
+          <a-checkable-tag v-model="thriller" @change="handleChange" color="pink">
+            Thriller
+          </a-checkable-tag>
+          <a-checkable-tag v-model="romance" @change="handleChange">
+            Romance
+          </a-checkable-tag>
+          <a-checkable-tag v-model="adventure" @change="handleChange">
+            Adventure
+          </a-checkable-tag>
+          <a-checkable-tag v-model="crime" @change="handleChange">
+            Crime Film
+          </a-checkable-tag> -->
+        </a-tab-pane>
+        <a-tab-pane key="3" tab="Most Popular">
+          <h1 class="title">Popular Movies</h1>
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <img
+                  class="small-image"
+                  src="@/imgs/aladdin.jpg"
+                  alt="Aladdin"
+                  @click="showModal"
+                />
+              </div>
+              <div class="col">
+                <img
+                  class="small-image"
+                  src="@/imgs/joker.jpg"
+                  alt="The Joker"
+                  @click="showModal"
+                />
+              </div>
+              <div class="col">
+                <img
+                  class="small-image"
+                  src="@/imgs/starwar.jpg"
+                  alt="Star War"
+                  @click="showModal"
+                />
+              </div>
+              <div class="col">
+                <img
+                  class="small-image"
+                  src="@/imgs/logan.jpg"
+                  alt="Logan"
+                  @click="showModal"
+                />
+              </div>
+              <div class="col">
+                <img
+                  class="small-image"
+                  src="@/imgs/wonder-woman.jpg"
+                  alt="Wonder Woman"
+                  @click="showModal"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <img
+                  class="small-image"
+                  src="@/imgs/black-panther.jpg"
+                  alt="Black Panther"
+                  @click="showModal"
+                />
+              </div>
+              <div class="col">
+                <img
+                  class="small-image"
+                  src="@/imgs/joker.jpg"
+                  alt="The Joker"
+                  @click="showModal"
+                />
+              </div>
+              <div class="col">
+                <img
+                  class="small-image"
+                  src="@/imgs/6-underground.jpg"
+                  alt="6-underground"
+                  @click="showModal"
+                />
+              </div>
+              <div class="col">
+                <img
+                  class="small-image"
+                  src="@/imgs/joker.jpg"
+                  alt="The Joker"
+                  @click="showModal"
+                />
+              </div>
+              <div class="col">
+                <img
+                  class="small-image"
+                  src="@/imgs/black-widow.jpg"
+                  alt="Black Widow"
+                  @click="showModal"
+                />
+              </div>
+            </div>
+          </div>
+        </a-tab-pane>
+        <a-tab-pane key="4" tab="Most Recent">
+          Most Recent
+        </a-tab-pane>
+        <a-tab-pane key="5" tab="Least Popular">
+          Least Popular
+        </a-tab-pane>
+        <a-tab-pane key="6" tab="Oldest">
+          Oldest
+        </a-tab-pane>
+      </a-tabs>
     </div>
-    <h1 class="title">Top Movie Pick</h1>
-    <div class="container">
-      <div class="row">
-        <div class="col">
-          <img class="small-image" src="@/imgs/aladdin.jpg" alt="Aladdin" />
-        </div>
-        <div class="col">
-          <img class="small-image" src="@/imgs/starwar.jpg" alt="Star War" />
-        </div>
-        <div class="col">
-          <img class="small-image" src="@/imgs/logan.jpg" alt="Logan" />
-        </div>
-        <div class="col">
-          <img
-            class="small-image"
-            src="@/imgs/wonder-woman.jpg"
-            alt="Wonder Woman"
-          />
-        </div>
+    <a-modal
+      v-model="visible"
+      title="Movie Summary"
+      :width="750"
+      :footer="null"
+    >
+      <div :style="{ display: 'flex' }">
+        <p class="content">
+          All our illustrations come in different styles, and you can change
+          main color. Just choose the one you like the most for your project.
+          Some styles allow you to select a simple background, a more one, or
+          one, or remove it altogether. Give it a try!
+        </p>
+        <p class="content">
+          All our illustrations come in different styles, and you can change
+          main color. Just choose the one you like the most for your project.
+          Some styles allow you to select a simple background, a more one, or
+          one, or remove it altogether. Give it a try!
+        </p>
+        <img class="large-image" src="../imgs/black-widow.jpg" />
       </div>
-      <div class="row">
-        <div class="col">
-          <img
-            class="small-image"
-            src="@/imgs/black-panther.jpg"
-            alt="Black Panther"
-          />
-        </div>
-        <div class="col">
-          <img class="small-image" src="@/imgs/joker.jpg" alt="The Joker" />
-        </div>
-        <div class="col">
-          <img
-            class="small-image"
-            src="@/imgs/6-underground.jpg"
-            alt="6-underground"
-          />
-        </div>
-        <div class="col">
-          <img
-            class="small-image"
-            src="@/imgs/black-widow.jpg"
-            alt="Black Widow"
-          />
-        </div>
-      </div>
-      <a-button
-        type="primary"
-        :style="{ width: '100px', margin: '10px', float: 'right' }"
-      >
-        More ...
-      </a-button>
-    </div>
-    <Carousel></Carousel>
-    <Swiper></Swiper>
-    <Modal></Modal>
+      <a-button @click="onClick">More</a-button>
+    </a-modal>
     <Footer></Footer>
   </a-layout>
 </template>
 
 <script>
-import Navigation from "@/components/Navigation.vue";
 import Carousel from "@/components/Carousel.vue";
-import Swiper from "@/components/Swiper.vue";
-import Modal from "@/components/Modal.vue";
 import Footer from "@/components/Footer.vue";
 
 export default {
   name: "Recommendations",
   components: {
-    Navigation,
     Carousel,
-    Swiper,
-    Modal,
     Footer
   },
   data() {
     return {
-      current: ["mail"]
+      action: false,
+      drama: false,
+      comedy: false,
+      thriller: false,
+      romance: false,
+      adventure: false,
+      crime: false,
+      visible: false
     };
   },
   methods: {
     onSearch(value) {
       console.log(value);
+    },
+    showModal() {
+      this.visible = true;
+    },
+    onClick() {
+      console.log("More");
+    },
+    handleChange(checked) {
+      console.log(checked);
     }
   }
 };
@@ -132,7 +214,7 @@ export default {
 
 <style scoped>
 .title {
-  margin: 30px 0px 0px 30px;
+  margin: 20px;
   text-align: left;
   font-size: 30px;
 }
@@ -144,16 +226,32 @@ export default {
 }
 
 .container {
-  margin: 20px;
+  margin: 10px;
 }
 
 .container .row {
   display: flex;
 }
-
 .container .row .col {
-  width: 25%;
+  width: 20%;
   margin: 10px;
+}
+
+.content {
+  width: 66%;
+  margin: 5px;
+  font-size: 15px;
+}
+
+.large-image {
+  width: 33%;
+  height: 100%;
+  margin: 5px;
+  object-fit: cover;
+}
+
+.small-image:hover {
+  opacity: 0.7;
 }
 
 @media screen and (max-width: 500px) {
@@ -162,15 +260,6 @@ export default {
   .title {
     text-align: center;
     margin: 0 auto;
-  }
-
-  .container .row {
-    flex-direction: column;
-  }
-
-  .container .row .col {
-    width: 100%;
-    margin: 5px auto;
   }
 }
 </style>

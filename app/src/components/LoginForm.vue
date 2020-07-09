@@ -87,8 +87,8 @@ export default {
 
 <style scoped>
 .login-form {
-  margin: auto;
   width: 500px;
+  margin: 100px auto 0;
 }
 
 @media screen and (max-width: 500px) {

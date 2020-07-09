@@ -1,6 +1,6 @@
 <template>
   <a-layout-footer>
-    <div class="footer">
+    <div class="container">
       <div class="section1">
         <div class="item1">
           <h1 class="title">Features</h1>
@@ -49,7 +49,7 @@
     </div>
     <div class="section3">
       Binger ©2020 Created by The Binger Team
-      <img class="small-image" src="../assets/cinema.png" alt="Movie Icon" />
+      <img class="small-image" src="../assets/logo.svg" alt="Movie Icon" />
     </div>
   </a-layout-footer>
 </template>
@@ -61,7 +61,7 @@ export default {
 </script>
 
 <style scoped>
-.footer {
+.container {
   height: 100%;
   margin-top: 50px;
   display: flex;
@@ -106,12 +106,14 @@ export default {
 }
 
 .small-image {
+  height: 50px;
+  width: 50px;
   margin: 5px 10px;
 }
 
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */
-  .footer {
+  .container {
     flex-direction: column;
   }
 

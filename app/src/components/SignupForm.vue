@@ -175,8 +175,8 @@ export default {
 
 <style scoped>
 .signup-form {
-  margin: auto;
   width: 700px;
+  margin: 100px auto 0;
 }
 
 @media screen and (max-width: 500px) {

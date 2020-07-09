@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="app/src/assets/logo256.png" alt="Binger - a movie recommendation application">
+  <img src="app/src/assets/logo.svg" alt="Binger - a movie recommendation application">
   <h1 align="center"><i>Binger</i></h1>
   A movie recommendation website
 </div>
@@ -46,15 +46,16 @@ npm run serve
 
 - Vue.js
 - Ant Design
-- Firebase
 - Flask API
 - Zeit Now
+- Firebase
+- GCloud
 - Jest Unit Testing
 - Cypress End To End Testing
 
 ## Contributors
 
-Ferdi Lesporis  
-Ho Ming Poon  
-Tarik Weekes  
-Jun Qi Li  
+[Ferdi Lesporis](https://github.com/LeKinchi)  
+[Ho Ming Poon](https://github.com/ShinValor)  
+[Tarik Weekes](https://github.com/tweekes1)  
+[Jun Qi Li](https://github.com/junqili259)  
