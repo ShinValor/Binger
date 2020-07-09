@@ -16,7 +16,14 @@
         @search="onSearch"
       />
       <a-tabs>
-        <a-tab-pane key="1" tab="Top Rated">
+        <a-tab-pane key="1" tab="Random">
+          <h1 class="title">Movies You Might Like</h1>
+          <Carousel />
+          <h1 class="title">Movies Other Liked</h1>
+          <Carousel />
+        </a-tab-pane>
+        <a-tab-pane key="2" tab="Top Rated">
+          Top Rated
           <!-- <a-checkable-tag v-model="action" @change="handleChange">
             Action
           </a-checkable-tag>
@@ -39,7 +46,7 @@
             Crime Film
           </a-checkable-tag> -->
         </a-tab-pane>
-        <a-tab-pane key="2" tab="Most Popular">
+        <a-tab-pane key="3" tab="Most Popular">
           <h1 class="title">Popular Movies</h1>
           <div class="container">
             <div class="row">
@@ -128,14 +135,14 @@
             </div>
           </div>
         </a-tab-pane>
-        <a-tab-pane key="3" tab="Most Recent">
-          Blacklist
+        <a-tab-pane key="4" tab="Most Recent">
+          Most Recent
         </a-tab-pane>
-        <a-tab-pane key="4" tab="Least Popular">
-          Reset All
+        <a-tab-pane key="5" tab="Least Popular">
+          Least Popular
         </a-tab-pane>
-        <a-tab-pane key="5" tab="Oldest">
-          Sort
+        <a-tab-pane key="6" tab="Oldest">
+          Oldest
         </a-tab-pane>
       </a-tabs>
     </div>
@@ -167,13 +174,13 @@
 </template>
 
 <script>
-// import Carousel from "@/components/Carousel.vue";
+import Carousel from "@/components/Carousel.vue";
 import Footer from "@/components/Footer.vue";
 
 export default {
   name: "Recommendations",
   components: {
-    // Carousel,
+    Carousel,
     Footer
   },
   data() {

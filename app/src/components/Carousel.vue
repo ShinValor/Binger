@@ -90,6 +90,62 @@
           @click="showModal"
         />
       </div>
+      <div class="carousel-cell">
+        <img
+          class="carousel-cell-image"
+          src="../imgs/logan.jpg"
+          @click="showModal"
+        />
+      </div>
+      <div class="carousel-cell">
+        <img
+          class="carousel-cell-image"
+          src="../imgs/6-underground.jpg"
+          @click="showModal"
+        />
+      </div>
+      <div class="carousel-cell">
+        <img
+          class="carousel-cell-image"
+          src="../imgs/logan.jpg"
+          @click="showModal"
+        />
+      </div>
+      <div class="carousel-cell">
+        <img
+          class="carousel-cell-image"
+          src="../imgs/6-underground.jpg"
+          @click="showModal"
+        />
+      </div>
+      <div class="carousel-cell">
+        <img
+          class="carousel-cell-image"
+          src="../imgs/6-underground.jpg"
+          @click="showModal"
+        />
+      </div>
+      <div class="carousel-cell">
+        <img
+          class="carousel-cell-image"
+          src="../imgs/6-underground.jpg"
+          @click="showModal"
+        />
+      </div>
+      <div class="carousel-cell">
+        <img
+          class="carousel-cell-image"
+          src="../imgs/6-underground.jpg"
+          @click="showModal"
+        />
+      </div>
+      <div class="carousel-cell">
+        <img
+          class="carousel-cell-image"
+          src="../imgs/6-underground.jpg"
+          @click="showModal"
+        />
+      </div>
     </flickity>
     <a-modal
       v-model="visible"
@@ -128,10 +184,10 @@ export default {
     return {
       flickityOptions: {
         initialIndex: 0,
-        // autoPlay: 3000,
-        groupCells: 4,
-        freeScroll: true,
-        prevNextButtons: false
+        autoPlay: 3000,
+        groupCells: 5,
+        freeScroll: true
+        // prevNextButtons: false
       },
       visible: false
     };
@@ -148,13 +204,13 @@ export default {
 </script>
 <style scoped>
 .carousel {
-  margin: 20px;
+  margin: 50px 20px;
 }
 
 .carousel-cell {
-  height: 350px;
-  width: 25%;
-  margin: 0px 10px;
+  height: 400px;
+  width: 20%;
+  margin: 0px;
   display: flex;
   justify-content: center;
 }
@@ -196,7 +252,6 @@ export default {
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */
   .carousel {
-    height: 100px;
     margin: 5px;
   }
 
