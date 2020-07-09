@@ -1,127 +1,122 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
-    <Navigation />
-    <a-layout-content>
-      <div class="banner">
-        <h1 class="heading">
-          <b>Movie Recommendation to power up your life</b>
-        </h1>
-        <div class="section4">
-          <p class="sub-heading content">
-            Hundreds of illustrated concepts to make your landing page, app, or
-            presentation more attractive
-          </p>
-          <a-button class="sub-button" type="primary">
-            <b>Learn More</b>
-          </a-button>
-        </div>
-        <!-- <img src="@/imgs/banner.jpg" alt="Binger Banner" /> -->
-      </div>
-      <Content msg="Welcome To Binger" />
-      <div class="container2">
-        <div class="section1">
-          <h1 class="title"><b>Optimized Movie Search Engine</b></h1>
-          <p class="content">
-            All our illustrations come in different styles, and you can change
-            the main color. Just choose the one you like the most for your
-            project. Some styles allow you to select a simple background, a more
-            one, or remove it altogether. Give it a try!
-          </p>
-        </div>
-        <div class="section1">
-          <img class="large-image" src="../assets/fast-loading.png" />
-        </div>
-      </div>
-      <div class="container2">
-        <div class="section1">
-          <img class="large-image" src="../assets/movie-night.png" />
-        </div>
-        <div class="section1">
-          <h1 class="title"><b>Movie Nights</b></h1>
-          <p class="content">
-            Do you want the illustrations to come to life on your website? You
-            can animate them directly with our online editor! Some styles allow
-            you to select a simple background, a more detailed one, or remove it
-            altogether. Give it a try!
-          </p>
-        </div>
-      </div>
-      <div class="container2">
-        <div class="section1">
-          <h1 class="title"><b>Watch With Friends</b></h1>
-          <p class="content">
-            Some styles allow you to select a simple background, a more detailed
-            one, or remove it altogether. Give it a try! Some styles allow you
-            to select a simple background, a more detailed one, or remove it
-            altogether. Give it a try!
-          </p>
-        </div>
-        <div class="section1">
-          <img class="large-image" src="../assets/friendship.png" />
-        </div>
-      </div>
-      <h1 class="title">
-        <strong> How It Works </strong>
+    <div class="banner">
+      <h1 class="heading">
+        <b>Movie Recommendation to power up your life</b>
       </h1>
-      <div class="container1">
-        <div class="section3" :style="{ 'grid-area': 'content' }">
-          <p class="content">
-            All our illustrations come in different styles, and you can change
-            the main color. Just choose the one you like the most for your
-            project. Some styles allow you to select a simple background, a more
-            one, or remove it altogether. Give it a try!
-          </p>
-        </div>
-        <div class="section3" :style="{ 'grid-area': 'header' }">
-          <img class="small-image" src="../assets/login.png" />
-          <h2 class="sub-title">1. Sign up and Log in</h2>
-        </div>
-        <div class="section3" :style="{ 'grid-area': 'header2' }">
-          <img class="small-image" src="../assets/profile.png" />
-          <h2 class="sub-title">2. Update Profile</h2>
-        </div>
-        <div class="section3" :style="{ 'grid-area': 'footer' }">
-          <img class="small-image" src="../assets/stopwatch.png" />
-          <h2 class="sub-title">3. Wait For Recommendations</h2>
-          <a-steps :current="1" class="progress-bar">
-            <a-step title="Finished" description="Logged In" />
-            <a-step title="In Progress" description="Updating Profile" />
-            <a-step title="Waiting" description="Select Favorite Movie Genre" />
-            <a-step title="Waiting" description="Search Movie . . ." />
-          </a-steps>
-        </div>
-        <div class="section3" :style="{ 'grid-area': 'advert' }">
-          <img class="large-image" src="../assets/watch-movie.svg" />
-          <h2 class="sub-title">4. Enjoy Your Movie</h2>
-        </div>
+      <div class="section4">
+        <p class="sub-heading content">
+          Hundreds of illustrated concepts to make your landing page, app, or
+          presentation more attractive
+        </p>
+        <a-button class="sub-button" type="primary">
+          <router-link to="/login"><b>Learn More</b></router-link>
+        </a-button>
       </div>
-      <h1 class="title"><b>Service Plans</b></h1>
-      <div class="container3">
-        <div class="section2">
-          <h2 class="sub-title">Basic</h2>
-        </div>
-        <div class="section2">
-          <h2 class="sub-title">Professional</h2>
-        </div>
-        <div class="section2">
-          <h2 class="sub-title">Enterprise</h2>
-        </div>
+      <!-- <img src="@/imgs/banner.jpg" alt="Binger Banner" /> -->
+    </div>
+    <Content msg="Welcome To Binger" />
+    <div class="container2">
+      <div class="section1">
+        <h1 class="title"><b>Optimized Movie Search Engine</b></h1>
+        <p class="content">
+          All our illustrations come in different styles, and you can change
+          main color. Just choose the one you like the most for your project.
+          project. Some styles allow you to select a simple background, a more
+          one, or remove it altogether. Give it a try!
+        </p>
       </div>
-    </a-layout-content>
+      <div class="section1">
+        <img class="large-image" src="../assets/fast-loading.png" />
+      </div>
+    </div>
+    <div class="container2">
+      <div class="section1">
+        <img class="large-image" src="../assets/movie-night.png" />
+      </div>
+      <div class="section1">
+        <h1 class="title"><b>Movie Nights</b></h1>
+        <p class="content">
+          Do you want the illustrations to come to life on your website? You
+          animate them directly with our online editor! Some styles allow you to
+          you to select a simple background, a more detailed one, or remove it
+          altogether. Give it a try!
+        </p>
+      </div>
+    </div>
+    <div class="container2">
+      <div class="section1">
+        <h1 class="title"><b>Watch With Friends</b></h1>
+        <p class="content">
+          Some styles allow you to select a simple background, a more detailed
+          one, or remove it altogether. Give it a try! Some styles allow you
+          select a simple background, a more detailed one, or remove it
+          altogether. Give it a try!
+        </p>
+      </div>
+      <div class="section1">
+        <img class="large-image" src="../assets/friendship.png" />
+      </div>
+    </div>
+    <h1 class="title">
+      <strong> How It Works </strong>
+    </h1>
+    <div class="container1">
+      <div class="section3" :style="{ 'grid-area': 'content' }">
+        <p class="content">
+          All our illustrations come in different styles, and you can change
+          main color. Just choose the one you like the most for your project.
+          project. Some styles allow you to select a simple background, a more
+          one, or remove it altogether. Give it a try!
+        </p>
+      </div>
+      <div class="section3" :style="{ 'grid-area': 'header' }">
+        <img class="small-image" src="../assets/login.png" />
+        <h2 class="sub-title">1. Sign up and Log in</h2>
+      </div>
+      <div class="section3" :style="{ 'grid-area': 'header2' }">
+        <img class="small-image" src="../assets/profile.png" />
+        <h2 class="sub-title">2. Update Profile</h2>
+      </div>
+      <div class="section3" :style="{ 'grid-area': 'footer' }">
+        <img class="small-image" src="../assets/stopwatch.png" />
+        <h2 class="sub-title">3. Wait For Recommendations</h2>
+        <a-steps :current="1" class="progress-bar">
+          <a-step title="Finished" description="Logged In" />
+          <a-step title="In Progress" description="Updating Profile" />
+          <a-step title="Waiting" description="Select Favorite Movie Genre" />
+          <a-step title="Waiting" description="Search Movie . . ." />
+        </a-steps>
+      </div>
+      <div class="section3" :style="{ 'grid-area': 'advert' }">
+        <img class="large-image" src="../assets/watch-movie.svg" />
+        <h2 class="sub-title">4. Enjoy Your Movie</h2>
+      </div>
+    </div>
+    <h1 id="services" class="title"><b>Service Plans</b></h1>
+    <div class="container3">
+      <div class="section2">
+        <h2 class="sub-title">Basic</h2>
+      </div>
+      <div class="section2">
+        <h2 class="sub-title">Professional</h2>
+      </div>
+      <div class="section2">
+        <h2 class="sub-title">Enterprise</h2>
+      </div>
+    </div>
     <Footer />
   </a-layout>
 </template>
 
 <script>
 // @ is an alias to /src
-import Navigation from "@/components/Navigation.vue";
 import Content from "@/components/Content.vue";
 import Footer from "@/components/Footer.vue";
 
 export default {
   name: "Home",
   components: {
-    Navigation,
     Content,
     Footer
   },

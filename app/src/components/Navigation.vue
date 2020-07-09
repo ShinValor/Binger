@@ -14,10 +14,11 @@
         <router-link to="/about">About</router-link>
       </a-menu-item>
       <a-menu-item class="nav-button">
-        <router-link to="/">Services</router-link>
+        <router-link to="/#services">Services</router-link>
       </a-menu-item>
       <a-menu-item class="nav-button">
-        <router-link to="/">Contact</router-link>
+        <!-- <router-link to="/">Contact</router-link> -->
+        <a href="https://github.com/ShinValor/Binger">Contact</a>
       </a-menu-item>
       <a-menu-item class="nav-button">
         <router-link to="/login">Login</router-link>
@@ -49,7 +50,7 @@ export default {
 }
 
 .app-name {
-  margin: 5px 0px;
+  margin: 0px;
 }
 
 .section {
