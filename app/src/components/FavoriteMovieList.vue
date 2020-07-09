@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h2>Favorite Movie List</h2>
     <ul v-show="errors.length > 0" class="errors">
       <li v-for="(error, index) in errors" :key="index">{{ error }}</li>
     </ul>
