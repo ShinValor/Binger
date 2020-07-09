@@ -118,7 +118,7 @@ def clear_session():
 
 @app.route('/getUserShows',methods=['GET'])
 @check_token
-def getUserShows():
+def get_user_shows():
     """
     Retrieves all shows from a certain user's firestore.
     User's identity is determined by their idToken which when decoded, provides the uid
@@ -147,7 +147,7 @@ def getUserShows():
 
 @app.route('/addUserShows',methods=['GET','POST'])
 @check_token
-def addUserShows():
+def add_user_shows():
     """
     Add show into user's show collection in firestore
     User's identity is determined by their idToken which when decoded, provides the uid
@@ -185,7 +185,8 @@ def addUserShows():
 
 
 @app.route('/summary/<id>')
-def  movieSummary(id):
+@check_token
+def  movie_summary(id):
     """
     When movie id is passed, the summary for the movie is returned
     """
@@ -194,5 +195,7 @@ def  movieSummary(id):
 
     show_json_data = show.to_json()
     overview = json.loads(show_json_data)
-    
+
     return overview["overview"]
+
+
