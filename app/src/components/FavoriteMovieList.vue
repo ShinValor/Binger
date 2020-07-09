@@ -107,7 +107,8 @@ export default {
   }
 };
 </script>
-<style>
+
+<style scoped>
 .list {
   padding: 0;
   border-radius: 4px;
