@@ -2,7 +2,7 @@
 The module for the Binger api endpoints.
 """
 
-import os, sys
+import os, sys, json
 import jsonpickle as jp
 
 from app import app
@@ -181,3 +181,18 @@ def addUserShows():
     })
     
     return Response(response='success',status=200)
+
+
+
+@app.route('/summary/<id>')
+def  movieSummary(id):
+    """
+    When movie id is passed, the summary for the movie is returned
+    """
+    my_show_data = shows.ShowData(id,popularity=0)
+    show = new_api_handler.resolve_show(my_show_data)
+
+    show_json_data = show.to_json()
+    overview = json.loads(show_json_data)
+    
+    return overview["overview"]
