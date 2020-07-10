@@ -5,7 +5,7 @@
         <img src="../assets/logo32.png" />
         Binger
       </router-link>
-      <vs-sidebar
+      <vsSidebar
         parent="body"
         default-index="1"
         color="primary"
@@ -14,7 +14,10 @@
         v-model="active"
       >
         <div class="header-sidebar" slot="header">
-          <vs-avatar size="70px" src="https://randomuser.me/api/portraits/women/85.jpg" />
+          <vs-avatar
+            size="70px"
+            src="https://randomuser.me/api/portraits/women/57.jpg"
+          />
           <h4>{{ displayName }}</h4>
         </div>
         <vs-sidebar-item index="1">Home</vs-sidebar-item>
@@ -28,10 +31,10 @@
           <vs-button color="danger" type="border">log out</vs-button>
           <vs-button color="primary" type="border">Settings</vs-button>
         </div>
-      </vs-sidebar>
+      </vsSidebar>
       <div class="main-menu" style="padding: 0px 10px 0px 0px;">
         <a-dropdown>
-          <a class="ant-dropdown-link" @click="active=!active">
+          <a class="ant-dropdown-link" @click="active = !active">
             <a-icon type="menu" />
             <!-- <span>Menu</span> -->
             <!-- <a-icon type="down" /> -->
@@ -45,7 +48,7 @@
           {{ displayName }}
           <a-icon type="down" />
         </a>
-        <a-menu slot="overlay" @click="onClick">
+        <a-menu slot="overlay">
           <a-menu-item key="1">Account Settings</a-menu-item>
           <a-menu-item key="2">Logout</a-menu-item>
         </a-menu>
@@ -55,6 +58,12 @@
 </template>
 
 <script>
+import Vue from "vue";
+import { vsSideBar } from "vuesax";
+import "vuesax/dist/vuesax.css";
+
+Vue.use(vsSideBar);
+
 export default {
   name: "NavigationBar",
   data: () => ({
