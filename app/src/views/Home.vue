@@ -15,7 +15,12 @@
       </div>
       <!-- <img src="@/imgs/banner.jpg" alt="Binger Banner" /> -->
     </div>
-    <Content msg="Welcome To Binger" />
+    <Content
+      class="content-background"
+      heading="Welcome To Binger"
+      description="Get started by downloading Docker Desktop, and learn how you can build, tag and share a sample image on Hub."
+      buttonDesc="Get started with Binger"
+    />
     <div class="container2">
       <div class="section1">
         <h1 class="title"><b>Optimized Movie Search Engine</b></h1>
@@ -174,9 +179,10 @@ export default {
 }
 
 .sub-button {
+  background-color: transparent;
   width: 200px;
   margin: 10px 20px 20px 30px;
-  background-color: transparent;
+  border-color: white;
   text-align: center;
 }
 
@@ -186,6 +192,15 @@ export default {
 
 /* .sub-title {
 } */
+
+.content-background {
+  background: rgb(229, 193, 233);
+  background: linear-gradient(
+    145deg,
+    rgba(229, 193, 233, 1) 39%,
+    rgba(79, 190, 252, 1) 100%
+  );
+}
 
 .container1 {
   margin: 10px 50px 100px 50px;

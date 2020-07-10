@@ -1,7 +1,13 @@
 <template>
   <!-- <a-layout-content :style="{ padding: '0 50px' }"> -->
-  <div class="content">
-    <h1>{{ msg }}</h1>
+  <div class="container">
+    <h1 class="title">
+      <b>{{ heading }}</b>
+    </h1>
+    <p class="description">{{ description }}</p>
+    <a-button class="btn-desc"
+      ><b>{{ buttonDesc }}</b></a-button
+    >
   </div>
   <!-- </a-layout-content> -->
 </template>
@@ -10,28 +16,65 @@
 export default {
   name: "Content",
   props: {
-    msg: String
+    heading: String,
+    description: String,
+    buttonDesc: String
   }
 };
 </script>
 
 <style scoped>
-.content {
-  background: #fff;
-  height: 500px;
-  margin: 30px 30px 100px 30px;
+.container {
+  height: 350px;
+  margin: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-content: center;
   text-align: center;
+}
+
+.title {
+  margin: 0 auto;
+  font-size: 35px;
+  color: white;
+}
+
+.description {
+  margin: 0 auto;
+  font-size: 15px;
+  color: gray;
+}
+
+.btn-desc {
+  background-color: transparent;
+  width: 300px;
+  margin: 50px auto;
+  border-color: white;
 }
 
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */
 
-  .content {
-    height: 200px;
+  .title {
+    font-size: 20px;
+  }
+
+  .container {
+    height: 150px;
     margin: 15px;
+  }
+
+  .description {
+    font-size: 10px;
+    margin: 10px;
+  }
+
+  .btn-desc {
+    width: 125px;
+    margin: 0 auto;
+    padding: 0px;
+    font-size: 10px;
   }
 }
 </style>
