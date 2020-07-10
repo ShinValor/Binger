@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <a-layout class="container">
     <a-input-search
       class="search-bar"
       placeholder="Search Movies"
@@ -47,7 +47,7 @@
       </a-tab-pane>
     </a-tabs>
     <Footer></Footer>
-  </div>
+  </a-layout>
 </template>
 
 <script>
