@@ -8,7 +8,11 @@
       <h3>{{ list.name }}</h3>
       <!-- <p v-show="loading">Loading...</p> -->
       <ul class="list">
-        <FavoriteMovieCell v-for="item in list" :key="item.title" :item="item" />
+        <FavoriteMovieCell
+          v-for="item in list"
+          :key="item.title"
+          :item="item"
+        />
       </ul>
     </div>
   </div>
