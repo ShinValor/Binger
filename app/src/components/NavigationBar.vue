@@ -130,7 +130,7 @@ export default {
 .footer-sidebar > button {
   border: 0px solid rgba(0, 0, 0, 0) !important;
   border-left: 1px solid rgba(0, 0, 0, 0.07) !important;
-  /* border-right: 1px solid rgba(0, 0, 0, 0.07) !important; */
+  border-right: 1px solid rgba(0, 0, 0, 0.07) !important;
   border-radius: 0px !important;
 }
 </style>
