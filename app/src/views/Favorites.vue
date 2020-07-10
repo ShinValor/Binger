@@ -1,6 +1,7 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
     <chart :options="option" />
+    <FavoriteMovieList />
   </a-layout>
 </template>
 
@@ -9,10 +10,12 @@ import ECharts from "vue-echarts";
 import "echarts/lib/chart/line";
 import "echarts/lib/component/polar";
 import "echarts/theme/dark";
+import FavoriteMovieList from "@/components/FavoriteMovieList.vue";
 
 export default {
   name: "Favorites",
   components: {
+    FavoriteMovieList,
     chart: ECharts
   },
   data() {

@@ -154,6 +154,3 @@ def addUserShows():
     })
     
     return Response(response='success',status=200)
-
-
-
