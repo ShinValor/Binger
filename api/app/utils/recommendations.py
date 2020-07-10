@@ -4,6 +4,9 @@ Module is responsible for handling the recommendation system.
 Module has a custom data structure to emulate a queuing system.
 """
  
+from gevent import monkey
+monkey.patch_all(thread=False, select=False)
+
 import shows
 import new_api_handler
 

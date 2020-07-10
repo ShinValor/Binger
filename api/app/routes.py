@@ -1,6 +1,8 @@
 """
 The module for the Binger api endpoints.
 """
+from gevent import monkey
+monkey.patch_all(thread=False, select=False)
 
 import os, sys
 import jsonpickle as jp
