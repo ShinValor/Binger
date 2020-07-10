@@ -176,7 +176,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .container {
   margin-top: 64px;
   display: flex;

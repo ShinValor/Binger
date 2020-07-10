@@ -1,54 +1,52 @@
 <template>
-  <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
-    <div class="container">
-      <a-input-search
-        class="search-bar"
-        placeholder="Search Movies"
-        enter-button
-        @search="onSearch"
-      />
-      <a-tabs class="tabs">
-        <a-tab-pane key="1" tab="Random">
-          <h1 class="title">Movies You Might Like</h1>
-          <!-- <Carousel /> -->
-          <DisplayMovie />
-          <h1 class="title">Movies Other Liked</h1>
-          <!-- <Carousel /> -->
-          <DisplayMovie />
-        </a-tab-pane>
-        <a-tab-pane key="2" tab="Top Rated">
-          <h1 class="title">Action Movies</h1>
-          <DisplayMovie />
-          <h1 class="title">Comedy Movies</h1>
-          <DisplayMovie />
-        </a-tab-pane>
-        <a-tab-pane key="3" tab="Most Popular">
-          <h1 class="title">Action Movies</h1>
-          <DisplayMovie />
-          <h1 class="title">Comedy Movies</h1>
-          <DisplayMovie />
-        </a-tab-pane>
-        <a-tab-pane key="4" tab="Most Recent">
-          <h1 class="title">Action Movies</h1>
-          <DisplayMovie />
-          <h1 class="title">Comedy Movies</h1>
-          <DisplayMovie />
-        </a-tab-pane>
-        <a-tab-pane key="5" tab="Least Popular">
-          <h1 class="title">Action Movies</h1>
-          <DisplayMovie />
-          <h1 class="title">Comedy Movies</h1>
-          <DisplayMovie />
-        </a-tab-pane>
-        <a-tab-pane key="6" tab="Oldest">
-          <h1 class="title">Action Movies</h1>
-          <DisplayMovie />
-          <h1 class="title">Comedy Movies</h1>
-          <DisplayMovie />
-        </a-tab-pane>
-      </a-tabs>
-      <Footer></Footer>
-    </div>
+  <a-layout class="container">
+    <a-input-search
+      class="search-bar"
+      placeholder="Search Movies"
+      enter-button
+      @search="onSearch"
+    />
+    <a-tabs class="tabs">
+      <a-tab-pane key="1" tab="Random">
+        <h1 class="title">Movies You Might Like</h1>
+        <!-- <Carousel /> -->
+        <DisplayMovie />
+        <h1 class="title">Movies Other Liked</h1>
+        <!-- <Carousel /> -->
+        <DisplayMovie />
+      </a-tab-pane>
+      <a-tab-pane key="2" tab="Top Rated">
+        <h1 class="title">Action Movies</h1>
+        <DisplayMovie />
+        <h1 class="title">Comedy Movies</h1>
+        <DisplayMovie />
+      </a-tab-pane>
+      <a-tab-pane key="3" tab="Most Popular">
+        <h1 class="title">Action Movies</h1>
+        <DisplayMovie />
+        <h1 class="title">Comedy Movies</h1>
+        <DisplayMovie />
+      </a-tab-pane>
+      <a-tab-pane key="4" tab="Most Recent">
+        <h1 class="title">Action Movies</h1>
+        <DisplayMovie />
+        <h1 class="title">Comedy Movies</h1>
+        <DisplayMovie />
+      </a-tab-pane>
+      <a-tab-pane key="5" tab="Least Popular">
+        <h1 class="title">Action Movies</h1>
+        <DisplayMovie />
+        <h1 class="title">Comedy Movies</h1>
+        <DisplayMovie />
+      </a-tab-pane>
+      <a-tab-pane key="6" tab="Oldest">
+        <h1 class="title">Action Movies</h1>
+        <DisplayMovie />
+        <h1 class="title">Comedy Movies</h1>
+        <DisplayMovie />
+      </a-tab-pane>
+    </a-tabs>
+    <Footer></Footer>
   </a-layout>
 </template>
 
@@ -74,6 +72,8 @@ export default {
 
 <style scoped>
 .container {
+  min-height: 100%;
+  overflow: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
