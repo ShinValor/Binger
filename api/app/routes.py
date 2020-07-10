@@ -192,6 +192,13 @@ def  movie_summary(id):
     """
     When movie id is passed, the summary for the movie is returned
     """
+    # get idToken
+    token = request.args.get('token')
+
+    # decode idToken
+    decoded_token = auth.verify_id_token(token)
+    uid = decoded_token['uid']
+
     my_show_data = shows.ShowData(id,popularity=0)
     show = new_api_handler.resolve_show(my_show_data)
 
