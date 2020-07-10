@@ -14,10 +14,7 @@
         v-model="active"
       >
         <div class="header-sidebar" slot="header">
-          <vs-avatar
-            size="70px"
-            src="https://randomuser.me/api/portraits/women/57.jpg"
-          />
+          <a-avatar :size="70" src="https://randomuser.me/api/portraits/women/57.jpg" />
           <h4>{{ displayName }}</h4>
         </div>
         <vs-sidebar-item index="1">Home</vs-sidebar-item>
@@ -78,12 +75,11 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .header {
   display: flex;
   justify-content: space-between;
 }
-
 .app-name {
   color: white;
   margin: 0px 25px;
@@ -91,7 +87,6 @@ export default {
 .name-menu {
   margin: 0px 25px;
 }
-
 .search {
   /* border: 10px dotted #d1d1d1;
   padding: 20px; */
@@ -99,21 +94,17 @@ export default {
   transform-origin: left;
   /* float: right; */
 }
-
 .ant-dropdown-user-menus {
   margin: 10px 28px 10px 10px;
 }
-
 .searchBox {
   margin: 1px 0px;
   float: right;
   /* padding: 5px; */
 }
-
 .main-menu {
   float: left;
 }
-
 .header-sidebar {
   display: flex;
   align-items: center;
@@ -139,6 +130,7 @@ export default {
 .footer-sidebar > button {
   border: 0px solid rgba(0, 0, 0, 0) !important;
   border-left: 1px solid rgba(0, 0, 0, 0.07) !important;
+  /* border-right: 1px solid rgba(0, 0, 0, 0.07) !important; */
   border-radius: 0px !important;
 }
 </style>

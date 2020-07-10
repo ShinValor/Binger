@@ -1,6 +1,6 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
-    <Navigation />
+    <NavigationBar />
     <a-layout>
       <a-layout-content>
         <Content msg="This is home page" />
@@ -49,7 +49,7 @@
 
 <script>
 // @ is an alias to /src
-import Navigation from "@/components/Navigation.vue";
+import NavigationBar from "@/components/NavigationBar.vue";
 import Content from "@/components/Content.vue";
 import Footer from "@/components/Footer.vue";
 import Flickity from "vue-flickity";
@@ -57,7 +57,7 @@ import Flickity from "vue-flickity";
 export default {
   name: "Home",
   components: {
-    Navigation,
+    NavigationBar,
     Content,
     Footer,
     Flickity
