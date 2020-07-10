@@ -1,17 +1,17 @@
 <template>
-  <li>
-    <img :src="item.poster_path" />
+  <li class="movie-list">
+    <img class="poster" :src="item.poster_path" />
     <br />
     <div>
       <a class="title">{{ item.title }}</a>
       <div class="d-flex items-center area muted">
-        <p class="year">{{ item.release_year }}</p>
-        <p class="separator genres">{{ genres }}</p>
+        <p class="year para-tag">{{ item.release_year }}</p>
+        <p class="separator genres para-tag">{{ genres }}</p>
       </div>
-      <p class="area plot">{{ item.overview }}</p>
+      <p class="area plot para-tag">{{ item.overview }}</p>
       <div class="d-flex items-center area">
-        <p class="rating" title="Rating" v-show="item.popularity">
-          <span class="rating--star"></span>
+        <p class="rating para-tag" title="Rating" v-show="item.popularity">
+          <span class="rating-star"></span>
           {{ item.vote_average }}
         </p>
       </div>
@@ -55,18 +55,18 @@ export default {
   margin-right: 0.3em;
   content: "|";
 }
-li {
+.movie-list {
   display: flex;
   align-items: flex-start;
   padding: 1em;
 }
-li:hover {
+.movie-list:hover {
   background-color: #ececec;
 }
-a {
+.title {
   color: black;
 }
-img {
+.poster {
   height: 170px;
   margin-right: 1em;
 }
@@ -74,7 +74,7 @@ img {
   font-size: 0.8em;
   color: #999;
 }
-p {
+.para-tag {
   margin: 0;
 }
 .title {
@@ -89,7 +89,7 @@ p {
   display: flex;
   align-items: center;
 }
-.rating--star {
+.rating-star {
   background: url(https://m.media-amazon.com/images/G/01/imdb/images/listo/sprite-2426358703._V_.png)
     no-repeat 0 -241px;
   display: inline-block;
