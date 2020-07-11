@@ -1,11 +1,13 @@
 <template>
   <div class="card">
-    <h2>Cast List</h2>
-    <a-list item-layout="vertical" size="large" :pagination="pagination" :data-source="listData">
-      <a-list-item slot="renderItem" key="item.title" slot-scope="item">
-        <MovieSynopsisCast :cast="item" />
-      </a-list-item>
-    </a-list>
+    <h2 class="list-type-text">Cast List</h2>
+    <div>
+      <MovieSynopsisCast :cast="item" class="list-item" />
+      <MovieSynopsisCast :cast="item" class="list-item" />
+      <MovieSynopsisCast :cast="item" class="list-item" />
+      <MovieSynopsisCast :cast="item" class="list-item" />
+      <MovieSynopsisCast :cast="item" class="list-item" />
+    </div>
   </div>
 </template>
 
@@ -44,8 +46,22 @@ export default {
 };
 </script>
 <style scoped>
+.list-item {
+  display: inline-block;
+  margin: 10px;
+  padding: 2px;
+}
+.list-item:hover {
+  color: blue;
+  background-color: lightblue;
+}
 .card {
-  background: gray;
-  margin: 1.5em;
+  margin: 2em;
+}
+.list-type-text {
+  text-align: left;
+  font-size: 2em;
+  margin-bottom: 0%;
+  margin-top: 1rem;
 }
 </style>
