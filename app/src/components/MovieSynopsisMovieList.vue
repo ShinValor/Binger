@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <h2>{{listType}}</h2>
+    <h2 class="carousel-type-text">{{listType}}</h2>
     <flickity class="carousel" ref="flickity" :options="flickityOptions">
       <div class="carousel-cell" v-for="item in MovieList" v-bind:key="item.title">
         <img
@@ -11,22 +11,7 @@
       </div>
     </flickity>
     <a-modal v-model="visible" title="Movie Summary" :width="750" :footer="null">
-      <div class="container">
-        <p class="content">
-          All our illustrations come in different styles, and you can change
-          main color. Just choose the one you like the most for your project.
-          Some styles allow you to select a simple background, a more one, or
-          one, or remove it altogether. Give it a try!
-        </p>
-        <p class="content">
-          All our illustrations come in different styles, and you can change
-          main color. Just choose the one you like the most for your project.
-          Some styles allow you to select a simple background, a more one, or
-          one, or remove it altogether. Give it a try!
-        </p>
-        <img class="large-image" src="../imgs/black-widow.jpg" />
-      </div>
-      <a-button @click="onClick">More</a-button>
+      <div></div>
     </a-modal>
   </div>
 </template>
@@ -80,7 +65,7 @@ export default {
 </script>
 <style scoped>
 .carousel {
-  margin: 50px 20px;
+  margin: 10px 20px;
 }
 
 .carousel-cell {
@@ -137,7 +122,12 @@ export default {
   }
 }
 .card {
-  background: gray;
-  margin: 1.5em;
+  margin: 2.5em;
+}
+.carousel-type-text {
+  text-align: left;
+  font-size: 2em;
+  margin-bottom: 0%;
+  margin-top: 1rem;
 }
 </style>
