@@ -83,7 +83,7 @@ def get_discover_shows(genre_ids, number_of_pages=3):
         Default is 3 and the max number of results returned per page is 20.
 
     Returns:
-        shows: A list of "Show" objects derived from the /discover enpoint for
+        shows: A list of "Show" objects derived from the /discover endpoint for
         TMDB. 
     """
     shows = []
@@ -170,7 +170,7 @@ def top_rated_requests(is_movie=True):
         is_movie: Boolean that decides what type of request will be sent to TMDB.
 
     Returns: 
-        top_rated_requests: A list of API requests that will be sent to TMDB's discover endpoint.
+        top_rated_requests: A list of API requests that will be sent to TMDB's /top_rated endpoint.
     """
 
 
@@ -191,12 +191,51 @@ def get_top_rated_shows():
     Function is responsible of creating a list of top rated movies from TMDB
 
     Returns:
-        shows: A list of "Show" objects derived from the /discover enpoint for
+        shows: A list of "Show" objects derived from the /top_rated endpoint for
         TMDB. 
     """
     shows = []
 
     movie_recs = top_rated_requests()
+    movie_responses = grequests.map(movie_recs, size=len(movie_recs))
+    shows.extend(create_show_data_list(movie_responses, True))
+    return shows
+
+
+def popular_requests(is_movie=True):
+    """
+    Builds a list of API requests for the most popular movies
+
+    Args:
+        is_movie: Boolean that decides what type of request will be sent to TMDB.
+
+    Returns: 
+        top_rated_requests: A list of API requests that will be sent to TMDB's /popular endpoint.
+    """
+    popular_requests = []
+
+    options = copy.deepcopy(consts.DEFAULT_OPTIONS)
+    options["page"] = 1
+
+    if is_movie:
+        api_url = consts.MOVIE_POPULAR_URL
+
+    popular_requests.append(grequests.get(url=api_url,params=options))
+
+    return popular_requests
+
+
+def get_popular_shows():
+    """
+    Function is responsible of creating a list of most popular movies from TMDB
+
+    Returns:
+        shows: A list of "Show" objects derived from the /popular endpoint for
+        TMDB. 
+    """
+    shows = []
+
+    movie_recs = popular_requests()
     movie_responses = grequests.map(movie_recs, size=len(movie_recs))
     shows.extend(create_show_data_list(movie_responses, True))
     return shows

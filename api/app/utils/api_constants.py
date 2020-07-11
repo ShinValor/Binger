@@ -111,3 +111,8 @@ TV_SHOW_SIMILAR_URL = "https://api.themoviedb.org/3/tv/{}/similar"
 Base URLs used by TMDB to get top rated movies
 """
 MOVIE_TOP_RATED_URL = "https://api.themoviedb.org/3/movie/top_rated"
+
+"""
+Base URLs used by TMDB to get popular shows
+"""
+MOVIE_POPULAR_URL = "https://api.themoviedb.org/3/movie/popular"

@@ -212,7 +212,9 @@ def  movie_summary(id):
 @app.route('/topRated')
 @check_token
 def top_rated_show():
-
+    """
+    Retrieves the top 20 movie results from TMDB
+    """
     # get idToken
     token = request.args.get('token')
 
@@ -229,4 +231,28 @@ def top_rated_show():
         json_data = data.to_json()
         a = json.loads(json_data)
         json_list.append(a)
+    return jsonify(json_list)
+
+
+@app.route('/popular')
+@check_token
+def get_popular():
+    """
+    Retrieves the most popular movies from TMDB
+    """
+    # get idToken
+    token = request.args.get('token')
+
+    # decode idToken
+    decoded_token = auth.verify_id_token(token)
+    uid = decoded_token['uid']
+
+    json_list = []
+
+    show = new_api_handler.get_popular_shows()
+    for i in show:
+        data = new_api_handler.resolve_show(i)
+        json_data = data.to_json()
+        json_list.append(json.loads(json_data))
+    
     return jsonify(json_list)
