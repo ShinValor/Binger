@@ -4,20 +4,20 @@
     <Movie_Synopsis />
     <MovieSynopsisMovieList />
     <MovieSynopsisMovieList listType="Similar Movies" />
-    <MovieSynopsisList />
+    <MovieSynopsisCastList />
   </a-layout>
 </template>
 
 <script scoped>
 import Movie_Synopsis from "@/components/MovieSynopsis.vue";
 import MovieSynopsisMovieList from "@/components/MovieSynopsisMovieList.vue";
-import MovieSynopsisList from "@/components/MovieSynopsisList.vue";
+import MovieSynopsisCastList from "@/components/MovieSynopsisCastList.vue";
 export default {
   name: "MovieSynopsis",
   components: {
     Movie_Synopsis,
     MovieSynopsisMovieList,
-    MovieSynopsisList
+    MovieSynopsisCastList
   }
 };
 </script>
