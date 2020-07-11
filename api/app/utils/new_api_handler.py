@@ -160,3 +160,43 @@ def create_show_data_list(api_responses, is_movie):
                 items.append(s.ShowData(result["id"], result["vote_average"], is_movie))
 
     return items
+
+
+def top_rated_requests(is_movie=True):
+    """
+    Builds a list of API requests for the top rated movies
+
+    Args:
+        is_movie: Boolean that decides what type of request will be sent to TMDB.
+
+    Returns: 
+        top_rated_requests: A list of API requests that will be sent to TMDB's discover endpoint.
+    """
+
+
+    top_rated_requests = []
+
+    options = copy.deepcopy(consts.DEFAULT_OPTIONS)
+    options["page"] = 1
+
+    if is_movie:
+        api_url = consts.MOVIE_TOP_RATED_URL
+
+    top_rated_requests.append(grequests.get(url=api_url,params=options))
+    return top_rated_requests
+
+
+def get_top_rated_shows():
+    """
+    Function is responsible of creating a list of top rated movies from TMDB
+
+    Returns:
+        shows: A list of "Show" objects derived from the /discover enpoint for
+        TMDB. 
+    """
+    shows = []
+
+    movie_recs = top_rated_requests()
+    movie_responses = grequests.map(movie_recs, size=len(movie_recs))
+    shows.extend(create_show_data_list(movie_responses, True))
+    return shows

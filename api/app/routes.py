@@ -208,3 +208,25 @@ def  movie_summary(id):
     return overview["overview"]
 
 
+# Requires optimization
+@app.route('/topRated')
+@check_token
+def top_rated_show():
+
+    # get idToken
+    token = request.args.get('token')
+
+    # decode idToken
+    decoded_token = auth.verify_id_token(token)
+    uid = decoded_token['uid']
+
+    top_rated_shows = []
+    json_list = []
+
+    show = new_api_handler.get_top_rated_shows()
+    for i in show:
+        data = new_api_handler.resolve_show(i)
+        json_data = data.to_json()
+        a = json.loads(json_data)
+        json_list.append(a)
+    return jsonify(json_list)

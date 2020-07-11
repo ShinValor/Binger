@@ -106,3 +106,8 @@ Reference: https://developers.themoviedb.org/3/movies/get-similar-movies
 """
 MOVIE_SIMILAR_URL = "https://api.themoviedb.org/3/movie/{}/similar"
 TV_SHOW_SIMILAR_URL = "https://api.themoviedb.org/3/tv/{}/similar"
+
+"""
+Base URLs used by TMDB to get top rated movies
+"""
+MOVIE_TOP_RATED_URL = "https://api.themoviedb.org/3/movie/top_rated"
