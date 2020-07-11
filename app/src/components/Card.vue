@@ -16,7 +16,6 @@ export default {
   props: {
     name: String,
     desc: String,
-    photoUrl: String,
     avatarUrl: String
   }
 };
@@ -24,9 +23,7 @@ export default {
 
 <style scoped>
 .card {
-  height: 400px;
-  width: 400px;
-  margin: 50px;
+  margin: 25px;
 }
 
 .large-image {
@@ -39,9 +36,19 @@ export default {
   /* applies styles to any device screen sizes below 800px wide */
 
   .card {
-    height: 250px;
-    width: 250px;
     margin: 25px auto;
   }
+
+  .large-image {
+    height: 200px;
+    width: 200px;
+  }
+}
+</style>
+
+<style>
+.ant-card-body {
+  margin: 5px !important;
+  padding: 0px !important;
 }
 </style>

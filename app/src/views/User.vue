@@ -1,8 +1,8 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
     <div class="container">
-      <Profile></Profile>
-      <Card name="John" desc="I am a student." />
+      <Profile />
+      <Card class="profile-card" name="John" desc="I am a student." />
     </div>
     <!-- <a-button type="primary" v-on:click="logout()">
       Log out
@@ -178,16 +178,27 @@ export default {
 
 <style scoped>
 .container {
-  margin-top: 64px;
+  margin: 64px;
   display: flex;
   justify-content: center;
+}
+
+.profile-card {
+  height: 400px;
+  width: 400px;
 }
 
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */
 
   .container {
+    margin: 10px;
     flex-direction: column-reverse;
+  }
+
+  .profile-card {
+    height: 300px;
+    width: 300px;
   }
 }
 </style>

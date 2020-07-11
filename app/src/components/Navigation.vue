@@ -10,17 +10,17 @@
       </h1>
     </div>
     <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '64px' }">
-      <a-menu-item class="nav-button">
+      <a-menu-item class="nav-btn">
         <router-link to="/about">About</router-link>
       </a-menu-item>
-      <a-menu-item class="nav-button">
+      <a-menu-item class="nav-btn">
         <router-link to="/#services">Services</router-link>
       </a-menu-item>
-      <a-menu-item class="nav-button">
+      <a-menu-item class="nav-btn">
         <!-- <router-link to="/">Contact</router-link> -->
         <a href="https://github.com/ShinValor/Binger">Contact</a>
       </a-menu-item>
-      <a-menu-item class="nav-button">
+      <a-menu-item class="nav-btn">
         <router-link to="/login">Login</router-link>
       </a-menu-item>
       <!-- <a-menu-item class="tab">
@@ -64,10 +64,28 @@ export default {
   width: 32px;
 }
 
-.nav-button {
+.nav-btn {
   width: 100px;
 }
 
+@media screen and (max-width: 500px) {
+  /* applies styles to any device screen sizes below 800px wide */
+  .app-name {
+    font-size: 15px;
+  }
+
+  .small-image {
+    height: 16px;
+    width: 16px;
+  }
+
+  .nav-btn {
+    width: 100%;
+  }
+}
+</style>
+
+<style>
 .ant-menu-item > a {
   color: white !important;
 }
@@ -85,22 +103,6 @@ export default {
 }
 
 /* .ant-menu-item:hover {
-  background-color: #1890ff !important;
+  background-color: #1890ff;
 } */
-
-@media screen and (max-width: 500px) {
-  /* applies styles to any device screen sizes below 800px wide */
-  .app-name {
-    font-size: 15px;
-  }
-
-  .small-image {
-    height: 16px;
-    width: 16px;
-  }
-
-  .nav-button {
-    width: 100%;
-  }
-}
 </style>

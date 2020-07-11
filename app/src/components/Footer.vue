@@ -110,8 +110,8 @@ export default {
 }
 
 .small-image {
-  height: 50px;
-  width: 50px;
+  height: 32px;
+  width: 32px;
   margin: 5px 10px;
 }
 
