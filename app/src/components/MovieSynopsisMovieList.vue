@@ -34,7 +34,7 @@
 import Flickity from "vue-flickity";
 
 export default {
-  name: "MovieSynopsisMovie",
+  name: "MovieSynopsisMovieList",
   components: {
     Flickity
   },
