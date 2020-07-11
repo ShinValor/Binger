@@ -26,7 +26,7 @@ for (let i = 0; i < 10; i++) {
 }
 
 export default {
-  name: "MovieSynopsisList",
+  name: "MovieSynopsisCastList",
   components: {
     MovieSynopsisCast
   },
