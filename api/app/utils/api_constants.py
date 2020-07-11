@@ -116,3 +116,8 @@ MOVIE_TOP_RATED_URL = "https://api.themoviedb.org/3/movie/top_rated"
 Base URLs used by TMDB to get popular shows
 """
 MOVIE_POPULAR_URL = "https://api.themoviedb.org/3/movie/popular"
+
+"""
+Base URLs used by TMDB to get list of movies now in theatres
+"""
+MOVIE_NOW_PLAYING_URL = "https://api.themoviedb.org/3/movie/now_playing"

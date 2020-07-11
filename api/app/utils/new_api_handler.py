@@ -239,3 +239,17 @@ def get_popular_shows():
     movie_responses = grequests.map(movie_recs, size=len(movie_recs))
     shows.extend(create_show_data_list(movie_responses, True))
     return shows
+
+
+def get_now_playing_movies(page_num=1):
+    """
+    Function get a list of movies in theatres. 
+    """
+    items = []
+    options = copy.deepcopy(consts.DEFAULT_OPTIONS)
+    options["page"] = page_num
+
+    api_url = consts.MOVIE_NOW_PLAYING_URL
+    response = requests.get(url=api_url,params=options)
+
+    return response

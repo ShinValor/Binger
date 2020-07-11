@@ -256,3 +256,22 @@ def get_popular():
         json_list.append(json.loads(json_data))
     
     return jsonify(json_list)
+
+
+@app.route('/recent')
+@check_token
+def get_now_playing():
+    """
+    Retrieves movies now playing in theatres
+    """
+    # get idToken
+    token = request.args.get('token')
+
+    # decode idToken
+    decoded_token = auth.verify_id_token(token)
+    uid = decoded_token['uid']
+
+    movies = new_api_handler.get_now_playing_movies()
+    movie_results = movies.json()["results"]
+    return json.dumps(movie_results)
+
