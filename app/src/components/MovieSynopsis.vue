@@ -30,6 +30,11 @@
             <div class="score-section favorite-button">
               <a-button type="primary" shape="circle" icon="star" :size="size" />
             </div>
+            <div class="play-trailer score-section">
+              <a :href="resolve_video_url(item.trailer_key)">
+                <a-icon type="play-circle" />Play Trailer
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -65,7 +70,8 @@ export default {
           trailerPath: "https://www.youtube.com/embed/F-eMt3SrfFU",
           favorite: false,
           vote_average: 6.0,
-          tagline: "The phoenix will rise"
+          tagline: "The phoenix will rise",
+          trailer_key: "QWbMckU3AOQ"
         };
       }
     }
@@ -81,6 +87,9 @@ export default {
     },
     resolve_img_url: function(path) {
       return "https://image.tmdb.org/t/p/w342" + path;
+    },
+    resolve_video_url: function(path) {
+      return "https://www.youtube.com/watch?v=" + path;
     }
   }
 };
