@@ -3,6 +3,7 @@
     <div class="image">
       <a-avatar
         :size="64"
+        shape="square"
         icon="user"
         style="margin-right: 8px"
         :src="resolve_img_url(cast.profile_path)"
@@ -50,8 +51,9 @@ export default {
 .cast {
   height: 100%;
   padding-top: 10px;
+  margin-left: -50px;
   background: #e6ecf1;
-  max-width: 500px;
+  /* max-width: 500px; */
   margin: 0 auto;
   padding-bottom: 15px;
 }
@@ -65,10 +67,12 @@ export default {
   align-content: center;
   display: inline-block;
   padding: 10px;
+  justify-content: flex-start;
 }
 
 .image {
   display: inline-block;
   margin: 2px;
+  justify-content: flex-start;
 }
 </style>

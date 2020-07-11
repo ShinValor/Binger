@@ -1,22 +1,35 @@
 <template>
   <section>
-    <div class="columns">
-      <div class="hero-body" :style="{ 'background-image': item.largeImgSrc }">
-        <div class="vertical-align">
-          <h1 class="title">{{ item.title }}</h1>
-          <h4 class="subtitle">
-            <p class="subtitle-tag">{{ item.duration }} |</p>
-            <p class="subtitle-tag">{{ item.genre }} |</p>
-            <p class="subtitle-tag">{{ item.releaseDate }}</p>
-          </h4>
-          <p class="description">{{ item.description }}</p>
-          <div class="links">
-            <a class="favorites-button" @click="addToFavorites()">
-              <span v-if="!item.favorite">Add to</span>
-              <span v-else>Remove from</span>
-              favorites
-              <i class="fa fa-plus-square-o"></i>
-            </a>
+    <div class="header">
+      <div class="poster-wrapper">
+        <img class="poster" :src="resolve_img_url(item.poster_path)" :alt="item.title" />
+      </div>
+      <div class="movie-info-part">
+        <div class="movie-info">
+          <div class="key-info">
+            <h2 class="movie-title">
+              {{item.title}}
+              <span class="tagline">{{item.tagline}}</span>
+            </h2>
+            <div class="general-info">
+              <span class="release-date">{{item.releaseDate}}</span>
+              <span class="genres">{{genres}}</span>
+              <span class="runtime">{{item.duration}}</span>
+            </div>
+          </div>
+          <div class="user-interaction">
+            <div class="score-section">
+              <div class="user-avg-score">
+                <span class="movie-score">{{item.vote_average}}</span>
+              </div>
+              <span class="score-section-text">
+                Average
+                <br />User Score
+              </span>
+            </div>
+            <div class="score-section favorite-button">
+              <a-button type="primary" shape="circle" icon="star" :size="size" />
+            </div>
           </div>
         </div>
       </div>
@@ -44,39 +57,120 @@ export default {
           title: "Dark Phoenix",
           subtitle: "Dark Phoenix",
           description: `The X-Men face their most formidable and powerful foe when one of their own, Jean Grey, starts to spiral out of control. During a rescue mission in outer space, Jean is nearly killed when she's hit by a mysterious cosmic force. Once she returns home, this force not only makes her infinitely more powerful, but far more unstable. The X-Men must now band together to save her soul and battle aliens that want to use Grey's new abilities to rule the galaxy.`,
-          largeImgSrc: `url('https://image.tmdb.org/t/p/w500/phxiKFDvPeQj4AbkvJLmuZEieDU.jpg')`,
-          smallImgSrc:
-            "https://image.tmdb.org/t/p/w185/cCTJPelKGLhALq3r51A9uMonxKj.jpg",
+          backdrop_path: "/phxiKFDvPeQj4AbkvJLmuZEieDU.jpg",
+          poster_path: "/cCTJPelKGLhALq3r51A9uMonxKj.jpg",
           releaseDate: "July 21 2017",
           duration: "1hr 46min",
-          genre: "Action, Drama, History",
+          genre: ["Action", "Drama", "History"],
           trailerPath: "https://www.youtube.com/embed/F-eMt3SrfFU",
-          favorite: false
+          favorite: false,
+          vote_average: 6.0,
+          tagline: "The phoenix will rise"
         };
       }
     }
   },
   computed: {
     genres: function() {
-      var _genres = [];
-      this.item.genres.forEach(function(genre) {
-        _genres.push(genre);
-      });
-      return _genres.join(", ");
+      return this.item.genre.join(", ");
     }
   },
   methods: {
     addToFavorites() {
       this.item.favorite = !this.item.favorite;
+    },
+    resolve_img_url: function(path) {
+      return "https://image.tmdb.org/t/p/w342" + path;
     }
   }
 };
 </script>
 
 <style scoped>
+.header {
+  display: flex;
+  flex-wrap: nowrap;
+}
+.poster {
+  display: block;
+  width: 100%;
+  min-width: 100%;
+  height: 100%;
+  min-height: 100%;
+  border-width: 0px;
+  outline: none;
+}
+
+.movie-info-part {
+  display: flex;
+}
+.movie-info {
+  padding-left: 40px;
+}
+.key-info {
+  width: 100%;
+  margin-bottom: 24px;
+  /* display: flex;
+  flex-wrap: wrap; */
+}
+.movie-title {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+.tagline {
+  margin: 0;
+  padding: 0;
+  font-weight: 350;
+  font-size: 1.3rem;
+  font-style: italic;
+  opacity: 0.7;
+}
+.general-info {
+  display: flex;
+}
+.release-date {
+  padding-left: 20px;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.genres {
+  padding-left: 20px;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.runtime {
+  padding-left: 20px;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.score-section {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: 68px;
+  margin-right: 20px;
+}
+.movie-score {
+  font-size: 30px;
+  font-weight: 600;
+}
+.score-section-text {
+  font-weight: 700;
+  margin-left: 6px;
+  white-space: pre-line;
+  font-size: 14px;
+}
+
 .hero-body {
-  background-color: rgba(0, 0, 0, 0.7);
-  background-blend-mode: multiply;
+  background-color: rgba(0, 34, 95, 0.8);
+  background-blend-mode: color;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

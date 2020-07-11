@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="card">
     <h2>Cast List</h2>
     <a-list item-layout="vertical" size="large" :pagination="pagination" :data-source="listData">
       <a-list-item slot="renderItem" key="item.title" slot-scope="item">
@@ -43,4 +43,9 @@ export default {
   }
 };
 </script>
-<style></style>
+<style scoped>
+.card {
+  background: gray;
+  margin: 1.5em;
+}
+</style>
