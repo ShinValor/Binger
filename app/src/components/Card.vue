@@ -4,7 +4,7 @@
       class="large-image"
       slot="cover"
       alt="example"
-      src="../assets/ethnic-friendship-pana.svg"
+      src="../assets/svg/ethnic-friendship-pana.svg"
     />
     <a-card-meta :title="name" :description="desc" />
   </a-card>
@@ -43,12 +43,5 @@ export default {
     height: 200px;
     width: 200px;
   }
-}
-</style>
-
-<style>
-.ant-card-body {
-  margin: 5px !important;
-  padding: 0px !important;
 }
 </style>

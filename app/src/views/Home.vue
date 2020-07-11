@@ -32,12 +32,12 @@
         </p>
       </div>
       <div class="section1">
-        <img class="large-image" src="../assets/fast-loading-amico.svg" />
+        <img class="large-image" src="../assets/svg/fast-loading-amico.svg" />
       </div>
     </div>
     <div class="container2">
       <div class="section1">
-        <img class="large-image" src="../assets/movie-night-amico.svg" />
+        <img class="large-image" src="../assets/svg/movie-night-amico.svg" />
       </div>
       <div class="section1">
         <h1 class="title"><b>Movie Nights</b></h1>
@@ -60,7 +60,10 @@
         </p>
       </div>
       <div class="section1">
-        <img class="large-image" src="../assets/ethnic-friendship-pana.svg" />
+        <img
+          class="large-image"
+          src="../assets/svg/ethnic-friendship-pana.svg"
+        />
       </div>
     </div>
     <h1 class="title">
@@ -87,19 +90,22 @@
         </p>
       </div>
       <div class="section3" :style="{ 'grid-area': 'header' }">
-        <img class="small-image" src="../assets/login-amico.svg" />
+        <img class="small-image" src="../assets/svg/login-amico.svg" />
         <h2 class="sub-title">1. Sign up and Log in</h2>
       </div>
       <div class="section3" :style="{ 'grid-area': 'header2' }">
-        <img class="small-image" src="../assets/portfolio-update-amico.svg" />
+        <img
+          class="small-image"
+          src="../assets/svg/portfolio-update-amico.svg"
+        />
         <h2 class="sub-title">2. Update Profile</h2>
       </div>
       <div class="section3" :style="{ 'grid-area': 'advert' }">
-        <img class="small-image" src="../assets/work-time-rafiki.svg" />
+        <img class="small-image" src="../assets/svg/work-time-rafiki.svg" />
         <h2 class="sub-title">3. Wait For Recommendations</h2>
       </div>
       <div class="section3" :style="{ 'grid-area': 'footer' }">
-        <img class="small-image" src="../assets/movie-night-bro.svg" />
+        <img class="small-image" src="../assets/svg/movie-night-bro.svg" />
         <h2 class="sub-title">
           4. Enjoy Your Movie
         </h2>
@@ -162,7 +168,7 @@ export default {
 .banner {
   height: 600px;
   width: 100%;
-  background-image: url("../assets/cinema.svg");
+  background-image: url("../assets/svg/cinema.svg");
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;

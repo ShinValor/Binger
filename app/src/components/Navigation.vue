@@ -4,7 +4,7 @@
       <Menu />
       <h1 class="app-name">
         <router-link to="/" :style="{ color: 'white' }">
-          <img class="small-image" src="@/assets/logo.svg" />
+          <img class="small-image" src="@/assets/svg/logo.svg" />
           Binger <i :style="{ color: 'gray', 'font-size': '15px' }">By Lala</i>
         </router-link>
       </h1>
@@ -83,26 +83,4 @@ export default {
     width: 100%;
   }
 }
-</style>
-
-<style>
-.ant-menu-item > a {
-  color: white !important;
-}
-
-.ant-menu-item-selected {
-  background-color: transparent !important;
-}
-
-.ant-menu-item-selected > a {
-  color: white !important;
-}
-
-.ant-menu-item > a:hover {
-  color: lightpink !important;
-}
-
-/* .ant-menu-item:hover {
-  background-color: #1890ff;
-} */
 </style>

@@ -51,7 +51,7 @@
       Binger ©2020 Created by The Binger Team
       <img
         class="small-image"
-        src="../assets/watching-tv.svg"
+        src="../assets/svg/watching-tv.svg"
         alt="Movie Icon"
       />
     </div>

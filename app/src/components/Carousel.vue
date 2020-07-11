@@ -162,6 +162,7 @@ export default {
   }
 };
 </script>
+
 <style scoped>
 .carousel {
   margin: 10px 10px 50px;
