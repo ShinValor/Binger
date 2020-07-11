@@ -11,9 +11,9 @@
     </div>
     <div class="content">
       <p>
-        <strong>{{cast.name}}</strong>
+        <strong>{{ cast.name }}</strong>
         <br />
-        {{cast.character}}
+        {{ cast.character }}
       </p>
     </div>
   </div>

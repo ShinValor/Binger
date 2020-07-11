@@ -1,8 +1,12 @@
 <template>
   <div class="card">
-    <h2 class="carousel-type-text">{{listType}}</h2>
+    <h2 class="carousel-type-text">{{ listType }}</h2>
     <flickity class="carousel" ref="flickity" :options="flickityOptions">
-      <div class="carousel-cell" v-for="item in MovieList" v-bind:key="item.title">
+      <div
+        class="carousel-cell"
+        v-for="item in MovieList"
+        v-bind:key="item.title"
+      >
         <img
           class="carousel-cell-image"
           :src="resolve_img_url(item.poster_path)"
@@ -10,7 +14,12 @@
         />
       </div>
     </flickity>
-    <a-modal v-model="visible" title="Movie Summary" :width="750" :footer="null">
+    <a-modal
+      v-model="visible"
+      title="Movie Summary"
+      :width="750"
+      :footer="null"
+    >
       <div></div>
     </a-modal>
   </div>

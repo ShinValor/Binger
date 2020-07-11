@@ -2,29 +2,35 @@
   <section>
     <div
       class="header"
-      :style="{ 'background-image': 'url('+resolve_img_url(item.backdrop_path) +')' }"
+      :style="{
+        'background-image': 'url(' + resolve_img_url(item.backdrop_path) + ')'
+      }"
     >
       <div class="header-contents fontColor">
         <div class="poster-wrapper">
-          <img class="poster" :src="resolve_img_url(item.poster_path)" :alt="item.title" />
+          <img
+            class="poster"
+            :src="resolve_img_url(item.poster_path)"
+            :alt="item.title"
+          />
         </div>
         <div class="movie-info-part">
           <div class="movie-info">
             <div class="key-info">
               <h2 class="movie-title left-align fontColor">
-                {{item.title}}
-                <span class="tagline">{{item.tagline}}</span>
+                {{ item.title }}
+                <span class="tagline">{{ item.tagline }}</span>
               </h2>
               <div class="general-info">
-                <span class="release-date">{{item.releaseDate}}</span>
-                <span class="genres">{{genres}}</span>
-                <span class="runtime">{{item.duration}}</span>
+                <span class="release-date">{{ item.releaseDate }}</span>
+                <span class="genres">{{ genres }}</span>
+                <span class="runtime">{{ item.duration }}</span>
               </div>
             </div>
             <div class="user-interaction left-align">
               <div class="score-section">
                 <div class="user-avg-score">
-                  <span class="movie-score">{{item.vote_average}}</span>
+                  <span class="movie-score">{{ item.vote_average }}</span>
                 </div>
                 <span class="score-section-text">
                   Average
@@ -43,7 +49,7 @@
             <div class="detailed-info left-align">
               <h3 class="text-overview fontColor">Overview:</h3>
               <div class="movie-overview" dir="auto">
-                <p class="movie-overview-text">{{item.description}}</p>
+                <p class="movie-overview-text">{{ item.description }}</p>
               </div>
             </div>
           </div>
