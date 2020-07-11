@@ -1,18 +1,21 @@
 <template>
-  <div>
-    <flickity
-      class="carousel"
-      ref="flickity"
-      :options="flickityOptions"
-      v-for="(todo, index) in todos"
-    >
-      <div class="carousel-cell">
-        <img class="carousel-cell-image" src="../imgs/wonder-woman.jpg" @click="showModal" />
+  <div class="column">
+    <h2>Videoes</h2>
+
+    <flickity class="carousel" ref="flickity" :options="flickityOptions">
+      <div class="carousel-cell" v-for="(item,index) in trailers" v-bind:key="index">
+        <img class="carousel-cell-image" :src="resolve_img_url(item.key)" @click="showModal(index)" />
       </div>
-    </flickity>
-    <a-modal v-model="visible" title="Movie Summary" :width="750" :footer="null">
-      <div class="container">
-        <img class="large-image" src="../imgs/black-widow.jpg" />
+    </flickity>s
+    <a-modal v-model="visible" title="Movie Trailer" :width="750" :footer="null">
+      <div class="trailer-body">
+        <iframe
+          allowfullscreen
+          frameborder="0"
+          height="400"
+          :src="resolve_video_url()"
+          style="min-width: 600px"
+        />
       </div>
       <a-button @click="onClick">More</a-button>
     </a-modal>
@@ -22,46 +25,83 @@
 import Flickity from "vue-flickity";
 
 export default {
-  name: "Carousel",
+  name: "MovieTrailerCarousel",
   components: {
     Flickity
   },
-  props: {},
+  props: {
+    trailers: {
+      type: Array,
+      default: function() {
+        let x = JSON.parse(`[{
+	"id": 1,
+	"key": "QWbMckU3AOQ"
+}, {
+	"id": 2,
+	"key": "1-q8C_c-nlM"
+}, {
+	"id": 3,
+	"key": "Im4odVLNxqo"
+}, {
+	"id": 4,
+	"key": "IqflOkaT5bI"
+}]`);
+        return x;
+      }
+    }
+  },
+  methods: {
+    resolve_img_url: function(path) {
+      //   console.log("https://img.youtube.com/vi/" + path + "/sddefault.jpg");
+      return "https://img.youtube.com/vi/" + path + "/sddefault.jpg";
+    },
+    resolve_video_url: function() {
+      console.log(
+        "https://www.youtube.com/embed/" +
+          this.trailers[this.activeTraile] +
+          "?autoplay=1&modestbranding=1"
+      );
+      return (
+        "https://www.youtube.com/embed/" +
+        this.trailers[this.activeTraile] +
+        "?autoplay=1&modestbranding=1"
+      );
+    },
+    showModal(id) {
+      this.visible = true;
+      this.activeTraile = id;
+    },
+    onClick() {
+      console.log("More");
+      console.log(this.trailers);
+    }
+  },
   data() {
     return {
       flickityOptions: {
         initialIndex: 0,
         autoPlay: 3000,
-        groupCells: 5,
+        groupCells: 3,
         freeScroll: true
         // prevNextButtons: false
       },
-      visible: false
+      visible: false,
+      activeTraile: 0
     };
-  },
-  methods: {
-    showModal() {
-      this.visible = true;
-    },
-    onClick() {
-      console.log("More");
-    }
   }
 };
 </script>
 <style scoped>
 .carousel {
-  margin: 50px 20px;
+  margin: 50px 30px;
 }
-
 .carousel-cell {
-  height: 400px;
-  width: 20%;
-  margin: 0px;
+  height: 120px;
+  width: 40%;
+  margin: 1px;
   display: flex;
   justify-content: center;
 }
-
 .carousel-cell-image {
   max-height: 100%;
   max-width: 100%;
@@ -69,42 +109,14 @@ export default {
   display: block;
   object-fit: cover;
 }
-
 .carousel-cell-image:hover {
   opacity: 0.7;
 }
-
-/* .carousel-cell-image.flickity-lazyloaded,
-.carousel-cell-image.flickity-lazyerror {
-  opacity: 1;
-} */
-
 .container {
   display: flex;
 }
-
-.content {
-  width: 66%;
-  margin: 5px;
-  font-size: 15px;
-}
-
-.large-image {
-  width: 33%;
-  height: 100%;
-  margin: 5px;
-  object-fit: cover;
-}
-
-@media screen and (max-width: 500px) {
-  /* applies styles to any device screen sizes below 800px wide */
-  .carousel {
-    margin: 5px;
-  }
-
-  .carousel-cell {
-    height: 100px;
-    margin: 0px 5px;
-  }
+.column {
+  background-color: gray;
+  margin: 1.5em;
 }
 </style>
