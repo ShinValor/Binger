@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="app/src/assets/binger-logo.svg" alt="Binger - a movie recommendation application">
+  <img src="app/src/assets/svg/binger-logo.svg" alt="Binger - a movie recommendation application">
   <h1 align="center"><i>Binger</i></h1>
   A movie recommendation website
 </div>
