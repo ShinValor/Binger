@@ -4,23 +4,23 @@
       <Menu />
       <h1 class="app-name">
         <router-link to="/" :style="{ color: 'white' }">
-          <img class="small-image" src="@/assets/logo.svg" />
+          <img class="small-image" src="@/assets/svg/logo.svg" />
           Binger <i :style="{ color: 'gray', 'font-size': '15px' }">By Lala</i>
         </router-link>
       </h1>
     </div>
     <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '64px' }">
-      <a-menu-item class="nav-button">
+      <a-menu-item class="nav-btn">
         <router-link to="/about">About</router-link>
       </a-menu-item>
-      <a-menu-item class="nav-button">
+      <a-menu-item class="nav-btn">
         <router-link to="/#services">Services</router-link>
       </a-menu-item>
-      <a-menu-item class="nav-button">
+      <a-menu-item class="nav-btn">
         <!-- <router-link to="/">Contact</router-link> -->
         <a href="https://github.com/ShinValor/Binger">Contact</a>
       </a-menu-item>
-      <a-menu-item class="nav-button">
+      <a-menu-item class="nav-btn">
         <router-link to="/login">Login</router-link>
       </a-menu-item>
       <!-- <a-menu-item class="tab">
@@ -64,29 +64,9 @@ export default {
   width: 32px;
 }
 
-.nav-button {
+.nav-btn {
   width: 100px;
 }
-
-.ant-menu-item > a {
-  color: white !important;
-}
-
-.ant-menu-item-selected {
-  background-color: transparent !important;
-}
-
-.ant-menu-item-selected > a {
-  color: white !important;
-}
-
-.ant-menu-item > a:hover {
-  color: lightpink !important;
-}
-
-/* .ant-menu-item:hover {
-  background-color: #1890ff !important;
-} */
 
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */
@@ -99,7 +79,7 @@ export default {
     width: 16px;
   }
 
-  .nav-button {
+  .nav-btn {
     width: 100%;
   }
 }

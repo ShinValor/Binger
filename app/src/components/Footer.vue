@@ -49,7 +49,11 @@
     </div>
     <div class="section3">
       Binger ©2020 Created by The Binger Team
-      <img class="small-image" src="../assets/logo.svg" alt="Movie Icon" />
+      <img
+        class="small-image"
+        src="../assets/svg/watching-tv.svg"
+        alt="Movie Icon"
+      />
     </div>
   </a-layout-footer>
 </template>
@@ -106,8 +110,8 @@ export default {
 }
 
 .small-image {
-  height: 50px;
-  width: 50px;
+  height: 32px;
+  width: 32px;
   margin: 5px 10px;
 }
 
