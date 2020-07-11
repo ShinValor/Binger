@@ -4,7 +4,7 @@
       class="large-image"
       slot="cover"
       alt="example"
-      src="../assets/friendship.png"
+      src="../assets/ethnic-friendship-pana.svg"
     />
     <a-card-meta :title="name" :description="desc" />
   </a-card>

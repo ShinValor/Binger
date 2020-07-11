@@ -51,6 +51,7 @@ export default {
   width: 300px;
   margin: 50px auto;
   border-color: white;
+  color: white;
 }
 
 @media screen and (max-width: 500px) {

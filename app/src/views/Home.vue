@@ -32,12 +32,12 @@
         </p>
       </div>
       <div class="section1">
-        <img class="large-image" src="../assets/fast-loading.png" />
+        <img class="large-image" src="../assets/fast-loading-amico.svg" />
       </div>
     </div>
     <div class="container2">
       <div class="section1">
-        <img class="large-image" src="../assets/movie-night.png" />
+        <img class="large-image" src="../assets/movie-night-amico.svg" />
       </div>
       <div class="section1">
         <h1 class="title"><b>Movie Nights</b></h1>
@@ -60,42 +60,49 @@
         </p>
       </div>
       <div class="section1">
-        <img class="large-image" src="../assets/friendship.png" />
+        <img class="large-image" src="../assets/ethnic-friendship-pana.svg" />
       </div>
     </div>
     <h1 class="title">
       <strong> How It Works </strong>
     </h1>
     <div class="container1">
-      <div class="section3" :style="{ 'grid-area': 'content' }">
+      <div
+        class="section3"
+        :style="{
+          'grid-area': 'content',
+          display: 'flex',
+          'justify-content': 'flex-end'
+        }"
+      >
         <p class="content">
           All our illustrations come in different styles, and you can change
           main color. Just choose the one you like the most for your project.
           project. Some styles allow you to select a simple background, a more
-          one, or remove it altogether. Give it a try!
+          one, or remove it altogether. Give it a try! All our illustrations
+          come in different styles, and you can change main color. Just choose
+          the one you like the most for your project. project. Some styles allow
+          you to select a simple background, a more one, or remove it
+          altogether. Give it a try!
         </p>
       </div>
       <div class="section3" :style="{ 'grid-area': 'header' }">
-        <img class="small-image" src="../assets/login.png" />
+        <img class="small-image" src="../assets/login-amico.svg" />
         <h2 class="sub-title">1. Sign up and Log in</h2>
       </div>
       <div class="section3" :style="{ 'grid-area': 'header2' }">
-        <img class="small-image" src="../assets/profile.png" />
+        <img class="small-image" src="../assets/portfolio-update-amico.svg" />
         <h2 class="sub-title">2. Update Profile</h2>
       </div>
-      <div class="section3" :style="{ 'grid-area': 'footer' }">
-        <img class="small-image" src="../assets/stopwatch.png" />
-        <h2 class="sub-title">3. Wait For Recommendations</h2>
-        <a-steps :current="1" class="progress-bar">
-          <a-step title="Finished" description="Logged In" />
-          <a-step title="In Progress" description="Updating Profile" />
-          <a-step title="Waiting" description="Select Favorite Movie Genre" />
-          <a-step title="Waiting" description="Search Movie . . ." />
-        </a-steps>
-      </div>
       <div class="section3" :style="{ 'grid-area': 'advert' }">
-        <img class="large-image" src="../assets/watch-movie.svg" />
-        <h2 class="sub-title">4. Enjoy Your Movie</h2>
+        <img class="small-image" src="../assets/work-time-rafiki.svg" />
+        <h2 class="sub-title">3. Wait For Recommendations</h2>
+      </div>
+      <div class="section3" :style="{ 'grid-area': 'footer' }">
+        <img class="small-image" src="../assets/movie-night-bro.svg" />
+        <h2 class="sub-title">
+          4. Enjoy Your Movie
+        </h2>
       </div>
     </div>
     <h1 id="services" class="title"><b>Service Plans</b></h1>
@@ -141,21 +148,21 @@ export default {
 
 <style scoped>
 .small-image {
-  height: 128px;
-  width: 128px;
+  height: 256px;
+  width: 256px;
+  margin: 0 auto;
 }
 
 .large-image {
-  height: 500px;
-  width: 500px;
-  max-height: 100%;
-  max-width: 100%;
+  height: 450px;
+  width: 450px;
+  margin: 0 auto;
 }
 
 .banner {
   height: 600px;
   width: 100%;
-  background-image: url("../imgs/banner.jpg");
+  background-image: url("../assets/cinema.svg");
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
@@ -205,13 +212,12 @@ export default {
 .container1 {
   margin: 10px 50px 100px 50px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   grid-gap: 10px;
   grid-template-areas:
-    "header header2 advert advert"
-    "content content advert advert"
-    "footer footer footer footer";
+    "header header2 advert"
+    "content content footer";
 }
 
 .container2 {
@@ -257,6 +263,7 @@ export default {
 
 .content {
   font-size: 20px;
+  /* margin: 50px; */
 }
 
 .progress-bar {
@@ -339,13 +346,13 @@ export default {
   }
 
   .small-image {
-    height: 64px;
-    width: 64px;
+    height: 128px;
+    width: 128px;
   }
 
   .large-image {
-    height: 250px;
-    width: 250px;
+    height: 150px;
+    width: 150px;
   }
 
   .progress-bar {
