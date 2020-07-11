@@ -1,23 +1,14 @@
 <template>
   <div class="cast">
-    <div class="tweet">
-      <article class="media">
-        <div class="media-left">
-          <figure class="image is-64x64">
-            <a-avatar :size="64" icon="user" />
-          </figure>
-        </div>
-        <div class="media-content">
-          <div class="content">
-            <p>
-              <strong>{{cast.name}}</strong>
-              <small>{{tweet.handle}}</small>
-              <br />
-              {{cast.character}}
-            </p>
-          </div>
-        </div>
-      </article>
+    <div class="image">
+      <a-avatar :size="64" icon="user" :src="resolve_img_url(cast.profile_path)" />
+    </div>
+    <div class="content">
+      <p>
+        <strong>{{cast.name}}</strong>
+        <br />
+        {{cast.character}}
+      </p>
     </div>
   </div>
 </template>
@@ -26,7 +17,26 @@
 export default {
   name: "MovieSynopsisCast",
   props: {
-    cast: Object
+    cast: {
+      type: Object,
+      default: function() {
+        return {
+          cast_id: 4,
+          character: "The Narrator",
+          credit_id: "52fe4250c3a36847f80149f3",
+          gender: 2,
+          id: 819,
+          name: "Edward Norton",
+          order: 0,
+          profile_path: "/eIkFHNlfretLS1spAcIoihKUS62.jpg"
+        };
+      }
+    }
+  },
+  methods: {
+    resolve_img_url: function(path) {
+      return "https://image.tmdb.org/t/p/w342" + path;
+    }
   }
 };
 </script>
@@ -36,9 +46,6 @@ export default {
   height: 100%;
   padding-top: 10px;
   background: #e6ecf1;
-}
-
-.tweet {
   max-width: 500px;
   margin: 0 auto;
   padding-bottom: 15px;
@@ -49,11 +56,15 @@ export default {
   border-radius: 0;
 }
 
-.content small {
-  color: #00d1b2;
+.content {
+  align-content: center;
+  display: inline-block;
+  padding: 10px;
 }
 
-img {
-  border-radius: 30px;
+.image {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 2px;
 }
 </style>
