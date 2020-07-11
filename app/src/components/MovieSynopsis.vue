@@ -1,45 +1,50 @@
 <template>
   <section>
-    <div class="header">
-      <div class="poster-wrapper">
-        <img class="poster" :src="resolve_img_url(item.poster_path)" :alt="item.title" />
-      </div>
-      <div class="movie-info-part">
-        <div class="movie-info">
-          <div class="key-info">
-            <h2 class="movie-title">
-              {{item.title}}
-              <span class="tagline">{{item.tagline}}</span>
-            </h2>
-            <div class="general-info">
-              <span class="release-date">{{item.releaseDate}}</span>
-              <span class="genres">{{genres}}</span>
-              <span class="runtime">{{item.duration}}</span>
-            </div>
-          </div>
-          <div class="user-interaction">
-            <div class="score-section">
-              <div class="user-avg-score">
-                <span class="movie-score">{{item.vote_average}}</span>
+    <div
+      class="header"
+      :style="{ 'background-image': 'url('+resolve_img_url(item.backdrop_path) +')' }"
+    >
+      <div class="header-contents">
+        <div class="poster-wrapper">
+          <img class="poster" :src="resolve_img_url(item.poster_path)" :alt="item.title" />
+        </div>
+        <div class="movie-info-part">
+          <div class="movie-info">
+            <div class="key-info">
+              <h2 class="movie-title left-align">
+                {{item.title}}
+                <span class="tagline">{{item.tagline}}</span>
+              </h2>
+              <div class="general-info">
+                <span class="release-date">{{item.releaseDate}}</span>
+                <span class="genres">{{genres}}</span>
+                <span class="runtime">{{item.duration}}</span>
               </div>
-              <span class="score-section-text">
-                Average
-                <br />User Score
-              </span>
             </div>
-            <div class="score-section favorite-button">
-              <a-button type="primary" shape="circle" icon="star" :size="size" />
+            <div class="user-interaction left-align">
+              <div class="score-section">
+                <div class="user-avg-score">
+                  <span class="movie-score">{{item.vote_average}}</span>
+                </div>
+                <span class="score-section-text">
+                  Average
+                  <br />User Score
+                </span>
+              </div>
+              <div class="score-section favorite-button">
+                <a-button type="primary" shape="circle" icon="star" />
+              </div>
+              <div class="play-trailer score-section">
+                <a :href="resolve_video_url(item.trailer_key)">
+                  <a-icon type="play-circle" />Play Trailer
+                </a>
+              </div>
             </div>
-            <div class="play-trailer score-section">
-              <a :href="resolve_video_url(item.trailer_key)">
-                <a-icon type="play-circle" />Play Trailer
-              </a>
-            </div>
-          </div>
-          <div class="detailed-info">
-            <h3>Overview:</h3>
-            <div class="movie-overview">
-              <!-- <p>{{item.description}}</p> -->
+            <div class="detailed-info left-align">
+              <h3 class="text-overview">Overview:</h3>
+              <div class="movie-overview" dir="auto">
+                <p class="movie-overview-text">{{item.description}}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -92,6 +97,7 @@ export default {
       this.item.favorite = !this.item.favorite;
     },
     resolve_img_url: function(path) {
+      console.log("https://image.tmdb.org/t/p/w342" + path);
       return "https://image.tmdb.org/t/p/w342" + path;
     },
     resolve_video_url: function(path) {
@@ -102,9 +108,34 @@ export default {
 </script>
 
 <style scoped>
+.left-align {
+  text-align: left;
+}
 .header {
   display: flex;
   flex-wrap: nowrap;
+  background-color: rgba(0, 34, 95, 0.7);
+  background-blend-mode: multiply;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding-bottom: 4rem !important;
+  padding-top: 4.5rem !important;
+}
+.header-contents {
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 2em;
+}
+.poster-wrapper {
+  display: block;
+  min-width: 300px;
+  width: 300px;
+  height: 450px;
+  position: relative;
+  top: 0;
+  left: 0;
 }
 .poster {
   display: block;
@@ -182,7 +213,13 @@ export default {
   white-space: pre-line;
   font-size: 14px;
 }
-
+.movie-overview-text {
+  text-align: left;
+}
+.text-overview {
+  font-weight: 600;
+  font-size: 1.3em;
+}
 .hero-body {
   background-color: rgba(0, 34, 95, 0.8);
   background-blend-mode: color;
