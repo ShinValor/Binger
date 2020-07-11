@@ -102,7 +102,7 @@ export default {
 <style scoped>
 .profile {
   width: 700px;
-  margin: 50px 20px !important;
+  margin: 50px 20px;
 }
 
 @media screen and (max-width: 500px) {
@@ -110,7 +110,7 @@ export default {
 
   .profile {
     width: 250px;
-    margin: 0 auto !important;
+    margin: 0 auto;
   }
 }
 </style>
