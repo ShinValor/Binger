@@ -168,7 +168,7 @@ export default {
 .banner {
   height: 600px;
   width: 100%;
-  background-image: url("../assets/svg/cinema.svg");
+  background-image: url("../assets/svg/cinema-background.svg");
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;

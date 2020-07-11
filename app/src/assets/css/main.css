@@ -22,3 +22,11 @@
   margin: 5px !important;
   padding: 0px !important;
 }
+
+a.ant-dropdown-link {
+  color:white;
+}
+
+a.ant-dropdown-link:hover {
+  color: lightpink;
+}

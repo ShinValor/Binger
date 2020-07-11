@@ -6,11 +6,14 @@
     <router-link to="/about">
       <span>About</span>
     </router-link>
-    <router-link to="/recommendations">
+    <router-link to="/movie-recommendations">
       <span>Search</span>
     </router-link>
-    <router-link to="/favorites">
+    <router-link to="/favorite-movies">
       <span>Dashboard</span>
+    </router-link>
+    <router-link to="/movie-list">
+      <span>Movie List</span>
     </router-link>
     <router-link to="/login">
       <span>Log in</span>

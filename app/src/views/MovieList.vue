@@ -6,7 +6,7 @@
 
 <script scoped>
 export default {
-  name: "MovieSynopsis"
+  name: "MovieList"
 };
 </script>
 
