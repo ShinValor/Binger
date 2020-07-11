@@ -1,7 +1,12 @@
 <template>
   <div class="cast">
     <div class="image">
-      <a-avatar :size="64" icon="user" :src="resolve_img_url(cast.profile_path)" />
+      <a-avatar
+        :size="64"
+        icon="user"
+        style="margin-right: 8px"
+        :src="resolve_img_url(cast.profile_path)"
+      />
     </div>
     <div class="content">
       <p>
@@ -64,7 +69,6 @@ export default {
 
 .image {
   display: inline-block;
-  vertical-align: middle;
   margin: 2px;
 }
 </style>
