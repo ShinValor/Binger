@@ -4,14 +4,14 @@
       class="header"
       :style="{ 'background-image': 'url('+resolve_img_url(item.backdrop_path) +')' }"
     >
-      <div class="header-contents">
+      <div class="header-contents fontColor">
         <div class="poster-wrapper">
           <img class="poster" :src="resolve_img_url(item.poster_path)" :alt="item.title" />
         </div>
         <div class="movie-info-part">
           <div class="movie-info">
             <div class="key-info">
-              <h2 class="movie-title left-align">
+              <h2 class="movie-title left-align fontColor">
                 {{item.title}}
                 <span class="tagline">{{item.tagline}}</span>
               </h2>
@@ -41,7 +41,7 @@
               </div>
             </div>
             <div class="detailed-info left-align">
-              <h3 class="text-overview">Overview:</h3>
+              <h3 class="text-overview fontColor">Overview:</h3>
               <div class="movie-overview" dir="auto">
                 <p class="movie-overview-text">{{item.description}}</p>
               </div>
@@ -111,6 +111,7 @@ export default {
 .left-align {
   text-align: left;
 }
+
 .header {
   display: flex;
   flex-wrap: nowrap;
@@ -219,6 +220,9 @@ export default {
 .text-overview {
   font-weight: 600;
   font-size: 1.3em;
+}
+.fontColor {
+  color: ivory;
 }
 .hero-body {
   background-color: rgba(0, 34, 95, 0.8);
