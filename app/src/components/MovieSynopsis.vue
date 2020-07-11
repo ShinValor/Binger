@@ -36,6 +36,12 @@
               </a>
             </div>
           </div>
+          <div class="detailed-info">
+            <h3>Overview:</h3>
+            <div class="movie-overview">
+              <!-- <p>{{item.description}}</p> -->
+            </div>
+          </div>
         </div>
       </div>
     </div>
