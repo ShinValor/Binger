@@ -6,12 +6,12 @@
         v-for="(movie, index) in MovieList"
         v-bind:key="index"
       >
-        <!-- <img
-        class="carousel-cell-image"
-        data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/tulip.jpg"
-        alt="tulip"
-        /> -->
-        <img class="carousel-cell-image" :src="movie.url" />
+        <img
+          class="carousel-cell-image"
+          :data-flickity-lazyload="movie.url"
+          :alt="movie.title"
+        />
+        <!-- <img class="carousel-cell-image" :src="movie.url" /> -->
         <div class="carousel-cell-desc">
           <h1 class="title">{{ movie.title }}</h1>
           <a-button class="modal-btn" @click="showModal">Synopsis</a-button>
@@ -60,9 +60,9 @@ export default {
         initialIndex: 0,
         autoPlay: 3000,
         groupCells: 5,
-        freeScroll: true
+        freeScroll: true,
         // prevNextButtons: false
-        // lazyLoad: true,
+        lazyLoad: 2
       },
       visible: false,
       MovieList: [
@@ -127,26 +127,31 @@ export default {
   width: 20%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  border: 1px solid black;
-}
-
-.carousel-cell:hover {
-  opacity: 0.7;
+  /* justify-content: flex-start; */
+  /* border: 1px solid black; */
+  margin-right: 4px;
+  /* padding: 0 2px; */
 }
 
 .carousel-cell-image {
   max-height: 100%;
   max-width: 100%;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   /* display: block; */
   object-fit: cover;
+  opacity: 0;
+  -webkit-transition: opacity 0.4s;
+  transition: opacity 0.4s;
 }
 
-/* .carousel-cell-image.flickity-lazyloaded,
+.carousel-cell-image:hover {
+  opacity: 0.7;
+}
+
+.carousel-cell-image.flickity-lazyloaded,
 .carousel-cell-image.flickity-lazyerror {
   opacity: 1;
-} */
+}
 
 .carousel-cell-desc {
   background-color: #424242;
@@ -186,9 +191,6 @@ export default {
 
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */
-  .carousel {
-    margin: 10px 10px 55px;
-  }
 
   .carousel-cell {
     height: 150px;
