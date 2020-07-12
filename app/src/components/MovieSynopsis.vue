@@ -8,19 +8,15 @@
     >
       <div class="header-contents fontColor">
         <div class="poster-wrapper">
-          <img
-            class="poster"
-            :src="resolve_img_url(item.poster_path)"
-            :alt="item.title"
-          />
+          <img class="poster" :src="resolve_img_url(item.poster_path)" :alt="item.title" />
         </div>
         <div class="movie-info-part">
           <div class="movie-info">
             <div class="key-info">
-              <h2 class="movie-title left-align fontColor">
-                {{ item.title }}
+              <div class="title-wrapper left-align">
+                <h2 class="movie-title left-align fontColor">{{ item.title }}</h2>
                 <span class="tagline">{{ item.tagline }}</span>
-              </h2>
+              </div>
               <div class="general-info">
                 <span class="release-date">{{ item.releaseDate }}</span>
                 <span class="genres">{{ genres }}</span>
@@ -166,12 +162,14 @@ export default {
   /* display: flex;
   flex-wrap: wrap; */
 }
+
 .movie-title {
   width: 100%;
   margin: 0;
   padding: 0;
   font-size: 2.2rem;
   font-weight: 700;
+  display: inline;
 }
 .tagline {
   margin: 0;
@@ -180,6 +178,7 @@ export default {
   font-size: 1.3rem;
   font-style: italic;
   opacity: 0.7;
+  display: inline;
 }
 .general-info {
   display: flex;
@@ -229,6 +228,31 @@ export default {
 }
 .fontColor {
   color: ivory;
+}
+@media only screen and (max-width: 600px) {
+  .header-contents,
+  .tagline,
+  .movie-title {
+    display: block;
+  }
+  .tagline {
+    margin-top: -10px;
+    padding-left: 15px;
+  }
+  .title-wrapper {
+    margin-bottom: 10px;
+  }
+  .general-info {
+    text-align: left;
+  }
+  .release-date {
+    padding-left: 0px;
+  }
+  .poster-wrapper {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 .hero-body {
   background-color: rgba(0, 34, 95, 0.8);
