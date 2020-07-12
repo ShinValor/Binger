@@ -1,11 +1,13 @@
-import requests
-import grequests
-import shows as s
-import api_constants as consts
-import copy
-import json
 from gevent import monkey
 monkey.patch_all(thread=False, select=False)
+
+import json
+import copy
+
+import api_constants as consts
+import shows as s
+import grequests
+import requests
 
 
 def discover_requests(genre_ids, number_of_pages=3, is_movie=True):

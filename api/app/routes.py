@@ -1,21 +1,13 @@
 """
 The module for the Binger api endpoints.
 """
-import json
-import sys
-import os
-from app.utils import shows
-from app.utils import recommendations
-from app.utils import new_api_handler
-from functools import wraps
-from flask import session, jsonify, Response, request
-from firebase_admin import credentials, auth, firestore, initialize_app
-from app import app
-import jsonpickle as jp
 from gevent import monkey
 monkey.patch_all(thread=False, select=False)
 
+import os, sys, json
+import jsonpickle as jp
 
+from app import app
 """
 ====================================================================================
                             VARS NEEDED FOR AUTH AND FIRESTORE
@@ -24,6 +16,9 @@ from app import cors, cred, firebase_app
 from firebase_admin import auth, firestore 
 ====================================================================================
 """
+from firebase_admin import credentials, auth, firestore, initialize_app
+from flask import session, jsonify, Response, request
+from functools import wraps
 
 """
 Adds the utils package locations to the path to allow for portable import.
@@ -31,12 +26,15 @@ Adds the utils package locations to the path to allow for portable import.
 path = os.path.abspath(os.path.dirname(__file__))
 sys.path.append(os.path.join(path, "utils"))
 
+from app.utils import new_api_handler
+from app.utils import recommendations
+from app.utils import shows
+
 
 #cred = credentials.Certificate('key.json')
 #firebase_app = initialize_app(cred)
 firebase_app = initialize_app()
 db = firestore.client()
-
 
 def check_token(f):
     """
@@ -291,7 +289,7 @@ def get_popular():
 @check_token
 def get_unpopular():
     """
-    Retrieves the most popular movies from TMDB
+    Retrieves the least popular movies from TMDB
     """
     # get idToken
     token = request.args.get('token')
