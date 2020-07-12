@@ -2,89 +2,25 @@
   <div>
     <div class="container">
       <div class="row">
-        <div class="col">
+        <div class="col" v-for="(movie, index) in MovieList" v-bind:key="index">
           <img
             class="small-image"
-            src="@/imgs/aladdin.jpg"
-            alt="Aladdin"
-            @click="showModal"
-          />
-        </div>
-        <div class="col">
-          <img
-            class="small-image"
-            src="@/imgs/joker.jpg"
-            alt="The Joker"
-            @click="showModal"
-          />
-        </div>
-        <div class="col">
-          <img
-            class="small-image"
-            src="@/imgs/starwar.jpg"
-            alt="Star War"
-            @click="showModal"
-          />
-        </div>
-        <div class="col">
-          <img
-            class="small-image"
-            src="@/imgs/logan.jpg"
-            alt="Logan"
-            @click="showModal"
-          />
-        </div>
-        <div class="col">
-          <img
-            class="small-image"
-            src="@/imgs/wonder-woman.jpg"
-            alt="Wonder Woman"
+            :src="movie.url"
+            :alt="movie.title"
             @click="showModal"
           />
         </div>
       </div>
-      <div class="row">
-        <div class="col">
+      <!-- <div class="row">
+        <div class="col" v-for="(movie, index) in MovieList" v-bind:key="index">
           <img
             class="small-image"
-            src="@/imgs/black-panther.jpg"
-            alt="Black Panther"
+            :src="movie.url"
+            :alt="movie.title"
             @click="showModal"
           />
         </div>
-        <div class="col">
-          <img
-            class="small-image"
-            src="@/imgs/joker.jpg"
-            alt="The Joker"
-            @click="showModal"
-          />
-        </div>
-        <div class="col">
-          <img
-            class="small-image"
-            src="@/imgs/6-underground.jpg"
-            alt="6-underground"
-            @click="showModal"
-          />
-        </div>
-        <div class="col">
-          <img
-            class="small-image"
-            src="@/imgs/joker.jpg"
-            alt="The Joker"
-            @click="showModal"
-          />
-        </div>
-        <div class="col">
-          <img
-            class="small-image"
-            src="@/imgs/black-widow.jpg"
-            alt="Black Widow"
-            @click="showModal"
-          />
-        </div>
-      </div>
+      </div> -->
     </div>
     <a-modal
       v-model="visible"
@@ -105,9 +41,12 @@
           Some styles allow you to select a simple background, a more one, or
           one, or remove it altogether. Give it a try!
         </p>
-        <img class="large-image" src="../imgs/black-widow.jpg" />
+        <img
+          class="large-image"
+          src="https://image.tmdb.org/t/p/w342/xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
+        />
       </div>
-      <a-button @click="onClick">More</a-button>
+      <a-button @click="onClick">More Info</a-button>
     </a-modal>
   </div>
 </template>
@@ -117,7 +56,29 @@ export default {
   name: "DisplayMovie",
   data() {
     return {
-      visible: false
+      visible: false,
+      MovieList: [
+        {
+          title: "Wonder Woman",
+          url: "https://image.tmdb.org/t/p/w342/xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
+        },
+        {
+          title: "Terminator",
+          url: "https://image.tmdb.org/t/p/w342/db32LaOibwEliAmSL2jjDF6oDdj.jpg"
+        },
+        {
+          title: "Logan",
+          url: "https://image.tmdb.org/t/p/w342/fMMrl8fD9gRCFJvsx0SuFwkEOop.jpg"
+        },
+        {
+          title: "Terminator",
+          url: "https://image.tmdb.org/t/p/w342/pU3bnutJU91u3b4IeRPQTOP8jhV.jpg"
+        },
+        {
+          title: "Logan",
+          url: "https://image.tmdb.org/t/p/w342/4q2NNj4S5dG2RLF9CpXsej7yXl.jpg"
+        }
+      ]
     };
   },
   methods: {
@@ -125,7 +86,7 @@ export default {
       this.visible = true;
     },
     onClick() {
-      console.log("More");
+      // console.log("More");
     }
   }
 };
@@ -134,8 +95,8 @@ export default {
 <style scoped>
 .container {
   margin: 10px;
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column; */
 }
 
 .container .row {

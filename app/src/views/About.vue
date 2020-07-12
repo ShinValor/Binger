@@ -1,7 +1,7 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
     <div class="about">
-      <div class="card-row">
+      <div class="about-row">
         <Card
           class="about-card"
           name="John"
@@ -13,7 +13,7 @@
           desc="CS major interested in system architecture and database management. I enjoy reading web novels on my break time."
         />
       </div>
-      <div class="card-row">
+      <div class="about-row">
         <Card
           class="about-card"
           name="Ferdi"
@@ -52,7 +52,7 @@ export default {
   align-items: space-evenly;
 }
 
-.card-row {
+.about-row {
   margin: 10px 0;
   display: flex;
   flex-direction: row;
@@ -71,7 +71,7 @@ export default {
     margin: 10px;
   }
 
-  .card-row {
+  .about-row {
     margin: 0px;
     flex-direction: column;
   }

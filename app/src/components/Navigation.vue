@@ -4,39 +4,93 @@
       <Menu />
       <h1 class="app-name">
         <router-link to="/" :style="{ color: 'white' }">
-          <img class="small-image" src="@/assets/svg/logo.svg" />
+          <img class="small-image" src="@/assets/svg/binger-logo.svg" />
           Binger <i :style="{ color: 'gray', 'font-size': '15px' }">By Lala</i>
         </router-link>
       </h1>
     </div>
-    <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '64px' }">
-      <a-menu-item class="nav-btn">
-        <router-link to="/about">About</router-link>
-      </a-menu-item>
-      <a-menu-item class="nav-btn">
-        <router-link to="/#services">Services</router-link>
-      </a-menu-item>
-      <a-menu-item class="nav-btn">
-        <!-- <router-link to="/">Contact</router-link> -->
-        <a href="https://github.com/ShinValor/Binger">Contact</a>
-      </a-menu-item>
-      <a-menu-item class="nav-btn">
-        <router-link to="/login">Login</router-link>
-      </a-menu-item>
-      <!-- <a-menu-item class="tab">
-        <router-link to="/signup">Register</router-link>
-      </a-menu-item> -->
-    </a-menu>
+    <div class="section">
+      <a-menu
+        theme="dark"
+        mode="horizontal"
+        :style="{ lineHeight: '64px' }"
+        v-if="!loggedIn"
+      >
+        <a-menu-item class="nav-btn">
+          <router-link to="/about">About Us</router-link>
+        </a-menu-item>
+        <a-menu-item class="nav-btn">
+          <router-link to="/#services">Services</router-link>
+        </a-menu-item>
+        <a-menu-item class="nav-btn">
+          <a href="https://github.com/ShinValor/Binger">Contact</a>
+        </a-menu-item>
+        <a-menu-item class="nav-btn">
+          <router-link to="/login">Login</router-link>
+        </a-menu-item>
+        <a-menu-item class="tab">
+          <router-link to="/signup">Register</router-link>
+        </a-menu-item>
+      </a-menu>
+      <a-dropdown :trigger="['click']" :style="{ padding: '0px 20px' }" v-else>
+        <a class="ant-dropdown-link" @click="e => e.preventDefault()">
+          {{ username }} <a-icon type="caret-down" /> <a-icon type="user" />
+        </a>
+        <a-menu theme="dark" slot="overlay">
+          <a-menu-item key="0">
+            <router-link to="/favorite-movies">My Profile</router-link>
+          </a-menu-item>
+          <a-menu-item key="1">
+            <router-link to="/user">Account Setting</router-link>
+          </a-menu-item>
+          <a-menu-divider />
+          <a-menu-item key="2" @click="logout">
+            <router-link to="/">Log out</router-link>
+          </a-menu-item>
+        </a-menu>
+      </a-dropdown>
+    </div>
   </a-layout-header>
 </template>
 
 <script>
+import firebase from "firebase";
 import Menu from "@/components/Menu.vue";
 
 export default {
   name: "Navigation",
   components: {
     Menu
+  },
+  data() {
+    return {
+      loggedIn: Boolean,
+      username: String
+    };
+  },
+  methods: {
+    logout() {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          // console.log("You have signed out.");
+        })
+        .catch(error => {
+          this.error = error.message;
+          // alert(this.error);
+        });
+    }
+  },
+  created() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.username = user.displayName;
+        this.loggedIn = true;
+      } else {
+        this.loggedIn = false;
+      }
+    });
   }
 };
 </script>

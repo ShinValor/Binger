@@ -6,19 +6,10 @@ import "./assets/css/main.css";
 import * as firebase from "firebase";
 import Antd from "ant-design-vue";
 import "ant-design-vue/dist/antd.css";
-import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
-// import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap-vue/dist/bootstrap-vue.css";
 
 Vue.config.productionTip = false;
 
 Vue.use(Antd);
-
-// Install BootstrapVue
-Vue.use(BootstrapVue);
-
-// Optionally install the BootstrapVue icon components plugin
-Vue.use(IconsPlugin);
 
 const firebaseConfig = {
   apiKey: "AIzaSyDHOUq-c694Z3-0uHuxPutfR7Erd6u-lOg",

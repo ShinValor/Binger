@@ -1,30 +1,24 @@
 <template>
-  <Slide width="250">
-    <router-link to="/">
-      <span>Home</span>
+  <PushRotate width="250">
+    <router-link to="/movie-recommendations">
+      <span>Recommendation</span>
     </router-link>
-    <router-link to="/about">
-      <span>About</span>
+    <router-link to="/movie-synopsis">
+      <span>Movie Summary</span>
     </router-link>
-    <router-link to="/recommendations">
-      <span>Search</span>
+    <router-link to="/movie-list">
+      <span>Movie List</span>
     </router-link>
-    <router-link to="/favorites">
-      <span>Dashboard</span>
-    </router-link>
-    <router-link to="/login">
-      <span>Log in</span>
-    </router-link>
-  </Slide>
+  </PushRotate>
 </template>
 
 <script>
-import { Slide } from "vue-burger-menu";
+import { PushRotate } from "vue-burger-menu";
 
 export default {
   name: "Menu",
   components: {
-    Slide
+    PushRotate
   }
 };
 </script>
@@ -45,7 +39,7 @@ export default {
 
 .line-style {
   position: absolute;
-  height: 1% !important;
+  height: 10% !important;
   left: 0;
   right: 0;
 }

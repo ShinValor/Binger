@@ -13,7 +13,6 @@
           <router-link to="/login"><b>Learn More</b></router-link>
         </a-button>
       </div>
-      <!-- <img src="@/imgs/banner.jpg" alt="Binger Banner" /> -->
     </div>
     <Content
       class="content-background"
@@ -137,17 +136,6 @@ export default {
   components: {
     Content,
     Footer
-  },
-  data() {
-    return {
-      flickityOptions: {
-        initialIndex: 0,
-        // lazyLoad: true,
-        autoPlay: 3000,
-        groupCells: 3,
-        freeScroll: true
-      }
-    };
   }
 };
 </script>
@@ -168,7 +156,7 @@ export default {
 .banner {
   height: 600px;
   width: 100%;
-  background-image: url("../assets/svg/cinema.svg");
+  background-image: url("../assets/svg/cinema-background.svg");
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;

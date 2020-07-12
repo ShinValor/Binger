@@ -1,3 +1,5 @@
+/* Navigation Menu */
+
 .ant-menu-item > a {
   color: white !important;
 }
@@ -21,4 +23,13 @@
 .ant-card-body {
   margin: 5px !important;
   padding: 0px !important;
+}
+
+/* Drop down Menu */
+a.ant-dropdown-link {
+  color:white;
+}
+
+a.ant-dropdown-link:hover {
+  color: lightpink;
 }
