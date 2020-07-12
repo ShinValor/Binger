@@ -31,9 +31,9 @@ from app.utils import recommendations
 from app.utils import shows
 
 
-cred = credentials.Certificate('key.json')
-firebase_app = initialize_app(cred)
-#firebase_app = initialize_app()
+#cred = credentials.Certificate('key.json')
+#firebase_app = initialize_app(cred)
+firebase_app = initialize_app()
 db = firestore.client()
 
 def check_token(f):
@@ -289,7 +289,7 @@ def get_popular():
 @check_token
 def get_unpopular():
     """
-    Retrieves the most popular movies from TMDB
+    Retrieves the least popular movies from TMDB
     """
     # get idToken
     token = request.args.get('token')
