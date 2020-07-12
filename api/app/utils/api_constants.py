@@ -67,7 +67,7 @@ via deep copying.
 DEFAULT_OPTIONS = {
     "api_key": API_KEY,
     "language": "en-US",
-    "sort_by": "popularity.asc"
+    "sort_by": "popularity.desc"
 }
 
 """ 
