@@ -110,7 +110,7 @@ export default {
       this.visible = true;
     },
     onClick() {
-      console.log("More");
+      // console.log("More");
     }
   }
 };

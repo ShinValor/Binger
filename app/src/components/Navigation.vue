@@ -10,7 +10,12 @@
       </h1>
     </div>
     <div class="section">
-      <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '64px' }">
+      <a-menu
+        theme="dark"
+        mode="horizontal"
+        :style="{ lineHeight: '64px' }"
+        v-if="!loggedIn"
+      >
         <a-menu-item class="nav-btn">
           <router-link to="/about">About Us</router-link>
         </a-menu-item>
@@ -27,9 +32,9 @@
           <router-link to="/signup">Register</router-link>
         </a-menu-item>
       </a-menu>
-      <a-dropdown :trigger="['click']" :style="{ padding: '0px 20px' }">
+      <a-dropdown :trigger="['click']" :style="{ padding: '0px 20px' }" v-else>
         <a class="ant-dropdown-link" @click="e => e.preventDefault()">
-          Shinvalor <a-icon type="caret-down" /> <a-icon type="user" />
+          {{username}} <a-icon type="caret-down" /> <a-icon type="user" />
         </a>
         <a-menu theme="dark" slot="overlay">
           <a-menu-item key="0">
@@ -39,7 +44,7 @@
             <router-link to="/user">Account Setting</router-link>
           </a-menu-item>
           <a-menu-divider />
-          <a-menu-item key="2">
+          <a-menu-item key="2" @click="logout">
             <router-link to="/">Log out</router-link>
           </a-menu-item>
         </a-menu>
@@ -49,12 +54,41 @@
 </template>
 
 <script>
+import firebase from "firebase";
 import Menu from "@/components/Menu.vue";
 
 export default {
   name: "Navigation",
   components: {
     Menu
+  },
+  data() {
+    return {
+      loggedIn: Boolean,
+      username: String
+    };
+  },
+  methods: {
+    logout() {
+      firebase.auth().signOut()
+        .then(() => {
+          // console.log("You have signed out.");
+        })
+        .catch(error => {
+          this.error = error.message;
+          // alert(this.error);
+        });
+    }
+  },
+  created() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.username = user.displayName;
+        this.loggedIn = true;
+      } else {
+        this.loggedIn = false;
+      }
+    });
   }
 };
 </script>

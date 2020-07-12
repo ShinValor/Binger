@@ -67,16 +67,14 @@ export default {
       e.preventDefault();
       this.form.validateFields((err, values) => {
         if (!err) {
-          console.log("Received values of form: ", values);
-          firebase
-            .auth()
-            .signInWithEmailAndPassword(values.email, values.password)
+          // console.log("Received values of form: ", values);
+          firebase.auth().signInWithEmailAndPassword(values.email, values.password)
             .then(() => {
               this.$router.replace({ name: "User" });
             })
             .catch(err => {
               this.error = err.message;
-              alert(this.error);
+              // alert(this.error);
             });
         }
       });

@@ -130,13 +130,10 @@ export default {
       e.preventDefault();
       this.form.validateFieldsAndScroll((err, values) => {
         if (!err) {
-          console.log("Received values of form: ", values);
-          firebase
-            .auth()
-            .createUserWithEmailAndPassword(values.email, values.password)
+          // console.log("Received values of form: ", values);
+          firebase.auth().createUserWithEmailAndPassword(values.email, values.password)
             .then(data => {
-              data.user
-                .updateProfile({
+              data.user.updateProfile({
                   displayName: values.nickname
                 })
                 .then(() => {
@@ -145,7 +142,7 @@ export default {
             })
             .catch(err => {
               this.error = err.message;
-              alert(this.error);
+              // alert(this.error);
             });
         }
       });

@@ -43,9 +43,9 @@ export default {
   created() {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        console.log("You are signed in.");
+        // console.log("You are signed in.");
       } else {
-        console.log("You are not signed in.");
+        // console.log("You are not signed in.");
         this.$router.replace({ name: "Home" });
       }
     });
@@ -58,15 +58,13 @@ export default {
   },
   methods: {
     logout() {
-      firebase
-        .auth()
-        .signOut()
+      firebase.auth().signOut()
         .then(() => {
-          console.log("You have signed out.");
+          // console.log("You have signed out.");
         })
         .catch(error => {
           this.error = error.message;
-          alert(this.error);
+          // alert(this.error);
         });
     },
     profile() {
@@ -78,54 +76,51 @@ export default {
         const photoUrl = user.photoURL;
         const emailVerified = user.emailVerified;
         const uid = user.uid;
-        console.log("Name: ", name);
-        console.log("Email: ", email);
-        console.log("Photo Url: ", photoUrl);
-        console.log("Email Verified: ", emailVerified);
-        console.log("Uid: ", uid);
+        // console.log("Name: ", name);
+        // console.log("Email: ", email);
+        // console.log("Photo Url: ", photoUrl);
+        // console.log("Email Verified: ", emailVerified);
+        // console.log("Uid: ", uid);
       }
     },
     updateProfile() {
       const user = firebase.auth().currentUser;
 
-      user
-        .updateProfile({
+      user.updateProfile({
           displayName: "Jane Q. User",
           photoURL: "https://example.com/jane-q-user/profile.jpg"
         })
         .then(() => {
-          alert("Updated Profile");
+          // alert("Updated Profile");
         })
         .catch(error => {
           this.error = error.message;
-          alert(this.error);
+          // alert(this.error);
         });
     },
     updateEmail() {
       const user = firebase.auth().currentUser;
 
-      user
-        .updateEmail("user@example.com")
+      user.updateEmail("user@example.com")
         .then(() => {
-          alert("Updated Email");
+          // alert("Updated Email");
         })
         .catch(error => {
           this.error = error.message;
-          alert(this.error);
+          // alert(this.error);
         });
     },
     setPassword() {
       const user = firebase.auth().currentUser;
       const newPassword = "onetwothreefourfivesix";
 
-      user
-        .updatePassword(newPassword)
+      user.updatePassword(newPassword)
         .then(() => {
-          alert("Updated Password");
+          // alert("Updated Password");
         })
         .catch(error => {
           this.error = error.message;
-          alert(this.error);
+          // alert(this.error);
         });
     },
     resetPassword() {
@@ -133,35 +128,31 @@ export default {
       const emailAddress = user.email;
       const auth = firebase.auth();
 
-      auth
-        .sendPasswordResetEmail(emailAddress)
+      auth.sendPasswordResetEmail(emailAddress)
         .then(() => {
-          alert("Email Sent");
+          // alert("Email Sent");
         })
         .catch(error => {
           this.error = error.message;
-          alert(this.error);
+          // alert(this.error);
         });
     },
     fetchApi() {
-      firebase
-        .auth()
-        .currentUser.getIdToken(/* forceRefresh */ true)
+      firebase.auth().currentUser.getIdToken(/* forceRefresh */ true)
         .then(token => {
-          console.log("Token: ", token);
-          axios
-            .get("http://127.0.0.1:5000/test", {
+          // console.log("Token: ", token);
+          axios.get("http://127.0.0.1:5000/test", {
               params: {
                 token: token
               }
             })
             .then(response => {
               this.info = response;
-              console.log("Response: ", this.info);
+              // console.log("Response: ", this.info);
             })
             .catch(error => {
               this.error = error.message;
-              alert(this.error);
+              // alert(this.error);
             })
             .finally(() => {
               this.loading = false;
@@ -169,7 +160,7 @@ export default {
         })
         .catch(error => {
           this.error = error.message;
-          alert(this.error);
+          // alert(this.error);
         });
     }
   }

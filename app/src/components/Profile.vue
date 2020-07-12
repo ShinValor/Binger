@@ -93,7 +93,7 @@ export default {
   },
   methods: {
     onSubmit() {
-      console.log("submit!", this.form);
+      // console.log("submit!", this.form);
     }
   }
 };
