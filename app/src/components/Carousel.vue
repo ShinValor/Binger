@@ -129,7 +129,7 @@ export default {
   flex-direction: column;
   /* justify-content: flex-start; */
   /* border: 1px solid black; */
-  margin-right: 4px;
+  margin-right: 0px;
   /* padding: 0 2px; */
 }
 
@@ -194,7 +194,7 @@ export default {
 
   .carousel-cell {
     height: 150px;
-    margin-right: 2px;
+    margin-right: 0px;
   }
 
   .title {

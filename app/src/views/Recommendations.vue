@@ -80,7 +80,7 @@ export default {
 }
 
 .tabs {
-  width: 95%;
+  width: 90%;
   margin: 50px auto 25px;
 }
 
