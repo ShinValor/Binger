@@ -143,3 +143,6 @@ dmypy.json
 cython_debug/
 
 key.json
+*.vscode
+*.Identifier
+flask_session
