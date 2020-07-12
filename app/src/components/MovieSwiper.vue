@@ -29,7 +29,7 @@ const INTERACT_DRAGGED_LEFT = "INTERACT_DRAGGED_LEFT";
 const INTERACT_DRAGGED_RIGHT = "INTERACT_DRAGGED_RIGHT";
 
 export default {
-  name: "Swiper",
+  name: "MovieSwiper",
   components: {
     Vue2InteractDraggable
   },

@@ -56,7 +56,7 @@ export default {
     },
     listType: {
       type: String,
-      default: "Movie Reccomendations"
+      default: "Movie Recommendations"
     }
   },
   methods: {
