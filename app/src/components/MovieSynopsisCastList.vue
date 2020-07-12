@@ -35,9 +35,11 @@ export default {
   data() {
     return {
       listData,
+      currentPage: String,
       pagination: {
         onChange: page => {
           // console.log(page);
+          this.currentPage = page;
         },
         pageSize: 5
       }

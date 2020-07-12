@@ -62,9 +62,15 @@ export default {
     DisplayMovie,
     Footer
   },
+  data() {
+    return {
+      query: String
+    };
+  },
   methods: {
     onSearch(value) {
       // console.log(value);
+      this.query = value;
     }
   }
 };

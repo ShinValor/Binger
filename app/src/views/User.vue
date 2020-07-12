@@ -58,7 +58,9 @@ export default {
   },
   methods: {
     logout() {
-      firebase.auth().signOut()
+      firebase
+        .auth()
+        .signOut()
         .then(() => {
           // console.log("You have signed out.");
         })
@@ -71,11 +73,11 @@ export default {
       const user = firebase.auth().currentUser;
 
       if (user != null) {
-        const name = user.displayName;
-        const email = user.email;
-        const photoUrl = user.photoURL;
-        const emailVerified = user.emailVerified;
-        const uid = user.uid;
+        // const name = user.displayName;
+        // const email = user.email;
+        // const photoUrl = user.photoURL;
+        // const emailVerified = user.emailVerified;
+        // const uid = user.uid;
         // console.log("Name: ", name);
         // console.log("Email: ", email);
         // console.log("Photo Url: ", photoUrl);
@@ -86,7 +88,8 @@ export default {
     updateProfile() {
       const user = firebase.auth().currentUser;
 
-      user.updateProfile({
+      user
+        .updateProfile({
           displayName: "Jane Q. User",
           photoURL: "https://example.com/jane-q-user/profile.jpg"
         })
@@ -101,7 +104,8 @@ export default {
     updateEmail() {
       const user = firebase.auth().currentUser;
 
-      user.updateEmail("user@example.com")
+      user
+        .updateEmail("user@example.com")
         .then(() => {
           // alert("Updated Email");
         })
@@ -114,7 +118,8 @@ export default {
       const user = firebase.auth().currentUser;
       const newPassword = "onetwothreefourfivesix";
 
-      user.updatePassword(newPassword)
+      user
+        .updatePassword(newPassword)
         .then(() => {
           // alert("Updated Password");
         })
@@ -128,7 +133,8 @@ export default {
       const emailAddress = user.email;
       const auth = firebase.auth();
 
-      auth.sendPasswordResetEmail(emailAddress)
+      auth
+        .sendPasswordResetEmail(emailAddress)
         .then(() => {
           // alert("Email Sent");
         })
@@ -138,10 +144,13 @@ export default {
         });
     },
     fetchApi() {
-      firebase.auth().currentUser.getIdToken(/* forceRefresh */ true)
+      firebase
+        .auth()
+        .currentUser.getIdToken(/* forceRefresh */ true)
         .then(token => {
           // console.log("Token: ", token);
-          axios.get("http://127.0.0.1:5000/test", {
+          axios
+            .get("http://127.0.0.1:5000/test", {
               params: {
                 token: token
               }

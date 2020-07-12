@@ -68,7 +68,9 @@ export default {
       this.form.validateFields((err, values) => {
         if (!err) {
           // console.log("Received values of form: ", values);
-          firebase.auth().signInWithEmailAndPassword(values.email, values.password)
+          firebase
+            .auth()
+            .signInWithEmailAndPassword(values.email, values.password)
             .then(() => {
               this.$router.replace({ name: "User" });
             })

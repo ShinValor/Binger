@@ -34,7 +34,7 @@
       </a-menu>
       <a-dropdown :trigger="['click']" :style="{ padding: '0px 20px' }" v-else>
         <a class="ant-dropdown-link" @click="e => e.preventDefault()">
-          {{username}} <a-icon type="caret-down" /> <a-icon type="user" />
+          {{ username }} <a-icon type="caret-down" /> <a-icon type="user" />
         </a>
         <a-menu theme="dark" slot="overlay">
           <a-menu-item key="0">
@@ -70,7 +70,9 @@ export default {
   },
   methods: {
     logout() {
-      firebase.auth().signOut()
+      firebase
+        .auth()
+        .signOut()
         .then(() => {
           // console.log("You have signed out.");
         })

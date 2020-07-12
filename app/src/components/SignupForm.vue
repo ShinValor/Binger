@@ -131,9 +131,12 @@ export default {
       this.form.validateFieldsAndScroll((err, values) => {
         if (!err) {
           // console.log("Received values of form: ", values);
-          firebase.auth().createUserWithEmailAndPassword(values.email, values.password)
+          firebase
+            .auth()
+            .createUserWithEmailAndPassword(values.email, values.password)
             .then(data => {
-              data.user.updateProfile({
+              data.user
+                .updateProfile({
                   displayName: values.nickname
                 })
                 .then(() => {
