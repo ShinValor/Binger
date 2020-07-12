@@ -7,21 +7,12 @@
         v-for="item in MovieList"
         v-bind:key="item.title"
       >
-        <img
-          class="carousel-cell-image"
-          :src="resolve_img_url(item.poster_path)"
-          @click="showModal"
-        />
+      <div class="carousel-cell" v-for="(item, index) in MovieList" v-bind:key="index">
+        <router-link :to="{ name: 'MovieSynopsis', params: { id: item.id } }">
+          <img class="carousel-cell-image" :src="resolve_img_url(item.poster_path, item.title)" />
+        </router-link>
       </div>
     </flickity>
-    <a-modal
-      v-model="visible"
-      title="Movie Summary"
-      :width="750"
-      :footer="null"
-    >
-      <div></div>
-    </a-modal>
   </div>
 </template>
 <script>
@@ -62,9 +53,6 @@ export default {
   methods: {
     resolve_img_url: function(path) {
       return "https://image.tmdb.org/t/p/w342" + path;
-    },
-    showModal() {
-      this.visible = true;
     },
     onClick() {
       // console.log("More");

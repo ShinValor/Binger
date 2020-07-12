@@ -1,66 +1,18 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
-    <div
-      class="header"
-      :style="{
-        'background-image': 'url(' + resolve_img_url(item.backdrop_path) + ')'
-      }"
-    >
-      <div class="header-contents fontColor">
-        <div class="poster-wrapper">
-          <img
-            class="poster"
-            :src="resolve_img_url(item.poster_path)"
-            :alt="item.title"
-          />
-        </div>
-        <div class="movie-info-part">
-          <div class="movie-info">
-            <div class="key-info">
-              <div class="title-wrapper left-align">
-                <h2 class="movie-title left-align fontColor">
-                  {{ item.title }}
-                </h2>
-                <span class="tagline">{{ item.tagline }}</span>
-              </div>
-              <div class="general-info">
-                <span class="release-date">{{ item.releaseDate }}</span>
-                <span class="genres">{{ genres }}</span>
-                <span class="runtime">{{ item.duration }}</span>
-              </div>
-            </div>
-            <div class="user-interaction left-align">
-              <div class="score-section">
-                <div class="user-avg-score">
-                  <span class="movie-score">{{ item.vote_average }}</span>
-                </div>
-                <span class="score-section-text">
-                  Average
-                  <br />User Score
-                </span>
-              </div>
-              <div class="score-section favorite-button">
-                <a-button type="primary" shape="circle" icon="star" />
-              </div>
-              <div class="play-trailer score-section">
-                <a :href="resolve_video_url(item.trailer_key)">
-                  <a-icon type="play-circle" />Play Trailer
-                </a>
-              </div>
-            </div>
-            <div class="detailed-info left-align">
-              <h3 class="text-overview fontColor">Overview:</h3>
-              <div class="movie-overview" dir="auto">
-                <p class="movie-overview-text">{{ item.description }}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <MovieSynopsisMovieList listType="Movie Recommendation" />
-    <MovieSynopsisMovieList listType="Similar Movies" />
-    <MovieSynopsisCastList />
+
+    <Movie_Synopsis :key="this.$route.params.id" :movieID="parseInt(this.$route.params.id)" />
+    <MovieSynopsisMovieList
+      listType="Movie Reccomendations"
+      :movieID="parseInt(this.$route.params.id)"
+      :key="this.$route.params.id"
+    />
+    <MovieSynopsisMovieList
+      listType="Similar Movies"
+      :movieID="parseInt(this.$route.params.id)"
+      :key="this.$route.params.id"
+    />
+    <!-- <MovieSynopsisCastList /> -->
   </a-layout>
 </template>
 
