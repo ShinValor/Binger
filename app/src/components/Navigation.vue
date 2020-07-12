@@ -33,14 +33,14 @@
         </a>
         <a-menu theme="dark" slot="overlay">
           <a-menu-item key="0">
-            <a href="http://www.alipay.com/">1st menu item</a>
+            <router-link to="/favorite-movies">My Profile</router-link>
           </a-menu-item>
           <a-menu-item key="1">
-            <a href="http://www.taobao.com/">2nd menu item</a>
+            <router-link to="/user">Account Setting</router-link>
           </a-menu-item>
-          <!-- <a-menu-divider /> -->
+          <a-menu-divider />
           <a-menu-item key="2">
-            3rd menu item
+            <router-link to="/">Log out</router-link>
           </a-menu-item>
         </a-menu>
       </a-dropdown>
