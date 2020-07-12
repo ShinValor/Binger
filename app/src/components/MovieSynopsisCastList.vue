@@ -1,31 +1,15 @@
 <template>
   <div class="card">
-    <h2 class="list-type-text">Cast List</h2>
+    <h2 class="list-type-text">The important Cast</h2>
     <div>
-      <MovieSynopsisCast class="list-item" />
-      <MovieSynopsisCast class="list-item" />
-      <MovieSynopsisCast class="list-item" />
-      <MovieSynopsisCast class="list-item" />
-      <MovieSynopsisCast class="list-item" />
+      <MovieSynopsisCast class="list-item" v-for="item in castList" :key="item.order" :cast="item" />
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 import MovieSynopsisCast from "@/components/MovieSynopsisCast.vue";
-const listData = [];
-// for (let i = 0; i < 10; i++) {
-//   listData.push({
-//     cast_id: 4,
-//     character: "The Big Narrator",
-//     credit_id: "52fe4250c3a36847f80149f3",
-//     gender: 2,
-//     id: 819,
-//     name: "Edward Norton",
-//     order: 0,
-//     profile_path: "/eIkFHNlfretLS1spAcIoihKUS62.jpg"
-//   });
-// }
 
 export default {
   name: "MovieSynopsisCastList",
@@ -33,15 +17,18 @@ export default {
     MovieSynopsisCast
   },
   props: {
-    movieID: Number
+    movieID: {
+      type: Number,
+      required: true
+    }
   },
   created() {
     axios
-      .get("http://127.0.0.1:5000/cast/" + movieID)
+      .get("http://127.0.0.1:5000/Cast/" + this.movieID)
       .then(response => {
         if (response && response.status === 200) {
           console.log(response);
-          this.listData = response.data;
+          this.castList = response.data;
         }
       })
       .catch(error => {
@@ -51,15 +38,7 @@ export default {
   },
   data() {
     return {
-      listData,
-      currentPage: String,
-      pagination: {
-        onChange: page => {
-          // console.log(page);
-          this.currentPage = page;
-        },
-        pageSize: 5
-      }
+      castList: Array
     };
   }
 };
@@ -69,10 +48,6 @@ export default {
   display: inline-block;
   margin: 10px;
   padding: 2px;
-}
-.list-item:hover {
-  color: blue;
-  background-color: lightblue;
 }
 .card {
   margin: 2em;

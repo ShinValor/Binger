@@ -1,25 +1,34 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
 
-    <Movie_Synopsis :key="this.$route.params.id" :movieID="parseInt(this.$route.params.id)" />
+    <Movie_Synopsis
+      :key="this.$route.params.id + 'Syn'"
+      :movieID="parseInt(this.$route.params.id)"
+    />
     <MovieSynopsisMovieList
       listType="Movie Reccomendations"
       :movieID="parseInt(this.$route.params.id)"
-      :key="this.$route.params.id"
+      :key="this.$route.params.id + 'Rec'"
     />
     <MovieSynopsisMovieList
       listType="Similar Movies"
       :movieID="parseInt(this.$route.params.id)"
-      :key="this.$route.params.id"
+      :key="this.$route.params.id+ 'Sim'"
     />
-    <MovieSynopsisCastList :key="this.$route.params.id" :movieID="parseInt(this.$route.params.id)" />
+    <MovieSynopsisCastList
+      :key="this.$route.params.id + 'cst'"
+      :movieID="parseInt(this.$route.params.id)"
+    />
   </a-layout>
 </template>
 
 <script>
 import MovieSynopsisMovieList from "@/components/MovieSynopsisMovieList.vue";
 import MovieSynopsisCastList from "@/components/MovieSynopsisCastList.vue";
+<<<<<<< HEAD
 
+=======
+>>>>>>> Completed all the endpoint calls
 export default {
   name: "MovieSynopsis",
   components: {
