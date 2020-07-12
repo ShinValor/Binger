@@ -1,13 +1,12 @@
+import requests
+import grequests
+import shows as s
+import api_constants as consts
+import copy
+import json
 from gevent import monkey
 monkey.patch_all(thread=False, select=False)
 
-import json
-import copy
-
-import api_constants as consts
-import shows as s
-import grequests
-import requests
 
 def discover_requests(genre_ids, number_of_pages=3, is_movie=True):
     """
@@ -33,18 +32,20 @@ def discover_requests(genre_ids, number_of_pages=3, is_movie=True):
             options["with_genres"] = genre
             options["page"] = page_num
 
-            if is_movie: 
+            if is_movie:
                 options["release_date.lte"] = "2020-06-01"
                 options["release_date.gte"] = "1985-01-01"
                 api_url = consts.MOVIE_DISCOVER_URL
-            else: 
+            else:
                 options["first_air_date.lte"] = "2020-06-01"
                 options["first_air_date.gte"] = "1985-01-01"
                 api_url = consts.TV_SHOW_DISCOVER_URL
 
-            discover_requests.append(grequests.get(url=api_url, params=options))
-    
+            discover_requests.append(
+                grequests.get(url=api_url, params=options))
+
     return discover_requests
+
 
 def recommendation_requests(show):
     """
@@ -58,7 +59,7 @@ def recommendation_requests(show):
     Returns:
         rec_requests: A list of API requests that will be sent to TMDB's recommendation endpoint.
     """
-    
+
     rec_requests = []
     number_of_pages = 2
 
@@ -71,9 +72,11 @@ def recommendation_requests(show):
         options = copy.deepcopy(consts.DEFAULT_OPTIONS)
         options["page"] = page_num
 
-        rec_requests.append(grequests.get(url=api_url.format(show.id), params=options))
-    
+        rec_requests.append(grequests.get(
+            url=api_url.format(show.id), params=options))
+
     return rec_requests
+
 
 def get_discover_shows(genre_ids, number_of_pages=3):
     """
@@ -87,7 +90,7 @@ def get_discover_shows(genre_ids, number_of_pages=3):
         TMDB. 
     """
     shows = []
-    
+
     movie_recs = discover_requests(genre_ids, number_of_pages, True)
     tv_reqs = discover_requests(genre_ids, number_of_pages, False)
 
@@ -98,6 +101,7 @@ def get_discover_shows(genre_ids, number_of_pages=3):
     shows.extend(create_show_data_list(tv_responses, False))
 
     return shows
+
 
 def get_recommendations(show):
     """
@@ -110,13 +114,14 @@ def get_recommendations(show):
     """
 
     recommendations = []
-    
+
     rec_reqs = recommendation_requests(show)
     responses = grequests.map(rec_reqs, size=len(rec_reqs))
 
     recommendations.extend(create_show_data_list(responses, show.is_movie))
 
     return recommendations
+
 
 def resolve_show(show_data):
     """
@@ -133,12 +138,13 @@ def resolve_show(show_data):
         api_url = consts.MOVIE_DETAILS_URL
     else:
         api_url = consts.TV_SHOW_DETAILS_URL
-    
+
     options = copy.deepcopy(consts.DEFAULT_OPTIONS)
-    
+
     req = requests.get(url=api_url.format(show_data.id), params=options)
 
     return s.create_show(req.json(), show_data.is_movie)
+
 
 def create_show_data_list(api_responses, is_movie):
     """
@@ -156,8 +162,9 @@ def create_show_data_list(api_responses, is_movie):
     for response in api_responses:
         if response.status_code == 200:
             results = response.json()["results"]
-            for result in results:            
-                items.append(s.ShowData(result["id"], result["vote_average"], is_movie))
+            for result in results:
+                items.append(s.ShowData(
+                    result["id"], result["vote_average"], is_movie))
 
     return items
 
@@ -173,7 +180,6 @@ def top_rated_requests(is_movie=True):
         top_rated_requests: A list of API requests that will be sent to TMDB's /top_rated endpoint.
     """
 
-
     top_rated_requests = []
 
     options = copy.deepcopy(consts.DEFAULT_OPTIONS)
@@ -182,7 +188,7 @@ def top_rated_requests(is_movie=True):
     if is_movie:
         api_url = consts.MOVIE_TOP_RATED_URL
 
-    top_rated_requests.append(grequests.get(url=api_url,params=options))
+    top_rated_requests.append(grequests.get(url=api_url, params=options))
     return top_rated_requests
 
 
@@ -197,6 +203,46 @@ def get_top_rated_shows():
     shows = []
 
     movie_recs = top_rated_requests()
+    movie_responses = grequests.map(movie_recs, size=len(movie_recs))
+    shows.extend(create_show_data_list(movie_responses, True))
+    return shows
+
+
+def worst_rated_requests(is_movie=True):
+    """
+    Builds a list of API requests for the worst rated movies
+
+    Args:
+        is_movie: Boolean that decides what type of request will be sent to TMDB.
+
+    Returns: 
+        worst_rated_requests: A list of API requests that will be sent to TMDB's /top_rated endpoint.
+    """
+
+    top_rated_requests = []
+
+    options = copy.deepcopy(consts.DEFAULT_OPTIONS)
+    options["page"] = 1
+    options["sort_by"] = "vote_average.asc"
+
+    if is_movie:
+        api_url = consts.MOVIE_TOP_RATED_URL
+
+    top_rated_requests.append(grequests.get(url=api_url, params=options))
+    return top_rated_requests
+
+
+def get_worst_rated_shows():
+    """
+    Function is responsible of creating a list of top rated movies from TMDB
+
+    Returns:
+        shows: A list of "Show" objects derived from the /worst_rated endpoint for
+        TMDB. 
+    """
+    shows = []
+
+    movie_recs = worst_rated_requests()
     movie_responses = grequests.map(movie_recs, size=len(movie_recs))
     shows.extend(create_show_data_list(movie_responses, True))
     return shows
@@ -220,7 +266,7 @@ def popular_requests(is_movie=True):
     if is_movie:
         api_url = consts.MOVIE_POPULAR_URL
 
-    popular_requests.append(grequests.get(url=api_url,params=options))
+    popular_requests.append(grequests.get(url=api_url, params=options))
 
     return popular_requests
 
@@ -241,6 +287,86 @@ def get_popular_shows():
     return shows
 
 
+def unpopular_requests(is_movie=True):
+    """
+    Builds a list of API requests for the most unpopular movies
+
+    Args:
+        is_movie: Boolean that decides what type of request will be sent to TMDB.
+
+    Returns: 
+        top_rated_requests: A list of API requests that will be sent to TMDB's /unpopular endpoint.
+    """
+    popular_requests = []
+
+    options = copy.deepcopy(consts.DEFAULT_OPTIONS)
+    options["page"] = 1
+    options["sort_by"] = "vote_average.asc"
+
+    if is_movie:
+        api_url = consts.MOVIE_POPULAR_URL
+
+    popular_requests.append(grequests.get(url=api_url, params=options))
+
+    return popular_requests
+
+
+def get_unpopular_shows():
+    """
+    Function is responsible of creating a list of most popular movies from TMDB
+
+    Returns:
+        shows: A list of "Show" objects derived from the /popular endpoint for
+        TMDB. 
+    """
+    shows = []
+
+    movie_recs = unpopular_requests()
+    movie_responses = grequests.map(movie_recs, size=len(movie_recs))
+    shows.extend(create_show_data_list(movie_responses, True))
+    return shows
+
+
+def oldest_requests(is_movie=True):
+    """
+    Builds a list of API requests for the oldest movies
+
+    Args:
+        is_movie: Boolean that decides what type of request will be sent to TMDB.
+
+    Returns: 
+        top_rated_requests: A list of API requests that will be sent to TMDB's /oldest endpoint.
+    """
+    popular_requests = []
+
+    options = copy.deepcopy(consts.DEFAULT_OPTIONS)
+    options["page"] = 1
+    options["sort_by"] = "primary_release_date.asc"
+
+    if is_movie:
+        api_url = consts.MOVIE_POPULAR_URL
+
+    popular_requests.append(grequests.get(url=api_url, params=options))
+
+    return popular_requests
+
+
+def get_unpopular_shows():
+    """
+    Function is responsible of creating a list of most popular movies from TMDB
+
+    Returns:
+        shows: A list of "Show" objects derived from the /popular endpoint for
+        TMDB. 
+    """
+    shows = []
+
+    movie_recs = unpopular_requests()
+    movie_responses = grequests.map(movie_recs, size=len(movie_recs))
+    shows.extend(create_show_data_list(movie_responses, True))
+    return shows
+
+
 def get_now_playing_movies(page_num=1):
     """
     Function get a list of movies in theatres. 
@@ -250,6 +376,6 @@ def get_now_playing_movies(page_num=1):
     options["page"] = page_num
 
     api_url = consts.MOVIE_NOW_PLAYING_URL
-    response = requests.get(url=api_url,params=options)
+    response = requests.get(url=api_url, params=options)
 
     return response

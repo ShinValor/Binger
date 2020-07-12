@@ -1,13 +1,21 @@
 """
 The module for the Binger api endpoints.
 """
+import json
+import sys
+import os
+from app.utils import shows
+from app.utils import recommendations
+from app.utils import new_api_handler
+from functools import wraps
+from flask import session, jsonify, Response, request
+from firebase_admin import credentials, auth, firestore, initialize_app
+from app import app
+import jsonpickle as jp
 from gevent import monkey
 monkey.patch_all(thread=False, select=False)
 
-import os, sys, json
-import jsonpickle as jp
 
-from app import app
 """
 ====================================================================================
                             VARS NEEDED FOR AUTH AND FIRESTORE
@@ -16,19 +24,12 @@ from app import cors, cred, firebase_app
 from firebase_admin import auth, firestore 
 ====================================================================================
 """
-from firebase_admin import credentials, auth, firestore, initialize_app
-from flask import session, jsonify, Response, request
-from functools import wraps
 
 """
 Adds the utils package locations to the path to allow for portable import.
 """
 path = os.path.abspath(os.path.dirname(__file__))
 sys.path.append(os.path.join(path, "utils"))
-
-from app.utils import new_api_handler
-from app.utils import recommendations
-from app.utils import shows
 
 
 cred = credentials.Certificate('key.json')
@@ -53,18 +54,18 @@ def check_token(f):
             auth.verify_id_token(token, check_revoked=True)
 
         except auth.ExpiredIdTokenError:
-            return jsonify({'Error message':'Token expired'}),403
+            return jsonify({'Error message': 'Token expired'}), 403
 
         except auth.InvalidIdTokenError:
-            return jsonify({'Error message':'Invalid token'}),403
+            return jsonify({'Error message': 'Invalid token'}), 403
 
         except auth.RevokedIdTokenError:
-            return jsonify({'Error message':'Token revoked'}),403
+            return jsonify({'Error message': 'Token revoked'}), 403
 
         except:
-            return jsonify({'Error message':'Invalid Token'}),403
+            return jsonify({'Error message': 'Invalid Token'}), 403
 
-        return f(*args,**kwargs)
+        return f(*args, **kwargs)
     return wrap
 
 
@@ -73,7 +74,7 @@ def index():
     """
     Index page.
     """
-    return Response(response='success',status=200)
+    return Response(response='success', status=200)
 
 
 @app.route('/init')
@@ -86,13 +87,14 @@ def initialize_queue():
     """
     if "is_initialized" not in session:
         r = recommendations.RecommendationQueue()
-        r.initialize_recommendations([18]) #THIS IS A PLACEHOLDER A LIST OF IDS WILL NEED TO PASSED FROM THE FRONT.
-        
+        # THIS IS A PLACEHOLDER A LIST OF IDS WILL NEED TO PASSED FROM THE FRONT.
+        r.initialize_recommendations([18])
+
         session["recommendation"] = r.current_recommendation()
         session["is_initialized"] = True
 
         return Response(response='Created', status=201)
-    
+
     return Response(response='Already created', status=204)
 
 
@@ -118,7 +120,7 @@ def clear_session():
     return Response(response='OK', status=200)
 
 
-@app.route('/getUserShows',methods=['GET'])
+@app.route('/getUserShows', methods=['GET'])
 @check_token
 def get_user_shows():
     """
@@ -128,7 +130,7 @@ def get_user_shows():
     Note: Shows represents tv shows/movies for consistency with recommendation engine documentation
     """
     shows_list = []
-    
+
     # get idToken
     token = request.args.get('token')
 
@@ -137,17 +139,18 @@ def get_user_shows():
     uid = decoded_token['uid']
 
     # get all of the user's interested shows from firestore
-    user_shows = db.collection('users').document(uid).collection('shows').stream()
+    user_shows = db.collection('users').document(
+        uid).collection('shows').stream()
 
     # Append all data into a list and return as json array
     # If user or data doesn't exist, an empty json array will be returned
     for show in user_shows:
         shows_list.append(show.to_dict())
- 
+
     return jsonify(shows_list)
 
 
-@app.route('/addUserShows',methods=['GET','POST'])
+@app.route('/addUserShows', methods=['GET', 'POST'])
 @check_token
 def add_user_shows():
     """
@@ -158,37 +161,37 @@ def add_user_shows():
     """
     data = request.get_json()
     title = data['title']
-    
+
     # get idToken
     token = request.args.get('token')
 
     # decode idToken
     decoded_token = auth.verify_id_token(token)
     uid = decoded_token['uid']
-    
+
     # create a reference to a new document in the user's show collection
-    doc_ref = db.collection('users').document(uid).collection('shows').document(title)
+    doc_ref = db.collection('users').document(
+        uid).collection('shows').document(title)
 
     # Add the tv show data to the new document
     doc_ref.set({
-         "id": data['id'],
-         "genres": data['genres'],
-         "overview": data['overview'],
-         "popularity": data['popularity'],
-         "poster_path": data['poster_path'],
-         "release_year": data['release_year'],
-         "score": data['score'],
-         "title": data['title'],
-         "is_movie": data['is_movie']
+        "id": data['id'],
+        "genres": data['genres'],
+        "overview": data['overview'],
+        "popularity": data['popularity'],
+        "poster_path": data['poster_path'],
+        "release_year": data['release_year'],
+        "score": data['score'],
+        "title": data['title'],
+        "is_movie": data['is_movie']
     })
-    
-    return Response(response='success',status=200)
 
+    return Response(response='success', status=200)
 
 
 @app.route('/summary/<id>')
 @check_token
-def  movie_summary(id):
+def movie_summary(id):
     """
     When movie id is passed, the summary for the movie is returned
     """
@@ -199,7 +202,7 @@ def  movie_summary(id):
     decoded_token = auth.verify_id_token(token)
     uid = decoded_token['uid']
 
-    my_show_data = shows.ShowData(id,popularity=0)
+    my_show_data = shows.ShowData(id, popularity=0)
     show = new_api_handler.resolve_show(my_show_data)
 
     show_json_data = show.to_json()
@@ -234,6 +237,32 @@ def top_rated_show():
     return jsonify(json_list)
 
 
+# Requires optimization
+@app.route('/worstRated')
+@check_token
+def worst_rated_show():
+    """
+    Retrieves the worst 20 movie results from TMDB
+    """
+    # get idToken
+    token = request.args.get('token')
+
+    # decode idToken
+    decoded_token = auth.verify_id_token(token)
+    uid = decoded_token['uid']
+
+    top_rated_shows = []
+    json_list = []
+
+    show = new_api_handler.get_worst_rated_shows()
+    for i in show:
+        data = new_api_handler.resolve_show(i)
+        json_data = data.to_json()
+        a = json.loads(json_data)
+        json_list.append(a)
+    return jsonify(json_list)
+
+
 @app.route('/popular')
 @check_token
 def get_popular():
@@ -254,7 +283,31 @@ def get_popular():
         data = new_api_handler.resolve_show(i)
         json_data = data.to_json()
         json_list.append(json.loads(json_data))
-    
+
+    return jsonify(json_list)
+
+
+@app.route('/unpopular')
+@check_token
+def get_unpopular():
+    """
+    Retrieves the most popular movies from TMDB
+    """
+    # get idToken
+    token = request.args.get('token')
+
+    # decode idToken
+    decoded_token = auth.verify_id_token(token)
+    uid = decoded_token['uid']
+
+    json_list = []
+
+    show = new_api_handler.get_unpopular_shows()
+    for i in show:
+        data = new_api_handler.resolve_show(i)
+        json_data = data.to_json()
+        json_list.append(json.loads(json_data))
+
     return jsonify(json_list)
 
 
@@ -275,3 +328,26 @@ def get_now_playing():
     movie_results = movies.json()["results"]
     return json.dumps(movie_results)
 
+
+@app.route('/oldest')
+@check_token
+def get_oldest():
+    """
+    Retrieves the oldest movies from TMDB
+    """
+    # get idToken
+    token = request.args.get('token')
+
+    # decode idToken
+    decoded_token = auth.verify_id_token(token)
+    uid = decoded_token['uid']
+
+    json_list = []
+
+    show = new_api_handler.get_oldest_shows()
+    for i in show:
+        data = new_api_handler.resolve_show(i)
+        json_data = data.to_json()
+        json_list.append(json.loads(json_data))
+
+    return jsonify(json_list)
