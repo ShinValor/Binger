@@ -1,6 +1,6 @@
 <template>
   <a-form-model
-    class="profile"
+    class="container"
     :model="form"
     :label-col="labelCol"
     :wrapper-col="wrapperCol"
@@ -100,7 +100,7 @@ export default {
 </script>
 
 <style scoped>
-.profile {
+.container {
   width: 700px;
   margin: 50px 20px;
 }
@@ -108,7 +108,7 @@ export default {
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */
 
-  .profile {
+  .container {
     width: 250px;
     margin: 0 auto;
   }

@@ -12,7 +12,7 @@
     <div class="section">
       <a-menu theme="dark" mode="horizontal" :style="{ lineHeight: '64px' }">
         <a-menu-item class="nav-btn">
-          <router-link to="/about">About</router-link>
+          <router-link to="/about">About Us</router-link>
         </a-menu-item>
         <a-menu-item class="nav-btn">
           <router-link to="/#services">Services</router-link>
