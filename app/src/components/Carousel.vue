@@ -194,6 +194,7 @@ export default {
 
   .carousel-cell {
     height: 150px;
+    margin-right: 2px;
   }
 
   .title {
