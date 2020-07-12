@@ -32,9 +32,9 @@ path = os.path.abspath(os.path.dirname(__file__))
 sys.path.append(os.path.join(path, "utils"))
 
 
-cred = credentials.Certificate('key.json')
-firebase_app = initialize_app(cred)
-#firebase_app = initialize_app()
+#cred = credentials.Certificate('key.json')
+#firebase_app = initialize_app(cred)
+firebase_app = initialize_app()
 db = firestore.client()
 
 
