@@ -1,22 +1,13 @@
 <template>
   <Slide width="250">
-    <router-link to="/">
-      <span>Home</span>
-    </router-link>
-    <router-link to="/about">
-      <span>About</span>
-    </router-link>
     <router-link to="/movie-recommendations">
-      <span>Search</span>
+      <span>Recommendation</span>
     </router-link>
-    <router-link to="/favorite-movies">
-      <span>Dashboard</span>
+    <router-link to="/movie-synopsis">
+      <span>Movie Summary</span>
     </router-link>
     <router-link to="/movie-list">
       <span>Movie List</span>
-    </router-link>
-    <router-link to="/login">
-      <span>Log in</span>
     </router-link>
   </Slide>
 </template>

@@ -58,7 +58,7 @@
         </div>
       </div>
     </div>
-    <MovieSynopsisMovieList />
+    <MovieSynopsisMovieList listType="Movie Recommendation" />
     <MovieSynopsisMovieList listType="Similar Movies" />
     <MovieSynopsisCastList />
   </a-layout>

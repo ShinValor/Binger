@@ -2,85 +2,21 @@
   <div>
     <div class="container">
       <div class="row">
-        <div class="col">
+        <div class="col" v-for="(movie, index) in MovieList" v-bind:key="index">
           <img
             class="small-image"
-            src="@/imgs/aladdin.jpg"
-            alt="Aladdin"
-            @click="showModal"
-          />
-        </div>
-        <div class="col">
-          <img
-            class="small-image"
-            src="@/imgs/joker.jpg"
-            alt="The Joker"
-            @click="showModal"
-          />
-        </div>
-        <div class="col">
-          <img
-            class="small-image"
-            src="@/imgs/starwar.jpg"
-            alt="Star War"
-            @click="showModal"
-          />
-        </div>
-        <div class="col">
-          <img
-            class="small-image"
-            src="@/imgs/logan.jpg"
-            alt="Logan"
-            @click="showModal"
-          />
-        </div>
-        <div class="col">
-          <img
-            class="small-image"
-            src="@/imgs/wonder-woman.jpg"
-            alt="Wonder Woman"
+            :src="movie.url"
+            :alt="movie.title"
             @click="showModal"
           />
         </div>
       </div>
       <div class="row">
-        <div class="col">
+        <div class="col" v-for="(movie, index) in MovieList" v-bind:key="index">
           <img
             class="small-image"
-            src="@/imgs/black-panther.jpg"
-            alt="Black Panther"
-            @click="showModal"
-          />
-        </div>
-        <div class="col">
-          <img
-            class="small-image"
-            src="@/imgs/joker.jpg"
-            alt="The Joker"
-            @click="showModal"
-          />
-        </div>
-        <div class="col">
-          <img
-            class="small-image"
-            src="@/imgs/6-underground.jpg"
-            alt="6-underground"
-            @click="showModal"
-          />
-        </div>
-        <div class="col">
-          <img
-            class="small-image"
-            src="@/imgs/joker.jpg"
-            alt="The Joker"
-            @click="showModal"
-          />
-        </div>
-        <div class="col">
-          <img
-            class="small-image"
-            src="@/imgs/black-widow.jpg"
-            alt="Black Widow"
+            :src="movie.url"
+            :alt="movie.title"
             @click="showModal"
           />
         </div>
@@ -105,7 +41,10 @@
           Some styles allow you to select a simple background, a more one, or
           one, or remove it altogether. Give it a try!
         </p>
-        <img class="large-image" src="../imgs/black-widow.jpg" />
+        <img
+          class="large-image"
+          src="https://image.tmdb.org/t/p/w342//xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
+        />
       </div>
       <a-button @click="onClick">More</a-button>
     </a-modal>
@@ -117,7 +56,34 @@ export default {
   name: "DisplayMovie",
   data() {
     return {
-      visible: false
+      visible: false,
+      MovieList: [
+        {
+          title: "Wonder Woman",
+          url:
+            "https://image.tmdb.org/t/p/w342//xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
+        },
+        {
+          title: "Terminator",
+          url:
+            "https://image.tmdb.org/t/p/w342//xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
+        },
+        {
+          title: "Logan",
+          url:
+            "https://image.tmdb.org/t/p/w342//xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
+        },
+        {
+          title: "Terminator",
+          url:
+            "https://image.tmdb.org/t/p/w342//xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
+        },
+        {
+          title: "Logan",
+          url:
+            "https://image.tmdb.org/t/p/w342//xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
+        }
+      ]
     };
   },
   methods: {

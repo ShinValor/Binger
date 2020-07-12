@@ -1,109 +1,18 @@
 <template>
   <div>
     <flickity class="carousel" ref="flickity" :options="flickityOptions">
-      <div class="carousel-cell">
+      <div
+        class="carousel-cell"
+        v-for="(movie, index) in MovieList"
+        v-bind:key="index"
+      >
         <!-- <img
-          class="carousel-cell-image"
-          data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/tulip.jpg"
-          alt="tulip"
+        class="carousel-cell-image"
+        data-flickity-lazyload="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/tulip.jpg"
+        alt="tulip"
         /> -->
-        <img class="carousel-cell-image" src="../imgs/wonder-woman.jpg" />
-        <h1 class="title">Wonder Woman</h1>
-        <a-button class="btn-desc" @click="showModal">More</a-button>
-      </div>
-      <div class="carousel-cell">
-        <img class="carousel-cell-image" src="../imgs/terminator.jpg" />
-        <h1 class="title">Terminator</h1>
-        <a-button class="btn-desc" @click="showModal">More</a-button>
-      </div>
-      <div class="carousel-cell">
-        <img class="carousel-cell-image" src="../imgs/logan.jpg" />
-        <h1 class="title">Logan</h1>
-        <a-button class="btn-desc" @click="showModal">More</a-button>
-      </div>
-      <div class="carousel-cell">
-        <img class="carousel-cell-image" src="../imgs/6-underground.jpg" />
-        <h1 class="title">6 Underground</h1>
-        <a-button class="btn-desc" @click="showModal">More</a-button>
-      </div>
-      <div class="carousel-cell">
-        <img class="carousel-cell-image" src="../imgs/joker.jpg" />
-        <h1 class="title">Joker</h1>
-        <a-button class="btn-desc" @click="showModal">More</a-button>
-      </div>
-      <div class="carousel-cell">
-        <img class="carousel-cell-image" src="../imgs/black-panther.jpg" />
-        <h1 class="title">Black Panther</h1>
-        <a-button class="btn-desc" @click="showModal">More</a-button>
-      </div>
-      <div class="carousel-cell">
-        <img class="carousel-cell-image" src="../imgs/black-widow.jpg" />
-        <h1 class="title">Black Widow</h1>
-        <a-button class="btn-desc" @click="showModal">More</a-button>
-      </div>
-      <div class="carousel-cell">
-        <img class="carousel-cell-image" src="../imgs/starwar.jpg" />
-        <h1 class="title">Star War</h1>
-        <a-button class="btn-desc" @click="showModal">More</a-button>
-      </div>
-      <div class="carousel-cell">
-        <img class="carousel-cell-image" src="../imgs/aladdin.jpg" />
-        <h1 class="title">Aladdin</h1>
-        <a-button class="btn-desc" @click="showModal">More</a-button>
-      </div>
-      <div class="carousel-cell">
-        <img class="carousel-cell-image" src="../imgs/black-widow.jpg" />
-        <h1 class="title">Black Widow</h1>
-        <a-button class="btn-desc" @click="showModal">More</a-button>
-      </div>
-      <div class="carousel-cell">
-        <img class="carousel-cell-image" src="../imgs/black-panther.jpg" />
-        <h1 class="title">Black Panther</h1>
-        <a-button class="btn-desc" @click="showModal">More</a-button>
-      </div>
-      <div class="carousel-cell">
-        <img class="carousel-cell-image" src="../imgs/black-widow.jpg" />
-        <h1 class="title">Black Widow</h1>
-        <a-button class="btn-desc" @click="showModal">More</a-button>
-      </div>
-      <div class="carousel-cell">
-        <img class="carousel-cell-image" src="../imgs/logan.jpg" />
-        <h1 class="title">Logan</h1>
-        <a-button class="btn-desc" @click="showModal">More</a-button>
-      </div>
-      <div class="carousel-cell">
-        <img class="carousel-cell-image" src="../imgs/6-underground.jpg" />
-        <h1 class="title">6 Underground</h1>
-        <a-button class="btn-desc" @click="showModal">More</a-button>
-      </div>
-      <div class="carousel-cell">
-        <img class="carousel-cell-image" src="../imgs/logan.jpg" />
-        <h1 class="title">Logan</h1>
-        <a-button class="btn-desc" @click="showModal">More</a-button>
-      </div>
-      <div class="carousel-cell">
-        <img class="carousel-cell-image" src="../imgs/6-underground.jpg" />
-        <h1 class="title">6 Underground</h1>
-        <a-button class="btn-desc" @click="showModal">More</a-button>
-      </div>
-      <div class="carousel-cell">
-        <img class="carousel-cell-image" src="../imgs/6-underground.jpg" />
-        <h1 class="title">6 Underground</h1>
-        <a-button class="btn-desc" @click="showModal">More</a-button>
-      </div>
-      <div class="carousel-cell">
-        <img class="carousel-cell-image" src="../imgs/6-underground.jpg" />
-        <h1 class="title">6 Underground</h1>
-        <a-button class="btn-desc" @click="showModal">More</a-button>
-      </div>
-      <div class="carousel-cell">
-        <img class="carousel-cell-image" src="../imgs/6-underground.jpg" />
-        <h1 class="title">6 Underground</h1>
-        <a-button class="btn-desc" @click="showModal">More</a-button>
-      </div>
-      <div class="carousel-cell">
-        <img class="carousel-cell-image" src="../imgs/6-underground.jpg" />
-        <h1 class="title">6 Underground</h1>
+        <img class="carousel-cell-image" :src="movie.url" />
+        <h1 class="title">{{ movie.title }}</h1>
         <a-button class="btn-desc" @click="showModal">More</a-button>
       </div>
     </flickity>
@@ -126,7 +35,10 @@
           Some styles allow you to select a simple background, a more one, or
           one, or remove it altogether. Give it a try!
         </p>
-        <img class="large-image" src="../imgs/black-widow.jpg" />
+        <img
+          class="large-image"
+          src="https://image.tmdb.org/t/p/w342//xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
+        />
       </div>
       <a-button @click="onClick">More</a-button>
     </a-modal>
@@ -148,8 +60,56 @@ export default {
         groupCells: 5,
         freeScroll: true
         // prevNextButtons: false
+        // lazyLoad: true,
       },
-      visible: false
+      visible: false,
+      MovieList: [
+        {
+          title: "Wonder Woman",
+          url:
+            "https://image.tmdb.org/t/p/w342//xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
+        },
+        {
+          title: "Terminator",
+          url:
+            "https://image.tmdb.org/t/p/w342//xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
+        },
+        {
+          title: "Logan",
+          url:
+            "https://image.tmdb.org/t/p/w342//xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
+        },
+        {
+          title: "6 Underground",
+          url:
+            "https://image.tmdb.org/t/p/w342//xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
+        },
+        {
+          title: "Joker",
+          url:
+            "https://image.tmdb.org/t/p/w342//xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
+        },
+        {
+          title: "Black Panther",
+          url:
+            "https://image.tmdb.org/t/p/w342//xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
+        },
+        {
+          title: "Black Widow",
+          url:
+            "https://image.tmdb.org/t/p/w342//xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
+        },
+        {
+          title: "Star War",
+          url:
+            "https://image.tmdb.org/t/p/w342//xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
+        },
+        {
+          title: "Aladdin",
+          url:
+            "https://image.tmdb.org/t/p/w342//xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
+        }
+      ]
     };
   },
   methods: {
@@ -190,10 +150,10 @@ export default {
   object-fit: cover;
 }
 
-.carousel-cell-image.flickity-lazyloaded,
+/* .carousel-cell-image.flickity-lazyloaded,
 .carousel-cell-image.flickity-lazyerror {
   opacity: 1;
-}
+} */
 
 .title {
   margin: 5px;

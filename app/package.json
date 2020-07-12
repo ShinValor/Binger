@@ -14,8 +14,6 @@
   "dependencies": {
     "ant-design-vue": "^1.6.2",
     "axios": "^0.19.2",
-    "bootstrap": "^4.5.0",
-    "bootstrap-vue": "^2.15.0",
     "core-js": "^3.6.5",
     "echarts": "^4.8.0",
     "firebase": "^7.15.5",
