@@ -1,6 +1,6 @@
 <template>
   <a-form-model
-    class="profile"
+    class="setting"
     :model="form"
     :label-col="labelCol"
     :wrapper-col="wrapperCol"
@@ -93,24 +93,24 @@ export default {
   },
   methods: {
     onSubmit() {
-      console.log("submit!", this.form);
+      // console.log("submit!", this.form);
     }
   }
 };
 </script>
 
 <style scoped>
-.profile {
+.setting {
   width: 700px;
-  margin: 50px 20px !important;
+  margin: 50px 20px;
 }
 
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */
 
-  .profile {
+  .setting {
     width: 250px;
-    margin: 0 auto !important;
+    margin: 0 auto;
   }
 }
 </style>
