@@ -8,13 +8,19 @@
     >
       <div class="header-contents fontColor">
         <div class="poster-wrapper">
-          <img class="poster" :src="resolve_img_url(item.poster_path)" :alt="item.title" />
+          <img
+            class="poster"
+            :src="resolve_img_url(item.poster_path)"
+            :alt="item.title"
+          />
         </div>
         <div class="movie-info-part">
           <div class="movie-info">
             <div class="key-info">
               <div class="title-wrapper left-align">
-                <h2 class="movie-title left-align fontColor">{{ item.title }}</h2>
+                <h2 class="movie-title left-align fontColor">
+                  {{ item.title }}
+                </h2>
                 <span class="tagline">{{ item.tagline }}</span>
               </div>
               <div class="general-info">
@@ -99,7 +105,6 @@ export default {
       this.item.favorite = !this.item.favorite;
     },
     resolve_img_url: function(path) {
-      console.log("https://image.tmdb.org/t/p/w342" + path);
       return "https://image.tmdb.org/t/p/w342" + path;
     },
     resolve_video_url: function(path) {
@@ -113,7 +118,6 @@ export default {
 .left-align {
   text-align: left;
 }
-
 .header {
   display: flex;
   flex-wrap: nowrap;
@@ -149,7 +153,6 @@ export default {
   border-width: 0px;
   outline: none;
 }
-
 .movie-info-part {
   display: flex;
 }
@@ -159,10 +162,7 @@ export default {
 .key-info {
   width: 100%;
   margin-bottom: 24px;
-  /* display: flex;
-  flex-wrap: wrap; */
 }
-
 .movie-title {
   width: 100%;
   margin: 0;
@@ -183,18 +183,8 @@ export default {
 .general-info {
   display: flex;
 }
-.release-date {
-  padding-left: 20px;
-  position: relative;
-  top: 0;
-  left: 0;
-}
-.genres {
-  padding-left: 20px;
-  position: relative;
-  top: 0;
-  left: 0;
-}
+.release-date,
+.genres,
 .runtime {
   padding-left: 20px;
   position: relative;
@@ -253,72 +243,5 @@ export default {
     margin-left: auto;
     margin-right: auto;
   }
-}
-.hero-body {
-  background-color: rgba(0, 34, 95, 0.8);
-  background-blend-mode: color;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  padding-bottom: 4rem !important;
-  padding-top: 4.5rem !important;
-}
-.home-intro {
-  font-size: 60px;
-  letter-spacing: 8px;
-  color: red;
-  text-align: center;
-  text-transform: uppercase;
-}
-.title {
-  font-size: 45px;
-  font-weight: 600;
-  color: white;
-}
-.subtitle {
-  font-size: 15px;
-  font-weight: 600;
-  color: red;
-}
-.subtitle-tag {
-  display: inline;
-}
-.description {
-  font-size: 15px;
-  margin-bottom: 24px;
-  max-width: 450px;
-}
-.favorites-button {
-  text-decoration: none;
-  color: #fff;
-}
-.favorites-button:hover {
-  color: goldenrod;
-}
-.fa-plus-square-o {
-  padding-left: 10px;
-  padding-top: 2px;
-}
-.columns {
-  padding: 20px;
-  padding-bottom: 30px;
-  text-align: center;
-  /* background: #1e1d1d !important; */
-  /* position: relative; */
-  /* box-shadow: 0 0 50px 5px rgba(0, 0, 0, 0.25); */
-  /* background: linear-gradient(to bottom right, #7d1e24, #bb2d35); */
-}
-.vertical-align {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  -webkit-align-items: center;
-  justify-content: center;
-  -webkit-justify-content: center;
 }
 </style>

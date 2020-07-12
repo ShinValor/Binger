@@ -2,11 +2,11 @@
   <div class="card">
     <h2 class="list-type-text">Cast List</h2>
     <div>
-      <MovieSynopsisCast :cast="item" class="list-item" />
-      <MovieSynopsisCast :cast="item" class="list-item" />
-      <MovieSynopsisCast :cast="item" class="list-item" />
-      <MovieSynopsisCast :cast="item" class="list-item" />
-      <MovieSynopsisCast :cast="item" class="list-item" />
+      <MovieSynopsisCast class="list-item" />
+      <MovieSynopsisCast class="list-item" />
+      <MovieSynopsisCast class="list-item" />
+      <MovieSynopsisCast class="list-item" />
+      <MovieSynopsisCast class="list-item" />
     </div>
   </div>
 </template>
