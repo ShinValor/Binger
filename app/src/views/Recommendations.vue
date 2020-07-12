@@ -9,11 +9,11 @@
     <a-tabs class="tabs">
       <a-tab-pane key="1" tab="Random">
         <h1 class="title">Movies You Might Like</h1>
-        <!-- <Carousel /> -->
-        <DisplayMovie />
+        <Carousel />
+        <!-- <DisplayMovie /> -->
         <h1 class="title">Movies Other Liked</h1>
-        <!-- <Carousel /> -->
-        <DisplayMovie />
+        <Carousel />
+        <!-- <DisplayMovie /> -->
       </a-tab-pane>
       <a-tab-pane key="2" tab="Top Rated">
         <h1 class="title">Action Movies</h1>
@@ -51,14 +51,14 @@
 </template>
 
 <script>
-// import Carousel from "@/components/Carousel.vue";
+import Carousel from "@/components/Carousel.vue";
 import DisplayMovie from "@/components/DisplayMovie.vue";
 import Footer from "@/components/Footer.vue";
 
 export default {
   name: "Recommendations",
   components: {
-    // Carousel,
+    Carousel,
     DisplayMovie,
     Footer
   },
@@ -80,7 +80,7 @@ export default {
 }
 
 .tabs {
-  width: 85%;
+  width: 95%;
   margin: 50px auto 25px;
 }
 

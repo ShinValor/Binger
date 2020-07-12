@@ -1,12 +1,19 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
-    <h1>This page will be built later</h1>
+    <FavoriteMovieList />
+    <FavoriteMovieList />
+    <FavoriteMovieList />
   </a-layout>
 </template>
 
 <script scoped>
+import FavoriteMovieList from "@/components/FavoriteMovieList.vue";
+
 export default {
-  name: "MovieList"
+  name: "MovieList",
+  components: {
+    FavoriteMovieList
+  }
 };
 </script>
 

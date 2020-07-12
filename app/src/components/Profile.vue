@@ -1,6 +1,6 @@
 <template>
   <a-form-model
-    class="container"
+    class="setting"
     :model="form"
     :label-col="labelCol"
     :wrapper-col="wrapperCol"
@@ -100,7 +100,7 @@ export default {
 </script>
 
 <style scoped>
-.container {
+.setting {
   width: 700px;
   margin: 50px 20px;
 }
@@ -108,7 +108,7 @@ export default {
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */
 
-  .container {
+  .setting {
     width: 250px;
     margin: 0 auto;
   }

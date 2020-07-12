@@ -12,8 +12,10 @@
         alt="tulip"
         /> -->
         <img class="carousel-cell-image" :src="movie.url" />
-        <h1 class="title">{{ movie.title }}</h1>
-        <a-button class="btn-desc" @click="showModal">More</a-button>
+        <div class="carousel-cell-desc">
+          <h1 class="title">{{ movie.title }}</h1>
+          <a-button class="modal-btn" @click="showModal">Synopsis</a-button>
+        </div>
       </div>
     </flickity>
     <a-modal
@@ -40,7 +42,7 @@
           src="https://image.tmdb.org/t/p/w342//xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
         />
       </div>
-      <a-button @click="onClick">More</a-button>
+      <a-button @click="onClick">More Info</a-button>
     </a-modal>
   </div>
 </template>
@@ -66,48 +68,39 @@ export default {
       MovieList: [
         {
           title: "Wonder Woman",
-          url:
-            "https://image.tmdb.org/t/p/w342//xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
+          url: "https://image.tmdb.org/t/p/w342/xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
         },
         {
           title: "Terminator",
-          url:
-            "https://image.tmdb.org/t/p/w342//xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
+          url: "https://image.tmdb.org/t/p/w342/db32LaOibwEliAmSL2jjDF6oDdj.jpg"
         },
         {
           title: "Logan",
-          url:
-            "https://image.tmdb.org/t/p/w342//xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
+          url: "https://image.tmdb.org/t/p/w342/fMMrl8fD9gRCFJvsx0SuFwkEOop.jpg"
         },
         {
           title: "6 Underground",
-          url:
-            "https://image.tmdb.org/t/p/w342//xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
+          url: "https://image.tmdb.org/t/p/w342/ykUEbfpkf8d0w49pHh0AD2KrT52.jpg"
         },
         {
           title: "Joker",
-          url:
-            "https://image.tmdb.org/t/p/w342//xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
+          url: "https://image.tmdb.org/t/p/w342/bk8LyaMqUtaQ9hUShuvFznQYQKR.jpg"
         },
         {
           title: "Black Panther",
-          url:
-            "https://image.tmdb.org/t/p/w342//xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
+          url: "https://image.tmdb.org/t/p/w342/pU3bnutJU91u3b4IeRPQTOP8jhV.jpg"
         },
         {
           title: "Black Widow",
-          url:
-            "https://image.tmdb.org/t/p/w342//xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
+          url: "https://image.tmdb.org/t/p/w342/4q2NNj4S5dG2RLF9CpXsej7yXl.jpg"
         },
         {
           title: "Star War",
-          url:
-            "https://image.tmdb.org/t/p/w342//xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
+          url: "https://image.tmdb.org/t/p/w342/dPrUPFcgLfNbmDL8V69vcrTyEfb.jpg"
         },
         {
           title: "Aladdin",
-          url:
-            "https://image.tmdb.org/t/p/w342//xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
+          url: "https://image.tmdb.org/t/p/w342/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg"
         }
       ]
     };
@@ -130,12 +123,12 @@ export default {
 
 .carousel-cell {
   /* background-color: #222; */
-  height: 400px;
+  height: 500px;
   width: 20%;
-  /* margin: 0px; */
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  border: 1px solid black;
 }
 
 .carousel-cell:hover {
@@ -143,7 +136,7 @@ export default {
 }
 
 .carousel-cell-image {
-  max-height: 80%;
+  max-height: 100%;
   max-width: 100%;
   margin: 0 auto;
   /* display: block; */
@@ -155,16 +148,27 @@ export default {
   opacity: 1;
 } */
 
+.carousel-cell-desc {
+  background-color: #424242;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .title {
   margin: 5px;
   font-size: 20px;
+  color: white;
 }
 
-.btn-desc {
+.modal-btn {
   background: transparent;
-  width: 225px;
-  margin: 0 auto;
+  height: 30px;
+  width: 200px;
+  margin: 10px auto;
   text-align: center;
+  color: white;
 }
 
 .content {
@@ -187,13 +191,7 @@ export default {
   }
 
   .carousel-cell {
-    height: 125px;
-    /* margin: 0px; */
-  }
-
-  .carousel-cell-image {
-    max-height: 100%;
-    margin: 0px;
+    height: 150px;
   }
 
   .title {
@@ -201,9 +199,12 @@ export default {
     font-size: 8px;
   }
 
-  .btn-desc {
-    padding: 0;
+  .modal-btn {
+    height: 15px;
     width: 50px;
+    margin: 5px auto;
+    padding: 0;
+    font-size: 8px;
   }
 }
 </style>
