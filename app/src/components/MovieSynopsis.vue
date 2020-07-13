@@ -85,7 +85,6 @@ export default {
       })
       .catch(error => {
         this.errors = error;
-        console.log(error);
       })
       .finally(() => (this.loading = false));
   },

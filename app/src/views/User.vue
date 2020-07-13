@@ -42,10 +42,7 @@ export default {
   },
   created() {
     firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        // console.log("You are signed in.");
-      } else {
-        // console.log("You are not signed in.");
+      if (!user) {
         this.$router.replace({ name: "Home" });
       }
     });
@@ -61,12 +58,8 @@ export default {
       firebase
         .auth()
         .signOut()
-        .then(() => {
-          // console.log("You have signed out.");
-        })
         .catch(error => {
           this.error = error.message;
-          // alert(this.error);
         });
     },
     profile() {
@@ -78,11 +71,6 @@ export default {
         // const photoUrl = user.photoURL;
         // const emailVerified = user.emailVerified;
         // const uid = user.uid;
-        // console.log("Name: ", name);
-        // console.log("Email: ", email);
-        // console.log("Photo Url: ", photoUrl);
-        // console.log("Email Verified: ", emailVerified);
-        // console.log("Uid: ", uid);
       }
     },
     updateProfile() {
@@ -148,7 +136,6 @@ export default {
         .auth()
         .currentUser.getIdToken(/* forceRefresh */ true)
         .then(token => {
-          // console.log("Token: ", token);
           axios
             .get("http://127.0.0.1:5000/test", {
               params: {
@@ -157,11 +144,9 @@ export default {
             })
             .then(response => {
               this.info = response;
-              // console.log("Response: ", this.info);
             })
             .catch(error => {
               this.error = error.message;
-              // alert(this.error);
             })
             .finally(() => {
               this.loading = false;
@@ -169,7 +154,6 @@ export default {
         })
         .catch(error => {
           this.error = error.message;
-          // alert(this.error);
         });
     }
   }

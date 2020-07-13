@@ -44,11 +44,9 @@ export default {
   },
   methods: {
     draggedLeft() {
-      // console.log("dragged left!");
       this.hideCard();
     },
     draggedRight() {
-      // console.log("dragged right!");
       this.hideCard();
     },
     hideCard() {

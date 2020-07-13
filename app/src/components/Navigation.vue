@@ -73,9 +73,6 @@ export default {
       firebase
         .auth()
         .signOut()
-        .then(() => {
-          // console.log("You have signed out.");
-        })
         .catch(error => {
           this.error = error.message;
           // alert(this.error);

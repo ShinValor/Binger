@@ -32,19 +32,16 @@ export default {
       .get("http://127.0.0.1:5000/movie/cast/" + this.movieID)
       .then(response => {
         if (response && response.status === 200) {
-          console.log(response);
           this.castList = response.data;
         }
       })
       .catch(error => {
         this.errors = error;
-        console.log(error);
       });
   },
   data() {
     return {
       castList: Array
-
     };
   }
 };

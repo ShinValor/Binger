@@ -64,13 +64,11 @@ export default {
       .get(link)
       .then(response => {
         if (response && response.status === 200) {
-          console.log(response);
           this.MovieList = response.data;
         }
       })
       .catch(error => {
         this.errors = error;
-        console.log(error);
       })
       .finally(() => this.$refs.flickity.rerender());
   },
@@ -80,7 +78,7 @@ export default {
       return "https://image.tmdb.org/t/p/w342" + path;
     },
     onClick() {
-      console.log("More");
+      // console.log("More");
     },
     imgsLoaded() {
       // Reload flickity cells due to height change post
