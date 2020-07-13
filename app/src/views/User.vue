@@ -28,11 +28,6 @@ export default {
         // const photoUrl = user.photoURL;
         // const emailVerified = user.emailVerified;
         // const uid = user.uid;
-        // console.log("Name: ", name);
-        // console.log("Email: ", email);
-        // console.log("Photo Url: ", photoUrl);
-        // console.log("Email Verified: ", emailVerified);
-        // console.log("Uid: ", uid);
       }
     },
     created() {
@@ -55,7 +50,6 @@ export default {
         })
         .catch(error => {
           this.error = error.message;
-          // alert(this.error);
         });
     },
     updateEmail() {
@@ -68,7 +62,6 @@ export default {
         })
         .catch(error => {
           this.error = error.message;
-          // alert(this.error);
         });
     },
     setPassword() {
@@ -82,7 +75,6 @@ export default {
         })
         .catch(error => {
           this.error = error.message;
-          // alert(this.error);
         });
     },
     resetPassword() {
@@ -97,7 +89,6 @@ export default {
         })
         .catch(error => {
           this.error = error.message;
-          // alert(this.error);
         });
     }
   }

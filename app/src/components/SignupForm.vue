@@ -145,7 +145,6 @@ export default {
             })
             .catch(err => {
               this.error = err.message;
-              // alert(this.error);
             });
         }
       });

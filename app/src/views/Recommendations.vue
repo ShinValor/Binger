@@ -59,7 +59,7 @@ export default {
     return {
       loading: true,
       userToken: String,
-      query: String,
+      movieQuery: String,
       movies: {
         topRated: {},
         worstRated: {},
@@ -71,12 +71,12 @@ export default {
     };
   },
   methods: {
-    onSearch(value) {
-      this.query = value;
+    onSearch(input) {
+      this.movieQuery = input;
     },
-    fetchMovies() {
+    async fetchMovies() {
       this.loading = true;
-      axios
+      await axios
         .all([
           axios.get("http://localhost:5000/topRated"),
           axios.get("http://localhost:5000/worstRated"),
@@ -107,9 +107,9 @@ export default {
   },
   created() {
     firebase.auth().onAuthStateChanged(user => {
-      user.getIdToken().then(token => {
-        this.userToken = token;
-      });
+      // user.getIdToken().then(token => {
+      //   this.userToken = token;
+      // });
       if (!user) {
         this.$router.replace({ name: "Home" });
       }

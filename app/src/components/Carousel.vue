@@ -184,14 +184,14 @@ export default {
   object-fit: cover;
 }
 
-.modal-btn {
+/* .modal-btn {
   background: transparent;
   height: 30px;
   width: 200px;
   margin: 10px auto;
   text-align: center;
   color: white;
-}
+} */
 
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */
@@ -206,12 +206,12 @@ export default {
     font-size: 8px;
   }
 
-  .modal-btn {
+  /* .modal-btn {
     height: 15px;
     width: 50px;
     margin: 0px auto;
     padding: 0;
     font-size: 8px;
-  }
+  } */
 }
 </style>
