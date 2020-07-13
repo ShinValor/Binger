@@ -1,6 +1,47 @@
 <template>
   <PushRotate width="250">
-    <router-link to="/movie-recommendations">
+    <div>
+      <a-menu
+        style="width: 256px"
+        :default-selected-keys="['1']"
+        :default-open-keys="['sub1']"
+        mode="inline"
+        :theme="theme"
+        :selected-keys="[current]"
+        @click="handleClick"
+      >
+        <a-menu-item key="1">
+          <a-icon type="mail" />
+          Movie Recommendations
+        </a-menu-item>
+        <a-menu-item key="2">
+          <a-icon type="calendar" />
+          Movie Summary
+        </a-menu-item>
+        <a-sub-menu key="sub1">
+          <span slot="title"
+            ><a-icon type="appstore" /><span>Movie List</span></span
+          >
+          <a-menu-item key="3">
+            Option 3
+          </a-menu-item>
+          <a-sub-menu key="sub1-2" title="Submenu">
+            <a-menu-item key="5">
+              Option 5
+            </a-menu-item>
+          </a-sub-menu>
+        </a-sub-menu>
+        <a-sub-menu key="sub2">
+          <span slot="title"
+            ><a-icon type="setting" /><span>Navigation Four</span></span
+          >
+          <a-menu-item key="6">
+            Option 6
+          </a-menu-item>
+        </a-sub-menu>
+      </a-menu>
+    </div>
+    <!-- <router-link to="/movie-recommendations">
       <span>Recommendation</span>
     </router-link>
     <router-link to="/movie-synopsis">
@@ -8,7 +49,7 @@
     </router-link>
     <router-link to="/movie-list">
       <span>Movie List</span>
-    </router-link>
+    </router-link> -->
   </PushRotate>
 </template>
 
@@ -61,7 +102,8 @@ export default {
 }
 
 .bm-menu {
-  background-color: rgb(63, 63, 65, 0.85) !important;
+  /* background-color: rgb(63, 63, 65, 0.85) !important; */
+  background-color: white !important;
   top: 0;
   left: 0;
   height: 100%; /* 100% Full-height */
@@ -79,20 +121,23 @@ export default {
 
 .bm-item-list {
   color: #b8b7ad;
-  margin-left: 5% !important;
+  /* margin-left: 5% !important; */
+  margin-left: 0% !important;
   font-size: 18px !important;
 }
 
 .bm-item-list > * {
   display: flex;
   text-decoration: none;
-  padding: 0.7em;
+  /* padding: 0.7em; */
+  padding: 0 !important;
 }
 
 .bm-item-list > * > span {
   margin-left: 10px;
   font-weight: 700;
-  color: white;
+  /* color: white; */
+  color: black;
 }
 
 @media screen and (max-width: 800px) {
@@ -109,7 +154,7 @@ export default {
   }
 
   .bm-item-list > * {
-    padding: 0em !important;
+    padding: 0 !important;
   }
 }
 </style>
