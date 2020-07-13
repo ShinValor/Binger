@@ -1,6 +1,6 @@
 <template>
-  <div class="card">
-    <h2 class="list-type-text">Cast List</h2>
+  <div class="container">
+    <h1 class="title">Cast List</h1>
     <div>
       <MovieSynopsisCast class="list-item" />
       <MovieSynopsisCast class="list-item" />
@@ -48,22 +48,34 @@ export default {
 };
 </script>
 <style scoped>
+.container {
+  margin: 2em;
+}
+
+.title {
+  margin: 20px;
+  text-align: left;
+  font-size: 30px;
+}
+
 .list-item {
   display: inline-block;
   margin: 10px;
   padding: 2px;
 }
+
 .list-item:hover {
   color: blue;
   background-color: lightblue;
 }
-.card {
-  margin: 2em;
-}
-.list-type-text {
-  text-align: left;
-  font-size: 2em;
-  margin-bottom: 0%;
-  margin-top: 1rem;
+
+@media screen and (max-width: 500px) {
+  /* applies styles to any device screen sizes below 800px wide */
+
+  .title {
+    margin: 0 auto;
+    text-align: center;
+    font-size: 20px;
+  }
 }
 </style>

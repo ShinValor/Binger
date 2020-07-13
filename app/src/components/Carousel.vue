@@ -12,13 +12,9 @@
           :data-flickity-lazyload="movie.url"
           :alt="movie.title"
         />
-        <!-- <img class="carousel-cell-image" :src="movie.url" /> -->
         <div class="carousel-cell-desc">
           <h1 class="title">{{ movie.title }}</h1>
-          <p :style="{ color: 'white' }"><a-icon type="eye" /> 15234 Views</p>
-          <!-- <a-button class="modal-btn" @click="toggleModal(movie)">
-            Summary
-          </a-button> -->
+          <p class="content"><a-icon type="eye" /> 15234 Views</p>
         </div>
       </div>
     </flickity>
@@ -30,16 +26,7 @@
     >
       <div :style="{ display: 'flex' }">
         <p class="content">
-          All our illustrations come in different styles, and you can change
-          main color. Just choose the one you like the most for your project.
-          Some styles allow you to select a simple background, a more one, or
-          one, or remove it altogether. Give it a try!
-        </p>
-        <p class="content">
-          All our illustrations come in different styles, and you can change
-          main color. Just choose the one you like the most for your project.
-          Some styles allow you to select a simple background, a more one, or
-          one, or remove it altogether. Give it a try!
+          {{ this.modalSummary }}
         </p>
         <img class="large-image" :src="modalImg" />
       </div>
@@ -59,49 +46,50 @@ export default {
     return {
       flickityOptions: {
         initialIndex: 0,
-        // autoPlay: 3000,
         groupCells: 5,
         freeScroll: true,
         lazyLoad: 2
+        // autoPlay: 3000,
       },
+      modalVisible: false,
       modalTitle: "",
       modalImg: "",
-      modalVisible: false,
+      modalSummary: "",
       MovieList: [
         {
-          title: "Wonder Woman",
+          title: "Shazam",
           url: "https://image.tmdb.org/t/p/w342/xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
         },
         {
-          title: "Terminator",
+          title: "Star War",
           url: "https://image.tmdb.org/t/p/w342/db32LaOibwEliAmSL2jjDF6oDdj.jpg"
         },
         {
-          title: "Logan",
+          title: "Fantastic Beast",
           url: "https://image.tmdb.org/t/p/w342/fMMrl8fD9gRCFJvsx0SuFwkEOop.jpg"
         },
         {
-          title: "6 Underground",
+          title: "Aladdin",
           url: "https://image.tmdb.org/t/p/w342/ykUEbfpkf8d0w49pHh0AD2KrT52.jpg"
         },
         {
-          title: "Joker",
+          title: "HellBoy",
           url: "https://image.tmdb.org/t/p/w342/bk8LyaMqUtaQ9hUShuvFznQYQKR.jpg"
         },
         {
-          title: "Black Panther",
+          title: "Godzilla",
           url: "https://image.tmdb.org/t/p/w342/pU3bnutJU91u3b4IeRPQTOP8jhV.jpg"
         },
         {
-          title: "Black Widow",
+          title: "Spiderman",
           url: "https://image.tmdb.org/t/p/w342/4q2NNj4S5dG2RLF9CpXsej7yXl.jpg"
         },
         {
-          title: "Star War",
+          title: "Men In Black",
           url: "https://image.tmdb.org/t/p/w342/dPrUPFcgLfNbmDL8V69vcrTyEfb.jpg"
         },
         {
-          title: "Aladdin",
+          title: "Captain Marvel",
           url: "https://image.tmdb.org/t/p/w342/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg"
         }
       ]
@@ -112,6 +100,8 @@ export default {
       this.modalVisible = !this.modalVisible;
       this.modalTitle = movie.title;
       this.modalImg = movie.url;
+      this.modalSummary =
+        "All our illustrations come in different styles, and you can change main color. Just choose the one you like the most for your project. Some styles allow you to select a simple background, a more one, or one, or remove it altogether. Give it a try! All our illustrations come in different styles, and you can change main color. Just choose the one you like the most for your project. Some styles allow you to select a simple background, a more one, or one, or remove it altogether. Give it a try!";
     },
     onClick() {
       this.$router.push("/movie-synopsis");
@@ -132,7 +122,6 @@ export default {
   display: flex;
   flex-direction: column;
   /* justify-content: flex-start; */
-  /* border: 1px solid black; */
   margin-right: 4px;
   /* padding: 0 2px; */
 }
@@ -173,8 +162,9 @@ export default {
 
 .content {
   width: 66%;
-  margin: 5px;
+  margin: 5px auto;
   font-size: 15px;
+  color: white;
 }
 
 .large-image {
@@ -184,17 +174,12 @@ export default {
   object-fit: cover;
 }
 
-/* .modal-btn {
-  background: transparent;
-  height: 30px;
-  width: 200px;
-  margin: 10px auto;
-  text-align: center;
-  color: white;
-} */
-
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */
+
+  .carousel {
+    margin: 0px 0px 50px;
+  }
 
   .carousel-cell {
     height: 150px;
@@ -206,12 +191,9 @@ export default {
     font-size: 8px;
   }
 
-  /* .modal-btn {
-    height: 15px;
-    width: 50px;
-    margin: 0px auto;
-    padding: 0;
-    font-size: 8px;
-  } */
+  .content {
+    margin: 0 auto;
+    font-size: 5px;
+  }
 }
 </style>

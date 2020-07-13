@@ -1,16 +1,11 @@
 <template>
   <a-layout class="container">
-    <a-input-search
-      class="search-bar"
-      placeholder="Search Movies"
-      enter-button
-      @search="onSearch"
-    />
+    <SearchBar />
     <div v-if="loading">
       <Loading />
     </div>
-    <div v-else>
-      <a-tabs class="tabs">
+    <div :style="{ width: '90%', margin: '0 auto' }" v-else>
+      <!-- <a-tabs class="tabs">
         <a-tab-pane key="1" tab="Top Rated">
           <h1 class="title">Top Rated</h1>
           <Carousel />
@@ -35,7 +30,19 @@
           <h1 class="title">Oldest Movie</h1>
           <Carousel />
         </a-tab-pane>
-      </a-tabs>
+      </a-tabs> -->
+      <h1 class="title">Top Rated</h1>
+      <Carousel />
+      <h1 class="title">Worst Rated</h1>
+      <Carousel />
+      <h1 class="title">Most Popular</h1>
+      <Carousel />
+      <h1 class="title">Least Popular</h1>
+      <Carousel />
+      <h1 class="title">Most Recent</h1>
+      <Carousel />
+      <h1 class="title">Oldest Movie</h1>
+      <Carousel />
     </div>
     <Footer></Footer>
   </a-layout>
@@ -44,6 +51,7 @@
 <script>
 import firebase from "firebase";
 import axios from "axios";
+import SearchBar from "@/components/SearchBar.vue";
 import Carousel from "@/components/Carousel.vue";
 import Loading from "@/components/Loading.vue";
 import Footer from "@/components/Footer.vue";
@@ -51,6 +59,7 @@ import Footer from "@/components/Footer.vue";
 export default {
   name: "Recommendations",
   components: {
+    SearchBar,
     Carousel,
     Loading,
     Footer
@@ -71,9 +80,6 @@ export default {
     };
   },
   methods: {
-    onSearch(input) {
-      this.movieQuery = input;
-    },
     async fetchMovies() {
       this.loading = true;
       await axios
@@ -162,7 +168,7 @@ export default {
   .title {
     margin: 0 auto;
     text-align: center;
-    font-size: 15px;
+    font-size: 20px;
   }
 }
 </style>

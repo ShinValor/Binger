@@ -61,8 +61,8 @@ export default {
   },
   data() {
     return {
-      loggedIn: Boolean,
-      username: String
+      loggedIn: false,
+      username: "Username"
     };
   },
   methods: {
