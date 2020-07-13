@@ -5,6 +5,7 @@
         class="carousel-cell"
         v-for="(movie, index) in MovieList"
         v-bind:key="index"
+        @click="toggleModal(movie)"
       >
         <img
           class="carousel-cell-image"
@@ -14,13 +15,16 @@
         <!-- <img class="carousel-cell-image" :src="movie.url" /> -->
         <div class="carousel-cell-desc">
           <h1 class="title">{{ movie.title }}</h1>
-          <a-button class="modal-btn" @click="showModal">Synopsis</a-button>
+          <p :style="{ color: 'white' }"><a-icon type="eye" /> 15234 Views</p>
+          <!-- <a-button class="modal-btn" @click="toggleModal(movie)">
+            Summary
+          </a-button> -->
         </div>
       </div>
     </flickity>
     <a-modal
-      v-model="visible"
-      title="Movie Summary"
+      v-model="modalVisible"
+      :title="modalTitle"
       :width="750"
       :footer="null"
     >
@@ -37,10 +41,7 @@
           Some styles allow you to select a simple background, a more one, or
           one, or remove it altogether. Give it a try!
         </p>
-        <img
-          class="large-image"
-          src="https://image.tmdb.org/t/p/w342//xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
-        />
+        <img class="large-image" :src="modalImg" />
       </div>
       <a-button @click="onClick">More Info</a-button>
     </a-modal>
@@ -58,13 +59,14 @@ export default {
     return {
       flickityOptions: {
         initialIndex: 0,
-        autoPlay: 3000,
+        // autoPlay: 3000,
         groupCells: 5,
         freeScroll: true,
-        // prevNextButtons: false
         lazyLoad: 2
       },
-      visible: false,
+      modalTitle: "",
+      modalImg: "",
+      modalVisible: false,
       MovieList: [
         {
           title: "Wonder Woman",
@@ -106,11 +108,13 @@ export default {
     };
   },
   methods: {
-    showModal() {
-      this.visible = true;
+    toggleModal(movie) {
+      this.modalVisible = !this.modalVisible;
+      this.modalTitle = movie.title;
+      this.modalImg = movie.url;
     },
     onClick() {
-      // console.log("More");
+      this.$router.push("/movie-synopsis");
     }
   }
 };
@@ -129,7 +133,7 @@ export default {
   flex-direction: column;
   /* justify-content: flex-start; */
   /* border: 1px solid black; */
-  margin-right: 0px;
+  margin-right: 4px;
   /* padding: 0 2px; */
 }
 
@@ -144,7 +148,7 @@ export default {
   transition: opacity 0.4s;
 }
 
-.carousel-cell-image:hover {
+.carousel-cell:hover {
   opacity: 0.7;
 }
 
@@ -154,7 +158,7 @@ export default {
 }
 
 .carousel-cell-desc {
-  background-color: #424242;
+  background-color: #001528;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -164,15 +168,6 @@ export default {
 .title {
   margin: 5px;
   font-size: 20px;
-  color: white;
-}
-
-.modal-btn {
-  background: transparent;
-  height: 30px;
-  width: 200px;
-  margin: 10px auto;
-  text-align: center;
   color: white;
 }
 
@@ -187,6 +182,15 @@ export default {
   height: 100%;
   margin: 5px;
   object-fit: cover;
+}
+
+.modal-btn {
+  background: transparent;
+  height: 30px;
+  width: 200px;
+  margin: 10px auto;
+  text-align: center;
+  color: white;
 }
 
 @media screen and (max-width: 500px) {
@@ -205,7 +209,7 @@ export default {
   .modal-btn {
     height: 15px;
     width: 50px;
-    margin: 5px auto;
+    margin: 0px auto;
     padding: 0;
     font-size: 8px;
   }

@@ -4,33 +4,11 @@
       <Profile />
       <Card class="profile-card" name="John" desc="I am a student." />
     </div>
-    <!-- <a-button type="primary" v-on:click="logout()">
-      Log out
-    </a-button> -->
-    <!-- <a-button type="primary" v-on:click="profile()">
-      Get Profile
-    </a-button>
-    <a-button type="primary" v-on:click="updateProfile()">
-      Update Profile
-    </a-button>
-    <a-button type="primary" v-on:click="updateEmail()">
-      Update Email
-    </a-button>
-    <a-button type="primary" v-on:click="setPassword()">
-      Set Password
-    </a-button>
-    <a-button type="primary" v-on:click="resetPassword()">
-      Reset Password
-    </a-button>
-    <a-button type="primary" v-on:click="fetchApi()">
-      Fetch Api
-    </a-button> -->
   </a-layout>
 </template>
 
 <script>
 import firebase from "firebase";
-import axios from "axios";
 import Profile from "@/components/Profile.vue";
 import Card from "@/components/Card.vue";
 
@@ -40,36 +18,8 @@ export default {
     Profile,
     Card
   },
-  created() {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        // console.log("You are signed in.");
-      } else {
-        // console.log("You are not signed in.");
-        this.$router.replace({ name: "Home" });
-      }
-    });
-  },
-  data() {
-    return {
-      info: null,
-      loading: true
-    };
-  },
   methods: {
-    logout() {
-      firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          // console.log("You have signed out.");
-        })
-        .catch(error => {
-          this.error = error.message;
-          // alert(this.error);
-        });
-    },
-    profile() {
+    getProfile() {
       const user = firebase.auth().currentUser;
 
       if (user != null) {
@@ -84,6 +34,13 @@ export default {
         // console.log("Email Verified: ", emailVerified);
         // console.log("Uid: ", uid);
       }
+    },
+    created() {
+      firebase.auth().onAuthStateChanged(user => {
+        if (!user) {
+          this.$router.replace({ name: "Home" });
+        }
+      });
     },
     updateProfile() {
       const user = firebase.auth().currentUser;
@@ -137,35 +94,6 @@ export default {
         .sendPasswordResetEmail(emailAddress)
         .then(() => {
           // alert("Email Sent");
-        })
-        .catch(error => {
-          this.error = error.message;
-          // alert(this.error);
-        });
-    },
-    fetchApi() {
-      firebase
-        .auth()
-        .currentUser.getIdToken(/* forceRefresh */ true)
-        .then(token => {
-          // console.log("Token: ", token);
-          axios
-            .get("http://127.0.0.1:5000/test", {
-              params: {
-                token: token
-              }
-            })
-            .then(response => {
-              this.info = response;
-              // console.log("Response: ", this.info);
-            })
-            .catch(error => {
-              this.error = error.message;
-              // alert(this.error);
-            })
-            .finally(() => {
-              this.loading = false;
-            });
         })
         .catch(error => {
           this.error = error.message;

@@ -107,7 +107,7 @@ export default {
     // }
   },
   mounted() {
-    console.log(typeof this.list);
+    // console.log(typeof this.list);
   }
 };
 </script>

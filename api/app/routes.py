@@ -13,11 +13,12 @@ from app import app
                             VARS NEEDED FOR AUTH AND FIRESTORE
 vars from the app.__init__ file that contains vars needed for auth and firestore
 from app import cors, cred, firebase_app
-from firebase_admin import auth, firestore 
+from firebase_admin import auth, firestore
 ====================================================================================
 """
 from firebase_admin import credentials, auth, firestore, initialize_app
 from flask import session, jsonify, Response, request
+from flask_cors import CORS, cross_origin
 from functools import wraps
 
 """
@@ -31,9 +32,11 @@ from app.utils import recommendations
 from app.utils import shows
 
 
-#cred = credentials.Certificate('key.json')
-#firebase_app = initialize_app(cred)
-firebase_app = initialize_app()
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
+
+cred = credentials.Certificate('key.json')
+firebase_app = initialize_app(cred)
+# firebase_app = initialize_app()
 db = firestore.client()
 
 def check_token(f):
@@ -211,7 +214,7 @@ def movie_summary(id):
 
 # Requires optimization
 @app.route('/topRated')
-@check_token
+# @check_token
 def top_rated_show():
     """
     Retrieves the top 20 movie results from TMDB
@@ -237,7 +240,7 @@ def top_rated_show():
 
 # Requires optimization
 @app.route('/worstRated')
-@check_token
+# @check_token
 def worst_rated_show():
     """
     Retrieves the worst 20 movie results from TMDB
@@ -262,7 +265,7 @@ def worst_rated_show():
 
 
 @app.route('/popular')
-@check_token
+# @check_token
 def get_popular():
     """
     Retrieves the most popular movies from TMDB
@@ -286,7 +289,7 @@ def get_popular():
 
 
 @app.route('/unpopular')
-@check_token
+# @check_token
 def get_unpopular():
     """
     Retrieves the least popular movies from TMDB
@@ -310,7 +313,7 @@ def get_unpopular():
 
 
 @app.route('/recent')
-@check_token
+# @check_token
 def get_now_playing():
     """
     Retrieves movies now playing in theatres
@@ -328,7 +331,7 @@ def get_now_playing():
 
 
 @app.route('/oldest')
-@check_token
+# @check_token
 def get_oldest():
     """
     Retrieves the oldest movies from TMDB

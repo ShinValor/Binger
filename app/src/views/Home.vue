@@ -74,18 +74,18 @@
         :style="{
           'grid-area': 'content',
           display: 'flex',
-          'justify-content': 'flex-end'
+          'justify-content': 'center',
+          'margin-left': '50px',
+          'margin-top': '50px'
         }"
       >
         <p class="content">
           All our illustrations come in different styles, and you can change
           main color. Just choose the one you like the most for your project.
           project. Some styles allow you to select a simple background, a more
-          one, or remove it altogether. Give it a try! All our illustrations
-          come in different styles, and you can change main color. Just choose
-          the one you like the most for your project. project. Some styles allow
-          you to select a simple background, a more one, or remove it
-          altogether. Give it a try!
+          one, or remove it altogether. Give it a try! Some styles allow you to
+          select a simple background, a more one, or remove it altogether. Give
+          it a try!
         </p>
       </div>
       <div class="section3" :style="{ 'grid-area': 'header' }">
@@ -105,12 +105,12 @@
       </div>
       <div class="section3" :style="{ 'grid-area': 'footer' }">
         <img class="small-image" src="../assets/svg/movie-night-bro.svg" />
-        <h2 class="sub-title">
+        <!-- <h2 class="sub-title">
           4. Enjoy Your Movie
-        </h2>
+        </h2> -->
       </div>
     </div>
-    <h1 id="services" class="title"><b>Service Plans</b></h1>
+    <!-- <h1 id="services" class="title"><b>Service Plans</b></h1>
     <div class="container3">
       <div class="section2">
         <h2 class="sub-title">Basic</h2>
@@ -121,7 +121,7 @@
       <div class="section2">
         <h2 class="sub-title">Enterprise</h2>
       </div>
-    </div>
+    </div> -->
     <Footer />
   </a-layout>
 </template>
