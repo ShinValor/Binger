@@ -4,19 +4,18 @@ from flask_cors import CORS
 import random
 
 # movies = Blueprint('movies', __name__)
+MAX_PAGE_NUMBER = 500
 
 movies = Flask(__name__)
 CORS(movies)
 # movies.secret_key = r'Y\xf7\xec\xe3m\x99r\x19Acvc\x9d*l[\xdxcvcd\xa1\xf9\'
 
-API_KEY = None
+API_KEY = "30b80750bf23b8b0b21e102d46f16d72"
 DEFAULT_OPTIONS = {
     "api_key": API_KEY,
     "language": "en-US",
     "sort_by": "popularity.desc"
 }
-
-MAX_PAGE_NUMBER = 500
 
 MOVIE_RECCS_URL = "https://api.themoviedb.org/3/movie/{}/recommendations"
 MOVIE_SIMS_URL = "https://api.themoviedb.org/3/movie/{}/similar"
