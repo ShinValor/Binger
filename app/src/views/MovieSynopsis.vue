@@ -1,6 +1,5 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
-
     <Movie_Synopsis
       :key="this.$route.params.id + 'Syn'"
       :movieID="parseInt(this.$route.params.id)"
@@ -13,7 +12,7 @@
     <MovieSynopsisMovieList
       listType="Similar Movies"
       :movieID="parseInt(this.$route.params.id)"
-      :key="this.$route.params.id+ 'Sim'"
+      :key="this.$route.params.id + 'Sim'"
     />
     <MovieSynopsisCastList
       :key="this.$route.params.id + 'cst'"
@@ -25,10 +24,7 @@
 <script>
 import MovieSynopsisMovieList from "@/components/MovieSynopsisMovieList.vue";
 import MovieSynopsisCastList from "@/components/MovieSynopsisCastList.vue";
-<<<<<<< HEAD
-
-=======
->>>>>>> Completed all the endpoint calls
+import Movie_Synopsis from "@/components/MovieSynopsis.vue";
 export default {
   name: "MovieSynopsis",
   components: {

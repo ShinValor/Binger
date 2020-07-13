@@ -8,17 +8,23 @@
     >
       <div class="header-contents fontColor">
         <div class="poster-wrapper">
-          <img class="poster" :src="resolve_img_url(item.poster_path)" :alt="item.title" />
+          <img
+            class="poster"
+            :src="resolve_img_url(item.poster_path)"
+            :alt="item.title"
+          />
         </div>
         <div class="movie-info-part">
           <div class="movie-info">
             <div class="key-info">
               <div class="title-wrapper left-align">
-                <h2 class="movie-title left-align fontColor">{{ item.title }}</h2>
+                <h2 class="movie-title left-align fontColor">
+                  {{ item.title }}
+                </h2>
                 <span class="tagline">{{ item.tagline }}</span>
               </div>
               <div class="general-info">
-                <span class="release-date">{{releaseDate()}}</span>
+                <span class="release-date">{{ releaseDate() }}</span>
                 <span class="genres">{{ genres() }}</span>
                 <span class="runtime">{{ runtime(item.runtime) }}</span>
               </div>

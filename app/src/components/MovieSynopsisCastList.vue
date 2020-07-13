@@ -2,7 +2,12 @@
   <div class="card">
     <h2 class="list-type-text">The important Cast</h2>
     <div>
-      <MovieSynopsisCast class="list-item" v-for="item in castList" :key="item.order" :cast="item" />
+      <MovieSynopsisCast
+        class="list-item"
+        v-for="item in castList"
+        :key="item.order"
+        :cast="item"
+      />
     </div>
   </div>
 </template>
@@ -24,7 +29,7 @@ export default {
   },
   created() {
     axios
-      .get("http://127.0.0.1:5000/Cast/" + this.movieID)
+      .get("http://127.0.0.1:5000/movie/cast/" + this.movieID)
       .then(response => {
         if (response && response.status === 200) {
           console.log(response);
