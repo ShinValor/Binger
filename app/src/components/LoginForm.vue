@@ -67,7 +67,6 @@ export default {
       e.preventDefault();
       this.form.validateFields((err, values) => {
         if (!err) {
-          // console.log("Received values of form: ", values);
           firebase
             .auth()
             .signInWithEmailAndPassword(values.email, values.password)

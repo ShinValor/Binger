@@ -69,7 +69,6 @@ export default {
   },
   methods: {
     onSearch(value) {
-      // console.log(value);
       this.query = value;
     }
   }

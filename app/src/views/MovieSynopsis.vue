@@ -1,125 +1,36 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
-    <div
-      class="header"
-      :style="{
-        'background-image': 'url(' + resolve_img_url(item.backdrop_path) + ')'
-      }"
-    >
-      <div class="header-contents fontColor">
-        <div class="poster-wrapper">
-          <img
-            class="poster"
-            :src="resolve_img_url(item.poster_path)"
-            :alt="item.title"
-          />
-        </div>
-        <div class="movie-info-part">
-          <div class="movie-info">
-            <div class="key-info">
-              <div class="title-wrapper left-align">
-                <h2 class="movie-title left-align fontColor">
-                  {{ item.title }}
-                </h2>
-                <span class="tagline">{{ item.tagline }}</span>
-              </div>
-              <div class="general-info">
-                <span class="release-date">{{ item.releaseDate }}</span>
-                <span class="genres">{{ genres }}</span>
-                <span class="runtime">{{ item.duration }}</span>
-              </div>
-            </div>
-            <div class="user-interaction left-align">
-              <div class="score-section">
-                <div class="user-avg-score">
-                  <span class="movie-score">{{ item.vote_average }}</span>
-                </div>
-                <span class="score-section-text">
-                  Average
-                  <br />User Score
-                </span>
-              </div>
-              <div class="score-section favorite-button">
-                <a-button type="primary" shape="circle" icon="star" />
-              </div>
-              <div class="play-trailer score-section">
-                <a :href="resolve_video_url(item.trailer_key)">
-                  <a-icon type="play-circle" />Play Trailer
-                </a>
-              </div>
-            </div>
-            <div class="detailed-info left-align">
-              <h3 class="text-overview fontColor">Overview:</h3>
-              <div class="movie-overview" dir="auto">
-                <p class="movie-overview-text">{{ item.description }}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <MovieSynopsisMovieList listType="Movie Recommendation" />
-    <MovieSynopsisMovieList listType="Similar Movies" />
-    <MovieSynopsisCastList />
+    <Movie_Synopsis
+      :key="this.$route.params.id + 'Syn'"
+      :movieID="parseInt(this.$route.params.id)"
+    />
+    <MovieSynopsisMovieList
+      listType="Movie Reccomendations"
+      :movieID="parseInt(this.$route.params.id)"
+      :key="this.$route.params.id + 'Rec'"
+    />
+    <MovieSynopsisMovieList
+      listType="Similar Movies"
+      :movieID="parseInt(this.$route.params.id)"
+      :key="this.$route.params.id + 'Sim'"
+    />
+    <MovieSynopsisCastList
+      :key="this.$route.params.id + 'cst'"
+      :movieID="parseInt(this.$route.params.id)"
+    />
   </a-layout>
 </template>
 
 <script>
 import MovieSynopsisMovieList from "@/components/MovieSynopsisMovieList.vue";
 import MovieSynopsisCastList from "@/components/MovieSynopsisCastList.vue";
-
+import Movie_Synopsis from "@/components/MovieSynopsis.vue";
 export default {
   name: "MovieSynopsis",
   components: {
+    Movie_Synopsis,
     MovieSynopsisMovieList,
     MovieSynopsisCastList
-  },
-  props: {
-    movie: {
-      type: Object,
-      default: function() {
-        return JSON.parse(
-          '{ "id": 1654,"trailerPath": "https://www.youtube.com/embed/ff1V6ywnWcY", "genres": [ "Action", "Adventure", "War"], "overview": "12 American military prisoners in World War II are ordered to infiltrate a well-guarded enemy ch\u00e2teau and kill the Nazi officers vacationing there. The soldiers, most of whom are facing death sentences for a variety of violent crimes, agree to the mission and the possible commuting of their sentences.", "popularity": 7.7, "poster_path": "https://image.tmdb.org/t/p/w500/iFpgjfE4gt7guOLvrqgZZoO4Rjk.jpg", "release_year": "1967", "score": 0, "title": "The Dirty Dozen", "is_movie": true }'
-        );
-      }
-    },
-    item: {
-      type: Object,
-      default: function() {
-        return {
-          id: "Dark Phoenix",
-          title: "Dark Phoenix",
-          subtitle: "Dark Phoenix",
-          description: `The X-Men face their most formidable and powerful foe when one of their own, Jean Grey, starts to spiral out of control. During a rescue mission in outer space, Jean is nearly killed when she's hit by a mysterious cosmic force. Once she returns home, this force not only makes her infinitely more powerful, but far more unstable. The X-Men must now band together to save her soul and battle aliens that want to use Grey's new abilities to rule the galaxy.`,
-          backdrop_path: "/phxiKFDvPeQj4AbkvJLmuZEieDU.jpg",
-          poster_path: "/cCTJPelKGLhALq3r51A9uMonxKj.jpg",
-          releaseDate: "July 21 2017",
-          duration: "1hr 46min",
-          genre: ["Action", "Drama", "History"],
-          trailerPath: "https://www.youtube.com/embed/F-eMt3SrfFU",
-          favorite: false,
-          vote_average: 6.0,
-          tagline: "The phoenix will rise",
-          trailer_key: "QWbMckU3AOQ"
-        };
-      }
-    }
-  },
-  computed: {
-    genres: function() {
-      return this.item.genre.join(", ");
-    }
-  },
-  methods: {
-    addToFavorites() {
-      this.item.favorite = !this.item.favorite;
-    },
-    resolve_img_url: function(path) {
-      return "https://image.tmdb.org/t/p/w342" + path;
-    },
-    resolve_video_url: function(path) {
-      return "https://www.youtube.com/watch?v=" + path;
-    }
   }
 };
 </script>
