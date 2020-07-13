@@ -42,7 +42,6 @@ export default {
       visible: false
     };
   },
-
   props: {
     movieID: {
       type: Number,
@@ -91,7 +90,6 @@ export default {
   }
 };
 </script>
-
 <style scoped>
 .carousel {
   margin: 10px 20px;
