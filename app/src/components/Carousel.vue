@@ -14,7 +14,9 @@
         />
         <div class="carousel-cell-desc">
           <h1 class="title">{{ movie.title }}</h1>
-          <p class="content"><a-icon type="eye" /> 15234 Views</p>
+          <p class="content" :style="{ color: 'gray' }">
+            <a-icon type="eye" /> 15234 Views
+          </p>
         </div>
       </div>
     </flickity>
@@ -164,7 +166,7 @@ export default {
   width: 66%;
   margin: 5px auto;
   font-size: 15px;
-  color: white;
+  /* color: white; */
 }
 
 .large-image {

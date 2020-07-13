@@ -70,11 +70,11 @@ export default {
       userToken: String,
       movieQuery: String,
       movies: {
-        topRated: {},
-        worstRated: {},
+        best: {},
+        worst: {},
         popular: {},
         unpopular: {},
-        recent: {},
+        latest: {},
         oldest: {}
       }
     };
@@ -84,24 +84,22 @@ export default {
       this.loading = true;
       await axios
         .all([
-          axios.get("http://localhost:5000/topRated"),
-          axios.get("http://localhost:5000/worstRated"),
-          axios.get("http://localhost:5000/popular"),
-          axios.get("http://localhost:5000/unpopular"),
-          axios.get("http://localhost:5000/recent"),
-          axios.get("http://localhost:5000/oldest")
+          axios.get("http://localhost:5000/movie/ratings/best"),
+          axios.get("http://localhost:5000/movie/ratings/worst"),
+          axios.get("http://localhost:5000/movie/popular"),
+          axios.get("http://localhost:5000/movie/unpopular"),
+          axios.get("http://localhost:5000/movie/latest"),
+          axios.get("http://localhost:5000/movie/oldest")
         ])
         .then(
-          axios.spread(
-            (topRated, worstRated, popular, unpopular, recent, oldest) => {
-              console.log(topRated.data);
-              console.log(worstRated.data);
-              console.log(popular.data);
-              console.log(unpopular.data);
-              console.log(recent.data);
-              console.log(oldest.data);
-            }
-          )
+          axios.spread((best, worst, popular, unpopular, latest, oldest) => {
+            this.movies["best"] = best;
+            this.movies["worst"] = worst;
+            this.movies["popular"] = popular;
+            this.movies["unpopular"] = unpopular;
+            this.movies["latest"] = latest;
+            this.movies["oldest"] = oldest;
+          })
         )
         .catch(error => {
           this.error = error.message;

@@ -130,7 +130,6 @@ export default {
       e.preventDefault();
       this.form.validateFieldsAndScroll((err, values) => {
         if (!err) {
-          // console.log("Received values of form: ", values);
           firebase
             .auth()
             .createUserWithEmailAndPassword(values.email, values.password)

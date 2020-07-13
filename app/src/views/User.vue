@@ -18,8 +18,29 @@ export default {
     Profile,
     Card
   },
+  created() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (!user) {
+        this.$router.replace({ name: "Home" });
+      }
+    });
+  },
+  data() {
+    return {
+      info: null,
+      loading: true
+    };
+  },
   methods: {
-    getProfile() {
+    logout() {
+      firebase
+        .auth()
+        .signOut()
+        .catch(error => {
+          this.error = error.message;
+        });
+    },
+    profile() {
       const user = firebase.auth().currentUser;
 
       if (user != null) {
@@ -29,13 +50,6 @@ export default {
         // const emailVerified = user.emailVerified;
         // const uid = user.uid;
       }
-    },
-    created() {
-      firebase.auth().onAuthStateChanged(user => {
-        if (!user) {
-          this.$router.replace({ name: "Home" });
-        }
-      });
     },
     updateProfile() {
       const user = firebase.auth().currentUser;
