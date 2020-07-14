@@ -31,10 +31,9 @@ export default {
   },
   created() {
     if (this.listType == "Movie Recommendations") {
-      this.moviesUrl =
-        "http://127.0.0.1:5000/movie/recommendations/" + this.movieID;
+      this.moviesUrl = "/api/movie/recommendations/" + this.movieID;
     } else {
-      this.moviesUrl = "http://127.0.0.1:5000/movie/similar/" + this.movieID;
+      this.moviesUrl = "/api/movie/similar/" + this.movieID;
     }
   }
 };

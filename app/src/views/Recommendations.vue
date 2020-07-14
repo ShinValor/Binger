@@ -30,19 +30,19 @@
           <h1 class="title">Oldest Movie</h1>
           <Carousel />
         </a-tab-pane>
-      </a-tabs> -->
+      </a-tabs>-->
       <h1 class="title">Top Rated</h1>
-      <Carousel :url="'http://localhost:5000/movie/ratings/best'" />
+      <Carousel :url="'/api/movie/ratings/best'" />
       <h1 class="title">Worst Rated</h1>
-      <Carousel :url="'http://localhost:5000/movie/ratings/worst'" />
+      <Carousel :url="'/api/movie/ratings/worst'" />
       <h1 class="title">Most Popular</h1>
-      <Carousel :url="'http://localhost:5000/movie/popular'" />
+      <Carousel :url="'/api/movie/popular'" />
       <h1 class="title">Least Popular</h1>
-      <Carousel :url="'http://localhost:5000/movie/unpopular'" />
+      <Carousel :url="'/api/movie/unpopular'" />
       <h1 class="title">Most Recent</h1>
-      <Carousel :url="'http://localhost:5000/movie/latest'" />
+      <Carousel :url="'/api/movie/latest'" />
       <h1 class="title">Oldest Movie</h1>
-      <Carousel :url="'http://localhost:5000/movie/oldest'" />
+      <Carousel :url="'/api/movie/oldest'" />
     </div>
     <Footer></Footer>
   </a-layout>
@@ -84,12 +84,12 @@ export default {
       this.loading = true;
       await axios
         .all([
-          axios.get("http://localhost:5000/movie/ratings/best"),
-          axios.get("http://localhost:5000/movie/ratings/worst"),
-          axios.get("http://localhost:5000/movie/popular"),
-          axios.get("http://localhost:5000/movie/unpopular"),
-          axios.get("http://localhost:5000/movie/latest"),
-          axios.get("http://localhost:5000/movie/oldest")
+          axios.get("/api/movie/ratings/best"),
+          axios.get("/api/movie/ratings/worst"),
+          axios.get("/api/movie/popular"),
+          axios.get("/api/movie/unpopular"),
+          axios.get("/api/movie/latest"),
+          axios.get("/api/movie/oldest")
         ])
         .then(
           axios.spread((best, worst, popular, unpopular, latest, oldest) => {
