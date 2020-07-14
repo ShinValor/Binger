@@ -1,9 +1,8 @@
 <template>
   <div class="container">
-    <!-- <h1 class="title">{{ listType }}</h1>
-    <Carousel /> -->
-    <div class="container">
-      <h2 class="title">{{ listType }}</h2>
+    <h1 class="title">{{ listType }}</h1>
+    <Carousel :movieList="MovieList" />
+    <!-- <div class="container">
       <flickity class="carousel" ref="flickity" :options="flickityOptions">
         <div
           class="carousel-cell"
@@ -18,32 +17,24 @@
           </router-link>
         </div>
       </flickity>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
-// import Carousel from "@/components/Carousel.vue";
-import Flickity from "vue-flickity";
+import Carousel from "@/components/Carousel.vue";
 import axios from "axios";
+
 export default {
   name: "MovieSynopsisMovieList",
   components: {
-    Flickity
-    // Carousel
+    Carousel
   },
   data() {
     return {
       selectedMovie: Object,
       MovieList: Array,
-      errors: Array,
-      flickityOptions: {
-        initialIndex: 0,
-        autoPlay: 3000,
-        groupCells: 5,
-        freeScroll: true
-      },
-      visible: false
+      errors: Array
     };
   },
   props: {
@@ -53,12 +44,12 @@ export default {
     },
     listType: {
       type: String,
-      default: "Movie Reccomendations"
+      default: "Movie Recommendations"
     }
   },
   created() {
     let link;
-    if (this.listType == "Movie Reccomendations") {
+    if (this.listType == "Movie Recommendations") {
       link = "http://127.0.0.1:5000/movie/recommendations/" + this.movieID;
     } else {
       link = "http://127.0.0.1:5000/movie/similar/" + this.movieID;
@@ -66,14 +57,12 @@ export default {
     axios
       .get(link)
       .then(response => {
-        if (response && response.status === 200) {
-          this.MovieList = response.data;
-        }
+        this.MovieList = response.data;
       })
       .catch(error => {
         this.errors = error;
-      })
-      .finally(() => this.$refs.flickity.rerender());
+      });
+    // .finally(() => this.$refs.flickity.rerender());
   },
   methods: {
     resolve_img_url: function(path, title) {
@@ -82,7 +71,7 @@ export default {
     },
     imgsLoaded() {
       // Reload flickity cells due to height change post
-      this.$refs.flickity.reloadCells();
+      // this.$refs.flickity.reloadCells();
     }
   }
 };

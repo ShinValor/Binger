@@ -1,21 +1,21 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
-    <Movie_Synopsis
-      :key="this.$route.params.id + 'Syn'"
+    <MovieOverview
+      :key="this.$route.params.id + 'Synopsis'"
       :movieID="parseInt(this.$route.params.id)"
     />
     <MovieSynopsisMovieList
       listType="Movie Reccomendations"
       :movieID="parseInt(this.$route.params.id)"
-      :key="this.$route.params.id + 'Rec'"
+      :key="this.$route.params.id + 'Recommendation'"
     />
     <MovieSynopsisMovieList
       listType="Similar Movies"
       :movieID="parseInt(this.$route.params.id)"
-      :key="this.$route.params.id + 'Sim'"
+      :key="this.$route.params.id + 'Similiar'"
     />
     <MovieSynopsisCastList
-      :key="this.$route.params.id + 'cst'"
+      :key="this.$route.params.id + 'CastList'"
       :movieID="parseInt(this.$route.params.id)"
     />
   </a-layout>
@@ -24,12 +24,12 @@
 <script>
 import MovieSynopsisMovieList from "@/components/MovieSynopsisMovieList.vue";
 import MovieSynopsisCastList from "@/components/MovieSynopsisCastList.vue";
-import Movie_Synopsis from "@/components/MovieSynopsis.vue";
+import MovieOverview from "@/components/MovieOverview.vue";
 
 export default {
   name: "MovieSynopsis",
   components: {
-    Movie_Synopsis,
+    MovieOverview,
     MovieSynopsisMovieList,
     MovieSynopsisCastList
   }

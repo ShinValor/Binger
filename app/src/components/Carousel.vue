@@ -3,7 +3,7 @@
     <flickity class="carousel" ref="flickity" :options="flickityOptions">
       <div
         class="carousel-cell"
-        v-for="(movie, index) in MovieList"
+        v-for="(movie, index) in movieList"
         v-bind:key="index"
         @click="toggleModal(movie)"
       >
@@ -44,6 +44,11 @@ export default {
   components: {
     Flickity
   },
+  // props: {
+  //   movieList: {
+  //     type: Array
+  //   }
+  // },
   data() {
     return {
       flickityOptions: {
@@ -57,41 +62,41 @@ export default {
       modalTitle: "",
       modalImg: "",
       modalSummary: "",
-      MovieList: [
+      movieList: [
         {
-          title: "Shazam",
+          title: "Wonder Woman",
           url: "https://image.tmdb.org/t/p/w342/xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
         },
         {
-          title: "Star War",
+          title: "Terminator",
           url: "https://image.tmdb.org/t/p/w342/db32LaOibwEliAmSL2jjDF6oDdj.jpg"
         },
         {
-          title: "Fantastic Beast",
+          title: "Logan",
           url: "https://image.tmdb.org/t/p/w342/fMMrl8fD9gRCFJvsx0SuFwkEOop.jpg"
         },
         {
-          title: "Aladdin",
+          title: "6 Underground",
           url: "https://image.tmdb.org/t/p/w342/ykUEbfpkf8d0w49pHh0AD2KrT52.jpg"
         },
         {
-          title: "HellBoy",
+          title: "Joker",
           url: "https://image.tmdb.org/t/p/w342/bk8LyaMqUtaQ9hUShuvFznQYQKR.jpg"
         },
         {
-          title: "Godzilla",
+          title: "Black Panther",
           url: "https://image.tmdb.org/t/p/w342/pU3bnutJU91u3b4IeRPQTOP8jhV.jpg"
         },
         {
-          title: "Spiderman",
+          title: "Black Widow",
           url: "https://image.tmdb.org/t/p/w342/4q2NNj4S5dG2RLF9CpXsej7yXl.jpg"
         },
         {
-          title: "Men In Black",
+          title: "Star War",
           url: "https://image.tmdb.org/t/p/w342/dPrUPFcgLfNbmDL8V69vcrTyEfb.jpg"
         },
         {
-          title: "Captain Marvel",
+          title: "Aladdin",
           url: "https://image.tmdb.org/t/p/w342/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg"
         }
       ]
@@ -106,7 +111,7 @@ export default {
         "All our illustrations come in different styles, and you can change main color. Just choose the one you like the most for your project. Some styles allow you to select a simple background, a more one, or one, or remove it altogether. Give it a try! All our illustrations come in different styles, and you can change main color. Just choose the one you like the most for your project. Some styles allow you to select a simple background, a more one, or one, or remove it altogether. Give it a try!";
     },
     onClick() {
-      this.$router.push("/movie-synopsis");
+      // this.$router.push("/movie-synopsis");
     }
   }
 };

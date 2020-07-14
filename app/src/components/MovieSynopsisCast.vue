@@ -9,13 +9,11 @@
         :src="resolve_img_url(cast.profile_path)"
       />
     </div>
-    <div class="content">
-      <p>
-        <strong>{{ cast.name }}</strong>
-        <br />
-        {{ cast.character }}
-      </p>
-    </div>
+    <p class="content">
+      <b>{{ cast.name }}</b>
+      <br />
+      {{ cast.character }}
+    </p>
   </div>
 </template>
 
@@ -25,7 +23,7 @@ export default {
   props: {
     cast: {
       type: Object,
-      default: function() {
+      default: () => {
         return {
           cast_id: 4,
           character: "The Narrator",
@@ -40,7 +38,7 @@ export default {
     }
   },
   methods: {
-    resolve_img_url: function(path) {
+    resolve_img_url(path) {
       return "https://image.tmdb.org/t/p/w342" + path;
     }
   }

@@ -64,7 +64,7 @@
 <script>
 import axios from "axios";
 export default {
-  name: "MovieSynopsis",
+  name: "MovieOverview",
   data() {
     return {
       item: Object,
@@ -80,11 +80,11 @@ export default {
   created() {
     axios
       .get("http://0.0.0.0:5000/movie/" + this.movieID)
-      .then(response => {
-        this.item = response.data;
+      .then(res => {
+        this.item = res.data;
       })
-      .catch(error => {
-        this.errors = error;
+      .catch(err => {
+        this.error = err;
       })
       .finally(() => (this.loading = false));
   },
@@ -92,34 +92,31 @@ export default {
     addToFavorites() {
       this.item.favorite = !this.item.favorite;
     },
-    resolve_img_url: function(path) {
+    resolve_img_url(path) {
       return "https://image.tmdb.org/t/p/w342" + path;
     },
-    resolve_video_url: function(path) {
+    resolve_video_url(path) {
       return "https://www.youtube.com/watch?v=" + path;
     },
-    genres: function() {
+    genres() {
       return typeof this.item.genres !== "undefined"
         ? this.item.genres.join(", ")
         : "";
     },
-    releaseDate: function() {
-      var msec = Date.parse(this.item.release_date);
-      var date = new Date(msec);
-      let x = date.toLocaleString("default", {
+    releaseDate() {
+      const msec = Date.parse(this.item.release_date);
+      const date = new Date(msec);
+      return date.toLocaleString("default", {
         year: "numeric",
         month: "long",
         day: "numeric"
       });
-
-      return x;
     },
-    runtime: function(num) {
-      var hours = num / 60;
-      var rhours = Math.floor(hours);
-      var minutes = (hours - rhours) * 60;
-      var rminutes = Math.round(minutes);
-      return rhours + "hr " + rminutes + " min";
+    runtime(num) {
+      const hours = num / 60;
+      const rhours = Math.floor(hours);
+      const minutes = Math.round((hours - rhours) * 60);
+      return rhours + "hr " + minutes + " min";
     }
   }
 };
@@ -129,6 +126,7 @@ export default {
 .left-align {
   text-align: left;
 }
+
 .header {
   display: flex;
   flex-wrap: nowrap;
@@ -141,11 +139,13 @@ export default {
   padding-bottom: 4rem !important;
   padding-top: 4.5rem !important;
 }
+
 .header-contents {
   display: flex;
   flex-wrap: nowrap;
   margin: 2em;
 }
+
 .poster-wrapper {
   display: block;
   min-width: 300px;
@@ -155,6 +155,7 @@ export default {
   top: 0;
   left: 0;
 }
+
 .poster {
   display: block;
   width: 100%;
@@ -164,12 +165,15 @@ export default {
   border-width: 0px;
   outline: none;
 }
+
 .movie-info-part {
   display: flex;
 }
+
 .movie-info {
   padding-left: 40px;
 }
+
 .key-info {
   width: 100%;
   margin-bottom: 24px;
@@ -181,6 +185,7 @@ export default {
   font-weight: 700;
   display: inline;
 }
+
 .tagline {
   margin: 0;
   padding: 0;
@@ -191,9 +196,11 @@ export default {
   display: inline;
   padding-left: 15px;
 }
+
 .general-info {
   display: flex;
 }
+
 .release-date,
 .genres,
 .runtime {
@@ -210,45 +217,56 @@ export default {
   height: 68px;
   margin-right: 20px;
 }
+
 .movie-score {
   font-size: 30px;
   font-weight: 600;
 }
+
 .score-section-text {
   font-weight: 700;
   margin-left: 6px;
   white-space: pre-line;
   font-size: 14px;
 }
+
 .movie-overview-text {
   text-align: left;
 }
+
 .text-overview {
   font-weight: 600;
   font-size: 1.3em;
 }
+
 .fontColor {
   color: ivory;
 }
+
 @media only screen and (max-width: 600px) {
   .header-contents,
   .tagline,
   .movie-title {
     display: block;
   }
+
   .tagline {
     margin-top: -10px;
     padding-left: 15px;
   }
+
   .title-wrapper {
     margin-bottom: 10px;
   }
+
   .general-info {
     text-align: left;
   }
+
   .release-date {
     padding-left: 0px;
   }
+
   .poster-wrapper {
     display: block;
     margin-left: auto;

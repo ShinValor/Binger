@@ -30,13 +30,11 @@ export default {
   created() {
     axios
       .get("http://127.0.0.1:5000/movie/cast/" + this.movieID)
-      .then(response => {
-        if (response && response.status === 200) {
-          this.castList = response.data;
-        }
+      .then(res => {
+        this.castList = res.data;
       })
-      .catch(error => {
-        this.errors = error;
+      .catch(err => {
+        this.error = err;
       });
   },
   data() {
