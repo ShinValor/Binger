@@ -58,7 +58,7 @@
       <h1 class="title">Most Recent</h1>
       <Carousel
         :url="
-          'https://binger-api-test-env.eba-mdbndpwy.us-east-2.elasticbeanstalk.com//movie/latest'
+          'http://binger-api-test-env.eba-mdbndpwy.us-east-2.elasticbeanstalk.com/movie/latest'
         "
       />
       <h1 class="title">Oldest Movie</h1>
