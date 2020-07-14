@@ -83,8 +83,8 @@ export default {
       this.modalImg = movie.url;
       this.modalSummary = "All our illustrations come in different styles.";
     },
-    resolve_img_url: function(path) {
-      if (path == null) {
+    resolve_img_url(path) {
+      if (path === null) {
         return "https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/tulip.jpg";
       }
       return "https://image.tmdb.org/t/p/w342" + path;
