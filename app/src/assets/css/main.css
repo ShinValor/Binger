@@ -33,3 +33,15 @@ a.ant-dropdown-link {
 a.ant-dropdown-link:hover {
   color: lightpink;
 }
+
+.ant-layout {
+  background-color: #222831 !important;
+}
+
+.ant-layout-footer {
+  background-color: #222831 !important;
+}
+
+.ant-form-item label {
+  color: white !important;
+}

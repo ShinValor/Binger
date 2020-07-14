@@ -3,7 +3,7 @@
     <h1 class="title">
       <b>{{ heading }}</b>
     </h1>
-    <p class="description">{{ description }}</p>
+    <p class="desc">{{ description }}</p>
     <a-button class="btn-desc"
       ><b>{{ buttonDesc }}</b></a-button
     >
@@ -38,16 +38,16 @@ export default {
   color: white;
 }
 
-.description {
+.desc {
   margin: 0 auto;
-  font-size: 15px;
-  color: gray;
+  font-size: 20px;
+  color: white;
 }
 
 .btn-desc {
   background-color: transparent;
   width: 300px;
-  margin: 50px auto;
+  margin: 25px auto;
   border-color: white;
   color: white;
 }
@@ -64,7 +64,7 @@ export default {
     margin: 15px;
   }
 
-  .description {
+  .desc {
     font-size: 10px;
     margin: 10px;
   }

@@ -1,88 +1,66 @@
 <template>
   <a-form class="signup-form" :form="form" @submit="handleSubmit">
-    <h1>Sign up</h1>
-    <a-form-item v-bind="formItemLayout" label="E-mail">
-      <a-input
-        v-decorator="[
-          'email',
-          {
-            rules: [
-              {
-                type: 'email',
-                message: 'The input is not valid E-mail!'
-              },
-              {
-                required: true,
-                message: 'Please input your E-mail!'
-              }
-            ]
-          }
-        ]"
-      />
-    </a-form-item>
-    <a-form-item v-bind="formItemLayout" label="Password" has-feedback>
-      <a-input
-        v-decorator="[
-          'password',
-          {
-            rules: [
-              {
-                required: true,
-                message: 'Please input your password!'
-              },
-              {
-                validator: validateToNextPassword
-              }
-            ]
-          }
-        ]"
-        type="password"
-      />
-    </a-form-item>
-    <a-form-item v-bind="formItemLayout" label="Confirm Password" has-feedback>
-      <a-input
-        v-decorator="[
-          'confirm',
-          {
-            rules: [
-              {
-                required: true,
-                message: 'Please confirm your password!'
-              },
-              {
-                validator: compareToFirstPassword
-              }
-            ]
-          }
-        ]"
-        type="password"
-        @blur="handleConfirmBlur"
-      />
-    </a-form-item>
-    <a-form-item v-bind="formItemLayout">
-      <span slot="label">
-        Nickname&nbsp;
-        <a-tooltip title="What do you want others to call you?">
-          <a-icon type="question-circle-o" />
-        </a-tooltip>
-      </span>
+    <h1 :style="{ color: 'white' }">Register Here !</h1>
+    <a-form-item>
       <a-input
         v-decorator="[
           'nickname',
           {
             rules: [
-              {
-                required: true,
-                message: 'Please input your nickname!',
-                whitespace: true
-              }
+              { required: true, message: 'Please input your display name!' }
             ]
           }
         ]"
-      />
+        placeholder="Nickname"
+      >
+        <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" />
+      </a-input>
     </a-form-item>
-    <a-form-item v-bind="tailFormItemLayout">
-      <a-button type="primary" html-type="submit">
+    <a-form-item>
+      <a-input
+        v-decorator="[
+          'email',
+          {
+            rules: [{ required: true, message: 'Please input your email!' }]
+          }
+        ]"
+        placeholder="Email"
+      >
+        <a-icon slot="prefix" type="mail" style="color: rgba(0,0,0,.25)" />
+      </a-input>
+    </a-form-item>
+    <a-form-item>
+      <a-input
+        v-decorator="[
+          'password',
+          {
+            rules: [{ required: true, message: 'Please input your Password!' }]
+          }
+        ]"
+        type="password"
+        placeholder="Password"
+      >
+        <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
+      </a-input>
+    </a-form-item>
+    <a-form-item>
+      <a-input
+        v-decorator="[
+          'confirmPassword',
+          {
+            rules: [
+              { required: true, message: 'Please confirm your password!' }
+            ]
+          }
+        ]"
+        type="password"
+        placeholder="Confirm Password"
+      >
+        <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
+      </a-input>
+    </a-form-item>
+    <a-form-item>
+      <a-button type="primary" html-type="submit" :style="{ width: '100%' }">
         Register
       </a-button>
     </a-form-item>
@@ -94,78 +72,35 @@ import firebase from "firebase";
 
 export default {
   name: "SignupForm",
-  data() {
-    return {
-      confirmDirty: false,
-      autoCompleteResult: [],
-      formItemLayout: {
-        labelCol: {
-          xs: { span: 24 },
-          sm: { span: 8 }
-        },
-        wrapperCol: {
-          xs: { span: 24 },
-          sm: { span: 16 }
-        }
-      },
-      tailFormItemLayout: {
-        wrapperCol: {
-          xs: {
-            span: 24,
-            offset: 0
-          },
-          sm: {
-            span: 16,
-            offset: 8
-          }
-        }
-      }
-    };
-  },
   beforeCreate() {
     this.form = this.$form.createForm(this, { name: "register" });
   },
   methods: {
     handleSubmit(e) {
       e.preventDefault();
-      this.form.validateFieldsAndScroll((err, values) => {
+      this.form.validateFields((err, values) => {
         if (!err) {
-          firebase
-            .auth()
-            .createUserWithEmailAndPassword(values.email, values.password)
-            .then(data => {
-              data.user
-                .updateProfile({
-                  displayName: values.nickname
-                })
-                .then(() => {
-                  this.$router.replace({ name: "Login" });
-                });
-            })
-            .catch(err => {
-              this.error = err.message;
-            });
+          if (values.password == values.confirmPassword) {
+            firebase
+              .auth()
+              .createUserWithEmailAndPassword(values.email, values.password)
+              .then(data => {
+                data.user
+                  .updateProfile({
+                    displayName: values.nickname
+                  })
+                  .then(() => {
+                    this.$router.replace({ name: "Login" });
+                  });
+              })
+              .catch(err => {
+                this.error = err.message;
+              });
+          } else {
+            this.$message.warning("Please Enter Same Password");
+          }
         }
       });
-    },
-    handleConfirmBlur(e) {
-      const value = e.target.value;
-      this.confirmDirty = this.confirmDirty || !!value;
-    },
-    compareToFirstPassword(rule, value, callback) {
-      const form = this.form;
-      if (value && value !== form.getFieldValue("password")) {
-        callback("Two passwords that you enter is inconsistent!");
-      } else {
-        callback();
-      }
-    },
-    validateToNextPassword(rule, value, callback) {
-      const form = this.form;
-      if (value && this.confirmDirty) {
-        form.validateFields(["confirm"], { force: true });
-      }
-      callback();
     }
   }
 };
@@ -173,7 +108,7 @@ export default {
 
 <style scoped>
 .signup-form {
-  width: 700px;
+  width: 500px;
   margin: 100px auto 0;
 }
 

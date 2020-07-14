@@ -1,6 +1,6 @@
 <template>
   <a-form class="login-form" :form="form" @submit="handleSubmit">
-    <h1>Log In</h1>
+    <h1 :style="{ color: 'white' }">Log In</h1>
     <a-form-item>
       <a-input
         v-decorator="[
@@ -30,6 +30,7 @@
     </a-form-item>
     <a-form-item>
       <a-checkbox
+        :style="{ float: 'left', color: 'white' }"
         v-decorator="[
           'remember',
           {
@@ -38,7 +39,7 @@
           }
         ]"
       >
-        Remember me
+        Remember Me
       </a-checkbox>
       <a :style="{ float: 'right' }" href="">
         Forgot password
@@ -46,7 +47,6 @@
       <a-button type="primary" html-type="submit" :style="{ width: '100%' }">
         Log in
       </a-button>
-      Or
       <router-link to="/signup">
         Register now!
       </router-link>
@@ -72,9 +72,11 @@ export default {
             .signInWithEmailAndPassword(values.email, values.password)
             .then(() => {
               this.$router.replace({ name: "User" });
+              this.$message.success("Successfully Logged In");
             })
             .catch(err => {
               this.error = err.message;
+              this.$message.warning(this.error);
             });
         }
       });

@@ -47,11 +47,11 @@
         </div>
       </div>
     </div>
-    <div class="section3">
+    <div class="section3" :style="{ color: 'white' }">
       Binger ©2020 Created by The Binger Team
       <img
         class="small-image"
-        src="../assets/svg/watching-tv.svg"
+        src="../assets/svg/binger-logo.svg"
         alt="Movie Icon"
       />
     </div>
@@ -102,11 +102,13 @@ export default {
 
 .title {
   font-size: 20px;
+  color: white;
 }
 
 .content {
   font-size: 12px;
   line-height: 80%;
+  color: white;
 }
 
 .small-image {

@@ -1,6 +1,6 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
-    <div class="banner">
+    <div class="jumbotron">
       <h1 class="heading">
         <b>Movie Recommendation to power up your life</b>
       </h1>
@@ -153,7 +153,7 @@ export default {
   margin: 0 auto;
 }
 
-.banner {
+.jumbotron {
   height: 600px;
   width: 100%;
   background-image: url("../assets/svg/cinema-background.svg");
@@ -189,18 +189,25 @@ export default {
 
 .title {
   font-size: 35px;
+  color: white;
 }
 
-/* .sub-title {
-} */
+.sub-title {
+  color: white;
+}
 
 .content-background {
-  background: rgb(229, 193, 233);
+  /* background: rgb(229, 193, 233);
   background: linear-gradient(
     145deg,
     rgba(229, 193, 233, 1) 39%,
     rgba(79, 190, 252, 1) 100%
-  );
+  ); */
+  /* background-color: #21D4FD;
+  background-image: linear-gradient(19deg, #21d4fd 0%, #b721ff 100%); */
+  background-color: #8ec5fc;
+  /* background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%); */
+  background-image: linear-gradient(19deg, #a18cd1 0%, #fbc2eb 100%);
 }
 
 .container1 {
@@ -258,6 +265,7 @@ export default {
 .content {
   font-size: 20px;
   /* margin: 50px; */
+  color: white;
 }
 
 .progress-bar {
@@ -267,14 +275,13 @@ export default {
 @media screen and (max-width: 800px) {
   /* applies styles to any device screen sizes below 800px wide */
 
-  .banner {
+  .jumbotron {
     height: 250px;
   }
 
   .heading {
     margin: 50px 10px 10px 15px;
     width: 100px;
-    color: white;
     font-size: 15px;
   }
 
