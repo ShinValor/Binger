@@ -79,7 +79,10 @@ export default {
   },
   created() {
     axios
-      .get("http://0.0.0.0:5000/movie/" + this.movieID)
+      .get(
+        "http://binger-api-test-env.eba-mdbndpwy.us-east-2.elasticbeanstalk.com/movie/" +
+          this.movieID
+      )
       .then(res => {
         this.item = res.data;
       })
