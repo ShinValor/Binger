@@ -11,7 +11,7 @@
           class="carousel-cell-image"
           :data-flickity-lazyload="resolve_img_url(movie.poster_path)"
           :alt="movie.title"
-          onerror="this.style.opacity='0'"
+          onerror="this.style.display='none'"
         />
         <div class="carousel-cell-desc">
           <h1 class="title">{{ movie.title }}</h1>
@@ -34,7 +34,8 @@
         <img
           class="large-image"
           :src="modalImg"
-          onerror="this.style.opacity='0'"
+          :alt="modalTitle"
+          onerror="this.style.display='none'"
         />
       </div>
       <a-button>

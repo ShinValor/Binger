@@ -12,7 +12,6 @@
             class="poster"
             :src="resolve_img_url(item.poster_path)"
             :alt="item.title"
-            onerror="this.style.opacity='0'"
           />
         </div>
         <div class="movie-info-part">
