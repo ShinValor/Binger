@@ -104,7 +104,7 @@ def get_movie_info(id):
 def get_movie_cast(id):
 
     options = DEFAULT_OPTIONS.copy()
-    api_url = f"https://api.themoviedb.org/3/movie/{id}/credits"
+    api_url = "https://api.themoviedb.org/3/movie/{id}/credits"
 
     response = requests.get(url=api_url, params=options)
     top_5_cast = (response.json()['cast'])[:5]
@@ -288,5 +288,5 @@ def get_random_movies():
 
     return jsonify(movies)
 
-
-movies.run(debug=True)
+if __name__ == "__main__":
+  movies.run(debug=True)

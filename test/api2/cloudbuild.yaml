@@ -1,0 +1,14 @@
+steps:
+  # Build the container image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/binger-2910d/app', './test/api2']
+  # Push the container image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/binger-2910d/app']
+  # Deploy container image to Cloud Run
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['beta', 'run', 'deploy', 'app', '--image', 'gcr.io/binger-2910d/app', '--region', 'us-central1', '--platform', 'managed', '--allow-unauthenticated']
+images:
+- gcr.io/binger-2910d/app
+timeout: 1200s
+
