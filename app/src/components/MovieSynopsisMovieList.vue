@@ -31,9 +31,13 @@ export default {
   },
   created() {
     if (this.listType == "Movie Recommendations") {
-      this.moviesUrl = "/api/movie/recommendations/" + this.movieID;
+      this.moviesUrl =
+        "http://binger-api-test-env.eba-mdbndpwy.us-east-2.elasticbeanstalk.com/movie/recommendations/" +
+        this.movieID;
     } else {
-      this.moviesUrl = "/api/movie/similar/" + this.movieID;
+      this.moviesUrl =
+        "http://binger-api-test-env.eba-mdbndpwy.us-east-2.elasticbeanstalk.com/movie/similar/" +
+        this.movieID;
     }
   }
 };

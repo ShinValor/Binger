@@ -24,7 +24,10 @@ export default {
   },
   created() {
     axios
-      .get("/api/movie/cast/" + this.movieID)
+      .get(
+        "http://binger-api-test-env.eba-mdbndpwy.us-east-2.elasticbeanstalk.com/movie/cast/" +
+          this.movieID
+      )
       .then(res => {
         this.castList = res.data;
       })
