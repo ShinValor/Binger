@@ -34,37 +34,37 @@
       <h1 class="title">Top Rated</h1>
       <Carousel
         :url="
-          'http://binger-api-test-env.eba-mdbndpwy.us-east-2.elasticbeanstalk.com/movie/ratings/best'
+          'https://binger-api-test-env.eba-mdbndpwy.us-east-2.elasticbeanstalk.com/movie/ratings/best'
         "
       />
       <h1 class="title">Worst Rated</h1>
       <Carousel
         :url="
-          'http://binger-api-test-env.eba-mdbndpwy.us-east-2.elasticbeanstalk.com//movie/ratings/worst'
+          'https://binger-api-test-env.eba-mdbndpwy.us-east-2.elasticbeanstalk.com//movie/ratings/worst'
         "
       />
       <h1 class="title">Most Popular</h1>
       <Carousel
         :url="
-          'http://binger-api-test-env.eba-mdbndpwy.us-east-2.elasticbeanstalk.com//movie/popular'
+          'https://binger-api-test-env.eba-mdbndpwy.us-east-2.elasticbeanstalk.com//movie/popular'
         "
       />
       <h1 class="title">Least Popular</h1>
       <Carousel
         :url="
-          'http://binger-api-test-env.eba-mdbndpwy.us-east-2.elasticbeanstalk.com//movie/unpopular'
+          'https://binger-api-test-env.eba-mdbndpwy.us-east-2.elasticbeanstalk.com//movie/unpopular'
         "
       />
       <h1 class="title">Most Recent</h1>
       <Carousel
         :url="
-          'http://binger-api-test-env.eba-mdbndpwy.us-east-2.elasticbeanstalk.com//movie/latest'
+          'https://binger-api-test-env.eba-mdbndpwy.us-east-2.elasticbeanstalk.com//movie/latest'
         "
       />
       <h1 class="title">Oldest Movie</h1>
       <Carousel
         :url="
-          'http://binger-api-test-env.eba-mdbndpwy.us-east-2.elasticbeanstalk.com//movie/oldest'
+          'https://binger-api-test-env.eba-mdbndpwy.us-east-2.elasticbeanstalk.com//movie/oldest'
         "
       />
     </div>
@@ -109,22 +109,22 @@ export default {
       await axios
         .all([
           axios.get(
-            "http://binger-api-test-env.eba-mdbndpwy.us-east-2.elasticbeanstalk.com//movie/ratings/best"
+            "https://binger-api-test-env.eba-mdbndpwy.us-east-2.elasticbeanstalk.com//movie/ratings/best"
           ),
           axios.get(
-            "http://binger-api-test-env.eba-mdbndpwy.us-east-2.elasticbeanstalk.com//movie/ratings/worst"
+            "https://binger-api-test-env.eba-mdbndpwy.us-east-2.elasticbeanstalk.com//movie/ratings/worst"
           ),
           axios.get(
-            "http://binger-api-test-env.eba-mdbndpwy.us-east-2.elasticbeanstalk.com//movie/popular"
+            "https://binger-api-test-env.eba-mdbndpwy.us-east-2.elasticbeanstalk.com//movie/popular"
           ),
           axios.get(
-            "http://binger-api-test-env.eba-mdbndpwy.us-east-2.elasticbeanstalk.com//movie/unpopular"
+            "https://binger-api-test-env.eba-mdbndpwy.us-east-2.elasticbeanstalk.com//movie/unpopular"
           ),
           axios.get(
-            "http://binger-api-test-env.eba-mdbndpwy.us-east-2.elasticbeanstalk.com//movie/latest"
+            "https://binger-api-test-env.eba-mdbndpwy.us-east-2.elasticbeanstalk.com//movie/latest"
           ),
           axios.get(
-            "http://binger-api-test-env.eba-mdbndpwy.us-east-2.elasticbeanstalk.com//movie/oldest"
+            "https://binger-api-test-env.eba-mdbndpwy.us-east-2.elasticbeanstalk.com//movie/oldest"
           )
         ])
         .then(
