@@ -6,28 +6,27 @@
       </h1>
       <div class="section4">
         <p class="sub-heading content">
-          Hundreds of illustrated concepts to make your landing page, app, or
-          presentation more attractive
+          Millions of movies, TV shows and people to discover. Explore now.
         </p>
         <a-button class="sub-button">
-          <router-link to="/login"><b>Learn More</b></router-link>
+          <a href="/#how-it-work"><b>Learn More</b></a>
         </a-button>
       </div>
     </div>
     <Content
       class="content-background"
       heading="Welcome To Binger"
-      description="Get started by downloading Docker Desktop, and learn how you can build, tag and share a sample image on Hub."
+      description="Get started by signing up Binger, and learn how you can find movies and shows recommendation."
       buttonDesc="Get started with Binger"
     />
     <div class="container2">
       <div class="section1">
         <h1 class="title"><b>Optimized Movie Search Engine</b></h1>
         <p class="content">
-          All our illustrations come in different styles, and you can change
-          main color. Just choose the one you like the most for your project.
-          project. Some styles allow you to select a simple background, a more
-          one, or remove it altogether. Give it a try!
+          Our optimized movie search engine has millions of movies and shows to
+          query from. Movies and shows are added to a weighted queue, duplicates
+          increase weight. Based on user decisions the weight will increase
+          likes and decrease on dislikes.
         </p>
       </div>
       <div class="section1">
@@ -41,10 +40,10 @@
       <div class="section1">
         <h1 class="title"><b>Movie Nights</b></h1>
         <p class="content">
-          Do you want the illustrations to come to life on your website? You
-          animate them directly with our online editor! Some styles allow you to
-          you to select a simple background, a more detailed one, or remove it
-          altogether. Give it a try!
+          Summer may be slipping away but it’s still the perfect time to take
+          movie night outside. Public parks and rooftops offer free and ticketed
+          outdoor screenings across the city. Prepare your picnic blanket to
+          watch your favorite films under the stars.
         </p>
       </div>
     </div>
@@ -52,10 +51,9 @@
       <div class="section1">
         <h1 class="title"><b>Watch With Friends</b></h1>
         <p class="content">
-          Some styles allow you to select a simple background, a more detailed
-          one, or remove it altogether. Give it a try! Some styles allow you
-          select a simple background, a more detailed one, or remove it
-          altogether. Give it a try!
+          Imagine being able to watch your favorite Netflix web series or movies
+          with your best friends while social distancing. Using Binger you can
+          now search for your favorite movies and shows.
         </p>
       </div>
       <div class="section1">
@@ -65,7 +63,7 @@
         />
       </div>
     </div>
-    <h1 class="title">
+    <h1 class="title" id="how-it-work">
       <strong> How It Works </strong>
     </h1>
     <div class="container1">
@@ -80,12 +78,11 @@
         }"
       >
         <p class="content">
-          All our illustrations come in different styles, and you can change
-          main color. Just choose the one you like the most for your project.
-          project. Some styles allow you to select a simple background, a more
-          one, or remove it altogether. Give it a try! Some styles allow you to
-          select a simple background, a more one, or remove it altogether. Give
-          it a try!
+          During the quarantine, people have watched all the movies and shows on
+          their movie queues and are left looking for something new to watch.
+          Streaming services have huge libraries and it takes effort and time to
+          find a show. There is no centralized movie queue across different
+          streaming services.
         </p>
       </div>
       <div class="section3" :style="{ 'grid-area': 'header' }">
