@@ -1,6 +1,6 @@
 <template>
-  <div class="card">
-    <h2 class="list-type-text">The important Cast</h2>
+  <div class="container">
+    <h1 class="title">Cast List</h1>
     <div>
       <MovieSynopsisCast
         class="list-item"
@@ -30,13 +30,11 @@ export default {
   created() {
     axios
       .get("http://127.0.0.1:5000/movie/cast/" + this.movieID)
-      .then(response => {
-        if (response && response.status === 200) {
-          this.castList = response.data;
-        }
+      .then(res => {
+        this.castList = res.data;
       })
-      .catch(error => {
-        this.errors = error;
+      .catch(err => {
+        this.error = err;
       });
   },
   data() {
@@ -47,18 +45,29 @@ export default {
 };
 </script>
 <style scoped>
+.container {
+  margin: 2em;
+}
+
+.title {
+  margin: 20px;
+  text-align: left;
+  font-size: 30px;
+}
+
 .list-item {
   display: inline-block;
   margin: 10px;
   padding: 2px;
 }
-.card {
-  margin: 2em;
-}
-.list-type-text {
-  text-align: left;
-  font-size: 2em;
-  margin-bottom: 0%;
-  margin-top: 1rem;
+
+@media screen and (max-width: 500px) {
+  /* applies styles to any device screen sizes below 800px wide */
+
+  .title {
+    margin: 0 auto;
+    text-align: center;
+    font-size: 20px;
+  }
 }
 </style>

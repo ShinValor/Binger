@@ -13,11 +13,12 @@ from app import app
                             VARS NEEDED FOR AUTH AND FIRESTORE
 vars from the app.__init__ file that contains vars needed for auth and firestore
 from app import cors, cred, firebase_app
-from firebase_admin import auth, firestore 
+from firebase_admin import auth, firestore
 ====================================================================================
 """
 from firebase_admin import credentials, auth, firestore, initialize_app
 from flask import session, jsonify, Response, request
+from flask_cors import CORS, cross_origin
 from functools import wraps
 
 """
@@ -31,9 +32,11 @@ from app.utils import recommendations
 from app.utils import shows
 
 
-#cred = credentials.Certificate('key.json')
-#firebase_app = initialize_app(cred)
-firebase_app = initialize_app()
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
+
+cred = credentials.Certificate('key.json')
+firebase_app = initialize_app(cred)
+# firebase_app = initialize_app()
 db = firestore.client()
 
 def check_token(f):

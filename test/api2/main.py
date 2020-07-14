@@ -80,7 +80,7 @@ def gwt_similar_movies(id):
                        "api_key": "30b80750bf23b8b0b21e102d46f16d72"})
     # print(req.json())
     data = req.json()["results"]
-    print(data)
+    # print(data)
 
     return jsonify(data)
 

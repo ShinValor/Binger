@@ -1,5 +1,4 @@
 <template>
-  <!-- <a-layout-content :style="{ padding: '0 50px' }"> -->
   <div class="container">
     <h1 class="title">
       <b>{{ heading }}</b>
@@ -9,7 +8,6 @@
       ><b>{{ buttonDesc }}</b></a-button
     >
   </div>
-  <!-- </a-layout-content> -->
 </template>
 
 <script>

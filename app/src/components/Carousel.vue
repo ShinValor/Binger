@@ -3,114 +3,99 @@
     <flickity class="carousel" ref="flickity" :options="flickityOptions">
       <div
         class="carousel-cell"
-        v-for="(movie, index) in MovieList"
+        v-for="(movie, index) in movieList"
         v-bind:key="index"
+        @click="toggleModal(movie)"
       >
         <img
           class="carousel-cell-image"
-          :data-flickity-lazyload="movie.url"
+          :data-flickity-lazyload="resolve_img_url(movie.poster_path)"
           :alt="movie.title"
         />
-        <!-- <img class="carousel-cell-image" :src="movie.url" /> -->
         <div class="carousel-cell-desc">
           <h1 class="title">{{ movie.title }}</h1>
-          <a-button class="modal-btn" @click="showModal">Synopsis</a-button>
+          <p class="content" :style="{ color: 'gray' }">
+            <a-icon type="eye" /> 15234 Views
+          </p>
         </div>
       </div>
     </flickity>
     <a-modal
-      v-model="visible"
-      title="Movie Summary"
+      v-model="modalVisible"
+      :title="modalTitle"
       :width="750"
       :footer="null"
     >
       <div :style="{ display: 'flex' }">
         <p class="content">
-          All our illustrations come in different styles, and you can change
-          main color. Just choose the one you like the most for your project.
-          Some styles allow you to select a simple background, a more one, or
-          one, or remove it altogether. Give it a try!
+          {{ this.modalSummary }}
         </p>
-        <p class="content">
-          All our illustrations come in different styles, and you can change
-          main color. Just choose the one you like the most for your project.
-          Some styles allow you to select a simple background, a more one, or
-          one, or remove it altogether. Give it a try!
-        </p>
-        <img
-          class="large-image"
-          src="https://image.tmdb.org/t/p/w342//xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
-        />
+        <img class="large-image" :src="modalImg" />
       </div>
-      <a-button @click="onClick">More Info</a-button>
+      <a-button>
+        <router-link
+          :to="{ name: 'MovieSynopsis', params: { id: this.modalId } }"
+        >
+          More Info
+        </router-link>
+      </a-button>
     </a-modal>
   </div>
 </template>
 <script>
 import Flickity from "vue-flickity";
+import axios from "axios";
 
 export default {
   name: "Carousel",
   components: {
     Flickity
   },
+  props: {
+    url: String
+  },
+  created() {
+    axios
+      .get(this.movieUrls)
+      .then(res => {
+        this.movieList = res.data;
+      })
+      .catch(err => {
+        this.error = err;
+      })
+      .finally(() => this.$refs.flickity.rerender());
+  },
   data() {
     return {
       flickityOptions: {
         initialIndex: 0,
-        autoPlay: 3000,
         groupCells: 5,
         freeScroll: true,
-        // prevNextButtons: false
         lazyLoad: 2
+        // autoPlay: 3000,
       },
-      visible: false,
-      MovieList: [
-        {
-          title: "Wonder Woman",
-          url: "https://image.tmdb.org/t/p/w342/xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
-        },
-        {
-          title: "Terminator",
-          url: "https://image.tmdb.org/t/p/w342/db32LaOibwEliAmSL2jjDF6oDdj.jpg"
-        },
-        {
-          title: "Logan",
-          url: "https://image.tmdb.org/t/p/w342/fMMrl8fD9gRCFJvsx0SuFwkEOop.jpg"
-        },
-        {
-          title: "6 Underground",
-          url: "https://image.tmdb.org/t/p/w342/ykUEbfpkf8d0w49pHh0AD2KrT52.jpg"
-        },
-        {
-          title: "Joker",
-          url: "https://image.tmdb.org/t/p/w342/bk8LyaMqUtaQ9hUShuvFznQYQKR.jpg"
-        },
-        {
-          title: "Black Panther",
-          url: "https://image.tmdb.org/t/p/w342/pU3bnutJU91u3b4IeRPQTOP8jhV.jpg"
-        },
-        {
-          title: "Black Widow",
-          url: "https://image.tmdb.org/t/p/w342/4q2NNj4S5dG2RLF9CpXsej7yXl.jpg"
-        },
-        {
-          title: "Star War",
-          url: "https://image.tmdb.org/t/p/w342/dPrUPFcgLfNbmDL8V69vcrTyEfb.jpg"
-        },
-        {
-          title: "Aladdin",
-          url: "https://image.tmdb.org/t/p/w342/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg"
-        }
-      ]
+      modalVisible: false,
+      modalId: String,
+      modalTitle: String,
+      modalImg: String,
+      modalSummary: String,
+      movieList: Array,
+      movieUrls: this.url
     };
   },
   methods: {
-    showModal() {
-      this.visible = true;
+    toggleModal(movie) {
+      this.modalVisible = !this.modalVisible;
+      this.modalId = movie.id;
+      this.modalTitle = movie.original_title;
+      this.modalImg = this.resolve_img_url(movie.poster_path);
+      this.modalSummary = movie.overview;
     },
-    onClick() {
-      // console.log("More");
+    resolve_img_url(path) {
+      if (path === null) {
+        return "https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/tulip.jpg";
+      }
+      return "https://image.tmdb.org/t/p/w342" + path;
     }
   }
 };
@@ -128,8 +113,7 @@ export default {
   display: flex;
   flex-direction: column;
   /* justify-content: flex-start; */
-  /* border: 1px solid black; */
-  margin-right: 0px;
+  margin-right: 4px;
   /* padding: 0 2px; */
 }
 
@@ -144,7 +128,7 @@ export default {
   transition: opacity 0.4s;
 }
 
-.carousel-cell-image:hover {
+.carousel-cell:hover {
   opacity: 0.7;
 }
 
@@ -154,7 +138,7 @@ export default {
 }
 
 .carousel-cell-desc {
-  background-color: #424242;
+  background-color: #001528;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -167,19 +151,11 @@ export default {
   color: white;
 }
 
-.modal-btn {
-  background: transparent;
-  height: 30px;
-  width: 200px;
-  margin: 10px auto;
-  text-align: center;
-  color: white;
-}
-
 .content {
   width: 66%;
-  margin: 5px;
+  margin: 5px auto;
   font-size: 15px;
+  /* color: white; */
 }
 
 .large-image {
@@ -192,6 +168,10 @@ export default {
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */
 
+  .carousel {
+    margin: 0px 0px 50px;
+  }
+
   .carousel-cell {
     height: 150px;
     margin-right: 0px;
@@ -202,12 +182,9 @@ export default {
     font-size: 8px;
   }
 
-  .modal-btn {
-    height: 15px;
-    width: 50px;
-    margin: 5px auto;
-    padding: 0;
-    font-size: 8px;
+  .content {
+    margin: 0 auto;
+    font-size: 5px;
   }
 }
 </style>

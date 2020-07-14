@@ -28,9 +28,6 @@
         <a-menu-item class="nav-btn">
           <router-link to="/login">Login</router-link>
         </a-menu-item>
-        <a-menu-item class="tab">
-          <router-link to="/signup">Register</router-link>
-        </a-menu-item>
       </a-menu>
       <a-dropdown :trigger="['click']" :style="{ padding: '0px 20px' }" v-else>
         <a class="ant-dropdown-link" @click="e => e.preventDefault()">
@@ -64,8 +61,8 @@ export default {
   },
   data() {
     return {
-      loggedIn: Boolean,
-      username: String
+      loggedIn: false,
+      username: "Username"
     };
   },
   methods: {
@@ -75,7 +72,6 @@ export default {
         .signOut()
         .catch(error => {
           this.error = error.message;
-          // alert(this.error);
         });
     }
   },
