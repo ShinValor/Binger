@@ -9,7 +9,7 @@
           Hundreds of illustrated concepts to make your landing page, app, or
           presentation more attractive
         </p>
-        <a-button class="sub-button" type="primary">
+        <a-button class="sub-button">
           <router-link to="/login"><b>Learn More</b></router-link>
         </a-button>
       </div>
@@ -182,9 +182,14 @@ export default {
 .sub-button {
   background-color: transparent;
   width: 200px;
-  margin: 10px 20px 20px 30px;
-  border-color: white;
+  margin: 20px 20px 20px 30px;
   text-align: center;
+  border-color: white;
+  color: white;
+}
+
+.sub-button:hover {
+  border-color: gray;
 }
 
 .title {
