@@ -1,5 +1,6 @@
 module.exports = {
   devServer: {
-    proxy: "https://localhost:5000"
+    proxy:
+      "http://binger-api-test-env.eba-mdbndpwy.us-east-2.elasticbeanstalk.com/"
   }
 };
