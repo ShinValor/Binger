@@ -27,7 +27,7 @@
 
 <script>
 export default {
-  name: "Profile",
+  name: "Setting",
   data() {
     return {
       labelCol: { span: 4 },
@@ -51,6 +51,9 @@ export default {
 .setting {
   width: 700px;
   margin: 50px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 @media screen and (max-width: 500px) {
