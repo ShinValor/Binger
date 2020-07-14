@@ -32,7 +32,13 @@
         </p>
         <img class="large-image" :src="modalImg" />
       </div>
-      <a-button>More Info</a-button>
+      <a-button>
+        <router-link
+          :to="{ name: 'MovieSynopsis', params: { id: this.modalId } }"
+        >
+          More Info
+        </router-link>
+      </a-button>
     </a-modal>
   </div>
 </template>
@@ -69,19 +75,21 @@ export default {
         // autoPlay: 3000,
       },
       modalVisible: false,
-      modalTitle: "",
-      modalImg: "",
-      modalSummary: "",
-      movieList: [],
+      modalId: String,
+      modalTitle: String,
+      modalImg: String,
+      modalSummary: String,
+      movieList: Array,
       movieUrls: this.url
     };
   },
   methods: {
     toggleModal(movie) {
       this.modalVisible = !this.modalVisible;
-      this.modalTitle = movie.title;
-      this.modalImg = movie.url;
-      this.modalSummary = "All our illustrations come in different styles.";
+      this.modalId = movie.id;
+      this.modalTitle = movie.original_title;
+      this.modalImg = this.resolve_img_url(movie.poster_path);
+      this.modalSummary = movie.overview;
     },
     resolve_img_url(path) {
       if (path === null) {
