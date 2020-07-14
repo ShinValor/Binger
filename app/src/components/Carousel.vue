@@ -60,8 +60,8 @@ export default {
   props: {
     url: String
   },
-  async created() {
-    await axios
+  created() {
+    axios
       .get(this.movieUrls)
       .then(res => {
         this.movieList = res.data;
@@ -98,9 +98,6 @@ export default {
       this.modalSummary = movie.overview;
     },
     resolve_img_url(path) {
-      if (path === null) {
-        // return "https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/tulip.jpg";
-      }
       return "https://image.tmdb.org/t/p/w342" + path;
     }
   }
