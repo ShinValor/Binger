@@ -60,8 +60,8 @@ export default {
   props: {
     url: String
   },
-  created() {
-    axios
+  async created() {
+    await axios
       .get(this.movieUrls)
       .then(res => {
         this.movieList = res.data;
