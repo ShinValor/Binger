@@ -5,7 +5,7 @@
       :movieID="parseInt(this.$route.params.id)"
     />
     <MovieSynopsisMovieList
-      listType="Movie Reccomendations"
+      listType="Movie Recommendations"
       :movieID="parseInt(this.$route.params.id)"
       :key="this.$route.params.id + 'Recommendation'"
     />

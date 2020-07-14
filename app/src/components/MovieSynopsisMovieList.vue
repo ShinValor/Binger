@@ -1,29 +1,12 @@
 <template>
   <div class="container">
     <h1 class="title">{{ listType }}</h1>
-    <Carousel :movieList="MovieList" />
-    <!-- <div class="container">
-      <flickity class="carousel" ref="flickity" :options="flickityOptions">
-        <div
-          class="carousel-cell"
-          v-for="(item, index) in MovieList"
-          v-bind:key="index"
-        >
-          <router-link :to="{ name: 'MovieSynopsis', params: { id: item.id } }">
-            <img
-              class="carousel-cell-image"
-              :src="resolve_img_url(item.poster_path, item.title)"
-            />
-          </router-link>
-        </div>
-      </flickity>
-    </div> -->
+    <Carousel :url="moviesUrl" />
   </div>
 </template>
 
 <script>
 import Carousel from "@/components/Carousel.vue";
-import axios from "axios";
 
 export default {
   name: "MovieSynopsisMovieList",
@@ -32,9 +15,8 @@ export default {
   },
   data() {
     return {
-      selectedMovie: Object,
-      MovieList: Array,
-      errors: Array
+      movieList: Array,
+      moviesUrl: String
     };
   },
   props: {
@@ -48,30 +30,11 @@ export default {
     }
   },
   created() {
-    let link;
     if (this.listType == "Movie Recommendations") {
-      link = "http://127.0.0.1:5000/movie/recommendations/" + this.movieID;
+      this.moviesUrl =
+        "http://127.0.0.1:5000/movie/recommendations/" + this.movieID;
     } else {
-      link = "http://127.0.0.1:5000/movie/similar/" + this.movieID;
-    }
-    axios
-      .get(link)
-      .then(response => {
-        this.MovieList = response.data;
-      })
-      .catch(error => {
-        this.errors = error;
-      });
-    // .finally(() => this.$refs.flickity.rerender());
-  },
-  methods: {
-    resolve_img_url: function(path, title) {
-      console.log("https://image.tmdb.org/t/p/w342" + path, title);
-      return "https://image.tmdb.org/t/p/w342" + path;
-    },
-    imgsLoaded() {
-      // Reload flickity cells due to height change post
-      // this.$refs.flickity.reloadCells();
+      this.moviesUrl = "http://127.0.0.1:5000/movie/similar/" + this.movieID;
     }
   }
 };

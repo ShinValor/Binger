@@ -9,7 +9,7 @@
       >
         <img
           class="carousel-cell-image"
-          :data-flickity-lazyload="movie.url"
+          :data-flickity-lazyload="resolve_img_url(movie.poster_path)"
           :alt="movie.title"
         />
         <div class="carousel-cell-desc">
@@ -32,23 +32,33 @@
         </p>
         <img class="large-image" :src="modalImg" />
       </div>
-      <a-button @click="onClick">More Info</a-button>
+      <a-button>More Info</a-button>
     </a-modal>
   </div>
 </template>
 <script>
 import Flickity from "vue-flickity";
+import axios from "axios";
 
 export default {
   name: "Carousel",
   components: {
     Flickity
   },
-  // props: {
-  //   movieList: {
-  //     type: Array
-  //   }
-  // },
+  props: {
+    url: String
+  },
+  created() {
+    axios
+      .get(this.movieUrls)
+      .then(res => {
+        this.movieList = res.data;
+      })
+      .catch(err => {
+        this.error = err;
+      })
+      .finally(() => this.$refs.flickity.rerender());
+  },
   data() {
     return {
       flickityOptions: {
@@ -62,44 +72,8 @@ export default {
       modalTitle: "",
       modalImg: "",
       modalSummary: "",
-      movieList: [
-        {
-          title: "Wonder Woman",
-          url: "https://image.tmdb.org/t/p/w342/xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
-        },
-        {
-          title: "Terminator",
-          url: "https://image.tmdb.org/t/p/w342/db32LaOibwEliAmSL2jjDF6oDdj.jpg"
-        },
-        {
-          title: "Logan",
-          url: "https://image.tmdb.org/t/p/w342/fMMrl8fD9gRCFJvsx0SuFwkEOop.jpg"
-        },
-        {
-          title: "6 Underground",
-          url: "https://image.tmdb.org/t/p/w342/ykUEbfpkf8d0w49pHh0AD2KrT52.jpg"
-        },
-        {
-          title: "Joker",
-          url: "https://image.tmdb.org/t/p/w342/bk8LyaMqUtaQ9hUShuvFznQYQKR.jpg"
-        },
-        {
-          title: "Black Panther",
-          url: "https://image.tmdb.org/t/p/w342/pU3bnutJU91u3b4IeRPQTOP8jhV.jpg"
-        },
-        {
-          title: "Black Widow",
-          url: "https://image.tmdb.org/t/p/w342/4q2NNj4S5dG2RLF9CpXsej7yXl.jpg"
-        },
-        {
-          title: "Star War",
-          url: "https://image.tmdb.org/t/p/w342/dPrUPFcgLfNbmDL8V69vcrTyEfb.jpg"
-        },
-        {
-          title: "Aladdin",
-          url: "https://image.tmdb.org/t/p/w342/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg"
-        }
-      ]
+      movieList: [],
+      movieUrls: this.url
     };
   },
   methods: {
@@ -107,11 +81,13 @@ export default {
       this.modalVisible = !this.modalVisible;
       this.modalTitle = movie.title;
       this.modalImg = movie.url;
-      this.modalSummary =
-        "All our illustrations come in different styles, and you can change main color. Just choose the one you like the most for your project. Some styles allow you to select a simple background, a more one, or one, or remove it altogether. Give it a try! All our illustrations come in different styles, and you can change main color. Just choose the one you like the most for your project. Some styles allow you to select a simple background, a more one, or one, or remove it altogether. Give it a try!";
+      this.modalSummary = "All our illustrations come in different styles.";
     },
-    onClick() {
-      // this.$router.push("/movie-synopsis");
+    resolve_img_url: function(path) {
+      if (path == null) {
+        return "https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/tulip.jpg";
+      }
+      return "https://image.tmdb.org/t/p/w342" + path;
     }
   }
 };

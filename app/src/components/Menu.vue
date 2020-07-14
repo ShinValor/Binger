@@ -42,9 +42,6 @@
     <router-link to="/movie-recommendations">
       <span>Recommendation</span>
     </router-link>
-    <router-link to="/movie-synopsis">
-      <span>Movie Summary</span>
-    </router-link>
     <router-link to="/movie-list">
       <span>Movie List</span>
     </router-link>

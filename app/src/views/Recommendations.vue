@@ -32,17 +32,17 @@
         </a-tab-pane>
       </a-tabs> -->
       <h1 class="title">Top Rated</h1>
-      <Carousel />
+      <Carousel :url="'http://localhost:5000/movie/ratings/best'" />
       <h1 class="title">Worst Rated</h1>
-      <Carousel />
+      <Carousel :url="'http://localhost:5000/movie/ratings/worst'" />
       <h1 class="title">Most Popular</h1>
-      <Carousel />
+      <Carousel :url="'http://localhost:5000/movie/popular'" />
       <h1 class="title">Least Popular</h1>
-      <Carousel />
+      <Carousel :url="'http://localhost:5000/movie/unpopular'" />
       <h1 class="title">Most Recent</h1>
-      <Carousel />
+      <Carousel :url="'http://localhost:5000/movie/latest'" />
       <h1 class="title">Oldest Movie</h1>
-      <Carousel />
+      <Carousel :url="'http://localhost:5000/movie/oldest'" />
     </div>
     <Footer></Footer>
   </a-layout>
