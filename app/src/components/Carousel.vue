@@ -11,11 +11,12 @@
           class="carousel-cell-image"
           :data-flickity-lazyload="resolve_img_url(movie.poster_path)"
           :alt="movie.title"
+          onerror="this.style.display='none'"
         />
         <div class="carousel-cell-desc">
           <h1 class="title">{{ movie.title }}</h1>
           <p class="content" :style="{ color: 'gray' }">
-            <a-icon type="eye" /> 15234 Views
+            <a-icon type="like" /> {{ movie.vote_count }} Votes
           </p>
         </div>
       </div>
@@ -30,7 +31,12 @@
         <p class="content">
           {{ this.modalSummary }}
         </p>
-        <img class="large-image" :src="modalImg" />
+        <img
+          class="large-image"
+          :src="modalImg"
+          :alt="modalTitle"
+          onerror="this.style.display='none'"
+        />
       </div>
       <a-button>
         <router-link
@@ -93,7 +99,7 @@ export default {
     },
     resolve_img_url(path) {
       if (path === null) {
-        return "https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/tulip.jpg";
+        // return "https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/tulip.jpg";
       }
       return "https://image.tmdb.org/t/p/w342" + path;
     }

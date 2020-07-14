@@ -1,48 +1,40 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
     <div class="container">
-      <Profile />
-      <Card class="profile-card" name="John" desc="I am a student." />
+      <Setting />
+      <Card class="profile-card" :name="name" desc="I love to watch movies." />
     </div>
   </a-layout>
 </template>
 
 <script>
 import firebase from "firebase";
-import Profile from "@/components/Profile.vue";
+import Setting from "@/components/Setting.vue";
 import Card from "@/components/Card.vue";
 
 export default {
   name: "User",
   components: {
-    Profile,
+    Setting,
     Card
   },
   created() {
     firebase.auth().onAuthStateChanged(user => {
       if (!user) {
         this.$router.replace({ name: "Home" });
+      } else {
+        this.name = user.displayName;
       }
     });
   },
   data() {
     return {
-      info: null,
-      loading: true
+      name: "Username"
     };
   },
   methods: {
-    logout() {
-      firebase
-        .auth()
-        .signOut()
-        .catch(error => {
-          this.error = error.message;
-        });
-    },
     profile() {
       const user = firebase.auth().currentUser;
-
       if (user != null) {
         // const name = user.displayName;
         // const email = user.email;
@@ -53,14 +45,10 @@ export default {
     },
     updateProfile() {
       const user = firebase.auth().currentUser;
-
       user
         .updateProfile({
           displayName: "Jane Q. User",
           photoURL: "https://example.com/jane-q-user/profile.jpg"
-        })
-        .then(() => {
-          // alert("Updated Profile");
         })
         .catch(error => {
           this.error = error.message;
@@ -69,41 +57,26 @@ export default {
     updateEmail() {
       const user = firebase.auth().currentUser;
 
-      user
-        .updateEmail("user@example.com")
-        .then(() => {
-          // alert("Updated Email");
-        })
-        .catch(error => {
-          this.error = error.message;
-        });
+      user.updateEmail("user@example.com").catch(error => {
+        this.error = error.message;
+      });
     },
     setPassword() {
       const user = firebase.auth().currentUser;
       const newPassword = "onetwothreefourfivesix";
 
-      user
-        .updatePassword(newPassword)
-        .then(() => {
-          // alert("Updated Password");
-        })
-        .catch(error => {
-          this.error = error.message;
-        });
+      user.updatePassword(newPassword).catch(error => {
+        this.error = error.message;
+      });
     },
     resetPassword() {
       const user = firebase.auth().currentUser;
       const emailAddress = user.email;
       const auth = firebase.auth();
 
-      auth
-        .sendPasswordResetEmail(emailAddress)
-        .then(() => {
-          // alert("Email Sent");
-        })
-        .catch(error => {
-          this.error = error.message;
-        });
+      auth.sendPasswordResetEmail(emailAddress).catch(error => {
+        this.error = error.message;
+      });
     }
   }
 };

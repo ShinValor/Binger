@@ -97,8 +97,7 @@ export default {
 }
 
 .bm-menu {
-  /* background-color: rgb(63, 63, 65, 0.85) !important; */
-  background-color: white !important;
+  background-color: rgb(63, 63, 65, 0.85) !important;
   top: 0;
   left: 0;
   height: 100%; /* 100% Full-height */
@@ -131,8 +130,8 @@ export default {
 .bm-item-list > * > span {
   margin-left: 10px;
   font-weight: 700;
-  /* color: white; */
-  color: black;
+  color: white;
+  /* color: black; */
 }
 
 @media screen and (max-width: 800px) {

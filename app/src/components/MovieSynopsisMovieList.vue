@@ -48,6 +48,7 @@ export default {
   margin: 20px;
   text-align: left;
   font-size: 30px;
+  color: white;
 }
 
 .content {
