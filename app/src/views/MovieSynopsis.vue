@@ -1,5 +1,5 @@
 <template>
-  <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
+  <a-layout>
     <MovieOverview
       :key="this.$route.params.id + 'Synopsis'"
       :movieID="parseInt(this.$route.params.id)"

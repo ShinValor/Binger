@@ -127,8 +127,6 @@ export default {
 
 <style scoped>
 .container {
-  min-height: 100%;
-  overflow: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

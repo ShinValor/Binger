@@ -1,5 +1,5 @@
 <template>
-  <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
+  <a-layout>
     <chart :options="option" />
     <FavoriteMovieList />
   </a-layout>

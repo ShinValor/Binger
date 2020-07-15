@@ -1,5 +1,5 @@
 <template>
-  <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
+  <a-layout>
     <div class="jumbotron">
       <h1 class="heading">
         <b>Movie Recommendation to power up your life</b>

@@ -1,9 +1,7 @@
 <template>
-  <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
-    <div class="container">
-      <Setting />
-      <Card class="profile-card" :name="name" desc="I love to watch movies." />
-    </div>
+  <a-layout class="container">
+    <Setting />
+    <Card class="profile-card" :name="name" desc="I love to watch movies." />
   </a-layout>
 </template>
 
@@ -17,15 +15,6 @@ export default {
   components: {
     Setting,
     Card
-  },
-  created() {
-    firebase.auth().onAuthStateChanged(user => {
-      if (!user) {
-        this.$router.replace({ name: "Home" });
-      } else {
-        this.name = user.displayName;
-      }
-    });
   },
   data() {
     return {
@@ -78,6 +67,15 @@ export default {
         this.error = error.message;
       });
     }
+  },
+  created() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (!user) {
+        this.$router.replace({ name: "Home" });
+      } else {
+        this.name = user.displayName;
+      }
+    });
   }
 };
 </script>

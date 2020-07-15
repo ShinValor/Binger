@@ -1,5 +1,5 @@
 <template>
-  <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
+  <a-layout>
     <LoginForm />
   </a-layout>
 </template>
