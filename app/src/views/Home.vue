@@ -72,9 +72,7 @@
         :style="{
           'grid-area': 'content',
           display: 'flex',
-          'justify-content': 'center',
-          'margin-left': '50px',
-          'margin-top': '50px'
+          'justify-content': 'center'
         }"
       >
         <p class="content">

@@ -12,13 +12,11 @@
   color: white !important;
 }
 
-/* .ant-menu-item:hover {
-  background-color: #1890ff !important;
-} */
-
 .ant-menu-item > a:hover {
   color: lightpink !important;
 }
+
+/* Card */
 
 .ant-card-body {
   margin: 5px !important;
@@ -26,6 +24,7 @@
 }
 
 /* Drop down Menu */
+
 a.ant-dropdown-link {
   color:white;
 }
@@ -34,13 +33,19 @@ a.ant-dropdown-link:hover {
   color: lightpink;
 }
 
+/* Layout */
+
 .ant-layout {
   background-color: #222831 !important;
+  /* min-height: 100% !important;
+  overflow: auto !important; */
 }
 
 .ant-layout-footer {
   background-color: #222831 !important;
 }
+
+/* Form */
 
 .ant-form-item label {
   color: white !important;

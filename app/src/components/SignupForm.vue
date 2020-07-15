@@ -79,7 +79,7 @@ export default {
     handleSubmit(e) {
       e.preventDefault();
       this.form.validateFields((err, values) => {
-        if (!err) {
+        if (!err && values.password == values.confirmPassword) {
           if (values.password == values.confirmPassword) {
             firebase
               .auth()

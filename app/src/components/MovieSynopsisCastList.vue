@@ -27,6 +27,11 @@ export default {
       required: true
     }
   },
+  data() {
+    return {
+      castList: Array
+    };
+  },
   created() {
     axios
       .get("http://127.0.0.1:5000/movie/cast/" + this.movieID)
@@ -36,11 +41,6 @@ export default {
       .catch(err => {
         this.error = err;
       });
-  },
-  data() {
-    return {
-      castList: Array
-    };
   }
 };
 </script>

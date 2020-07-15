@@ -13,12 +13,6 @@ export default {
   components: {
     Carousel
   },
-  data() {
-    return {
-      movieList: Array,
-      moviesUrl: String
-    };
-  },
   props: {
     movieID: {
       type: Number,
@@ -28,6 +22,12 @@ export default {
       type: String,
       default: "Movie Recommendations"
     }
+  },
+  data() {
+    return {
+      movieList: Array,
+      moviesUrl: String
+    };
   },
   created() {
     if (this.listType == "Movie Recommendations") {

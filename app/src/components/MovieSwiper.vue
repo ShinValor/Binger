@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="draggable-container">
+  <div class="container">
+    <div class="section1">
       <Vue2InteractDraggable
         class="card"
         @draggedLeft="draggedLeft"
@@ -15,9 +15,9 @@
       </Vue2InteractDraggable>
     </div>
     <h1>Swipe</h1>
-    <div class="buttons">
-      <a-icon type="arrow-left" class="event-button" @click="dragLeft" />
-      <a-icon type="arrow-right" class="event-button" @click="dragRight" />
+    <div class="section2">
+      <a-icon type="arrow-left" class="swipe-btn" @click="dragLeft" />
+      <a-icon type="arrow-right" class="swipe-btn" @click="dragRight" />
     </div>
   </div>
 </template>
@@ -68,9 +68,15 @@ export default {
 </script>
 
 <style scoped>
-.draggable-container {
+.section1 {
   display: flex;
   margin: 0 auto;
+}
+
+.section2 {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
 }
 
 .card {
@@ -83,13 +89,7 @@ export default {
   background-position: center;
 }
 
-.buttons {
-  display: flex;
-  justify-content: center;
-  margin: 20px;
-}
-
-.event-button {
+.swipe-btn {
   border: 2px solid skyblue;
   border-radius: 50%;
   padding: 10px;

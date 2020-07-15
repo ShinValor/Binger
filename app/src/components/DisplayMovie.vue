@@ -11,7 +11,7 @@
           />
         </div>
       </div>
-      <!-- <div class="row">
+      <div class="row">
         <div class="col" v-for="(movie, index) in MovieList" v-bind:key="index">
           <img
             class="small-image"
@@ -20,7 +20,7 @@
             @click="showModal"
           />
         </div>
-      </div> -->
+      </div>
     </div>
     <a-modal
       v-model="visible"

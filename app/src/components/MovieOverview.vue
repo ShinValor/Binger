@@ -65,28 +65,17 @@
 import axios from "axios";
 export default {
   name: "MovieOverview",
-  data() {
-    return {
-      item: Object,
-      errors: []
-    };
-  },
   props: {
     movieID: {
       type: Number,
       required: true
     }
   },
-  created() {
-    axios
-      .get("http://0.0.0.0:5000/movie/" + this.movieID)
-      .then(res => {
-        this.item = res.data;
-      })
-      .catch(err => {
-        this.error = err;
-      })
-      .finally(() => (this.loading = false));
+  data() {
+    return {
+      item: Object,
+      errors: []
+    };
   },
   methods: {
     addToFavorites() {
@@ -118,6 +107,17 @@ export default {
       const minutes = Math.round((hours - rhours) * 60);
       return rhours + "hr " + minutes + " min";
     }
+  },
+  created() {
+    axios
+      .get("http://0.0.0.0:5000/movie/" + this.movieID)
+      .then(res => {
+        this.item = res.data;
+      })
+      .catch(err => {
+        this.error = err;
+      })
+      .finally(() => (this.loading = false));
   }
 };
 </script>
