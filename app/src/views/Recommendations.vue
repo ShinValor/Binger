@@ -30,7 +30,7 @@
           <h1 class="title">Oldest Movie</h1>
           <Carousel />
         </a-tab-pane>
-      </a-tabs> -->
+      </a-tabs>-->
       <h1 class="title">Top Rated</h1>
       <Carousel :url="'/api/movie/ratings/best'" />
       <h1 class="title">Worst Rated</h1>
@@ -84,12 +84,20 @@ export default {
       this.loading = true;
       await axios
         .all([
-          axios.get("/api/movie/ratings/best"),
-          axios.get("/api/movie/ratings/worst"),
-          axios.get("/api/movie/popular"),
-          axios.get("/api/movie/unpopular"),
-          axios.get("/api/movie/latest"),
-          axios.get("/api/movie/oldest")
+          axios.get(
+            "https://binger-api-testv1.azurewebsites.net/movie/ratings/worst"
+          ),
+          axios.get(
+            "https://binger-api-testv1.azurewebsites.net/movie/ratings/best"
+          ),
+          axios.get(
+            "https://binger-api-testv1.azurewebsites.net/movie/popular"
+          ),
+          axios.get(
+            "https://binger-api-testv1.azurewebsites.net/movie/unpopular"
+          ),
+          axios.get("https://binger-api-testv1.azurewebsites.net/movie/latest"),
+          axios.get("https://binger-api-testv1.azurewebsites.net/movie/oldest")
         ])
         .then(
           axios.spread((best, worst, popular, unpopular, latest, oldest) => {

@@ -8,19 +8,13 @@
     >
       <div class="header-contents fontColor">
         <div class="poster-wrapper">
-          <img
-            class="poster"
-            :src="resolve_img_url(item.poster_path)"
-            :alt="item.title"
-          />
+          <img class="poster" :src="resolve_img_url(item.poster_path)" :alt="item.title" />
         </div>
         <div class="movie-info-part">
           <div class="movie-info">
             <div class="key-info">
               <div class="title-wrapper left-align">
-                <h2 class="movie-title left-align fontColor">
-                  {{ item.title }}
-                </h2>
+                <h2 class="movie-title left-align fontColor">{{ item.title }}</h2>
                 <span class="tagline">{{ item.tagline }}</span>
               </div>
               <div class="general-info">
@@ -79,7 +73,7 @@ export default {
   },
   created() {
     axios
-      .get("/api/movie/" + this.movieID)
+      .get("https://binger-api-testv1.azurewebsites.net/movie/" + this.movieID)
       .then(res => {
         this.item = res.data;
       })

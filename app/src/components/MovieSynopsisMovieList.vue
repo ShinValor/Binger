@@ -32,9 +32,12 @@ export default {
   created() {
     if (this.listType == "Movie Recommendations") {
       this.moviesUrl =
-        "/api/movie/recommendations/" + this.movieID;
+        "https://binger-api-testv1.azurewebsites.net/movie/recommendations/" +
+        this.movieID;
     } else {
-      this.moviesUrl = "/api/movie/similar/" + this.movieID;
+      this.moviesUrl =
+        "https://binger-api-testv1.azurewebsites.net/movie/similar/" +
+        this.movieID;
     }
   }
 };
