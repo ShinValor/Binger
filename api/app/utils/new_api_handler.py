@@ -353,6 +353,17 @@ def oldest_requests(is_movie=True):
     return popular_requests
 
 
+def get_oldest_shows():
+    """
+    """
+    shows = []
+
+    movie_recs = oldest_requests()
+    movie_responses = grequests.map(movie_recs, size=len(movie_recs))
+    shows.extend(create_show_data_list(movie_responses, True))
+    return shows
+
+
 def get_unpopular_shows():
     """
     Function is responsible of creating a list of most popular movies from TMDB

@@ -199,9 +199,8 @@ def movie_summary(id):
     # get idToken
     token = request.args.get('token')
 
-    # decode idToken
-    decoded_token = auth.verify_id_token(token)
-    uid = decoded_token['uid']
+    # verify idToken
+    auth.verify_id_token(token)
 
     my_show_data = shows.ShowData(id, popularity=0)
     show = new_api_handler.resolve_show(my_show_data)
@@ -212,7 +211,6 @@ def movie_summary(id):
     return overview["overview"]
 
 
-# Requires optimization
 @app.route('/topRated')
 @check_token
 def top_rated_show():
@@ -222,11 +220,10 @@ def top_rated_show():
     # get idToken
     token = request.args.get('token')
 
-    # decode idToken
-    decoded_token = auth.verify_id_token(token)
-    uid = decoded_token['uid']
+    # verify idToken
+    auth.verify_id_token(token)
 
-    top_rated_shows = []
+    #top_rated_shows = []
     json_list = []
 
     show = new_api_handler.get_top_rated_shows()
@@ -238,7 +235,7 @@ def top_rated_show():
     return jsonify(json_list)
 
 
-# Requires optimization
+
 @app.route('/worstRated')
 @check_token
 def worst_rated_show():
@@ -248,11 +245,10 @@ def worst_rated_show():
     # get idToken
     token = request.args.get('token')
 
-    # decode idToken
-    decoded_token = auth.verify_id_token(token)
-    uid = decoded_token['uid']
+    # verify idToken
+    auth.verify_id_token(token)
 
-    top_rated_shows = []
+    #top_rated_shows = []
     json_list = []
 
     show = new_api_handler.get_worst_rated_shows()
@@ -273,9 +269,8 @@ def get_popular():
     # get idToken
     token = request.args.get('token')
 
-    # decode idToken
-    decoded_token = auth.verify_id_token(token)
-    uid = decoded_token['uid']
+    # verify idToken
+    auth.verify_id_token(token)
 
     json_list = []
 
@@ -297,9 +292,8 @@ def get_unpopular():
     # get idToken
     token = request.args.get('token')
 
-    # decode idToken
-    decoded_token = auth.verify_id_token(token)
-    uid = decoded_token['uid']
+    # verify idToken
+    auth.verify_id_token(token)
 
     json_list = []
 
@@ -321,9 +315,9 @@ def get_now_playing():
     # get idToken
     token = request.args.get('token')
 
-    # decode idToken
-    decoded_token = auth.verify_id_token(token)
-    uid = decoded_token['uid']
+    # verify idToken
+    auth.verify_id_token(token)
+
 
     movies = new_api_handler.get_now_playing_movies()
     movie_results = movies.json()["results"]
@@ -339,9 +333,8 @@ def get_oldest():
     # get idToken
     token = request.args.get('token')
 
-    # decode idToken
-    decoded_token = auth.verify_id_token(token)
-    uid = decoded_token['uid']
+    # verify idToken
+    auth.verify_id_token(token)
 
     json_list = []
 
@@ -352,3 +345,4 @@ def get_oldest():
         json_list.append(json.loads(json_data))
 
     return jsonify(json_list)
+
