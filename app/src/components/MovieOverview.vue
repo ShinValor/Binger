@@ -79,7 +79,7 @@ export default {
   },
   created() {
     axios
-      .get("http://0.0.0.0:5000/movie/" + this.movieID)
+      .get("/api/movie/" + this.movieID)
       .then(res => {
         this.item = res.data;
       })

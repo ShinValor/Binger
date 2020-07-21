@@ -29,7 +29,7 @@ export default {
   },
   created() {
     axios
-      .get("http://127.0.0.1:5000/movie/cast/" + this.movieID)
+      .get("/api/movie/cast/" + this.movieID)
       .then(res => {
         this.castList = res.data;
       })
