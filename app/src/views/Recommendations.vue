@@ -30,19 +30,19 @@
           <h1 class="title">Oldest Movie</h1>
           <Carousel />
         </a-tab-pane>
-      </a-tabs> -->
+      </a-tabs>-->
       <h1 class="title">Top Rated</h1>
-      <Carousel :url="'http://localhost:5000/movie/ratings/best'" />
+      <Carousel :url="'https://binger-api-testv1.azurewebsites.net/movie/ratings/best'" />
       <h1 class="title">Worst Rated</h1>
-      <Carousel :url="'http://localhost:5000/movie/ratings/worst'" />
+      <Carousel :url="'https://binger-api-testv1.azurewebsites.net/movie/ratings/worst'" />
       <h1 class="title">Most Popular</h1>
-      <Carousel :url="'http://localhost:5000/movie/popular'" />
+      <Carousel :url="'https://binger-api-testv1.azurewebsites.net/movie/popular'" />
       <h1 class="title">Least Popular</h1>
-      <Carousel :url="'http://localhost:5000/movie/unpopular'" />
+      <Carousel :url="'https://binger-api-testv1.azurewebsites.net/movie/unpopular'" />
       <h1 class="title">Most Recent</h1>
-      <Carousel :url="'http://localhost:5000/movie/latest'" />
+      <Carousel :url="'https://binger-api-testv1.azurewebsites.net/movie/latest'" />
       <h1 class="title">Oldest Movie</h1>
-      <Carousel :url="'http://localhost:5000/movie/oldest'" />
+      <Carousel :url="'https://binger-api-testv1.azurewebsites.net/movie/oldest'" />
     </div>
     <Footer></Footer>
   </a-layout>
@@ -84,12 +84,20 @@ export default {
       this.loading = true;
       await axios
         .all([
-          axios.get("http://localhost:5000/movie/ratings/best"),
-          axios.get("http://localhost:5000/movie/ratings/worst"),
-          axios.get("http://localhost:5000/movie/popular"),
-          axios.get("http://localhost:5000/movie/unpopular"),
-          axios.get("http://localhost:5000/movie/latest"),
-          axios.get("http://localhost:5000/movie/oldest")
+          axios.get(
+            "https://binger-api-testv1.azurewebsites.net/movie/ratings/worst"
+          ),
+          axios.get(
+            "https://binger-api-testv1.azurewebsites.net/movie/ratings/best"
+          ),
+          axios.get(
+            "https://binger-api-testv1.azurewebsites.net/movie/popular"
+          ),
+          axios.get(
+            "https://binger-api-testv1.azurewebsites.net/movie/unpopular"
+          ),
+          axios.get("https://binger-api-testv1.azurewebsites.net/movie/latest"),
+          axios.get("https://binger-api-testv1.azurewebsites.net/movie/oldest")
         ])
         .then(
           axios.spread((best, worst, popular, unpopular, latest, oldest) => {
