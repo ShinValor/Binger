@@ -2,7 +2,12 @@
   <div class="container">
     <h1 class="title">Cast List</h1>
     <div>
-      <MovieSynopsisCast class="list-item" v-for="item in castList" :key="item.order" :cast="item" />
+      <MovieSynopsisCast
+        class="list-item"
+        v-for="item in castList"
+        :key="item.order"
+        :cast="item"
+      />
     </div>
   </div>
 </template>
