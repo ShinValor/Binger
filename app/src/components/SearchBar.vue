@@ -11,9 +11,14 @@
 import axios from "axios";
 export default {
   name: "SearchBar",
+  props: {
+    movieQuery: {
+      type: String,
+      default: ""
+    }
+  },
   data() {
     return {
-      movieQuery: "",
       searchResults: Array
     };
   },
