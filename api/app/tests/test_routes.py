@@ -5,7 +5,7 @@ import requests
 import time
 
 url = 'http://localhost:5000'
-refresh_token = ''
+
 
 def test_home():
     response = requests.get(url + '/')
@@ -77,6 +77,9 @@ def test_get_oldest():
     assert response.status_code == 200
 
 
+def test_top():
+    print(top_rated_json())
+
 
 def sign_in_with_email_and_password():
     """
@@ -112,10 +115,20 @@ def movie_summary_json(id=657):
     response = requests.get(url=api_url)
     return response.json()['overview']
 
-"""
-def top_rated_json():
-    return True
 
+def top_rated_json():
+    options = {
+        "api_key": os.environ.get("TMDB_KEY"),
+        "language": "en-US",
+        "sort_by": "popularity.desc"
+    }
+    options["page"] = 1
+
+    api_url = f"https://api.themoviedb.org/3/movie/top_rated"
+    response = requests.get(url=api_url, params=options)
+    return response.json()
+
+"""
 def worst_rated_json():
     return True
 
@@ -131,5 +144,4 @@ def now_playing_json():
 def oldest_json():
     return True
 """
-
 
