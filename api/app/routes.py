@@ -53,7 +53,7 @@ def check_token(f):
         token = request.args.get('token')
         try:
             auth.verify_id_token(token, check_revoked=True)
-
+        
         except auth.ExpiredIdTokenError:
             return jsonify({'Error message': 'Token expired'}), 403
 
@@ -196,11 +196,6 @@ def movie_summary(id):
     """
     When movie id is passed, the summary for the movie is returned
     """
-    # get idToken
-    token = request.args.get('token')
-
-    # verify idToken
-    auth.verify_id_token(token)
 
     my_show_data = shows.ShowData(id, popularity=0)
     show = new_api_handler.resolve_show(my_show_data)
@@ -217,13 +212,6 @@ def top_rated_show():
     """
     Retrieves the top 20 movie results from TMDB
     """
-    # get idToken
-    token = request.args.get('token')
-
-    # verify idToken
-    auth.verify_id_token(token)
-
-    #top_rated_shows = []
     json_list = []
 
     show = new_api_handler.get_top_rated_shows()
@@ -242,13 +230,7 @@ def worst_rated_show():
     """
     Retrieves the worst 20 movie results from TMDB
     """
-    # get idToken
-    token = request.args.get('token')
 
-    # verify idToken
-    auth.verify_id_token(token)
-
-    #top_rated_shows = []
     json_list = []
 
     show = new_api_handler.get_worst_rated_shows()
@@ -266,12 +248,6 @@ def get_popular():
     """
     Retrieves the most popular movies from TMDB
     """
-    # get idToken
-    token = request.args.get('token')
-
-    # verify idToken
-    auth.verify_id_token(token)
-
     json_list = []
 
     show = new_api_handler.get_popular_shows()
@@ -289,12 +265,6 @@ def get_unpopular():
     """
     Retrieves the least popular movies from TMDB
     """
-    # get idToken
-    token = request.args.get('token')
-
-    # verify idToken
-    auth.verify_id_token(token)
-
     json_list = []
 
     show = new_api_handler.get_unpopular_shows()
@@ -312,13 +282,6 @@ def get_now_playing():
     """
     Retrieves movies now playing in theatres
     """
-    # get idToken
-    token = request.args.get('token')
-
-    # verify idToken
-    auth.verify_id_token(token)
-
-
     movies = new_api_handler.get_now_playing_movies()
     movie_results = movies.json()["results"]
     return json.dumps(movie_results)
@@ -330,12 +293,6 @@ def get_oldest():
     """
     Retrieves the oldest movies from TMDB
     """
-    # get idToken
-    token = request.args.get('token')
-
-    # verify idToken
-    auth.verify_id_token(token)
-
     json_list = []
 
     show = new_api_handler.get_oldest_shows()

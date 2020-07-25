@@ -2,8 +2,10 @@ import os
 import json
 import pytest
 import requests
+import time
 
 url = 'http://localhost:5000'
+refresh_token = ''
 
 def test_home():
     response = requests.get(url + '/')
@@ -28,47 +30,64 @@ def test_clear_session():
 """
 
 def test_movie_summary(id = 657):
-    idToken = sign_in_with_email_and_password()
+    json_data = sign_in_with_email_and_password()
+    idToken = json_data['idToken']
     response = requests.get(url + f"/summary/{id}" + f"?token={idToken}")
     assert response.status_code == 200
-    #assert response.text == "Agent 007 is back in the second installment of the James Bond series, this time battling a secret crime organization known as SPECTRE. Russians Rosa Klebb and Kronsteen are out to snatch a decoding device known as the Lektor, using the ravishing Tatiana to lure Bond into helping them. Bond willingly travels to meet Tatiana in Istanbul, where he must rely on his wits to escape with his life in a series of deadly encounters with the enemy"
     assert response.text == movie_summary_json()
 
 def test_top_rated_show():
-    idToken = sign_in_with_email_and_password()
+    json_data = sign_in_with_email_and_password()
+    refresh_token = json_data['refreshToken']
+    idToken = refresh(refresh_token)
     response = requests.get(url + '/topRated' + f"?token={idToken}")
     assert response.status_code == 200
-    assert response.json() 
 
 
 def test_worst_rated_show():
-    idToken = sign_in_with_email_and_password()
+    json_data = sign_in_with_email_and_password()
+    refresh_token = json_data['refreshToken']
+    idToken = refresh(refresh_token)
+
     response = requests.get(url + '/worstRated' + f"?token={idToken}")
     assert response.status_code == 200
 
 
 def test_get_popular():
-    idToken = sign_in_with_email_and_password()
+    json_data = sign_in_with_email_and_password()
+    refresh_token = json_data['refreshToken']
+    idToken = refresh(refresh_token)
+
     response = requests.get(url + '/popular' + f"?token={idToken}")
     assert response.status_code == 200
 
 
 def test_get_unpopular():
-    idToken = sign_in_with_email_and_password()
+    json_data = sign_in_with_email_and_password()
+    refresh_token = json_data['refreshToken']
+    idToken = refresh(refresh_token)
+
     response = requests.get(url + '/unpopular' + f"?token={idToken}")
     assert response.status_code == 200
 
 
 def test_get_now_playing():
-    idToken = sign_in_with_email_and_password()
+    json_data = sign_in_with_email_and_password()
+    refresh_token = json_data['refreshToken']
+    idToken = refresh(refresh_token)
+
     response = requests.get(url + '/recent' + f"?token={idToken}")
     assert response.status_code == 200
 
 
 def test_get_oldest():
-    idToken = sign_in_with_email_and_password()
+    json_data = sign_in_with_email_and_password()
+    refresh_token = json_data['refreshToken']
+    idToken = refresh(refresh_token)
+
     response = requests.get(url + '/oldest' + f"?token={idToken}")
     assert response.status_code == 200
+
 
 
 def sign_in_with_email_and_password():
@@ -83,7 +102,19 @@ def sign_in_with_email_and_password():
     headers = {"content-type": "application/json; charset=UTF-8"}
     data = json.dumps({"email": email, "password": password, "returnSecureToken": True})
     request_object = requests.post(request_ref, headers=headers, data=data)
-    return request_object.json()['idToken']
+    return request_object.json()
+
+
+def refresh(refresh_token):
+    """
+    This function uses the refresh token to recreate a new idToken
+    """
+    api_key = os.environ.get('binger_api_key')
+    request_ref = f"https://securetoken.googleapis.com/v1/token?key={api_key}"
+    headers = {"content-type":"application/json; charset=UTF-8"}
+    data = json.dumps({"grant_type":"refresh_token", "refresh_token":refresh_token})
+    request_object = requests.post(request_ref, headers=headers, data=data)
+    return request_object.json()['id_token']
 
 
 def movie_summary_json(id=657):
@@ -91,10 +122,9 @@ def movie_summary_json(id=657):
     api_key = os.environ.get('TMDB_KEY')
     api_url = f"https://api.themoviedb.org/3/movie/{id}?api_key={api_key}&language=en-US"
     response = requests.get(url=api_url)
-
-    # return the response
     return response.json()['overview']
 
+"""
 def top_rated_json():
     return True
 
@@ -112,4 +142,6 @@ def now_playing_json():
 
 def oldest_json():
     return True
+"""
+
 

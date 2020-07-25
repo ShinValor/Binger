@@ -221,7 +221,7 @@ def worst_rated_requests(is_movie=True):
         worst_rated_requests: A list of API requests that will be sent to TMDB's /top_rated endpoint.
     """
 
-    top_rated_requests = []
+    worst_rated_requests = []
 
     options = copy.deepcopy(consts.DEFAULT_OPTIONS)
     options["page"] = 1
@@ -230,8 +230,8 @@ def worst_rated_requests(is_movie=True):
     if is_movie:
         api_url = consts.MOVIE_TOP_RATED_URL
 
-    top_rated_requests.append(grequests.get(url=api_url, params=options))
-    return top_rated_requests
+    worst_rated_requests.append(grequests.get(url=api_url, params=options))
+    return worst_rated_requests
 
 
 def get_worst_rated_shows():
