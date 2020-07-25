@@ -53,7 +53,7 @@ def check_token(f):
         token = request.args.get('token')
         try:
             auth.verify_id_token(token, check_revoked=True)
-        
+
         except auth.ExpiredIdTokenError:
             return jsonify({'Error message': 'Token expired'}), 403
 
@@ -62,9 +62,13 @@ def check_token(f):
 
         except auth.RevokedIdTokenError:
             return jsonify({'Error message': 'Token revoked'}), 403
-
+        
         except:
-            return jsonify({'Error message': 'Invalid Token'}), 403
+            try:
+                token = request.args.get('token')
+                auth.verify_id_token(token, check_revoked=True)
+            except:
+                return jsonify({'Error message': 'Invalid Token'}), 403
 
         return f(*args, **kwargs)
     return wrap

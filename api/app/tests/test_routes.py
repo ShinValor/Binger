@@ -1,6 +1,6 @@
 import os
 import json
-import pytest
+#import pytest
 import requests
 import time
 
@@ -30,60 +30,48 @@ def test_clear_session():
 """
 
 def test_movie_summary(id = 657):
-    json_data = sign_in_with_email_and_password()
-    idToken = json_data['idToken']
+    idToken = sign_in_with_email_and_password()
+
     response = requests.get(url + f"/summary/{id}" + f"?token={idToken}")
     assert response.status_code == 200
     assert response.text == movie_summary_json()
 
 def test_top_rated_show():
-    json_data = sign_in_with_email_and_password()
-    refresh_token = json_data['refreshToken']
-    idToken = refresh(refresh_token)
+    idToken = sign_in_with_email_and_password()
+
     response = requests.get(url + '/topRated' + f"?token={idToken}")
     assert response.status_code == 200
 
 
 def test_worst_rated_show():
-    json_data = sign_in_with_email_and_password()
-    refresh_token = json_data['refreshToken']
-    idToken = refresh(refresh_token)
-
+    idToken = sign_in_with_email_and_password()
     response = requests.get(url + '/worstRated' + f"?token={idToken}")
     assert response.status_code == 200
 
 
 def test_get_popular():
-    json_data = sign_in_with_email_and_password()
-    refresh_token = json_data['refreshToken']
-    idToken = refresh(refresh_token)
+    idToken = sign_in_with_email_and_password()
 
     response = requests.get(url + '/popular' + f"?token={idToken}")
     assert response.status_code == 200
 
 
 def test_get_unpopular():
-    json_data = sign_in_with_email_and_password()
-    refresh_token = json_data['refreshToken']
-    idToken = refresh(refresh_token)
+    idToken = sign_in_with_email_and_password()
 
     response = requests.get(url + '/unpopular' + f"?token={idToken}")
     assert response.status_code == 200
 
 
 def test_get_now_playing():
-    json_data = sign_in_with_email_and_password()
-    refresh_token = json_data['refreshToken']
-    idToken = refresh(refresh_token)
+    idToken = sign_in_with_email_and_password()
 
     response = requests.get(url + '/recent' + f"?token={idToken}")
     assert response.status_code == 200
 
 
 def test_get_oldest():
-    json_data = sign_in_with_email_and_password()
-    refresh_token = json_data['refreshToken']
-    idToken = refresh(refresh_token)
+    idToken = sign_in_with_email_and_password()
 
     response = requests.get(url + '/oldest' + f"?token={idToken}")
     assert response.status_code == 200
@@ -102,7 +90,7 @@ def sign_in_with_email_and_password():
     headers = {"content-type": "application/json; charset=UTF-8"}
     data = json.dumps({"email": email, "password": password, "returnSecureToken": True})
     request_object = requests.post(request_ref, headers=headers, data=data)
-    return request_object.json()
+    return request_object.json()['idToken']
 
 
 def refresh(refresh_token):
