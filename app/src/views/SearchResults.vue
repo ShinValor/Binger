@@ -16,8 +16,8 @@ export default {
   },
   computed: {
     searchQuery: function() {
-      if ($route.query.movieQuery) {
-        return $route.query.movieQuery;
+      if (this.$route.query.movieQuery) {
+        return this.$route.query.movieQuery;
       }
       return "";
     }
