@@ -62,7 +62,7 @@ export default {
   data() {
     return {
       loggedIn: false,
-      username: "Username"
+      username: null
     };
   },
   methods: {

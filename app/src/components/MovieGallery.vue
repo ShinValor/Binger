@@ -53,7 +53,7 @@
 
 <script>
 export default {
-  name: "DisplayMovie",
+  name: "MovieGallery",
   data() {
     return {
       visible: false,

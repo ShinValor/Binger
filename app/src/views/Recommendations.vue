@@ -31,18 +31,65 @@
           <Carousel />
         </a-tab-pane>
       </a-tabs>-->
-      <h1 class="title">Top Rated</h1>
-      <Carousel :url="'https://binger-api-testv1.azurewebsites.net/movie/ratings/best'" />
-      <h1 class="title">Worst Rated</h1>
-      <Carousel :url="'https://binger-api-testv1.azurewebsites.net/movie/ratings/worst'" />
-      <h1 class="title">Most Popular</h1>
-      <Carousel :url="'https://binger-api-testv1.azurewebsites.net/movie/popular'" />
-      <h1 class="title">Least Popular</h1>
-      <Carousel :url="'https://binger-api-testv1.azurewebsites.net/movie/unpopular'" />
-      <h1 class="title">Most Recent</h1>
-      <Carousel :url="'https://binger-api-testv1.azurewebsites.net/movie/latest'" />
-      <h1 class="title">Oldest Movie</h1>
-      <Carousel :url="'https://binger-api-testv1.azurewebsites.net/movie/oldest'" />
+      <!-- <div class="header">
+        <h1 class="title">Random</h1>
+        <a-button class="more">
+          <router-link to="/movie-list">More</router-link>
+        </a-button>
+      </div>
+      <Carousel
+        :url="'https://binger-api-testv1.azurewebsites.net/movie/random'"
+      /> -->
+      <div class="header">
+        <h1 class="title">Top Rated</h1>
+        <a-button class="more">
+          <router-link to="/movie-list">More</router-link>
+        </a-button>
+      </div>
+      <Carousel
+        :url="'https://binger-api-testv1.azurewebsites.net/movie/ratings/best'"
+      />
+      <div class="header">
+        <h1 class="title">Worst Rated</h1>
+        <a-button class="more">
+          <router-link to="/movie-list">More</router-link>
+        </a-button>
+      </div>
+      <Carousel
+        :url="'https://binger-api-testv1.azurewebsites.net/movie/ratings/worst'"
+      />
+      <div class="header">
+        <h1 class="title">Most Popular</h1>
+        <a-button class="more">More</a-button>
+      </div>
+      <Carousel
+        :url="'https://binger-api-testv1.azurewebsites.net/movie/popular'"
+      />
+      <div class="header">
+        <h1 class="title">Least Popular</h1>
+        <a-button class="more">
+          <router-link to="/movie-list">More</router-link>
+        </a-button>
+      </div>
+      <Carousel
+        :url="'https://binger-api-testv1.azurewebsites.net/movie/unpopular'"
+      />
+      <div class="header">
+        <h1 class="title">Most Recent</h1>
+        <a-button class="more">More</a-button>
+      </div>
+      <Carousel
+        :url="'https://binger-api-testv1.azurewebsites.net/movie/latest'"
+      />
+      <div class="header">
+        <h1 class="title">Oldest Movie</h1>
+        <a-button class="more">
+          <router-link to="/movie-list">More</router-link>
+        </a-button>
+      </div>
+      <Carousel
+        :url="'https://binger-api-testv1.azurewebsites.net/movie/oldest'"
+      />
     </div>
     <Footer></Footer>
   </a-layout>
@@ -67,9 +114,10 @@ export default {
   data() {
     return {
       loading: true,
-      userToken: String,
+      // userToken: String,
       movieQuery: String,
       movies: {
+        random: {},
         best: {},
         worst: {},
         popular: {},
@@ -142,40 +190,58 @@ export default {
   justify-content: space-between;
 }
 
-.tabs {
+/* .tabs {
   width: 90%;
   margin: 50px auto 25px;
-}
+} */
 
-.search-bar {
+/* .search-bar {
   width: 50%;
   margin: 50px auto 25px;
+} */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .title {
   margin: 20px;
-  text-align: left;
+  /* text-align: left; */
   font-size: 30px;
   color: white;
+}
+
+.more {
+  /* width: 100%; */
+  height: 100%;
+  margin: 20px;
+  padding: 10px 30px;
 }
 
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */
 
-  .tabs {
+  /* .tabs {
     width: 100%;
     margin: 0 auto;
-  }
+  } */
 
-  .search-bar {
+  /* .search-bar {
     width: 75%;
     margin: 15px auto;
-  }
+  } */
 
   .title {
-    margin: 0 auto;
-    text-align: center;
+    margin: 0;
+    /* text-align: center; */
     font-size: 20px;
+  }
+
+  .more {
+    margin: 5px 0;
+    padding: 2px 5px;
   }
 }
 </style>
