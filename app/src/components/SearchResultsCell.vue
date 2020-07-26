@@ -8,7 +8,7 @@
         <p class="para-tag">{{ releaseDate }}</p>
         <p class="separator genres para-tag">{{ genres }}</p>
       </div>
-      <p class="area plot para-tag">{{overview }}</p>
+      <p class="area plot para-tag">{{ overview }}</p>
       <div class="d-flex items-center area">
         <p class="rating para-tag" title="Rating" v-show="item.popularity">
           <span class="rating-star"></span>

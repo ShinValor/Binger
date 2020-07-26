@@ -6,7 +6,6 @@
   </a-layout>
 </template>
 
-
 <script>
 import SearchBar from "@/components/SearchBar.vue";
 import SearchResultsList from "@/components/SearchResultsList.vue";

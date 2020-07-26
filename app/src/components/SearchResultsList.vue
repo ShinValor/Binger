@@ -7,7 +7,12 @@
         :item="item"
         @click.native="toggleModal(item)"
       />
-      <a-modal v-model="modalVisible" :title="modalTitle" :width="750" :footer="null">
+      <a-modal
+        v-model="modalVisible"
+        :title="modalTitle"
+        :width="750"
+        :footer="null"
+      >
         <div :style="{ display: 'flex' }">
           <p class="content">{{ this.modalSummary }}</p>
           <img
@@ -18,7 +23,10 @@
           />
         </div>
         <a-button>
-          <router-link :to="{ name: 'MovieSynopsis', params: { id: this.modalId } }">More Info</router-link>
+          <router-link
+            :to="{ name: 'MovieSynopsis', params: { id: this.modalId } }"
+            >More Info</router-link
+          >
         </a-button>
       </a-modal>
     </ul>
