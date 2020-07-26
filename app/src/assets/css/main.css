@@ -1,4 +1,4 @@
-/* Navigation Menu */
+/* ================== Navigation Menu ================== */
 
 .ant-menu-item > a {
   color: white !important;
@@ -25,7 +25,8 @@
   padding: 0px !important;
 }
 
-/* Drop down Menu */
+/* ================== Drop down Menu ================== */
+
 a.ant-dropdown-link {
   color:white;
 }
@@ -43,5 +44,23 @@ a.ant-dropdown-link:hover {
 }
 
 .ant-form-item label {
+  color: white !important;
+}
+
+/* ================== Pagination ================== */
+
+.ant-pagination-item-ellipsis {
+  color: white !important;
+}
+
+.ant-pagination-item-ellipsis:hover {
+  color: white !important;
+}
+
+.anticon-double-right {
+  color: white !important;
+}
+
+.anticon-double-left {
   color: white !important;
 }

@@ -73,10 +73,6 @@ export default {
         {
           title: "Terminator",
           url: "https://image.tmdb.org/t/p/w342/pU3bnutJU91u3b4IeRPQTOP8jhV.jpg"
-        },
-        {
-          title: "Logan",
-          url: "https://image.tmdb.org/t/p/w342/4q2NNj4S5dG2RLF9CpXsej7yXl.jpg"
         }
       ]
     };
@@ -101,9 +97,10 @@ export default {
 
 .container .row {
   display: flex;
+  margin: 0 50px;
 }
 .container .row .col {
-  width: 20%;
+  width: 25%;
   margin: 10px;
 }
 

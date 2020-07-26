@@ -115,7 +115,7 @@ export default {
     return {
       loading: true,
       // userToken: String,
-      movieQuery: String,
+      // movieQuery: String,
       movies: {
         random: {},
         best: {},
@@ -132,11 +132,12 @@ export default {
       this.loading = true;
       await axios
         .all([
-          axios.get(
-            "https://binger-api-testv1.azurewebsites.net/movie/ratings/worst"
-          ),
+          // axios.get("https://binger-api-testv1.azurewebsites.net/movie/random"),
           axios.get(
             "https://binger-api-testv1.azurewebsites.net/movie/ratings/best"
+          ),
+          axios.get(
+            "https://binger-api-testv1.azurewebsites.net/movie/ratings/worst"
           ),
           axios.get(
             "https://binger-api-testv1.azurewebsites.net/movie/popular"
@@ -148,14 +149,17 @@ export default {
           axios.get("https://binger-api-testv1.azurewebsites.net/movie/oldest")
         ])
         .then(
-          axios.spread((best, worst, popular, unpopular, latest, oldest) => {
-            this.movies["best"] = best;
-            this.movies["worst"] = worst;
-            this.movies["popular"] = popular;
-            this.movies["unpopular"] = unpopular;
-            this.movies["latest"] = latest;
-            this.movies["oldest"] = oldest;
-          })
+          axios.spread(
+            (random, best, worst, popular, unpopular, latest, oldest) => {
+              this.movies["random"] = random;
+              this.movies["best"] = best;
+              this.movies["worst"] = worst;
+              this.movies["popular"] = popular;
+              this.movies["unpopular"] = unpopular;
+              this.movies["latest"] = latest;
+              this.movies["oldest"] = oldest;
+            }
+          )
         )
         .catch(error => {
           this.error = error.message;
