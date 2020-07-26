@@ -1,7 +1,7 @@
 <template>
   <a-layout class="container">
     <SearchBar :movieQuery="searchQuery" />
-    <SearchResultsList :movieQuery="searchQuery" />
+    <SearchResultsList :movieQuery="searchQuery" :key="searchQuery" />
     <Footer></Footer>
   </a-layout>
 </template>

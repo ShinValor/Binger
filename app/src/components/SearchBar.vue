@@ -8,7 +8,6 @@
   />
 </template>
 <script>
-import axios from "axios";
 export default {
   name: "SearchBar",
   props: {
@@ -25,20 +24,10 @@ export default {
   methods: {
     onSearch() {
       console.log(this.movieQuery);
-      this.results();
-    },
-    results() {
-      axios
-        .get("http://127.0.0.1:5000/movie/search", {
-          params: { query: this.movieQuery, page: 1 }
-        })
-        .then(res => {
-          console.log(res.data);
-          this.searchResults = res.data;
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      this.$router.push({
+        name: "Search",
+        query: { movieQuery: this.movieQuery }
+      });
     }
   }
 };
