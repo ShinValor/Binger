@@ -171,7 +171,7 @@ def create_show_data_list(api_responses, is_movie):
     return items
 
 
-def top_rated_requests(is_movie=True):
+def top_rated_requests(is_movie=True, page_number=1):
     """
     Builds a list of API requests for the top rated movies
 
@@ -185,7 +185,7 @@ def top_rated_requests(is_movie=True):
     top_rated_requests = []
 
     options = copy.deepcopy(consts.DEFAULT_OPTIONS)
-    options["page"] = 1
+    options["page"] = page_number
 
     if is_movie:
         api_url = consts.MOVIE_TOP_RATED_URL
@@ -194,7 +194,7 @@ def top_rated_requests(is_movie=True):
     return top_rated_requests
 
 
-def get_top_rated_shows():
+def get_top_rated_shows(page_number =1):
     """
     Function is responsible of creating a list of top rated movies from TMDB
 
@@ -204,13 +204,13 @@ def get_top_rated_shows():
     """
     shows = []
 
-    movie_recs = top_rated_requests()
+    movie_recs = top_rated_requests(True, page_number)
     movie_responses = grequests.map(movie_recs, size=len(movie_recs))
     shows.extend(create_show_data_list(movie_responses, True))
     return shows
 
 
-def worst_rated_requests(is_movie=True):
+def worst_rated_requests(is_movie=True, page_number=1):
     """
     Builds a list of API requests for the worst rated movies
 
@@ -224,7 +224,7 @@ def worst_rated_requests(is_movie=True):
     top_rated_requests = []
 
     options = copy.deepcopy(consts.DEFAULT_OPTIONS)
-    options["page"] = 1
+    options["page"] = page_number
     options["sort_by"] = "vote_average.asc"
 
     if is_movie:
@@ -234,7 +234,7 @@ def worst_rated_requests(is_movie=True):
     return top_rated_requests
 
 
-def get_worst_rated_shows():
+def get_worst_rated_shows(page_number=1):
     """
     Function is responsible of creating a list of top rated movies from TMDB
 
@@ -244,13 +244,13 @@ def get_worst_rated_shows():
     """
     shows = []
 
-    movie_recs = worst_rated_requests()
+    movie_recs = worst_rated_requests(True, page_number)
     movie_responses = grequests.map(movie_recs, size=len(movie_recs))
     shows.extend(create_show_data_list(movie_responses, True))
     return shows
 
 
-def popular_requests(is_movie=True):
+def popular_requests(is_movie=True, page_number=1):
     """
     Builds a list of API requests for the most popular movies
 
@@ -263,7 +263,7 @@ def popular_requests(is_movie=True):
     popular_requests = []
 
     options = copy.deepcopy(consts.DEFAULT_OPTIONS)
-    options["page"] = 1
+    options["page"] = page_number
 
     if is_movie:
         api_url = consts.MOVIE_POPULAR_URL
@@ -273,7 +273,7 @@ def popular_requests(is_movie=True):
     return popular_requests
 
 
-def get_popular_shows():
+def get_popular_shows(page_number=1):
     """
     Function is responsible of creating a list of most popular movies from TMDB
 
@@ -283,37 +283,13 @@ def get_popular_shows():
     """
     shows = []
 
-    movie_recs = popular_requests()
+    movie_recs = popular_requests(True, page_number)
     movie_responses = grequests.map(movie_recs, size=len(movie_recs))
     shows.extend(create_show_data_list(movie_responses, True))
     return shows
 
 
-def unpopular_requests(is_movie=True):
-    """
-    Builds a list of API requests for the most unpopular movies
-
-    Args:
-        is_movie: Boolean that decides what type of request will be sent to TMDB.
-
-    Returns: 
-        top_rated_requests: A list of API requests that will be sent to TMDB's /unpopular endpoint.
-    """
-    popular_requests = []
-
-    options = copy.deepcopy(consts.DEFAULT_OPTIONS)
-    options["page"] = 1
-    options["sort_by"] = "vote_average.asc"
-
-    if is_movie:
-        api_url = consts.MOVIE_POPULAR_URL
-
-    popular_requests.append(grequests.get(url=api_url, params=options))
-
-    return popular_requests
-
-
-def get_unpopular_shows():
+def get_unpopular_shows(page_number=1):
     """
     Function is responsible of creating a list of most popular movies from TMDB
 
@@ -323,13 +299,13 @@ def get_unpopular_shows():
     """
     shows = []
 
-    movie_recs = unpopular_requests()
+    movie_recs = unpopular_requests(True, page_number)
     movie_responses = grequests.map(movie_recs, size=len(movie_recs))
     shows.extend(create_show_data_list(movie_responses, True))
     return shows
 
 
-def oldest_requests(is_movie=True):
+def oldest_requests(is_movie=True, page_number=1):
     """
     Builds a list of API requests for the oldest movies
 
@@ -342,7 +318,7 @@ def oldest_requests(is_movie=True):
     popular_requests = []
 
     options = copy.deepcopy(consts.DEFAULT_OPTIONS)
-    options["page"] = 1
+    options["page"] = page_number
     options["sort_by"] = "primary_release_date.asc"
 
     if is_movie:
@@ -353,7 +329,30 @@ def oldest_requests(is_movie=True):
     return popular_requests
 
 
-def get_unpopular_shows():
+def unpopular_requests(is_movie=True,  page_number=1):
+    """
+    Builds a list of API requests for the most unpopular movies
+
+    Args:
+        is_movie: Boolean that decides what type of request will be sent to TMDB.
+
+    Returns: 
+        top_rated_requests: A list of API requests that will be sent to TMDB's /unpopular endpoint.
+    """
+    popular_requests = []
+
+    options = copy.deepcopy(consts.DEFAULT_OPTIONS)
+    options["page"] = page_number
+    options["sort_by"] = "vote_average.asc"
+
+    if is_movie:
+        api_url = consts.MOVIE_POPULAR_URL
+
+    popular_requests.append(grequests.get(url=api_url, params=options))
+
+    return popular_requests
+
+def get_unpopular_shows(page_num=1):
     """
     Function is responsible of creating a list of most popular movies from TMDB
 
@@ -363,7 +362,7 @@ def get_unpopular_shows():
     """
     shows = []
 
-    movie_recs = unpopular_requests()
+    movie_recs = unpopular_requests(True, page_num)
     movie_responses = grequests.map(movie_recs, size=len(movie_recs))
     shows.extend(create_show_data_list(movie_responses, True))
     return shows

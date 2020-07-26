@@ -32,17 +32,29 @@
         </a-tab-pane>
       </a-tabs>-->
       <h1 class="title">Top Rated</h1>
-      <Carousel :url="'https://binger-api-testv1.azurewebsites.net/movie/ratings/best'" />
+      <Carousel
+        :url="'https://binger-api-testv1.azurewebsites.net/movie/ratings/best'"
+      />
       <h1 class="title">Worst Rated</h1>
-      <Carousel :url="'https://binger-api-testv1.azurewebsites.net/movie/ratings/worst'" />
+      <Carousel
+        :url="'https://binger-api-testv1.azurewebsites.net/movie/ratings/worst'"
+      />
       <h1 class="title">Most Popular</h1>
-      <Carousel :url="'https://binger-api-testv1.azurewebsites.net/movie/popular'" />
+      <Carousel
+        :url="'https://binger-api-testv1.azurewebsites.net/movie/popular'"
+      />
       <h1 class="title">Least Popular</h1>
-      <Carousel :url="'https://binger-api-testv1.azurewebsites.net/movie/unpopular'" />
+      <Carousel
+        :url="'https://binger-api-testv1.azurewebsites.net/movie/unpopular'"
+      />
       <h1 class="title">Most Recent</h1>
-      <Carousel :url="'https://binger-api-testv1.azurewebsites.net/movie/latest'" />
+      <Carousel
+        :url="'https://binger-api-testv1.azurewebsites.net/movie/latest'"
+      />
       <h1 class="title">Oldest Movie</h1>
-      <Carousel :url="'https://binger-api-testv1.azurewebsites.net/movie/oldest'" />
+      <Carousel
+        :url="'https://binger-api-testv1.azurewebsites.net/movie/oldest'"
+      />
     </div>
     <Footer></Footer>
   </a-layout>
