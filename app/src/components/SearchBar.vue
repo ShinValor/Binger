@@ -2,6 +2,7 @@
   <a-input-search
     class="search-bar"
     placeholder="Search Movies"
+    v-model="movieQuery"
     enter-button
     @search="onSearch"
   />
@@ -9,14 +10,24 @@
 <script>
 export default {
   name: "SearchBar",
+  props: {
+    movieQuery: {
+      type: String,
+      default: ""
+    }
+  },
   data() {
     return {
-      movieQuery: String
+      searchResults: Array
     };
   },
   methods: {
-    onSearch(input) {
-      this.movieQuery = input;
+    onSearch() {
+      console.log(this.movieQuery);
+      this.$router.push({
+        name: "Search",
+        query: { movieQuery: this.movieQuery }
+      });
     }
   }
 };

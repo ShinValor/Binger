@@ -1,15 +1,13 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 import requests
 from flask_cors import CORS
 import random
 
-# movies = Blueprint('movies', __name__)
+app = Flask(__name__)
+CORS(app)
+
+
 MAX_PAGE_NUMBER = 500
-
-movies = Flask(__name__)
-CORS(movies)
-# movies.secret_key = r'Y\xf7\xec\xe3m\x99r\x19Acvc\x9d*l[\xdxcvcd\xa1\xf9\'
-
 API_KEY = "30b80750bf23b8b0b21e102d46f16d72"
 DEFAULT_OPTIONS = {
     "api_key": API_KEY,
@@ -26,6 +24,10 @@ MOVIE_DISCOVER_URL = "https://api.themoviedb.org/3/discover/movie"
 
 MOVIE_NOW_PLAYING_URL = "https://api.themoviedb.org/3/movie/now_playing"
 MOVIE_TOP_RATED_URL = "https://api.themoviedb.org/3/movie/top_rated"
+
+MOVIE_SEARCH_URL = "https://api.themoviedb.org/3/search/movie"
+
+MOVIE_TRAILER_URL = "https://api.themoviedb.org/3/movie/{}/videos"
 
 
 GENRE_IDS_TO_NAME = {
@@ -59,7 +61,12 @@ GENRE_IDS_TO_NAME = {
 }
 
 
-@ movies.route("/movie/recommendations/<id>", methods=['GET'])
+@app.route("/")
+def Working():
+    return "It works!"
+
+
+@app.route("/movie/recommendations/<id>", methods=['GET'])
 def get_movie_reccomendation(id):
 
     api_url = MOVIE_RECCS_URL
@@ -71,21 +78,19 @@ def get_movie_reccomendation(id):
     return jsonify(data)
 
 
-@ movies.route('/movie/similar/<id>', methods=['GET'])
+@app.route('/movie/similar/<id>', methods=['GET'])
 def gwt_similar_movies(id):
     api_url = MOVIE_SIMS_URL
     id = str(id)
 
     req = requests.get(url=api_url.format(id), params={
                        "api_key": "30b80750bf23b8b0b21e102d46f16d72"})
-    # print(req.json())
     data = req.json()["results"]
-    # print(data)
 
     return jsonify(data)
 
 
-@ movies.route('/movie/<id>', methods=['GET'])
+@app.route('/movie/<id>', methods=['GET'])
 def get_movie_info(id):
 
     api_url = MOVIE_DETAILS_URL
@@ -97,10 +102,15 @@ def get_movie_info(id):
 
     data['genres'] = [x['name'] for x in data['genres']]
 
+    req = requests.get(url=MOVIE_TRAILER_URL.format(id), params=options)
+    trailer = req.json()["results"]
+    if trailer:
+        data["trailer_key"] = trailer[0]["key"]
+
     return jsonify(data)
 
 
-@movies.route('/movie/cast/<id>', methods=['GET'])
+@app.route('/movie/cast/<id>', methods=['GET'])
 def get_movie_cast(id):
 
     options = DEFAULT_OPTIONS.copy()
@@ -120,11 +130,13 @@ def get_movie_cast(id):
     return jsonify(items)
 
 
-@movies.route('/movie/oldest')
+@app.route('/movie/oldest')
 def get_oldest():
 
+    page_num = request.args.get('page')
+
     options = DEFAULT_OPTIONS.copy()
-    options["page"] = 1
+    options["page"] = page_num if page_num else 1
     options["sort_by"] = "primary_release_date.asc"
 
     api_url = MOVIE_DISCOVER_URL
@@ -142,11 +154,13 @@ def get_oldest():
     return jsonify(movies)
 
 
-@movies.route('/movie/latest')
+@app.route('/movie/latest')
 def get_latest():
 
+    page_num = request.args.get('page')
+
     options = DEFAULT_OPTIONS.copy()
-    options["page"] = 1
+    options["page"] = page_num if page_num else 1
     options["sort_by"] = "primary_release_date.desc"
 
     api_url = MOVIE_DISCOVER_URL
@@ -164,10 +178,14 @@ def get_latest():
     return jsonify(movies)
 
 
-@movies.route('/movie/now-playing')
+@app.route('/movie/now-playing')
 def get_now_playing():
 
+    page_num = request.args.get('page')
+
     options = DEFAULT_OPTIONS.copy()
+    options["page"] = page_num if page_num else 1
+
     api_url = MOVIE_NOW_PLAYING_URL
 
     response = requests.get(url=api_url, params=options)
@@ -182,10 +200,14 @@ def get_now_playing():
     return jsonify(movies)
 
 
-@movies.route('/movie/popular', methods=['GET'])
+@app.route('/movie/popular', methods=['GET'])
 def get_popular_movies():
 
+    page_num = request.args.get('page')
+
     options = DEFAULT_OPTIONS.copy()
+    options["page"] = page_num if page_num else 1
+
     api_url = MOVIE_POPULAR_URL
 
     response = requests.get(url=api_url, params=options)
@@ -201,12 +223,16 @@ def get_popular_movies():
     return jsonify(movies)
 
 
-@movies.route('/movie/unpopular', methods=['GET'])
+@app.route('/movie/unpopular', methods=['GET'])
 def get_unpopular_movies():
 
+    page_num = request.args.get('page')
+
     options = DEFAULT_OPTIONS.copy()
-    api_url = MOVIE_DISCOVER_URL
+    options["page"] = page_num if page_num else 1
     options["sort_by"] = "popularity.asc"
+
+    api_url = MOVIE_DISCOVER_URL
 
     response = requests.get(url=api_url, params=options)
 
@@ -221,14 +247,18 @@ def get_unpopular_movies():
     return jsonify(movies)
 
 
-@movies.route('/movie/ratings/worst', methods=['GET'])
+@app.route('/movie/ratings/worst', methods=['GET'])
 def get_worst_rated_movies():
 
+    page_num = request.args.get('page')
+
     options = DEFAULT_OPTIONS.copy()
-    api_url = MOVIE_DISCOVER_URL
+    options["page"] = page_num if page_num else 1
     options["sort_by"] = "vote_average.asc"
     options["vote_count.gte"] = 5000
 
+    api_url = MOVIE_DISCOVER_URL
+
     response = requests.get(url=api_url, params=options)
 
     data = response.json()
@@ -242,10 +272,14 @@ def get_worst_rated_movies():
     return jsonify(movies)
 
 
-@movies.route('/movie/ratings/best', methods=['GET'])
+@app.route('/movie/ratings/best', methods=['GET'])
 def get_best_rated_movies():
 
+    page_num = request.args.get('page')
+
     options = DEFAULT_OPTIONS.copy()
+    options["page"] = page_num if page_num else 1
+
     api_url = MOVIE_TOP_RATED_URL
 
     response = requests.get(url=api_url, params=options)
@@ -261,7 +295,7 @@ def get_best_rated_movies():
     return jsonify(movies)
 
 
-@movies.route('/movie/random', methods=['GET'])
+@app.route('/movie/random', methods=['GET'])
 def get_random_movies():
 
     api_url = MOVIE_DISCOVER_URL
@@ -281,12 +315,36 @@ def get_random_movies():
     movies = random.choices(sample_population, k=20)
 
     for movie in movies:
-        movie["genre_ids"] = [(GENRE_IDS_TO_NAME[x])
-                              for x in movie["genre_ids"]]
         if movie["genre_ids"]:
+            ids = movie["genre_ids"]
+            movie["genre_ids"] = [(GENRE_IDS_TO_NAME[x])
+                                  for x in ids]
+
             movie["genres"] = movie.pop("genre_ids")
 
     return jsonify(movies)
 
 
-movies.run(debug=True)
+@app.route('/movie/search', methods=['GET'])
+def get_search_result():
+
+    movie_query = request.args.get('query')
+    page_num = request.args.get('page')
+    # print(movie_query, page_num)
+
+    options = DEFAULT_OPTIONS.copy()
+    options["page"] = page_num if page_num else 1
+    options["query"] = movie_query
+
+    api_url = MOVIE_SEARCH_URL
+
+    response = requests.get(url=api_url, params=options)
+    data = response.json()
+    movies = data["results"]
+
+    for movie in movies:
+        movie["genre_ids"] = [(GENRE_IDS_TO_NAME[x])
+                              for x in movie["genre_ids"]]
+        movie["genres"] = movie.pop("genre_ids")
+    data["results"] = movies
+    return jsonify(data)
