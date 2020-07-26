@@ -221,7 +221,7 @@ def top_rated_show():
     """
     # get idToken and pageNum
     token = request.args.get('token')
-    page_num = request.args.get('page') ? not request.args.get('page') : 1
+    page_num = request.args.get('page') if not request.args.get('page') else 1
 
     # decode idToken
     decoded_token = auth.verify_id_token(token)
@@ -248,7 +248,7 @@ def worst_rated_show():
     """
     # get idToken
     token = request.args.get('token')
-    page_num = request.args.get('page') ? not request.args.get('page') : 1
+    page_num = request.args.get('page') if not request.args.get('page') else 1
 
     # decode idToken
     decoded_token = auth.verify_id_token(token)
@@ -274,7 +274,7 @@ def get_popular():
     """
     # get idToken
     token = request.args.get('token')
-    page_num = request.args.get('page') ? not request.args.get('page') : 1
+    page_num = request.args.get('page') if not request.args.get('page') else 1
 
     # decode idToken
     decoded_token = auth.verify_id_token(token)
@@ -299,7 +299,7 @@ def get_unpopular():
     """
     # get idToken
     token = request.args.get('token')
-    page_num = request.args.get('page') ? not request.args.get('page') : 1
+    page_num = request.args.get('page') if not request.args.get('page') else 1
 
     # decode idToken
     decoded_token = auth.verify_id_token(token)
@@ -324,7 +324,7 @@ def get_now_playing():
     """
     # get idToken
     token = request.args.get('token')
-    page_num = request.args.get('page') ? not request.args.get('page') : 1
+    page_num = request.args.get('page') if not request.args.get('page') else 1
 
     # decode idToken
     decoded_token = auth.verify_id_token(token)
@@ -343,7 +343,7 @@ def get_oldest():
     """
     # get idToken and requested page number
     token = request.args.get('token')
-    page_num = request.args.get('page') ? not request.args.get('page') : 1
+    page_num = request.args.get('page') if not request.args.get('page') else 1
 
     # decode idToken
     decoded_token = auth.verify_id_token(token)

@@ -23,6 +23,7 @@
       </a-modal>
     </ul>
     <a-pagination
+      class="pagingBar"
       :total="totalItems"
       v-model="currentPage"
       @change="pageUpdate"
@@ -93,7 +94,7 @@ export default {
       if (path !== null) {
         return "https://image.tmdb.org/t/p/w342" + path;
       }
-      return "https://cdn.mos.cms.futurecdn.net/HSmWuMva4BjUp8XoESUnQ8-1200-80.jpg";
+      return "https://storage.cloud.google.com/image-api-phot-bucket/default_poster.jpg";
     }
   },
   computed: {
@@ -156,6 +157,10 @@ export default {
   height: 100%;
   margin: 5px;
   object-fit: cover;
+}
+
+.pagingBar {
+  margin: 10px;
 }
 
 @media screen and (max-width: 500px) {
