@@ -219,8 +219,9 @@ def top_rated_show():
     """
     Retrieves the top 20 movie results from TMDB
     """
-    # get idToken
+    # get idToken and pageNum
     token = request.args.get('token')
+    page_num = request.args.get('page') ? not request.args.get('page') : 1
 
     # decode idToken
     decoded_token = auth.verify_id_token(token)
@@ -229,7 +230,7 @@ def top_rated_show():
     top_rated_shows = []
     json_list = []
 
-    show = new_api_handler.get_top_rated_shows()
+    show = new_api_handler.get_top_rated_shows(page_num)
     for i in show:
         data = new_api_handler.resolve_show(i)
         json_data = data.to_json()
@@ -247,6 +248,7 @@ def worst_rated_show():
     """
     # get idToken
     token = request.args.get('token')
+    page_num = request.args.get('page') ? not request.args.get('page') : 1
 
     # decode idToken
     decoded_token = auth.verify_id_token(token)
@@ -255,7 +257,7 @@ def worst_rated_show():
     top_rated_shows = []
     json_list = []
 
-    show = new_api_handler.get_worst_rated_shows()
+    show = new_api_handler.get_worst_rated_shows(page_num)
     for i in show:
         data = new_api_handler.resolve_show(i)
         json_data = data.to_json()
@@ -272,6 +274,7 @@ def get_popular():
     """
     # get idToken
     token = request.args.get('token')
+    page_num = request.args.get('page') ? not request.args.get('page') : 1
 
     # decode idToken
     decoded_token = auth.verify_id_token(token)
@@ -279,7 +282,7 @@ def get_popular():
 
     json_list = []
 
-    show = new_api_handler.get_popular_shows()
+    show = new_api_handler.get_popular_shows(page_num)
     for i in show:
         data = new_api_handler.resolve_show(i)
         json_data = data.to_json()
@@ -296,6 +299,7 @@ def get_unpopular():
     """
     # get idToken
     token = request.args.get('token')
+    page_num = request.args.get('page') ? not request.args.get('page') : 1
 
     # decode idToken
     decoded_token = auth.verify_id_token(token)
@@ -303,7 +307,7 @@ def get_unpopular():
 
     json_list = []
 
-    show = new_api_handler.get_unpopular_shows()
+    show = new_api_handler.get_unpopular_shows(page_num)
     for i in show:
         data = new_api_handler.resolve_show(i)
         json_data = data.to_json()
@@ -320,12 +324,13 @@ def get_now_playing():
     """
     # get idToken
     token = request.args.get('token')
+    page_num = request.args.get('page') ? not request.args.get('page') : 1
 
     # decode idToken
     decoded_token = auth.verify_id_token(token)
     uid = decoded_token['uid']
 
-    movies = new_api_handler.get_now_playing_movies()
+    movies = new_api_handler.get_now_playing_movies(page_num)
     movie_results = movies.json()["results"]
     return json.dumps(movie_results)
 
@@ -336,8 +341,9 @@ def get_oldest():
     """
     Retrieves the oldest movies from TMDB
     """
-    # get idToken
+    # get idToken and requested page number
     token = request.args.get('token')
+    page_num = request.args.get('page') ? not request.args.get('page') : 1
 
     # decode idToken
     decoded_token = auth.verify_id_token(token)
@@ -345,7 +351,7 @@ def get_oldest():
 
     json_list = []
 
-    show = new_api_handler.get_oldest_shows()
+    show = new_api_handler.get_oldest_shows(page_num)
     for i in show:
         data = new_api_handler.resolve_show(i)
         json_data = data.to_json()
