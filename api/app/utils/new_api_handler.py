@@ -305,7 +305,7 @@ def get_unpopular_shows(page_number=1):
     return shows
 
 
-def oldest_requests(is_movie=True, page_number):
+def oldest_requests(is_movie=True, page_number=1):
     """
     Builds a list of API requests for the oldest movies
 
@@ -329,7 +329,7 @@ def oldest_requests(is_movie=True, page_number):
     return popular_requests
 
 
-def unpopular_requests(is_movie=True,  page_number):
+def unpopular_requests(is_movie=True,  page_number=1):
     """
     Builds a list of API requests for the most unpopular movies
 
@@ -352,7 +352,7 @@ def unpopular_requests(is_movie=True,  page_number):
 
     return popular_requests
 
-def get_unpopular_shows(page_num):
+def get_unpopular_shows(page_num=1):
     """
     Function is responsible of creating a list of most popular movies from TMDB
 
