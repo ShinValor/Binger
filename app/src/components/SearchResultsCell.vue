@@ -8,7 +8,7 @@
         <p class="para-tag">{{ releaseDate }}</p>
         <p class="separator genres para-tag">{{ genres }}</p>
       </div>
-      <p class="area plot para-tag">{{ item.overview }}</p>
+      <p class="area plot para-tag">{{overview }}</p>
       <div class="d-flex items-center area">
         <p class="rating para-tag" title="Rating" v-show="item.popularity">
           <span class="rating-star"></span>
@@ -35,6 +35,11 @@ export default {
       });
       return _genres.join(", ");
     },
+    overview: function() {
+      return this.item.overview.length < 200
+        ? this.item.overview
+        : this.item.overview.substring(0, 200) + "...";
+    },
     releaseDate: function() {
       const msec = Date.parse(this.item.release_date);
       const date = new Date(msec);
@@ -47,7 +52,10 @@ export default {
   },
   methods: {
     resolve_img_url(path) {
-      return "https://image.tmdb.org/t/p/w342" + path;
+      if (path !== null) {
+        return "https://image.tmdb.org/t/p/w342" + path;
+      }
+      return "https://cdn.mos.cms.futurecdn.net/HSmWuMva4BjUp8XoESUnQ8-1200-80.jpg";
     }
   }
 };
@@ -101,6 +109,7 @@ export default {
 .title {
   font-size: 1.2em;
   color: white;
+  /* text-align: left;t */
 }
 
 .plot {

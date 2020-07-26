@@ -2,8 +2,34 @@
   <div>
     <h3>Results</h3>
     <ul class="list">
-      <SearchResultsCell v-for="item in list" :key="item.title" :item="item" />
+      <SearchResultsCell
+        v-for="item in list"
+        :key="item.title"
+        :item="item"
+        @click.native="toggleModal(item)"
+      />
+      <a-modal v-model="modalVisible" :title="modalTitle" :width="750" :footer="null">
+        <div :style="{ display: 'flex' }">
+          <p class="content">{{ this.modalSummary }}</p>
+          <img
+            class="large-image"
+            :src="modalImg"
+            :alt="modalTitle"
+            onerror="this.style.display='none'"
+          />
+        </div>
+        <a-button>
+          <router-link :to="{ name: 'MovieSynopsis', params: { id: this.modalId } }">More Info</router-link>
+        </a-button>
+      </a-modal>
     </ul>
+    <a-pagination
+      simple
+      :total="totalItems"
+      v-model="currentPage"
+      @change="pageUpdate"
+      :defaultPageSize="20"
+    />
   </div>
 </template>
 
@@ -25,22 +51,76 @@ export default {
     return {
       loading: true,
       list: Array,
-      errors: []
+      errors: [],
+
+      currentPage: 1,
+      totalItems: 0,
+
+      modalVisible: false,
+      modalId: String,
+      modalTitle: String,
+      modalImg: String,
+      modalSummary: String,
+      movieList: Array,
+      movieUrls: this.url
     };
   },
   methods: {
+    pageUpdate(page) {
+      this.currentPage = page;
+      this.fetchResults();
+    },
     fetchResults() {
+      console.log(this.currentPage);
       axios
         .get("http://127.0.0.1:5000/movie/search", {
-          params: { query: this.movieQuery, page: 1 }
+          params: { query: this.movieQuery, page: this.currentPage }
         })
         .then(res => {
           console.log(res.data);
-          this.list = res.data;
+          this.list = res.data.results;
+          this.totalItems = res.data.total_results;
         })
         .catch(err => {
           console.log(err);
         });
+    },
+    toggleModal(movie) {
+      console.log(movie);
+      this.modalVisible = !this.modalVisible;
+      this.modalId = movie.id;
+      this.modalTitle = movie.original_title;
+      this.modalImg = this.resolve_img_url(movie.poster_path);
+      this.modalSummary = movie.overview;
+    },
+    resolve_img_url(path) {
+      if (path !== null) {
+        return "https://image.tmdb.org/t/p/w342" + path;
+      }
+      return "https://cdn.mos.cms.futurecdn.net/HSmWuMva4BjUp8XoESUnQ8-1200-80.jpg";
+    }
+  },
+  computed: {
+    genres: function() {
+      var _genres = [];
+      this.item.genres.forEach(function(genre) {
+        _genres.push(genre);
+      });
+      return _genres.join(", ");
+    },
+    overview: function() {
+      return this.item.overview.length < 200
+        ? this.item.overview
+        : this.item.overview.substring(0, 200) + "...";
+    },
+    releaseDate: function() {
+      const msec = Date.parse(this.item.release_date);
+      const date = new Date(msec);
+      return date.toLocaleString("default", {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      });
     }
   },
   created() {
@@ -60,5 +140,39 @@ export default {
 .errors {
   padding: 0;
   color: red;
+}
+
+.title {
+  margin: 5px;
+  font-size: 20px;
+  color: white;
+}
+
+.content {
+  width: 66%;
+  margin: 5px auto;
+  font-size: 15px;
+  /* color: white; */
+}
+
+.large-image {
+  width: 33%;
+  height: 100%;
+  margin: 5px;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 500px) {
+  /* applies styles to any device screen sizes below 800px wide */
+
+  .title {
+    margin: 0px;
+    font-size: 8px;
+  }
+
+  .content {
+    margin: 0 auto;
+    font-size: 5px;
+  }
 }
 </style>
