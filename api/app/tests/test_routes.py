@@ -1,11 +1,39 @@
 import os
 import json
-#import pytest
+import pytest
 import requests
-import time
+
 
 url = 'http://localhost:5000'
-
+GENRE_IDS_TO_NAME = {
+    12: "Adventure",
+    14: "Fantasy",
+    16: "Animation",
+    18: "Drama",
+    27: "Horror",
+    28: "Action",
+    35: "Comedy",
+    36: "History",
+    37: "Western",
+    53: "Thriller",
+    80: "Crime",
+    99: "Documentary",
+    878: "Science Fiction",
+    9648: "Mystery",
+    10402: "Music",
+    10749: "Romance",
+    10751: "Family",
+    10752: "War",
+    10759: "Action & Adventure",
+    10762: "Kids",
+    10763: "News",
+    10764: "Reality",
+    10765: "Sci-Fi & Fantasy",
+    10766: "Soaps",
+    10767: "Talk",
+    10768: "War & Politics",
+    10770: "TV Movie"
+}
 
 def test_home():
     response = requests.get(url + '/')
@@ -41,6 +69,7 @@ def test_top_rated_show():
 
     response = requests.get(url + '/topRated' + f"?token={idToken}")
     assert response.status_code == 200
+    assert response.json() == top_rated_json()
 
 
 def test_worst_rated_show():
@@ -117,6 +146,8 @@ def movie_summary_json(id=657):
 
 
 def top_rated_json():
+    top_rated_movies = []
+
     options = {
         "api_key": os.environ.get("TMDB_KEY"),
         "language": "en-US",
@@ -126,7 +157,20 @@ def top_rated_json():
 
     api_url = f"https://api.themoviedb.org/3/movie/top_rated"
     response = requests.get(url=api_url, params=options)
-    return response.json()
+    response_results = response.json()["results"]
+    for item in response_results:
+        movie = {
+            "genres": id_to_genre(item["genre_ids"]),
+            "id": item["id"],
+            "is_movie": True,
+            "overview": item["overview"],
+            "popularity": item["popularity"],
+            "poster_path": item["poster_path"],
+            "release_year": str(item["release_date"][0:4]),
+            "title": item["title"]
+        }
+        top_rated_movies.append(movie)
+    return json.dumps(top_rated_movies)
 
 """
 def worst_rated_json():
@@ -144,4 +188,13 @@ def now_playing_json():
 def oldest_json():
     return True
 """
+
+def id_to_genre(genre_ids):
+    genres = []
+    
+    for genre in genre_ids: 
+        genres.append(GENRE_IDS_TO_NAME[genre])
+
+    return genres
+
 
