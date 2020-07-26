@@ -60,9 +60,7 @@ export default {
       modalId: String,
       modalTitle: String,
       modalImg: String,
-      modalSummary: String,
-      movieList: Array,
-      movieUrls: this.url
+      modalSummary: String
     };
   },
   methods: {
@@ -73,7 +71,7 @@ export default {
     fetchResults() {
       console.log(this.currentPage);
       axios
-        .get("http://127.0.0.1:5000/movie/search", {
+        .get("https://binger-api-testv1.azurewebsites.net//movie/search", {
           params: { query: this.movieQuery, page: this.currentPage }
         })
         .then(res => {
