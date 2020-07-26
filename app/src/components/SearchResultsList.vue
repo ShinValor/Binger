@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h3>Results</h3>
     <ul class="list">
       <SearchResultsCell
         v-for="item in list"
@@ -24,7 +23,6 @@
       </a-modal>
     </ul>
     <a-pagination
-      simple
       :total="totalItems"
       v-model="currentPage"
       @change="pageUpdate"
