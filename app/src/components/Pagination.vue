@@ -1,5 +1,10 @@
 <template>
-  <a-pagination v-model="current" :total="500" show-less-items />
+  <a-pagination
+    class="pagination"
+    v-model="current"
+    :total="500"
+    show-less-items
+  />
 </template>
 <script>
 export default {
@@ -11,4 +16,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.pagination {
+  margin: 50px;
+}
+</style>

@@ -97,7 +97,7 @@ export default {
       this.modalSummary = movie.overview;
     },
     loadImg(path) {
-      if (path !== null) {
+      if (path !== null || path !== undefined) {
         return "https://image.tmdb.org/t/p/w342" + path;
       }
     },

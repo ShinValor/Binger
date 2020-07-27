@@ -1,88 +1,120 @@
 <template>
   <div>
-    <div class="container">
-      <div class="row">
-        <div class="col" v-for="(movie, index) in MovieList" v-bind:key="index">
-          <img
-            class="small-image"
-            :src="movie.url"
-            :alt="movie.title"
-            @click="showModal"
-          />
+    <div v-if="loading">
+      <Loading />
+    </div>
+    <div v-else>
+      <div v-if="random">
+        <a-button class="random" @click="randomMovie()">Randomize</a-button>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div
+            class="col"
+            v-for="(movie, index) in movieList"
+            v-bind:key="index"
+          >
+            <img
+              class="small-image"
+              :src="loadImg(movie.poster_path)"
+              :alt="movie.title"
+              @click="toggleModal(movie)"
+            />
+          </div>
         </div>
       </div>
-      <!-- <div class="row">
-        <div class="col" v-for="(movie, index) in MovieList" v-bind:key="index">
-          <img
-            class="small-image"
-            :src="movie.url"
-            :alt="movie.title"
-            @click="showModal"
-          />
-        </div>
-      </div> -->
+      <div v-if="random">
+        <a-button class="random" @click="randomMovie()">Randomize</a-button>
+      </div>
+      <Pagination v-else />
     </div>
     <a-modal
-      v-model="visible"
-      title="Movie Summary"
+      v-model="modalVisible"
+      :title="modalTitle"
       :width="750"
       :footer="null"
     >
       <div :style="{ display: 'flex' }">
         <p class="content">
-          All our illustrations come in different styles, and you can change
-          main color. Just choose the one you like the most for your project.
-          Some styles allow you to select a simple background, a more one, or
-          one, or remove it altogether. Give it a try!
-        </p>
-        <p class="content">
-          All our illustrations come in different styles, and you can change
-          main color. Just choose the one you like the most for your project.
-          Some styles allow you to select a simple background, a more one, or
-          one, or remove it altogether. Give it a try!
+          {{ this.modalSummary }}
         </p>
         <img
           class="large-image"
-          src="https://image.tmdb.org/t/p/w342/xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
+          :src="modalImg"
+          :alt="modalTitle"
+          onerror="this.style.display='none'"
         />
       </div>
-      <a-button @click="onClick">More Info</a-button>
+      <a-button>
+        <router-link
+          :to="{ name: 'MovieSynopsis', params: { id: this.modalId } }"
+        >
+          More Info
+        </router-link>
+      </a-button>
     </a-modal>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+import Loading from "@/components/Loading.vue";
+import Pagination from "@/components/Pagination.vue";
+
 export default {
   name: "MovieGallery",
+  components: {
+    Loading,
+    Pagination
+  },
+  props: {
+    url: String,
+    random: Boolean
+  },
   data() {
     return {
-      visible: false,
-      MovieList: [
-        {
-          title: "Wonder Woman",
-          url: "https://image.tmdb.org/t/p/w342/xnopI5Xtky18MPhK40cZAGAOVeV.jpg"
-        },
-        {
-          title: "Terminator",
-          url: "https://image.tmdb.org/t/p/w342/db32LaOibwEliAmSL2jjDF6oDdj.jpg"
-        },
-        {
-          title: "Logan",
-          url: "https://image.tmdb.org/t/p/w342/fMMrl8fD9gRCFJvsx0SuFwkEOop.jpg"
-        },
-        {
-          title: "Terminator",
-          url: "https://image.tmdb.org/t/p/w342/pU3bnutJU91u3b4IeRPQTOP8jhV.jpg"
-        }
-      ]
+      loading: false,
+      modalVisible: false,
+      modalId: String,
+      modalTitle: String,
+      modalImg: String,
+      modalSummary: String,
+      movieList: Array,
+      movieUrls: this.url
     };
   },
+  mounted() {
+    this.handleMovieAPI(this.movieUrls);
+  },
   methods: {
-    showModal() {
-      this.visible = true;
+    toggleModal(movie) {
+      this.modalVisible = !this.modalVisible;
+      this.modalId = movie.id;
+      this.modalTitle = movie.original_title;
+      this.modalImg = this.loadImg(movie.poster_path);
+      this.modalSummary = movie.overview;
     },
-    onClick() {
-      // console.log("More");
+    loadImg(path) {
+      if (path !== null || path !== undefined) {
+        return "https://image.tmdb.org/t/p/w342" + path;
+      }
+    },
+    async handleMovieAPI(url) {
+      this.loading = !this.loading;
+      await axios
+        .get(url)
+        .then(res => {
+          this.movieList = res.data;
+        })
+        .catch(err => {
+          this.error = err;
+        })
+        .finally(() => {
+          this.loading = !this.loading;
+        });
+    },
+    randomMovie() {
+      this.handleMovieAPI(this.movieUrls);
     }
   }
 };
@@ -96,12 +128,15 @@ export default {
 }
 
 .container .row {
+  margin: 20 50px;
   display: flex;
-  margin: 0 50px;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
+
 .container .row .col {
-  width: 25%;
-  margin: 10px;
+  /* width: 20%; */
+  margin: 20px;
 }
 
 .content {
@@ -119,7 +154,8 @@ export default {
 
 .small-image {
   object-fit: cover;
-  width: 100%;
+  /* width: 20%; */
+  width: 250px;
   height: 100%;
 }
 
@@ -127,11 +163,19 @@ export default {
   opacity: 0.7;
 }
 
+.random {
+  margin: 20px;
+}
+
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */
 
+  .container .row {
+    margin: 20px;
+  }
+
   .container .row .col {
-    margin: 1px;
+    margin: 20px;
   }
 }
 </style>
