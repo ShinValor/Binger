@@ -1,10 +1,10 @@
 <template>
   <a-layout class="container">
     <SearchBar />
-    <div v-if="loading">
+    <!-- <div v-if="loading">
       <Loading />
-    </div>
-    <div :style="{ width: '90%', margin: '0 auto' }" v-else>
+    </div> -->
+    <div :style="{ width: '90%', margin: '0 auto' }">
       <!-- <a-tabs class="tabs">
         <a-tab-pane key="1" tab="Top Rated">
           <h1 class="title">Top Rated</h1>
@@ -31,7 +31,7 @@
           <Carousel />
         </a-tab-pane>
       </a-tabs>-->
-      <!-- <div class="header">
+      <div class="header">
         <h1 class="title">Random</h1>
         <a-button class="more">
           <router-link to="/movie-list">More</router-link>
@@ -39,7 +39,7 @@
       </div>
       <Carousel
         :url="'https://binger-api-testv1.azurewebsites.net/movie/random'"
-      /> -->
+      />
       <div class="header">
         <h1 class="title">Top Rated</h1>
         <a-button class="more">
@@ -96,11 +96,11 @@
 </template>
 
 <script>
+// import axios from "axios";
 import firebase from "firebase";
-import axios from "axios";
 import SearchBar from "@/components/SearchBar.vue";
 import Carousel from "@/components/Carousel.vue";
-import Loading from "@/components/Loading.vue";
+// import Loading from "@/components/Loading.vue";
 import Footer from "@/components/Footer.vue";
 
 export default {
@@ -108,66 +108,66 @@ export default {
   components: {
     SearchBar,
     Carousel,
-    Loading,
+    // Loading,
     Footer
   },
   data() {
     return {
-      loading: true,
+      // loading: true,
       // userToken: String,
       // movieQuery: String,
-      movies: {
-        random: {},
-        best: {},
-        worst: {},
-        popular: {},
-        unpopular: {},
-        latest: {},
-        oldest: {}
-      }
+      // movies: {
+      //   random: {},
+      //   best: {},
+      //   worst: {},
+      //   popular: {},
+      //   unpopular: {},
+      //   latest: {},
+      //   oldest: {}
+      // }
     };
   },
   methods: {
-    async fetchMovies() {
-      this.loading = true;
-      await axios
-        .all([
-          // axios.get("https://binger-api-testv1.azurewebsites.net/movie/random"),
-          axios.get(
-            "https://binger-api-testv1.azurewebsites.net/movie/ratings/best"
-          ),
-          axios.get(
-            "https://binger-api-testv1.azurewebsites.net/movie/ratings/worst"
-          ),
-          axios.get(
-            "https://binger-api-testv1.azurewebsites.net/movie/popular"
-          ),
-          axios.get(
-            "https://binger-api-testv1.azurewebsites.net/movie/unpopular"
-          ),
-          axios.get("https://binger-api-testv1.azurewebsites.net/movie/latest"),
-          axios.get("https://binger-api-testv1.azurewebsites.net/movie/oldest")
-        ])
-        .then(
-          axios.spread(
-            (random, best, worst, popular, unpopular, latest, oldest) => {
-              this.movies["random"] = random;
-              this.movies["best"] = best;
-              this.movies["worst"] = worst;
-              this.movies["popular"] = popular;
-              this.movies["unpopular"] = unpopular;
-              this.movies["latest"] = latest;
-              this.movies["oldest"] = oldest;
-            }
-          )
-        )
-        .catch(error => {
-          this.error = error.message;
-        })
-        .finally(() => {
-          this.loading = false;
-        });
-    }
+    // async fetchMovies() {
+    //   this.loading = true;
+    //   await axios
+    //     .all([
+    //       axios.get("https://binger-api-testv1.azurewebsites.net/movie/random"),
+    //       axios.get(
+    //         "https://binger-api-testv1.azurewebsites.net/movie/ratings/best"
+    //       ),
+    //       axios.get(
+    //         "https://binger-api-testv1.azurewebsites.net/movie/ratings/worst"
+    //       ),
+    //       axios.get(
+    //         "https://binger-api-testv1.azurewebsites.net/movie/popular"
+    //       ),
+    //       axios.get(
+    //         "https://binger-api-testv1.azurewebsites.net/movie/unpopular"
+    //       ),
+    //       axios.get("https://binger-api-testv1.azurewebsites.net/movie/latest"),
+    //       axios.get("https://binger-api-testv1.azurewebsites.net/movie/oldest")
+    //     ])
+    //     .then(
+    //       axios.spread(
+    //         (random, best, worst, popular, unpopular, latest, oldest) => {
+    //           this.movies["random"] = random;
+    //           this.movies["best"] = best;
+    //           this.movies["worst"] = worst;
+    //           this.movies["popular"] = popular;
+    //           this.movies["unpopular"] = unpopular;
+    //           this.movies["latest"] = latest;
+    //           this.movies["oldest"] = oldest;
+    //         }
+    //       )
+    //     )
+    //     .catch(error => {
+    //       this.error = error.message;
+    //     })
+    //     .finally(() => {
+    //       this.loading = false;
+    //     });
+    // }
   },
   created() {
     firebase.auth().onAuthStateChanged(user => {
@@ -180,7 +180,7 @@ export default {
     });
   },
   mounted() {
-    this.fetchMovies();
+    // this.fetchMovies();
   }
 };
 </script>
@@ -221,7 +221,7 @@ export default {
   /* width: 100%; */
   height: 100%;
   margin: 20px;
-  padding: 10px 30px;
+  padding: 5px 20px;
 }
 
 @media screen and (max-width: 500px) {
