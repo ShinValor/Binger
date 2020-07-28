@@ -1,40 +1,18 @@
 <template>
   <a-layout class="container">
-    <SearchBar />
-    <!-- <div v-if="loading">
-      <Loading />
-    </div> -->
+    <SearchBar class="searchBar" />
     <div :style="{ width: '90%', margin: '0 auto' }">
-      <!-- <a-tabs class="tabs">
-        <a-tab-pane key="1" tab="Top Rated">
-          <h1 class="title">Top Rated</h1>
-          <Carousel />
-        </a-tab-pane>
-        <a-tab-pane key="2" tab="Worst Rated">
-          <h1 class="title">Worst Rated</h1>
-          <Carousel />
-        </a-tab-pane>
-        <a-tab-pane key="3" tab="Most Popular">
-          <h1 class="title">Most Popular</h1>
-          <Carousel />
-        </a-tab-pane>
-        <a-tab-pane key="4" tab="Least Popular">
-          <h1 class="title">Least Popular</h1>
-          <Carousel />
-        </a-tab-pane>
-        <a-tab-pane key="5" tab="Most Recent">
-          <h1 class="title">Most Recent</h1>
-          <Carousel />
-        </a-tab-pane>
-        <a-tab-pane key="6" tab="Oldest">
-          <h1 class="title">Oldest Movie</h1>
-          <Carousel />
-        </a-tab-pane>
-      </a-tabs>-->
       <div class="header">
         <h1 class="title">Random</h1>
-        <a-button class="more">
-          <router-link to="/movie-list">More</router-link>
+        <a-button class="more-btn">
+          <router-link
+            :to="{
+              name: 'MovieList',
+              params: { path: '/random', random: true }
+            }"
+          >
+            More
+          </router-link>
         </a-button>
       </div>
       <Carousel
@@ -42,8 +20,12 @@
       />
       <div class="header">
         <h1 class="title">Top Rated</h1>
-        <a-button class="more">
-          <router-link to="/movie-list">More</router-link>
+        <a-button class="more-btn">
+          <router-link
+            :to="{ name: 'MovieList', params: { path: '/ratings/best' } }"
+          >
+            More
+          </router-link>
         </a-button>
       </div>
       <Carousel
@@ -51,8 +33,12 @@
       />
       <div class="header">
         <h1 class="title">Worst Rated</h1>
-        <a-button class="more">
-          <router-link to="/movie-list">More</router-link>
+        <a-button class="more-btn">
+          <router-link
+            :to="{ name: 'MovieList', params: { path: '/ratings/worst' } }"
+          >
+            More
+          </router-link>
         </a-button>
       </div>
       <Carousel
@@ -60,15 +46,21 @@
       />
       <div class="header">
         <h1 class="title">Most Popular</h1>
-        <a-button class="more">More</a-button>
+        <router-link :to="{ name: 'MovieList', params: { path: '/popular' } }">
+          More
+        </router-link>
       </div>
       <Carousel
         :url="'https://binger-api-testv1.azurewebsites.net/movie/popular'"
       />
       <div class="header">
         <h1 class="title">Least Popular</h1>
-        <a-button class="more">
-          <router-link to="/movie-list">More</router-link>
+        <a-button class="more-btn">
+          <router-link
+            :to="{ name: 'MovieList', params: { path: '/unpopular' } }"
+          >
+            More
+          </router-link>
         </a-button>
       </div>
       <Carousel
@@ -76,31 +68,35 @@
       />
       <div class="header">
         <h1 class="title">Most Recent</h1>
-        <a-button class="more">More</a-button>
+        <a-button class="more-btn">
+          <router-link :to="{ name: 'MovieList', params: { path: '/latest' } }">
+            More
+          </router-link>
+        </a-button>
       </div>
       <Carousel
         :url="'https://binger-api-testv1.azurewebsites.net/movie/latest'"
       />
       <div class="header">
         <h1 class="title">Oldest Movie</h1>
-        <a-button class="more">
-          <router-link to="/movie-list">More</router-link>
+        <a-button class="more-btn">
+          <router-link :to="{ name: 'MovieList', params: { path: '/oldest' } }">
+            More
+          </router-link>
         </a-button>
       </div>
       <Carousel
         :url="'https://binger-api-testv1.azurewebsites.net/movie/oldest'"
       />
     </div>
-    <Footer></Footer>
+    <Footer />
   </a-layout>
 </template>
 
 <script>
-// import axios from "axios";
 import firebase from "firebase";
 import SearchBar from "@/components/SearchBar.vue";
 import Carousel from "@/components/Carousel.vue";
-// import Loading from "@/components/Loading.vue";
 import Footer from "@/components/Footer.vue";
 
 export default {
@@ -108,66 +104,7 @@ export default {
   components: {
     SearchBar,
     Carousel,
-    // Loading,
     Footer
-  },
-  data() {
-    return {
-      // loading: true,
-      // userToken: String,
-      // movieQuery: String,
-      // movies: {
-      //   random: {},
-      //   best: {},
-      //   worst: {},
-      //   popular: {},
-      //   unpopular: {},
-      //   latest: {},
-      //   oldest: {}
-      // }
-    };
-  },
-  methods: {
-    // async fetchMovies() {
-    //   this.loading = true;
-    //   await axios
-    //     .all([
-    //       axios.get("https://binger-api-testv1.azurewebsites.net/movie/random"),
-    //       axios.get(
-    //         "https://binger-api-testv1.azurewebsites.net/movie/ratings/best"
-    //       ),
-    //       axios.get(
-    //         "https://binger-api-testv1.azurewebsites.net/movie/ratings/worst"
-    //       ),
-    //       axios.get(
-    //         "https://binger-api-testv1.azurewebsites.net/movie/popular"
-    //       ),
-    //       axios.get(
-    //         "https://binger-api-testv1.azurewebsites.net/movie/unpopular"
-    //       ),
-    //       axios.get("https://binger-api-testv1.azurewebsites.net/movie/latest"),
-    //       axios.get("https://binger-api-testv1.azurewebsites.net/movie/oldest")
-    //     ])
-    //     .then(
-    //       axios.spread(
-    //         (random, best, worst, popular, unpopular, latest, oldest) => {
-    //           this.movies["random"] = random;
-    //           this.movies["best"] = best;
-    //           this.movies["worst"] = worst;
-    //           this.movies["popular"] = popular;
-    //           this.movies["unpopular"] = unpopular;
-    //           this.movies["latest"] = latest;
-    //           this.movies["oldest"] = oldest;
-    //         }
-    //       )
-    //     )
-    //     .catch(error => {
-    //       this.error = error.message;
-    //     })
-    //     .finally(() => {
-    //       this.loading = false;
-    //     });
-    // }
   },
   created() {
     firebase.auth().onAuthStateChanged(user => {
@@ -178,9 +115,6 @@ export default {
         this.$router.replace({ name: "Home" });
       }
     });
-  },
-  mounted() {
-    // this.fetchMovies();
   }
 };
 </script>
@@ -194,15 +128,10 @@ export default {
   justify-content: space-between;
 }
 
-/* .tabs {
-  width: 90%;
-  margin: 50px auto 25px;
-} */
-
-/* .search-bar {
+.search-bar {
   width: 50%;
   margin: 50px auto 25px;
-} */
+}
 
 .header {
   display: flex;
@@ -227,15 +156,10 @@ export default {
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */
 
-  /* .tabs {
-    width: 100%;
-    margin: 0 auto;
-  } */
-
-  /* .search-bar {
+  .search-bar {
     width: 75%;
     margin: 15px auto;
-  } */
+  }
 
   .title {
     margin: 0;
@@ -243,7 +167,7 @@ export default {
     font-size: 20px;
   }
 
-  .more {
+  .more-btn {
     margin: 5px 0;
     padding: 2px 5px;
   }

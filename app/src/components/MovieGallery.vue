@@ -1,30 +1,35 @@
 <template>
   <div>
-    <div v-if="loading">
+    <div class="loading" v-if="loading">
       <Loading />
     </div>
     <div v-else>
       <div v-if="random">
-        <a-button class="random" @click="randomMovie()">Randomize</a-button>
+        <a-button :style="{ margin: '20px' }" @click="randomMovie()"
+          >Randomize</a-button
+        >
       </div>
-      <div class="container">
-        <div class="row">
-          <div
-            class="col"
-            v-for="(movie, index) in movieList"
-            v-bind:key="index"
-          >
-            <img
-              class="small-image"
-              :src="loadImg(movie.poster_path)"
-              :alt="movie.title"
-              @click="toggleModal(movie)"
-            />
-          </div>
-        </div>
+      <div
+        :style="{
+          margin: '10px 100px',
+          display: 'flex',
+          'flex-wrap': 'wrap',
+          'justify-content': 'space-evenly'
+        }"
+      >
+        <img
+          v-for="(movie, index) in movieList"
+          v-bind:key="index"
+          class="small-image"
+          :src="loadImg(movie.poster_path)"
+          :alt="movie.title"
+          @click="toggleModal(movie)"
+        />
       </div>
       <div v-if="random">
-        <a-button class="random" @click="randomMovie()">Randomize</a-button>
+        <a-button :style="{ margin: '20px' }" @click="randomMovie()"
+          >Randomize</a-button
+        >
       </div>
       <Pagination v-else />
     </div>
@@ -121,23 +126,12 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  margin: 10px;
-  /* display: flex; */
-  /* flex-direction: column; */
-}
-
-.container .row {
-  margin: 20 50px;
+/* .container {
+  margin: 20 100px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-}
-
-.container .row .col {
-  /* width: 20%; */
-  margin: 20px;
-}
+} */
 
 .content {
   width: 66%;
@@ -153,29 +147,29 @@ export default {
 }
 
 .small-image {
-  object-fit: cover;
-  /* width: 20%; */
+  margin: 20px 10px;
   width: 250px;
   height: 100%;
+  object-fit: cover;
 }
 
 .small-image:hover {
   opacity: 0.7;
 }
 
-.random {
-  margin: 20px;
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 1%;
+  right: 1%;
 }
 
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */
 
-  .container .row {
-    margin: 20px;
-  }
-
-  .container .row .col {
-    margin: 20px;
+  .content {
+    margin: 0 auto;
+    font-size: 5px;
   }
 }
 </style>
