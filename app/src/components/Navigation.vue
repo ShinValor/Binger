@@ -35,7 +35,7 @@
         </a>
         <a-menu theme="dark" slot="overlay">
           <a-menu-item key="0">
-            <router-link to="/favorite-movies">My Profile</router-link>
+            <router-link to="/favorite-movies">My Dashboard</router-link>
           </a-menu-item>
           <a-menu-item key="1">
             <router-link to="/user">Account Setting</router-link>
@@ -62,7 +62,7 @@ export default {
   data() {
     return {
       loggedIn: false,
-      username: "Username"
+      username: null
     };
   },
   methods: {

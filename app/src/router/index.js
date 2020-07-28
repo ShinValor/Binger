@@ -89,7 +89,7 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/Recommendations.vue")
   },
   {
-    path: "/movie-list",
+    path: "/movie-list/:path",
     name: "MovieList",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -121,6 +121,9 @@ const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes
+  // scrollBehavior() {
+  //   return { x: 0, y: 0 };
+  // }
 });
 
 export default router;
