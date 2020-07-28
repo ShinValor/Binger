@@ -302,24 +302,23 @@ def get_random_movies():
 
     sample_population = []
 
-    for page_num in random.sample(range(MAX_PAGE_NUMBER), 20):
+    for page_num in random.sample(range(MAX_PAGE_NUMBER), 5):
         options = DEFAULT_OPTIONS.copy()
         options["page"] = page_num
 
         response = requests.get(url=api_url, params=options)
 
         data = response.json()
-        movies_set = data["results"]
-        sample_population.extend(movies_set)
+        if "results" in data:
+            movies_set = data["results"]
+            sample_population.extend(movies_set)
 
     movies = random.choices(sample_population, k=20)
 
     for movie in movies:
-        if movie["genre_ids"]:
+        if "genre_ids" in movie:
             ids = movie["genre_ids"]
-            movie["genre_ids"] = [(GENRE_IDS_TO_NAME[x])
-                                  for x in ids]
-
+            movie["genre_ids"] = [(GENRE_IDS_TO_NAME[x]) for x in ids]
             movie["genres"] = movie.pop("genre_ids")
 
     return jsonify(movies)
