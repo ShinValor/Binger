@@ -1,5 +1,28 @@
 <template>
   <PushRotate width="250">
+    <div class="sidebar">
+      <header class="sidebar-header">
+        <a-avatar :size="64" icon="user" class="ant-icon" />
+        <span class="username">{{ username }}</span>
+      </header>
+      <div class="sidebar-list">
+        <div class="sidebar-item">
+          <router-link to="/movie-recommendations">
+            <span>Recommendation</span>
+          </router-link>
+        </div>
+        <div class="sidebar-item">
+          <router-link to="/movie-list">
+            <span>Movie List</span>
+          </router-link>
+        </div>
+        <div class="sidebar-item">
+          <router-link to="/favorite-movies">
+            <span>My Favorites</span>
+          </router-link>
+        </div>
+      </div>
+    </div>
     <!-- <a-menu
       style="width: 256px"
       :default-selected-keys="['1']"
@@ -38,13 +61,7 @@
           Option 6
         </a-menu-item>
       </a-sub-menu>
-    </a-menu> -->
-    <router-link to="/movie-recommendations">
-      <span>Recommendation</span>
-    </router-link>
-    <router-link to="/movie-list">
-      <span>Movie List</span>
-    </router-link>
+    </a-menu>-->
   </PushRotate>
 </template>
 
@@ -55,6 +72,11 @@ export default {
   name: "Menu",
   components: {
     PushRotate
+  },
+  data() {
+    return {
+      username: "BrightBurn"
+    };
   }
 };
 </script>
@@ -150,5 +172,33 @@ export default {
   .bm-item-list > * {
     padding: 0 !important;
   }
+
+  .ant-icon {
+    display: block;
+  }
+}
+.sidebar {
+  display: block;
+}
+.sidebar-header {
+  padding: 10px 5px;
+  border-bottom: 1px solid white;
+  display: flex;
+
+  align-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.sidebar-list {
+  padding: 10px 0;
+  overflow-y: auto;
+}
+.sidebar-item {
+  padding: 10px;
+  text-align: left;
+  margin: 0;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  /* display: inline; */
 }
 </style>
