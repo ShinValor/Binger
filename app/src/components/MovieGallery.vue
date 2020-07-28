@@ -5,7 +5,7 @@
     </div>
     <div v-else>
       <div v-if="random">
-        <a-button :style="{ margin: '20px' }" @click="randomMovie()"
+        <a-button :style="{ margin: '20px' }" @click="randomMovies()"
           >Randomize</a-button
         >
       </div>
@@ -27,7 +27,7 @@
         />
       </div>
       <div v-if="random">
-        <a-button :style="{ margin: '20px' }" @click="randomMovie()"
+        <a-button :style="{ margin: '20px' }" @click="randomMovies()"
           >Randomize</a-button
         >
       </div>
@@ -37,6 +37,7 @@
         v-model="currentPage"
         @change="pageUpdate"
         :defaultPageSize="20"
+        v-else
       />
     </div>
     <a-modal
@@ -95,15 +96,20 @@ export default {
     };
   },
   mounted() {
-    this.fetchMovieAPI(this.movieUrls);
+    this.random ? this.fetchRandomMovies(this.movieUrls) : this.pageUpdate(1);
   },
   methods: {
     pageUpdate(page) {
       this.currentPage = page;
-      this.fetchMovieAPI();
+      this.$router.push({
+        name: "MovieList",
+        params: { path: this.$route.params.path },
+        query: { current_page: this.currentPage }
+      });
+      this.fetchMovies(this.movieUrls);
     },
-    randomMovie() {
-      this.fetchMovieAPI(this.movieUrls);
+    randomMovies() {
+      this.fetchRandomMovies(this.movieUrls);
     },
     toggleModal(movie) {
       this.modalVisible = !this.modalVisible;
@@ -117,7 +123,7 @@ export default {
         return "https://image.tmdb.org/t/p/w342" + path;
       }
     },
-    async fetchMovieAPI(url) {
+    async fetchRandomMovies(url) {
       this.loading = !this.loading;
       await axios
         .get(url)
@@ -130,17 +136,24 @@ export default {
         .finally(() => {
           this.loading = !this.loading;
         });
-      // axios
-      //   .get("https://binger-api-testv1.azurewebsites.net//movie/search", {
-      //     params: { query: this.movieQuery, page: this.currentPage }
-      //   })
-      //   .then(res => {
-      //     this.list = res.data.results;
-      //     this.totalItems = res.data.total_results;
-      //   })
-      //   .catch(err => {
-      //     this.error = err;
-      //   });
+    },
+    async fetchMovies(url) {
+      this.loading = !this.loading;
+      axios
+        .get(url, {
+          params: { page: this.currentPage }
+        })
+        .then(res => {
+          // this.totalItems = res.data.total_results;
+          this.totalItems = 500;
+          this.movieList = res.data;
+        })
+        .catch(err => {
+          this.error = err;
+        })
+        .finally(() => {
+          this.loading = !this.loading;
+        });
     }
   }
 };

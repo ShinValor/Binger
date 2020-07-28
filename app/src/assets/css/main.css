@@ -64,3 +64,12 @@ a.ant-dropdown-link:hover {
 .anticon-double-left {
   color: white !important;
 }
+
+/* ================== 404 ================== */
+.ant-result-title {
+  color: white !important;
+}
+
+.ant-result-subtitle {
+  color: white !important;
+}
