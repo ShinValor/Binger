@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     onSubmit() {
-      // console.log("submit!", this.form);
+      // On Submit
     }
   }
 };

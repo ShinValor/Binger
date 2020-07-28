@@ -31,7 +31,13 @@
           >Randomize</a-button
         >
       </div>
-      <Pagination v-else />
+      <!-- <Pagination v-else /> -->
+      <a-pagination
+        :total="totalItems"
+        v-model="currentPage"
+        @change="pageUpdate"
+        :defaultPageSize="20"
+      />
     </div>
     <a-modal
       v-model="modalVisible"
@@ -40,9 +46,7 @@
       :footer="null"
     >
       <div :style="{ display: 'flex' }">
-        <p class="content">
-          {{ this.modalSummary }}
-        </p>
+        <p class="content">{{ this.modalSummary }}</p>
         <img
           class="large-image"
           :src="modalImg"
@@ -64,13 +68,13 @@
 <script>
 import axios from "axios";
 import Loading from "@/components/Loading.vue";
-import Pagination from "@/components/Pagination.vue";
+// import Pagination from "@/components/Pagination.vue";
 
 export default {
   name: "MovieGallery",
   components: {
-    Loading,
-    Pagination
+    Loading
+    // Pagination
   },
   props: {
     url: String,
@@ -85,13 +89,22 @@ export default {
       modalImg: String,
       modalSummary: String,
       movieList: Array,
-      movieUrls: this.url
+      movieUrls: this.url,
+      currentPage: 1,
+      totalItems: 0
     };
   },
   mounted() {
-    this.handleMovieAPI(this.movieUrls);
+    this.fetchMovieAPI(this.movieUrls);
   },
   methods: {
+    pageUpdate(page) {
+      this.currentPage = page;
+      this.fetchMovieAPI();
+    },
+    randomMovie() {
+      this.fetchMovieAPI(this.movieUrls);
+    },
     toggleModal(movie) {
       this.modalVisible = !this.modalVisible;
       this.modalId = movie.id;
@@ -104,7 +117,7 @@ export default {
         return "https://image.tmdb.org/t/p/w342" + path;
       }
     },
-    async handleMovieAPI(url) {
+    async fetchMovieAPI(url) {
       this.loading = !this.loading;
       await axios
         .get(url)
@@ -117,9 +130,17 @@ export default {
         .finally(() => {
           this.loading = !this.loading;
         });
-    },
-    randomMovie() {
-      this.handleMovieAPI(this.movieUrls);
+      // axios
+      //   .get("https://binger-api-testv1.azurewebsites.net//movie/search", {
+      //     params: { query: this.movieQuery, page: this.currentPage }
+      //   })
+      //   .then(res => {
+      //     this.list = res.data.results;
+      //     this.totalItems = res.data.total_results;
+      //   })
+      //   .catch(err => {
+      //     this.error = err;
+      //   });
     }
   }
 };

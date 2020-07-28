@@ -31,9 +31,7 @@
       :footer="null"
     >
       <div :style="{ display: 'flex' }">
-        <p class="content">
-          {{ this.modalSummary }}
-        </p>
+        <p class="content">{{ this.modalSummary }}</p>
         <img
           class="large-image"
           :src="modalImg"

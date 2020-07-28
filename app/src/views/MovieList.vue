@@ -3,7 +3,9 @@
     <MovieGallery
       :random="this.$route.params.random"
       :url="
-        'https://binger-api-testv1.azurewebsites.net/movie/' + this.$route.params.path"
+        'https://binger-api-testv1.azurewebsites.net/movie/' +
+          this.$route.params.path
+      "
     />
   </a-layout>
 </template>

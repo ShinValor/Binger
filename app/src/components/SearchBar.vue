@@ -23,7 +23,6 @@ export default {
   },
   methods: {
     onSearch() {
-      console.log(this.movieQuery);
       this.$router.push({
         name: "Search",
         query: { movieQuery: this.movieQuery }
