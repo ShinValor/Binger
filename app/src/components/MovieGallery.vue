@@ -33,6 +33,7 @@
       </div>
       <!-- <Pagination v-else /> -->
       <a-pagination
+        class="pageBar"
         :total="totalItems"
         v-model="currentPage"
         @change="pageUpdate"
@@ -96,9 +97,19 @@ export default {
     };
   },
   mounted() {
-    this.random ? this.fetchRandomMovies(this.movieUrls) : this.pageUpdate(1);
+    this.random
+      ? this.fetchRandomMovies(this.movieUrls)
+      : this.fetchMovies(this.movieUrls);
+  },
+  watch: {
+    $route() {
+      this.fetchMovies(this.movieUrls);
+    }
   },
   methods: {
+    randomMovies() {
+      this.fetchRandomMovies(this.movieUrls);
+    },
     pageUpdate(page) {
       this.currentPage = page;
       this.$router.push({
@@ -106,10 +117,7 @@ export default {
         params: { path: this.$route.params.path },
         query: { current_page: this.currentPage }
       });
-      this.fetchMovies(this.movieUrls);
-    },
-    randomMovies() {
-      this.fetchRandomMovies(this.movieUrls);
+      this.fetchMovies(this.movieUrls, page);
     },
     toggleModal(movie) {
       this.modalVisible = !this.modalVisible;
@@ -139,9 +147,9 @@ export default {
     },
     async fetchMovies(url) {
       this.loading = !this.loading;
-      axios
+      await axios
         .get(url, {
-          params: { page: this.currentPage }
+          params: { page: this.$route.query.current_page }
         })
         .then(res => {
           // this.totalItems = res.data.total_results;
@@ -196,6 +204,10 @@ export default {
   top: 50%;
   left: 1%;
   right: 1%;
+}
+
+.pageBar {
+  margin: 20px;
 }
 
 @media screen and (max-width: 500px) {

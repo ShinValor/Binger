@@ -95,10 +95,18 @@ export default {
   },
   methods: {
     onMore(path, random) {
-      this.$router.push({
-        name: "MovieList",
-        params: { path: path, random: random }
-      });
+      if (random) {
+        this.$router.push({
+          name: "MovieList",
+          params: { path: path, random: random }
+        });
+      } else {
+        this.$router.push({
+          name: "MovieList",
+          params: { path: path },
+          query: { current_page: 1 }
+        });
+      }
     }
   }
 };

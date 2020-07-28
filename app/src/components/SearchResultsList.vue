@@ -31,7 +31,7 @@
       </a-modal>
     </ul>
     <a-pagination
-      class="pagingBar"
+      class="pageBar"
       :total="totalItems"
       v-model="currentPage"
       @change="pageUpdate"
@@ -164,8 +164,8 @@ export default {
   object-fit: cover;
 }
 
-.pagingBar {
-  margin: 10px;
+.pageBar {
+  margin: 20px;
 }
 
 @media screen and (max-width: 500px) {
