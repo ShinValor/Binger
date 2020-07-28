@@ -8,14 +8,7 @@ import os, sys, json
 import jsonpickle as jp
 
 from app import app
-"""
-====================================================================================
-                            VARS NEEDED FOR AUTH AND FIRESTORE
-vars from the app.__init__ file that contains vars needed for auth and firestore
-from app import cors, cred, firebase_app
-from firebase_admin import auth, firestore
-====================================================================================
-"""
+
 from firebase_admin import credentials, auth, firestore, initialize_app
 from flask import session, jsonify, Response, request
 from flask_cors import CORS, cross_origin
@@ -30,7 +23,6 @@ sys.path.append(os.path.join(path, "utils"))
 from app.utils import new_api_handler
 from app.utils import recommendations
 from app.utils import shows
-
 
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
@@ -73,35 +65,12 @@ def check_token(f):
         return f(*args, **kwargs)
     return wrap
 
-
 @app.route('/')
 def index():
     """
     Index page.
     """
     return Response(response='success', status=200)
-
-
-@app.route('/init')
-def initialize_queue():
-    """
-    Builds the recommendations based on the list of genres passed from the frontend.
-    Will store the first item of the "RecommendationQueue" in 'session' so it can
-    persist through requests. The rest of the queue will be sent to firebase for the duration
-    of the users interaction with the "RecommendationQueue"
-    """
-    if "is_initialized" not in session:
-        r = recommendations.RecommendationQueue()
-        # THIS IS A PLACEHOLDER A LIST OF IDS WILL NEED TO PASSED FROM THE FRONT.
-        r.initialize_recommendations([18])
-
-        session["recommendation"] = r.current_recommendation()
-        session["is_initialized"] = True
-
-        return Response(response='Created', status=201)
-
-    return Response(response='Already created', status=204)
-
 
 @app.route('/get_rec')
 def get_recommendation():
@@ -114,16 +83,6 @@ def get_recommendation():
         return show.to_json(), 203
 
     return Response(response="Not Found", status=404)
-
-
-@app.route('/clear')
-def clear_session():
-    """
-    Clear session data from 'session' once the user has finished with their recommendations.
-    """
-    session.clear()
-    return Response(response='OK', status=200)
-
 
 @app.route('/getUserShows', methods=['GET'])
 @check_token
@@ -153,7 +112,6 @@ def get_user_shows():
         shows_list.append(show.to_dict())
 
     return jsonify(shows_list)
-
 
 @app.route('/addUserShows', methods=['GET', 'POST'])
 @check_token
@@ -193,7 +151,6 @@ def add_user_shows():
 
     return Response(response='success', status=200)
 
-
 @app.route('/summary/<id>')
 @check_token
 def movie_summary(id):
@@ -208,7 +165,6 @@ def movie_summary(id):
     overview = json.loads(show_json_data)
 
     return overview["overview"]
-
 
 @app.route('/topRated')
 @check_token
@@ -232,8 +188,6 @@ def top_rated_show():
         json_list.append(a)
     return jsonify(json_list)
 
-
-
 @app.route('/worstRated')
 @check_token
 def worst_rated_show():
@@ -255,7 +209,6 @@ def worst_rated_show():
         json_list.append(a)
     return jsonify(json_list)
 
-
 @app.route('/popular')
 @check_token
 def get_popular():
@@ -276,7 +229,6 @@ def get_popular():
         json_list.append(json.loads(json_data))
 
     return jsonify(json_list)
-
 
 @app.route('/unpopular')
 @check_token
@@ -300,7 +252,6 @@ def get_unpopular():
 
     return jsonify(json_list)
 
-
 @app.route('/recent')
 @check_token
 def get_now_playing():
@@ -314,7 +265,6 @@ def get_now_playing():
     movies = new_api_handler.get_now_playing_movies(page_num)
     movie_results = movies.json()["results"]
     return json.dumps(movie_results)
-
 
 @app.route('/oldest')
 @check_token
@@ -336,4 +286,3 @@ def get_oldest():
         json_list.append(json.loads(json_data))
 
     return jsonify(json_list)
-
