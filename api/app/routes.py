@@ -7,10 +7,8 @@ monkey.patch_all(thread=False, select=False)
 import os, sys, json
 import jsonpickle as jp
 
-from app import app
-
 from firebase_admin import credentials, auth, firestore, initialize_app
-from flask import session, jsonify, Response, request
+from flask import jsonify, Response, request
 from flask_cors import CORS, cross_origin
 from functools import wraps
 
@@ -20,8 +18,8 @@ Adds the utils package locations to the path to allow for portable import.
 path = os.path.abspath(os.path.dirname(__file__))
 sys.path.append(os.path.join(path, "utils"))
 
+from app import app
 from app.utils import new_api_handler
-from app.utils import recommendations
 from app.utils import shows
 
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
@@ -72,17 +70,6 @@ def index():
     """
     return Response(response='success', status=200)
 
-@app.route('/get_rec')
-def get_recommendation():
-    """
-    The "ShowData" object that is stored in 'session' will be used to resolve to
-    a "Show" object and returned as JSON.
-    """
-    if "recommendation" in session:
-        show = new_api_handler.resolve_show((session["recommendation"]))
-        return show.to_json(), 203
-
-    return Response(response="Not Found", status=404)
 
 @app.route('/getUserShows', methods=['GET'])
 @check_token
