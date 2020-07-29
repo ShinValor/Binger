@@ -1,7 +1,7 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
     <chart :options="option" />
-    <FavoriteMovieList />
+    <FavoriteMovieList class="favoriteList" />
   </a-layout>
 </template>
 
@@ -24,7 +24,10 @@ export default {
         title: {
           text: "Most Searched Movie Genre",
           subtext: "Compared With Other Users",
-          left: "center"
+          left: "center",
+          textStyle: {
+            color: "white"
+          }
         },
         tooltip: {
           trigger: "item",
@@ -42,7 +45,10 @@ export default {
             "Horror",
             "Adventure",
             "Night Shows"
-          ]
+          ],
+          textStyle: {
+            color: "white"
+          }
         },
         toolbox: {
           show: true,
@@ -59,35 +65,10 @@ export default {
         },
         series: [
           {
-            name: "Other",
-            type: "pie",
-            radius: [20, 110],
-            center: ["25%", "50%"],
-            roseType: "radius",
-            label: {
-              show: false
-            },
-            emphasis: {
-              label: {
-                show: true
-              }
-            },
-            data: [
-              { value: 10, name: "Action" },
-              { value: 5, name: "Comedy" },
-              { value: 15, name: "Thriller" },
-              { value: 25, name: "Crime Film" },
-              { value: 20, name: "Drama" },
-              { value: 35, name: "Horror" },
-              { value: 30, name: "Adventure" },
-              { value: 40, name: "Night Shows" }
-            ]
-          },
-          {
             name: "You",
             type: "pie",
             radius: [30, 110],
-            center: ["75%", "50%"],
+            center: ["50%", "50%"],
             roseType: "area",
             data: [
               { value: 10, name: "Action" },
@@ -119,12 +100,20 @@ export default {
   margin: 100px auto;
 }
 
+.favoriteList {
+  margin: 25px;
+}
+
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */
 
   .echarts {
     width: 600px;
     margin: 0px auto;
+  }
+
+  .favoriteList {
+    margin: 15px 10px;
   }
 }
 </style>

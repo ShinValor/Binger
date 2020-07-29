@@ -31,7 +31,7 @@
       </a-modal>
     </ul>
     <a-pagination
-      class="pagingBar"
+      class="pageBar"
       :total="totalItems"
       v-model="currentPage"
       @change="pageUpdate"
@@ -76,22 +76,19 @@ export default {
       this.fetchResults();
     },
     fetchResults() {
-      console.log(this.currentPage);
       axios
         .get("https://binger-api-testv1.azurewebsites.net//movie/search", {
           params: { query: this.movieQuery, page: this.currentPage }
         })
         .then(res => {
-          console.log(res.data);
           this.list = res.data.results;
           this.totalItems = res.data.total_results;
         })
         .catch(err => {
-          console.log(err);
+          this.error = err;
         });
     },
     toggleModal(movie) {
-      console.log(movie);
       this.modalVisible = !this.modalVisible;
       this.modalId = movie.id;
       this.modalTitle = movie.original_title;
@@ -167,8 +164,8 @@ export default {
   object-fit: cover;
 }
 
-.pagingBar {
-  margin: 10px;
+.pageBar {
+  margin: 20px;
 }
 
 @media screen and (max-width: 500px) {

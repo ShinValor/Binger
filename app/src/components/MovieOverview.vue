@@ -3,14 +3,14 @@
     <div
       class="header"
       :style="{
-        'background-image': 'url(' + resolve_img_url(item.backdrop_path) + ')'
+        'background-image': 'url(' + loadImg(item.backdrop_path) + ')'
       }"
     >
       <div class="header-contents fontColor">
         <div class="poster-wrapper">
           <img
             class="poster"
-            :src="resolve_img_url(item.poster_path)"
+            :src="loadImg(item.poster_path)"
             :alt="item.title"
           />
         </div>
@@ -43,7 +43,7 @@
                 <a-button type="primary" shape="circle" icon="star" />
               </div>
               <div class="play-trailer score-section">
-                <a :href="resolve_video_url(item.trailer_key)">
+                <a :href="loadVid(item.trailer_key)">
                   <a-icon type="play-circle" />Play Trailer
                 </a>
               </div>
@@ -92,10 +92,10 @@ export default {
     addToFavorites() {
       this.item.favorite = !this.item.favorite;
     },
-    resolve_img_url(path) {
+    loadImg(path) {
       return "https://image.tmdb.org/t/p/w342" + path;
     },
-    resolve_video_url(path) {
+    loadVid(path) {
       return "https://www.youtube.com/watch?v=" + path;
     },
     genres() {

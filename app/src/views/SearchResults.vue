@@ -1,20 +1,26 @@
 <template>
   <a-layout class="container">
-    <SearchBar :movieQuery="searchQuery" />
-    <SearchResultsList :movieQuery="searchQuery" :key="searchQuery" />
-    <Footer></Footer>
+    <SearchBar class="searchBar" :movieQuery="searchQuery" />
+    <SearchResultsList
+      class="searchList"
+      :movieQuery="searchQuery"
+      :key="searchQuery"
+    />
+    <Footer />
   </a-layout>
 </template>
 
 <script>
 import SearchBar from "@/components/SearchBar.vue";
 import SearchResultsList from "@/components/SearchResultsList.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
   name: "SearchResults",
   components: {
     SearchBar,
-    SearchResultsList
+    SearchResultsList,
+    Footer
   },
   computed: {
     searchQuery: function() {
@@ -27,4 +33,31 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.container {
+  min-height: 100%;
+  overflow: auto;
+}
+
+.searchBar {
+  width: 50%;
+  margin: 50px auto 25px;
+}
+
+.searchList {
+  margin: 25px;
+}
+
+@media screen and (max-width: 500px) {
+  /* applies styles to any device screen sizes below 800px wide */
+
+  .searchBar {
+    width: 75%;
+    margin: 15px auto;
+  }
+
+  .searchList {
+    margin: 15px 10px;
+  }
+}
+</style>

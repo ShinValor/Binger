@@ -8,9 +8,9 @@
     <a-form-model-item label="Nick Name">
       <a-input v-model="form.name" />
     </a-form-model-item>
-    <a-form-model-item label="Send Email">
+    <!-- <a-form-model-item label="Send Email">
       <a-switch v-model="form.email" />
-    </a-form-model-item>
+    </a-form-model-item> -->
     <a-form-model-item label="Introduction">
       <a-input v-model="form.desc" type="textarea" />
     </a-form-model-item>
@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     onSubmit() {
-      // console.log("submit!", this.form);
+      // On Submit
     }
   }
 };
@@ -53,7 +53,7 @@ export default {
   margin: 50px 20px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
 }
 
 @media screen and (max-width: 500px) {
