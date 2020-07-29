@@ -71,17 +71,17 @@ export default {
   },
   methods: {
     draggedLeft() {
-      console.log("You hate this movie");
+      // console.log("You hate this movie");
       this.hideCard();
       this.generateImage();
     },
     draggedRight() {
-      console.log("You love this movie");
+      // console.log("You love this movie");
       this.hideCard();
       this.generateImage();
     },
     reload() {
-      console.log("Reload");
+      // console.log("Reload");
       this.hideCard();
       this.generateImage();
     },
