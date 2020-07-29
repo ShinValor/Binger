@@ -84,7 +84,7 @@ export default {
     };
   },
   mounted() {
-    this.handleMovieAPI(this.movieUrls);
+    this.fetchMovies(this.movieUrls);
   },
   methods: {
     toggleModal(movie) {
@@ -99,20 +99,17 @@ export default {
         return "https://image.tmdb.org/t/p/w342" + path;
       }
     },
-    async handleMovieAPI(url) {
-      this.loading = !this.loading;
-      await axios
-        .get(url)
-        .then(res => {
-          this.movieList = res.data;
-        })
-        .catch(err => {
-          this.error = err;
-        })
-        .finally(() => {
-          this.loading = !this.loading;
-          this.$refs.flickity.rerender();
-        });
+    async fetchMovies(url) {
+      try {
+        this.loading = !this.loading;
+        const res = await axios.get(url);
+        this.movieList = res.data;
+      } catch (err) {
+        this.error = err;
+      } finally {
+        this.loading = !this.loading;
+        this.$refs.flickity.rerender();
+      }
     }
   }
 };

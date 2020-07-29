@@ -1,7 +1,16 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
     <chart :options="option" />
+    <a-button class="swiper" @click="toggleModal">Try Our Swiper</a-button>
     <FavoriteMovieList class="favoriteList" />
+    <a-modal
+      v-model="modalVisible"
+      :title="'Movie Swiper'"
+      :width="600"
+      :footer="null"
+    >
+      <MovieSwiper />
+    </a-modal>
   </a-layout>
 </template>
 
@@ -11,15 +20,18 @@ import "echarts/lib/chart/line";
 import "echarts/lib/component/polar";
 import "echarts/theme/dark";
 import FavoriteMovieList from "@/components/FavoriteMovieList.vue";
+import MovieSwiper from "@/components/MovieSwiper.vue";
 
 export default {
   name: "Favorites",
   components: {
     FavoriteMovieList,
+    MovieSwiper,
     chart: ECharts
   },
   data() {
     return {
+      modalVisible: false,
       option: {
         title: {
           text: "Most Searched Movie Genre",
@@ -84,6 +96,11 @@ export default {
         ]
       }
     };
+  },
+  methods: {
+    toggleModal() {
+      this.modalVisible = !this.modalVisible;
+    }
   }
 };
 </script>
@@ -102,6 +119,12 @@ export default {
 
 .favoriteList {
   margin: 25px;
+}
+
+.swiper {
+  position: absolute;
+  top: 10%;
+  right: 1%;
 }
 
 @media screen and (max-width: 500px) {
