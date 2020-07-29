@@ -22,19 +22,19 @@
     </div>
     <div class="btn-container">
       <a-icon
-        class="event-btn"
+        class="btn"
         type="close"
         :style="{ color: '#eb2f96' }"
         @click="dragLeft"
       />
       <a-icon
-        class="event-btn"
+        class="btn"
         type="redo"
         :style="{ color: '#1a90ff' }"
         @click="reload"
       />
       <a-icon
-        class="event-btn"
+        class="btn"
         type="heart"
         theme="twoTone"
         two-tone-color="#52c41a"
@@ -145,7 +145,7 @@ export default {
   margin: 20px;
 }
 
-.event-btn {
+.btn {
   /* border: 2px solid #222831; */
   border-radius: 50%;
   margin: 0 25px;
@@ -155,11 +155,11 @@ export default {
   background-color: white;
 }
 
-.event-btn:hover {
+.btn:hover {
   transform: scale(1.1);
 }
 
-.event-btn:active {
+.btn:active {
   background-color: #222;
 }
 
