@@ -46,17 +46,17 @@ export default {
       // console.log(to.name, from.name);
       if (from) {
         let current_active = document.getElementById(from.name);
-        console.log("from " + current_active);
+        // console.log("from " + current_active);
         if (current_active) {
-          console.log(current_active);
+          // console.log(current_active);
           current_active.classList.toggle("current-route");
         }
       }
       if (to) {
         let new_active = document.getElementById(to.name);
-        console.log("to " + new_active);
+        // console.log("to " + new_active);
         if (new_active) {
-          console.log(new_active);
+          // console.log(new_active);
           new_active.classList.toggle("current-route");
         }
       }
