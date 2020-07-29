@@ -20,9 +20,26 @@
         </Vue2InteractDraggable>
       </div>
     </div>
-    <div class="buttons">
-      <a-icon type="arrow-left" class="event-button" @click="dragLeft" />
-      <a-icon type="arrow-right" class="event-button" @click="dragRight" />
+    <div class="btn-container">
+      <a-icon
+        class="event-btn"
+        type="close"
+        :style="{ color: '#eb2f96' }"
+        @click="dragLeft"
+      />
+      <a-icon
+        class="event-btn"
+        type="redo"
+        :style="{ color: '#1a90ff' }"
+        @click="reload"
+      />
+      <a-icon
+        class="event-btn"
+        type="heart"
+        theme="twoTone"
+        two-tone-color="#52c41a"
+        @click="dragRight"
+      />
     </div>
   </div>
 </template>
@@ -54,14 +71,25 @@ export default {
   },
   methods: {
     draggedLeft() {
-      this.hideCard();
       console.log("You hate this movie");
+      this.hideCard();
       this.generateImage();
     },
     draggedRight() {
-      this.hideCard();
       console.log("You love this movie");
+      this.hideCard();
       this.generateImage();
+    },
+    reload() {
+      console.log("Reload");
+      this.hideCard();
+      this.generateImage();
+    },
+    dragLeft() {
+      InteractEventBus.$emit(INTERACT_DRAGGED_LEFT);
+    },
+    dragRight() {
+      InteractEventBus.$emit(INTERACT_DRAGGED_RIGHT);
     },
     hideCard() {
       setTimeout(() => {
@@ -70,12 +98,6 @@ export default {
       setTimeout(() => {
         this.isShowing = true;
       }, 1000);
-    },
-    dragLeft() {
-      InteractEventBus.$emit(INTERACT_DRAGGED_LEFT);
-    },
-    dragRight() {
-      InteractEventBus.$emit(INTERACT_DRAGGED_RIGHT);
     },
     async generateImage() {
       try {
@@ -117,18 +139,28 @@ export default {
   background-position: center; */
 }
 
-.buttons {
+.btn-container {
   display: flex;
   justify-content: center;
   margin: 20px;
 }
 
-.event-button {
-  border: 2px solid skyblue;
+.event-btn {
+  /* border: 2px solid #222831; */
   border-radius: 50%;
+  margin: 0 25px;
   padding: 10px;
   font-size: 30px;
-  margin: 0 75px;
+  /* color: white; */
+  background-color: white;
+}
+
+.event-btn:hover {
+  transform: scale(1.1);
+}
+
+.event-btn:active {
+  background-color: #222;
 }
 
 .loading {
