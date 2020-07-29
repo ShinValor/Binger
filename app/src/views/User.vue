@@ -2,7 +2,11 @@
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
     <div class="container">
       <Setting />
-      <Card class="profile-card" :name="name" desc="I love to watch movies." />
+      <Card
+        class="profile-card"
+        :name="username"
+        desc="I love to watch movies."
+      />
     </div>
   </a-layout>
 </template>
@@ -18,21 +22,9 @@ export default {
     Setting,
     Card
   },
-  created() {
-    firebase.auth().onAuthStateChanged(user => {
-      // if (!user) {
-      //   this.$router.replace({ name: "Home" });
-      // } else {
-      //   this.name = user.displayName;
-      // }
-      if (user) {
-        this.name = user.displayName;
-      }
-    });
-  },
   data() {
     return {
-      name: "Username"
+      // name: "Username"
     };
   },
   methods: {
@@ -80,6 +72,11 @@ export default {
       auth.sendPasswordResetEmail(emailAddress).catch(error => {
         this.error = error.message;
       });
+    }
+  },
+  computed: {
+    username() {
+      return this.$store.state.userProfile["name"];
     }
   }
 };
