@@ -1,7 +1,16 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
     <chart :options="option" />
+    <a-button class="swiper" @click="toggleModal">Try Our Swiper</a-button>
     <FavoriteMovieList class="favoriteList" />
+    <a-modal
+      v-model="modalVisible"
+      :title="'Movie Swiper'"
+      :width="600"
+      :footer="null"
+    >
+      <MovieSwiper />
+    </a-modal>
   </a-layout>
 </template>
 
@@ -11,19 +20,22 @@ import "echarts/lib/chart/line";
 import "echarts/lib/component/polar";
 import "echarts/theme/dark";
 import FavoriteMovieList from "@/components/FavoriteMovieList.vue";
+import MovieSwiper from "@/components/MovieSwiper.vue";
 
 export default {
   name: "Favorites",
   components: {
     FavoriteMovieList,
+    MovieSwiper,
     chart: ECharts
   },
   data() {
     return {
+      modalVisible: false,
       option: {
         title: {
-          text: "Most Searched Movie Genre",
-          subtext: "Compared With Other Users",
+          text: "Your Movie Dashboard",
+          subtext: "Most Searched Movie Genre",
           left: "center",
           textStyle: {
             color: "white"
@@ -50,19 +62,19 @@ export default {
             color: "white"
           }
         },
-        toolbox: {
-          show: true,
-          feature: {
-            mark: { show: true },
-            dataView: { show: true, readOnly: false },
-            magicType: {
-              show: true,
-              type: ["pie", "funnel"]
-            },
-            restore: { show: true },
-            saveAsImage: { show: true }
-          }
-        },
+        // toolbox: {
+        //   show: true,
+        //   feature: {
+        //     mark: { show: true },
+        //     dataView: { show: true, readOnly: false },
+        //     magicType: {
+        //       show: true,
+        //       type: ["pie", "funnel"]
+        //     },
+        //     restore: { show: true },
+        //     saveAsImage: { show: true }
+        //   }
+        // },
         series: [
           {
             name: "You",
@@ -71,19 +83,25 @@ export default {
             center: ["50%", "50%"],
             roseType: "area",
             data: [
-              { value: 10, name: "Action" },
-              { value: 5, name: "Comedy" },
-              { value: 15, name: "Thriller" },
-              { value: 25, name: "Crime Film" },
-              { value: 20, name: "Drama" },
-              { value: 35, name: "Horror" },
-              { value: 30, name: "Adventure" },
-              { value: 40, name: "Night Shows" }
+              { name: "Action", value: 10 },
+              { name: "Comedy", value: 5 },
+              { name: "Thriller", value: 15 },
+              { name: "Crime Film", value: 25 },
+              { name: "Drama", value: 20 },
+              { name: "Horror", value: 35 },
+              { name: "Adventure", value: 30 },
+              { name: "Night Shows", value: 40 }
             ]
           }
         ]
       }
     };
+  },
+  methods: {
+    toggleModal() {
+      this.modalVisible = !this.modalVisible;
+      // console.log(this.option.series[0].data);
+    }
   }
 };
 </script>
@@ -97,11 +115,17 @@ export default {
 .echarts {
   width: 800px;
   height: 400px;
-  margin: 100px auto;
+  margin: 50px auto;
 }
 
 .favoriteList {
   margin: 25px;
+}
+
+.swiper {
+  position: absolute;
+  top: 10%;
+  right: 1%;
 }
 
 @media screen and (max-width: 500px) {
@@ -109,7 +133,7 @@ export default {
 
   .echarts {
     width: 600px;
-    margin: 0px auto;
+    margin: 25px auto;
   }
 
   .favoriteList {

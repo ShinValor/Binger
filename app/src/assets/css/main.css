@@ -66,10 +66,30 @@ a.ant-dropdown-link:hover {
 }
 
 /* ================== 404 ================== */
+
 .ant-result-title {
   color: white !important;
 }
 
 .ant-result-subtitle {
+  color: white !important;
+}
+
+/* ================== Modal ================== */
+
+.ant-modal-header {
+  background-color: #222831 !important;  
+}
+
+.ant-modal-title {
+  color: white !important;
+}
+
+.ant-modal-content {
+  background-color: #222831 !important;
+  color: white !important;
+}
+
+.ant-modal-close-x {
   color: white !important;
 }

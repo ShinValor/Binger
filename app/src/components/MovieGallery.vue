@@ -5,31 +5,24 @@
     </div>
     <div v-else>
       <div v-if="random">
-        <a-button :style="{ margin: '20px' }" @click="randomMovies()"
-          >Randomize</a-button
-        >
+        <a-button class="randBtn" @click="fetchMovies(movieUrls)">
+          Randomize
+        </a-button>
       </div>
-      <div
-        :style="{
-          margin: '10px 100px',
-          display: 'flex',
-          'flex-wrap': 'wrap',
-          'justify-content': 'space-evenly'
-        }"
-      >
+      <div class="container">
         <img
+          class="small-image"
           v-for="(movie, index) in movieList"
           v-bind:key="index"
-          class="small-image"
           :src="loadImg(movie.poster_path)"
           :alt="movie.title"
           @click="toggleModal(movie)"
         />
       </div>
       <div v-if="random">
-        <a-button :style="{ margin: '20px' }" @click="randomMovies()"
-          >Randomize</a-button
-        >
+        <a-button class="randBtn" @click="fetchMovies(movieUrls)">
+          Randomize
+        </a-button>
       </div>
       <!-- <Pagination v-else /> -->
       <a-pagination
@@ -97,9 +90,7 @@ export default {
     };
   },
   mounted() {
-    this.random
-      ? this.fetchRandomMovies(this.movieUrls)
-      : this.fetchMovies(this.movieUrls);
+    this.fetchMovies(this.movieUrls);
   },
   watch: {
     $route() {
@@ -107,9 +98,6 @@ export default {
     }
   },
   methods: {
-    randomMovies() {
-      this.fetchRandomMovies(this.movieUrls);
-    },
     pageUpdate(page) {
       this.currentPage = page;
       this.$router.push({
@@ -131,49 +119,36 @@ export default {
         return "https://image.tmdb.org/t/p/w342" + path;
       }
     },
-    async fetchRandomMovies(url) {
-      this.loading = !this.loading;
-      await axios
-        .get(url)
-        .then(res => {
-          this.movieList = res.data;
-        })
-        .catch(err => {
-          this.error = err;
-        })
-        .finally(() => {
-          this.loading = !this.loading;
-        });
-    },
     async fetchMovies(url) {
-      this.loading = !this.loading;
-      await axios
-        .get(url, {
-          params: { page: this.$route.query.current_page }
-        })
-        .then(res => {
-          // this.totalItems = res.data.total_results;
+      try {
+        this.loading = !this.loading;
+        if (this.random) {
+          const res = await axios.get(url);
+          this.movieList = res.data;
+        } else {
+          const res = await axios.get(url, {
+            params: { page: this.$route.query.current_page }
+          });
           this.totalItems = 500;
           this.movieList = res.data;
-        })
-        .catch(err => {
-          this.error = err;
-        })
-        .finally(() => {
-          this.loading = !this.loading;
-        });
+        }
+      } catch (err) {
+        this.error = err;
+      } finally {
+        this.loading = !this.loading;
+      }
     }
   }
 };
 </script>
 
 <style scoped>
-/* .container {
-  margin: 20 100px;
+.container {
+  margin: 20px 150px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-} */
+}
 
 .content {
   width: 66%;
@@ -207,6 +182,10 @@ export default {
 }
 
 .pageBar {
+  margin: 20px;
+}
+
+.randBtn {
   margin: 20px;
 }
 
