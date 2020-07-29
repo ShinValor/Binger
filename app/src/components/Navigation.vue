@@ -30,8 +30,9 @@
         </a-menu-item>
       </a-menu>
       <a-dropdown :trigger="['click']" :style="{ padding: '0px 20px' }" v-else>
-        <a class="ant-dropdown-link" @click="e => e.preventDefault()">
-          {{ username }} <a-icon type="caret-down" /> <a-icon type="user" />
+        <a class="ant-dropdown-link" @click.prevent>
+          {{ this.$store.state.userProfile["name"] }}
+          <a-icon type="caret-down" /> <a-icon type="user" />
         </a>
         <a-menu theme="dark" slot="overlay">
           <a-menu-item key="0">
@@ -67,14 +68,20 @@ export default {
   },
   methods: {
     logout() {
-      firebase
-        .auth()
-        .signOut()
-        .catch(error => {
-          this.error = error.message;
-        });
+      // firebase
+      //   .auth()
+      //   .signOut()
+      //   .catch(error => {
+      //     this.error = error.message;
+      //   });
+      this.$store.dispatch("logout");
     }
   },
+  // computed: {
+  //   user() {
+  //     return this.$store.state.userProfile;
+  //   }
+  // },
   created() {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {

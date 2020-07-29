@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import { auth } from "../firebase";
 
 Vue.use(VueRouter);
 
@@ -30,22 +31,34 @@ const routes = [
   {
     path: "/movie-synopsis/:id",
     name: "MovieSynopsis",
-    component: () => import("../views/MovieSynopsis.vue")
+    component: () => import("../views/MovieSynopsis.vue"),
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: "/user",
     name: "User",
-    component: () => import("../views/User.vue")
+    component: () => import("../views/User.vue"),
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: "/favorite-movies",
     name: "Favorites",
-    component: () => import("../views/Favorites.vue")
+    component: () => import("../views/Favorites.vue"),
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: "/movie-recommendations",
     name: "Recommendations",
-    component: () => import("../views/Recommendations.vue")
+    component: () => import("../views/Recommendations.vue"),
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: "/movie-list/:path",
@@ -55,7 +68,10 @@ const routes = [
   {
     path: "/search-results",
     name: "Search",
-    component: () => import("../views/SearchResults.vue")
+    component: () => import("../views/SearchResults.vue"),
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: "**",
@@ -70,6 +86,16 @@ const router = new VueRouter({
   routes,
   scrollBehavior() {
     return { x: 0, y: 0 };
+  }
+});
+
+// navigation guard to check for logged in users
+router.beforeEach((to, from, next) => {
+  const requiresAuth = to.matched.some(x => x.meta.requiresAuth);
+  if (requiresAuth && !auth.currentUser) {
+    next("/login");
+  } else {
+    next();
   }
 });
 

@@ -20,9 +20,12 @@ export default {
   },
   created() {
     firebase.auth().onAuthStateChanged(user => {
-      if (!user) {
-        this.$router.replace({ name: "Home" });
-      } else {
+      // if (!user) {
+      //   this.$router.replace({ name: "Home" });
+      // } else {
+      //   this.name = user.displayName;
+      // }
+      if (user) {
         this.name = user.displayName;
       }
     });
