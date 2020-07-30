@@ -7,17 +7,20 @@
           this.$route.params.path
       "
     />
+    <Footer :style="{ 'margin-top': '50px' }" />
   </a-layout>
 </template>
 
 <script>
 import MovieGallery from "@/components/MovieGallery.vue";
+import Footer from "@/components/Footer.vue";
 // import Pagination from "@/components/Pagination.vue";
 
 export default {
   name: "MovieList",
   components: {
-    MovieGallery
+    MovieGallery,
+    Footer
     // Pagination
   }
 };

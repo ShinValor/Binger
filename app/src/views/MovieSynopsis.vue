@@ -18,6 +18,7 @@
       :key="this.$route.params.id + 'CastList'"
       :movieID="parseInt(this.$route.params.id)"
     />
+    <Footer :style="{ 'margin-top': '50px' }" />
   </a-layout>
 </template>
 
@@ -25,13 +26,15 @@
 import MovieSynopsisMovieList from "@/components/MovieSynopsisMovieList.vue";
 import MovieSynopsisCastList from "@/components/MovieSynopsisCastList.vue";
 import MovieOverview from "@/components/MovieOverview.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
   name: "MovieSynopsis",
   components: {
     MovieOverview,
     MovieSynopsisMovieList,
-    MovieSynopsisCastList
+    MovieSynopsisCastList,
+    Footer
   }
 };
 </script>
