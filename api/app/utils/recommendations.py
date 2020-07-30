@@ -2,6 +2,8 @@
 Module is responsible for handling the recommendation system.
 
 Module has a custom data structure to emulate a queuing system.
+
+Module is not being used and should be deprecated.
 """
  
 from gevent import monkey
