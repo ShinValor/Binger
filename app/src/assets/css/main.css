@@ -4,37 +4,29 @@
   color: white !important;
 }
 
-.ant-menu-item-selected {
-  background-color: transparent !important;
-}
-
-.ant-menu-item-selected > a {
-  color: white !important;
-}
-
-/* .ant-menu-item:hover {
-  background-color: #1890ff !important;
-} */
-
 .ant-menu-item > a:hover {
   color: lightpink !important;
 }
 
+.ant-menu-item-selected {
+  background-color: transparent !important;
+}
+
+/* 
 .ant-card-body {
   margin: 5px !important;
   padding: 0px !important;
-}
+} */
 
 /* ================== Drop down Menu ================== */
 
-a.ant-dropdown-link {
+.ant-dropdown-link {
   color:white;
 }
 
-a.ant-dropdown-link:hover {
+.ant-dropdown-link:hover {
   color: lightpink;
 }
-
 
 /* ================== Layout ================== */
 
@@ -45,7 +37,6 @@ a.ant-dropdown-link:hover {
 /* ================== Footer ================== */
 
 .ant-layout-footer {
-  /* background-color: #222831 !important; */
   background-color: #001528 !important;
 }
 
@@ -57,19 +48,29 @@ a.ant-dropdown-link:hover {
 
 /* ================== Pagination ================== */
 
-.ant-pagination-item-ellipsis {
-  color: white !important;
-}
-
+.ant-pagination-item-ellipsis,
 .ant-pagination-item-ellipsis:hover {
   color: white !important;
 }
 
-.anticon-double-right {
+.anticon-double-right,
+.anticon-double-left {
   color: white !important;
 }
 
-.anticon-double-left {
+.ant-pagination-item > a,
+.ant-pagination-item-link {
+  background-color: #222831 !important;
+  color: white !important
+}
+
+.ant-pagination-item:hover,
+.ant-pagination-item:active,
+.ant-pagination-item-link:hover,
+.ant-pagination-item-link:active,
+.ant-pagination-item-active,
+.ant-pagination-item-active a {
+  border-color: #222831 !important;
   color: white !important;
 }
 
@@ -89,15 +90,12 @@ a.ant-dropdown-link:hover {
   background-color: #222831 !important;  
 }
 
-.ant-modal-title {
+.ant-modal-title,
+.ant-modal-close-x {
   color: white !important;
 }
 
 .ant-modal-content {
   background-color: #222831 !important;
-  color: white !important;
-}
-
-.ant-modal-close-x {
   color: white !important;
 }
