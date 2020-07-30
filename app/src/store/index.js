@@ -111,7 +111,7 @@ const store = new Vuex.Store({
         await fb.dislikesCollection.doc(docId).delete();
       }
       if (likedoc.exists) {
-        console.log("You liked This Movie Already");
+        // console.log("You Already liked This Movie");
         await fb.likesCollection.doc(docId).delete();
         return;
       }
@@ -141,7 +141,7 @@ const store = new Vuex.Store({
         await fb.likesCollection.doc(docId).delete();
       }
       if (dislikedoc.exists) {
-        console.log("You Disliked This Movie Already");
+        // console.log("You Already Disliked This Movie");
         await fb.dislikesCollection.doc(docId).delete();
         return;
       }
