@@ -5,6 +5,7 @@
         <a-avatar :size="64" icon="user" class="ant-icon" />
         <span class="username">{{ username }}</span>
       </header>
+      <!-- <div class="break"></div> -->
       <div class="sidebar-list">
         <div id="Recommendations" class="sidebar-item">
           <router-link class="link" to="/movie-recommendations">
@@ -103,7 +104,7 @@ export default {
 }
 
 .bm-menu {
-  background-color: rgb(63, 63, 65, 0.85) !important;
+  background-color: rgb(89, 115, 135 0.85) !important;
   top: 0;
   left: 0;
   height: 100%; /* 100% Full-height */
@@ -162,7 +163,8 @@ export default {
   }
 }
 .sidebar {
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 .sidebar-header {
   padding: 10px 5px;
@@ -175,7 +177,8 @@ export default {
 }
 .sidebar-list {
   padding: 10px 0;
-  /* overflow-y: auto; */
+  overflow-y: auto;
+  display: block;
 }
 .sidebar-item {
   text-align: left;
