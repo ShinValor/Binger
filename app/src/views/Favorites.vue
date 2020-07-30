@@ -131,7 +131,8 @@ export default {
 }
 
 .swiper-btn:hover,
-.swiper-btn:active {
+.swiper-btn:active,
+.swiper-btn:focus {
   border-color: white;
 }
 
