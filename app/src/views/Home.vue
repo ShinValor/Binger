@@ -166,12 +166,13 @@ export default {
   width: 200px;
   margin: 20px 20px 20px 30px;
   text-align: center;
-  border-color: white;
+  /* border-color: white; */
   color: white;
 }
 
 .sub-button:hover {
-  border-color: gray;
+  /* border-color: gray; */
+  border-color: white;
 }
 
 .title {

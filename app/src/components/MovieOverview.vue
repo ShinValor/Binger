@@ -194,7 +194,7 @@ export default {
 
 .key-info {
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .movie-title {
@@ -283,7 +283,7 @@ export default {
   margin: 10px 20px 10px 0;
   display: inline;
   font-weight: 600;
-  font-size: 2.5em;
+  font-size: 2.2em;
 }
 
 .fontColor {

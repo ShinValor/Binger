@@ -5,12 +5,12 @@
     </div>
     <div v-else>
       <div v-if="random">
-        <a-button class="randBtn" @click="fetchMovies(movieUrls)">
-          Randomize
+        <a-button class="rand-btn" @click="fetchMovies(movieUrls)">
+          <font-awesome-icon :icon="['fas', 'random']" />
         </a-button>
       </div>
       <a-pagination
-        class="pageBar"
+        class="pagination"
         :total="totalItems"
         v-model="currentPage"
         @change="pageUpdate"
@@ -28,13 +28,13 @@
         />
       </div>
       <div v-if="random">
-        <a-button class="randBtn" @click="fetchMovies(movieUrls)">
-          Randomize
+        <a-button class="rand-btn" @click="fetchMovies(movieUrls)">
+          <font-awesome-icon :icon="['fas', 'random']" />
         </a-button>
       </div>
       <!-- <Pagination v-else /> -->
       <a-pagination
-        class="pageBar"
+        class="pagination"
         :total="totalItems"
         v-model="currentPage"
         @change="pageUpdate"
@@ -98,6 +98,7 @@ export default {
     };
   },
   mounted() {
+    this.totalItems = 500;
     this.fetchMovies(this.movieUrls);
   },
   watch: {
@@ -137,7 +138,6 @@ export default {
           const res = await axios.get(url, {
             params: { page: this.$route.query.current_page }
           });
-          this.totalItems = 500;
           this.movieList = res.data;
         }
       } catch (err) {
@@ -189,20 +189,40 @@ export default {
   right: 1%;
 }
 
-.pageBar {
+.pagination {
   margin: 20px;
 }
 
-.randBtn {
-  margin: 20px;
+.rand-btn {
+  width: 100px;
+  height: 100%;
+  margin: 40px 0 20px;
+  padding: 5px 20px;
+  background-color: transparent;
+  color: white;
+}
+
+.rand-btn:hover,
+.rand-btn:active {
+  border-color: white;
 }
 
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */
 
+  .container {
+    margin: 0 auto;
+  }
+
   .content {
     margin: 0 auto;
     font-size: 5px;
+  }
+
+  .rand-btn {
+    width: 50px;
+    margin: 20px 0 5px;
+    padding: 0;
   }
 }
 </style>
