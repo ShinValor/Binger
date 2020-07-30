@@ -10,6 +10,9 @@
             <p class="content">
               <a href="https://ant.design/">Ant Design</a>
             </p>
+            <p class="content">
+              <a href="https://www.antdv.com/components/icon/">Icons</a>
+            </p>
         </div>
         <div class="item1">
           <h1 class="title">Resources</h1>
