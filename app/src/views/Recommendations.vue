@@ -71,7 +71,6 @@
 </template>
 
 <script>
-import firebase from "firebase";
 import SearchBar from "@/components/SearchBar.vue";
 import Carousel from "@/components/Carousel.vue";
 import Footer from "@/components/Footer.vue";
@@ -82,16 +81,6 @@ export default {
     SearchBar,
     Carousel,
     Footer
-  },
-  created() {
-    firebase.auth().onAuthStateChanged(user => {
-      // user.getIdToken().then(token => {
-      //   this.userToken = token;
-      // });
-      if (!user) {
-        this.$router.replace({ name: "Home" });
-      }
-    });
   },
   methods: {
     onMore(path, random) {
