@@ -101,3 +101,10 @@
   background-color: #222831 !important;
   color: white !important;
 }
+
+/* ================== CheckBox ================== */
+
+.ant-checkbox-inner {
+  background-color: black !important;
+  border-color: white !important;
+}
