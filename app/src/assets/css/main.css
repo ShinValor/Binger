@@ -48,8 +48,7 @@
 
 /* ================== Pagination ================== */
 
-.ant-pagination-item-ellipsis,
-.ant-pagination-item-ellipsis:hover {
+.ant-pagination-item-ellipsis {
   color: white !important;
 }
 
@@ -58,28 +57,31 @@
   color: white !important;
 }
 
-.ant-pagination-item > a,
+.ant-pagination-item a,
 .ant-pagination-item-link {
-  background-color: #222831 !important;
+  background-color: #414141 !important;
   color: white !important
 }
 
 .ant-pagination-item:hover,
-.ant-pagination-item:active,
-.ant-pagination-item-link:hover,
-.ant-pagination-item-link:active,
-.ant-pagination-item-active,
+.ant-pagination-item-link:hover {
+  border-color: white !important;
+  filter: brightness(200%);
+}
+
+.ant-pagination-item-active {
+  border-color: white !important;
+  filter: brightness(100%) !important;
+}
+
 .ant-pagination-item-active a {
-  border-color: #222831 !important;
+  background-color: #f3c669 !important;
   color: white !important;
 }
 
 /* ================== 404 ================== */
 
-.ant-result-title {
-  color: white !important;
-}
-
+.ant-result-title,
 .ant-result-subtitle {
   color: white !important;
 }
@@ -87,7 +89,7 @@
 /* ================== Modal ================== */
 
 .ant-modal-header {
-  background-color: #222831 !important;  
+  background-color: #222831 !important;
 }
 
 .ant-modal-title,
