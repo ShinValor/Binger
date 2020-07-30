@@ -14,7 +14,7 @@
       <div class="header">
         <h1 class="title">Top Rated</h1>
         <a-button class="all-btn" @click="onMore('/ratings/best', false)">
-          All
+          View All
         </a-button>
       </div>
       <Carousel
@@ -23,7 +23,7 @@
       <div class="header">
         <h1 class="title">Worst Rated</h1>
         <a-button class="all-btn" @click="onMore('/ratings/worst', false)">
-          All
+          View All
         </a-button>
       </div>
       <Carousel
@@ -32,7 +32,7 @@
       <div class="header">
         <h1 class="title">Most Popular</h1>
         <a-button class="all-btn" @click="onMore('/popular', false)">
-          All
+          View All
         </a-button>
       </div>
       <Carousel
@@ -41,7 +41,7 @@
       <div class="header">
         <h1 class="title">Least Popular</h1>
         <a-button class="all-btn" @click="onMore('/unpopular', false)">
-          All
+          View All
         </a-button>
       </div>
       <Carousel
@@ -50,7 +50,7 @@
       <div class="header">
         <h1 class="title">Most Recent</h1>
         <a-button class="all-btn" @click="onMore('/latest', false)">
-          All
+          View All
         </a-button>
       </div>
       <Carousel
@@ -59,7 +59,7 @@
       <div class="header">
         <h1 class="title">Oldest Movie</h1>
         <a-button class="all-btn" @click="onMore('/oldest', false)">
-          All
+          View All
         </a-button>
       </div>
       <Carousel
@@ -156,10 +156,11 @@ export default {
     font-size: 20px;
   }
 
-  .more-btn {
+  .all-btn {
     width: 50px;
     margin: 5px 0;
-    padding: 0;
+    padding: 5px;
+    font-size: 10px;
   }
 }
 </style>
