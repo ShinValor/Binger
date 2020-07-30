@@ -3,15 +3,15 @@
     <div
       class="header"
       :style="{
-        'background-image': 'url(' + loadImg(item.backdrop_path) + ')'
+        'background-image': 'url(' + loadImg(movie.backdrop_path) + ')'
       }"
     >
       <div class="header-contents fontColor">
         <div class="poster-wrapper">
           <img
             class="poster"
-            :src="loadImg(item.poster_path)"
-            :alt="item.title"
+            :src="loadImg(movie.poster_path)"
+            :alt="movie.title"
           />
         </div>
         <div class="movie-info-part">
@@ -19,20 +19,20 @@
             <div class="key-info">
               <div class="title-wrapper left-align">
                 <h2 class="movie-title left-align fontColor">
-                  {{ item.title }}
+                  {{ movie.title }}
                 </h2>
-                <span class="tagline">{{ item.tagline }}</span>
+                <span class="tagline">{{ movie.tagline }}</span>
               </div>
               <div class="general-info">
                 <span class="release-date">{{ releaseDate() }}</span>
                 <span class="genres">{{ genres() }}</span>
-                <span class="runtime">{{ runtime(item.runtime) }}</span>
+                <span class="runtime">{{ runtime(movie.runtime) }}</span>
               </div>
             </div>
             <div class="user-interaction left-align">
               <div class="score-section">
                 <div class="user-avg-score">
-                  <span class="movie-score">{{ item.vote_average }}</span>
+                  <span class="movie-score">{{ movie.vote_average }}</span>
                 </div>
                 <span class="score-section-text">
                   Average
@@ -40,10 +40,15 @@
                 </span>
               </div>
               <div class="score-section favorite-button">
-                <a-button type="primary" shape="circle" icon="star" />
+                <a-button
+                  type="primary"
+                  shape="circle"
+                  icon="star"
+                  @click="likeMovie(movie)"
+                />
               </div>
               <div class="play-trailer score-section">
-                <a :href="loadVid(item.trailer_key)">
+                <a :href="loadVid(movie.trailer_key)">
                   <a-icon type="play-circle" />Play Trailer
                 </a>
               </div>
@@ -51,7 +56,7 @@
             <div class="detailed-info left-align">
               <h3 class="text-overview fontColor">Overview:</h3>
               <div class="movie-overview" dir="auto">
-                <p class="movie-overview-text">{{ item.overview }}</p>
+                <p class="movie-overview-text">{{ movie.overview }}</p>
               </div>
             </div>
           </div>
@@ -67,7 +72,7 @@ export default {
   name: "MovieOverview",
   data() {
     return {
-      item: Object,
+      movie: Object,
       errors: []
     };
   },
@@ -81,7 +86,7 @@ export default {
     axios
       .get("https://binger-api-testv1.azurewebsites.net/movie/" + this.movieID)
       .then(res => {
-        this.item = res.data;
+        this.movie = res.data;
       })
       .catch(err => {
         this.error = err;
@@ -90,7 +95,7 @@ export default {
   },
   methods: {
     addToFavorites() {
-      this.item.favorite = !this.item.favorite;
+      this.movie.favorite = !this.movie.favorite;
     },
     loadImg(path) {
       return "https://image.tmdb.org/t/p/w342" + path;
@@ -99,12 +104,12 @@ export default {
       return "https://www.youtube.com/watch?v=" + path;
     },
     genres() {
-      return typeof this.item.genres !== "undefined"
-        ? this.item.genres.join(", ")
+      return typeof this.movie.genres !== "undefined"
+        ? this.movie.genres.join(", ")
         : "";
     },
     releaseDate() {
-      const msec = Date.parse(this.item.release_date);
+      const msec = Date.parse(this.movie.release_date);
       const date = new Date(msec);
       return date.toLocaleString("default", {
         year: "numeric",
@@ -117,6 +122,9 @@ export default {
       const rhours = Math.floor(hours);
       const minutes = Math.round((hours - rhours) * 60);
       return rhours + "hr " + minutes + " min";
+    },
+    likeMovie(movie) {
+      this.$store.dispatch("likeMovie", movie);
     }
   }
 };

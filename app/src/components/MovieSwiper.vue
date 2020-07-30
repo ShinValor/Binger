@@ -14,9 +14,15 @@
           :interact-x-threshold="200"
           :interact-event-bus-events="interactEventBusEvents"
           :interact-lock-y-axis="true"
-          v-if="isShowing"
+          v-if="showDraggable"
         >
-          <img height="400" weight="300" :src="moviePoster" />
+          <img
+            height="400"
+            weight="300"
+            :src="'https://image.tmdb.org/t/p/w342' + this.movie['poster_path']"
+            :alt="this.movie['title']"
+            onerror="this.style.display='none'"
+          />
         </Vue2InteractDraggable>
       </div>
     </div>
@@ -60,30 +66,32 @@ export default {
   },
   data() {
     return {
-      isShowing: true,
+      showDraggable: true,
       interactEventBusEvents: {
         draggedLeft: INTERACT_DRAGGED_LEFT,
         draggedRight: INTERACT_DRAGGED_RIGHT
       },
-      moviePoster: String,
+      movie: {},
+      // posterUrl: String,
       loading: false
     };
   },
   methods: {
     draggedLeft() {
-      // console.log("You hate this movie");
+      const movie = this.movie;
+      this.$store.dispatch("dislikeMovie", movie);
       this.hideCard();
-      this.generateImage();
+      this.generateMovie();
     },
     draggedRight() {
-      // console.log("You love this movie");
+      const movie = this.movie;
+      this.$store.dispatch("likeMovie", movie);
       this.hideCard();
-      this.generateImage();
+      this.generateMovie();
     },
     reload() {
-      // console.log("Reload");
       this.hideCard();
-      this.generateImage();
+      this.generateMovie();
     },
     dragLeft() {
       InteractEventBus.$emit(INTERACT_DRAGGED_LEFT);
@@ -93,19 +101,20 @@ export default {
     },
     hideCard() {
       setTimeout(() => {
-        this.isShowing = false;
+        this.showDraggable = false;
       }, 200);
       setTimeout(() => {
-        this.isShowing = true;
+        this.showDraggable = true;
       }, 1000);
     },
-    async generateImage() {
+    async generateMovie() {
       try {
         this.loading = !this.loading;
         const res = await axios.get(
           "https://binger-api-testv1.azurewebsites.net/movie/random"
         );
-        this.moviePoster = `https://image.tmdb.org/t/p/w342${res.data[0]["poster_path"]}`;
+        this.movie = res.data[0];
+        // this.posterUrl = `https://image.tmdb.org/t/p/w342${this.movie["poster_path"]}`;
       } catch (err) {
         this.error = err;
       } finally {
@@ -114,7 +123,7 @@ export default {
     }
   },
   mounted() {
-    this.generateImage();
+    this.generateMovie();
   }
 };
 </script>
