@@ -41,7 +41,7 @@
           <a-menu-item key="1">
             <router-link to="/user">Account Setting</router-link>
           </a-menu-item>
-          <a-menu-divider />
+          <!-- <a-menu-divider /> -->
           <a-menu-item key="2" @click="logout">
             <router-link to="/">Log out</router-link>
           </a-menu-item>
