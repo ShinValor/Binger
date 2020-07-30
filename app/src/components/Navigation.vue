@@ -3,7 +3,7 @@
     <div class="section">
       <Menu />
       <h1 class="app-name">
-        <router-link to="/" :style="{ color: 'white' }">
+        <router-link to="/" class="app-link">
           <img class="small-image" src="@/assets/svg/binger-logo.svg" />
           Binger <i :style="{ color: 'gray', 'font-size': '15px' }">By Lala</i>
         </router-link>
@@ -99,6 +99,14 @@ export default {
 
 .app-name {
   margin: 0px;
+}
+
+.app-link {
+  color: white;
+}
+
+.app-link:hover {
+  color: pink;
 }
 
 .section {

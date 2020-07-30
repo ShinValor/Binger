@@ -35,13 +35,21 @@ a.ant-dropdown-link:hover {
   color: lightpink;
 }
 
+
+/* ================== Layout ================== */
+
 .ant-layout {
   background-color: #222831 !important;
 }
 
+/* ================== Footer ================== */
+
 .ant-layout-footer {
-  background-color: #222831 !important;
+  /* background-color: #222831 !important; */
+  background-color: #001528 !important;
 }
+
+/* ================== Form ================== */
 
 .ant-form-item label {
   color: white !important;

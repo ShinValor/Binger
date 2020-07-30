@@ -9,6 +9,14 @@
           Randomize
         </a-button>
       </div>
+      <a-pagination
+        class="pageBar"
+        :total="totalItems"
+        v-model="currentPage"
+        @change="pageUpdate"
+        :defaultPageSize="20"
+        v-else
+      />
       <div class="container">
         <img
           class="small-image"

@@ -3,14 +3,14 @@
     <div
       class="header"
       :style="{
-        'background-image': 'url(' + loadImg(movie.backdrop_path) + ')'
+        'background-image': 'url(' + imgUrl(movie.backdrop_path) + ')'
       }"
     >
       <div class="header-contents fontColor">
         <div class="poster-wrapper">
           <img
             class="poster"
-            :src="loadImg(movie.poster_path)"
+            :src="imgUrl(movie.poster_path)"
             :alt="movie.title"
           />
         </div>
@@ -29,32 +29,42 @@
                 <span class="runtime">{{ runtime(movie.runtime) }}</span>
               </div>
             </div>
-            <div class="user-interaction left-align">
+            <div class="movie-rating">
               <div class="score-section">
                 <div class="user-avg-score">
                   <span class="movie-score">{{ movie.vote_average }}</span>
                 </div>
                 <span class="score-section-text">
                   Average
-                  <br />User Score
+                  <br />
+                  User Score
                 </span>
               </div>
-              <div class="score-section favorite-button">
+              <div class="favorite-btn">
                 <a-button
+                  class="like-btn"
                   type="primary"
                   shape="circle"
-                  icon="star"
+                  icon="like"
                   @click="likeMovie(movie)"
                 />
-              </div>
-              <div class="play-trailer score-section">
-                <a :href="loadVid(movie.trailer_key)">
-                  <a-icon type="play-circle" />Play Trailer
-                </a>
+                <a-button
+                  class="dislike-btn"
+                  type="primary"
+                  shape="circle"
+                  icon="dislike"
+                  @click="dislikeMovie(movie)"
+                />
               </div>
             </div>
             <div class="detailed-info left-align">
-              <h3 class="text-overview fontColor">Overview:</h3>
+              <h1 class="text-overview fontColor">Overview</h1>
+              <div class="play-trailer">
+                <a class="trailer-btn" :href="vidUrl(movie.trailer_key)">
+                  <a-icon type="play-circle" :style="{ color: '#ff0000' }" />
+                  Play Trailer
+                </a>
+              </div>
               <div class="movie-overview" dir="auto">
                 <p class="movie-overview-text">{{ movie.overview }}</p>
               </div>
@@ -72,7 +82,7 @@ export default {
   name: "MovieOverview",
   data() {
     return {
-      movie: Object,
+      movie: {},
       errors: []
     };
   },
@@ -94,13 +104,10 @@ export default {
       .finally(() => (this.loading = false));
   },
   methods: {
-    addToFavorites() {
-      this.movie.favorite = !this.movie.favorite;
-    },
-    loadImg(path) {
+    imgUrl(path) {
       return "https://image.tmdb.org/t/p/w342" + path;
     },
-    loadVid(path) {
+    vidUrl(path) {
       return "https://www.youtube.com/watch?v=" + path;
     },
     genres() {
@@ -125,6 +132,9 @@ export default {
     },
     likeMovie(movie) {
       this.$store.dispatch("likeMovie", movie);
+    },
+    dislikeMovie(movie) {
+      this.$store.dispatch("dislikeMovie", movie);
     }
   }
 };
@@ -184,8 +194,9 @@ export default {
 
 .key-info {
   width: 100%;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
+
 .movie-title {
   margin: 0;
   padding: 0;
@@ -207,48 +218,90 @@ export default {
 
 .general-info {
   display: flex;
+  justify-content: left;
 }
 
 .release-date,
 .genres,
 .runtime {
-  padding-left: 20px;
+  margin-right: 20px;
   position: relative;
   top: 0;
   left: 0;
 }
-.score-section {
-  display: inline-flex;
+
+.movie-rating {
+  display: flex;
+  justify-content: left;
   align-items: center;
-  justify-content: center;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.score-section {
+  display: flex;
+  justify-content: left;
+  margin-right: 10px;
+}
+
+.play-trailer {
+  margin: 0 0 10px;
+  display: inline-flex;
+  align-items: left;
+  justify-content: left;
   box-sizing: border-box;
-  height: 68px;
-  margin-right: 20px;
+}
+
+.trailer-btn {
+  color: white;
+  font-size: 1.3em;
+}
+
+.trailer-btn:hover {
+  color: pink;
 }
 
 .movie-score {
+  margin-right: 10px;
   font-size: 30px;
   font-weight: 600;
 }
 
 .score-section-text {
   font-weight: 700;
-  margin-left: 6px;
+  margin-right: 5px;
   white-space: pre-line;
   font-size: 14px;
 }
 
 .movie-overview-text {
   text-align: left;
+  font-size: 1.2em;
 }
 
 .text-overview {
+  margin: 10px 20px 10px 0;
+  display: inline;
   font-weight: 600;
-  font-size: 1.3em;
+  font-size: 2.5em;
 }
 
 .fontColor {
   color: ivory;
+}
+
+.like-btn,
+.dislike-btn {
+  background-color: #222831;
+  border-color: white;
+  margin-left: 15px;
+}
+
+.like-btn:hover,
+.dislike-btn:hover {
+  background-color: white;
+  color: #222831;
+  transform: scale(1.2);
 }
 
 @media only screen and (max-width: 600px) {
@@ -260,7 +313,7 @@ export default {
 
   .tagline {
     margin-top: -10px;
-    padding-left: 15px;
+    padding: 0;
   }
 
   .title-wrapper {

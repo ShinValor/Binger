@@ -98,15 +98,21 @@ const store = new Vuex.Store({
     //   });
     // },
     // eslint-disable-next-line no-unused-vars
-    async likeMovie({ commit }, movie) {
+    async likeMovie({ dispatch }, movie) {
       const movieId = movie.id.toString();
 
       const userId = fb.auth.currentUser.uid;
       const docId = `${userId}_${movieId}`;
 
-      // check if user has liked post
-      const doc = await fb.likesCollection.doc(docId).get();
-      if (doc.exists) {
+      // check if user has liked or disliked post
+      const likedoc = await fb.likesCollection.doc(docId).get();
+      const dislikedoc = await fb.dislikesCollection.doc(docId).get();
+      if (dislikedoc.exists) {
+        await fb.dislikesCollection.doc(docId).delete();
+      }
+      if (likedoc.exists) {
+        console.log("You liked This Movie Already");
+        await fb.likesCollection.doc(docId).delete();
         return;
       }
 
@@ -117,20 +123,26 @@ const store = new Vuex.Store({
       });
 
       // update post likes count
-      // fb.postsCollection.doc(movieId).update({
+      // fb.postsCollection.likedoc(movieId).update({
       //   likes: movie.likesCount + 1
       // });
     },
     // eslint-disable-next-line no-unused-vars
-    async dislikeMovie({ commit }, movie) {
+    async dislikeMovie({ dispatch }, movie) {
       const movieId = movie.id.toString();
 
       const userId = fb.auth.currentUser.uid;
       const docId = `${userId}_${movieId}`;
 
-      // check if user has liked post
-      const doc = await fb.dislikesCollection.doc(docId).get();
-      if (doc.exists) {
+      // check if user has liked or disliked post
+      const likedoc = await fb.likesCollection.doc(docId).get();
+      const dislikedoc = await fb.dislikesCollection.doc(docId).get();
+      if (likedoc.exists) {
+        await fb.likesCollection.doc(docId).delete();
+      }
+      if (dislikedoc.exists) {
+        console.log("You Disliked This Movie Already");
+        await fb.dislikesCollection.doc(docId).delete();
         return;
       }
 
@@ -140,9 +152,9 @@ const store = new Vuex.Store({
         userId: userId
       });
 
-      // update post likes count
-      // fb.postsCollection.doc(movieId).update({
-      //   likes: movie.likesCount + 1
+      // update post dislikes count
+      // fb.postsCollection.dislikedoc(movieId).update({
+      //   dislikes: movie.dislikesCount + 1
       // });
     }
     // async updateProfile({ dispatch }, user) {

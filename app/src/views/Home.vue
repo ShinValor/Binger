@@ -4,7 +4,7 @@
       <h1 class="heading">
         <b>Movie Recommendation to power up your life</b>
       </h1>
-      <div class="section4">
+      <div class="section3">
         <p class="sub-heading content">
           Millions of movies, TV shows and people to discover. Explore now.
         </p>
@@ -68,7 +68,7 @@
     </h1>
     <div class="container1">
       <div
-        class="section3"
+        class="section2"
         :style="{
           'grid-area': 'content',
           display: 'flex',
@@ -85,40 +85,25 @@
           streaming services.
         </p>
       </div>
-      <div class="section3" :style="{ 'grid-area': 'header' }">
+      <div class="section2" :style="{ 'grid-area': 'header' }">
         <img class="small-image" src="../assets/svg/login-amico.svg" />
         <h2 class="sub-title">1. Sign up and Log in</h2>
       </div>
-      <div class="section3" :style="{ 'grid-area': 'header2' }">
+      <div class="section2" :style="{ 'grid-area': 'header2' }">
         <img
           class="small-image"
           src="../assets/svg/portfolio-update-amico.svg"
         />
         <h2 class="sub-title">2. Update Profile</h2>
       </div>
-      <div class="section3" :style="{ 'grid-area': 'advert' }">
+      <div class="section2" :style="{ 'grid-area': 'advert' }">
         <img class="small-image" src="../assets/svg/work-time-rafiki.svg" />
         <h2 class="sub-title">3. Wait For Recommendations</h2>
       </div>
-      <div class="section3" :style="{ 'grid-area': 'footer' }">
+      <div class="section2" :style="{ 'grid-area': 'footer' }">
         <img class="small-image" src="../assets/svg/movie-night-bro.svg" />
-        <!-- <h2 class="sub-title">
-          4. Enjoy Your Movie
-        </h2> -->
       </div>
     </div>
-    <!-- <h1 id="services" class="title"><b>Service Plans</b></h1>
-    <div class="container3">
-      <div class="section2">
-        <h2 class="sub-title">Basic</h2>
-      </div>
-      <div class="section2">
-        <h2 class="sub-title">Professional</h2>
-      </div>
-      <div class="section2">
-        <h2 class="sub-title">Enterprise</h2>
-      </div>
-    </div> -->
     <Footer />
   </a-layout>
 </template>
@@ -224,7 +209,7 @@ export default {
 }
 
 .container2 {
-  margin: 10px 50px 100px 50px;
+  margin: 10px 50px 50px 50px;
   display: flex;
   justify-content: space-between;
 }
@@ -245,21 +230,13 @@ export default {
 }
 
 .section2 {
-  height: 500px;
-  width: 33%;
-  background-color: white;
-  border-radius: 2%;
-  margin: 10px;
-}
-
-.section3 {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
 }
 
-.section4 {
+.section3 {
   display: flex;
   flex-direction: column;
 }
@@ -330,15 +307,10 @@ export default {
   }
 
   .section2 {
-    height: 300px;
-    width: 250px;
-  }
-
-  .section3 {
     margin: 10px auto;
   }
 
-  .section4 {
+  .section3 {
     margin-top: 15px;
     flex-direction: row;
     justify-content: space-between;
