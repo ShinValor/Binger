@@ -33,6 +33,7 @@
         <a class="ant-dropdown-link" @click.prevent>
           {{ username }}
           <a-icon type="caret-down" /> <a-icon type="user" />
+          <!-- <font-awesome-icon :icon="['fas', 'user']" /> -->
         </a>
         <a-menu theme="dark" slot="overlay">
           <a-menu-item key="0">

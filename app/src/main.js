@@ -5,18 +5,42 @@ import store from "./store";
 import { auth } from "./firebase";
 import "./assets/css/main.css";
 
+/* Ant Design */
 import Antd from "ant-design-vue";
 import "ant-design-vue/dist/antd.css";
 
+/* Font Awesome Icon */
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faRandom } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faRandom } from "@fortawesome/free-solid-svg-icons";
+import {
+  faFacebookSquare,
+  faTwitterSquare,
+  faGooglePlusSquare,
+  faGithubSquare,
+  faVuejs
+} from "@fortawesome/free-brands-svg-icons";
 
 Vue.config.productionTip = false;
 
 Vue.use(Antd);
 
-library.add(faRandom);
+library.add(
+  faUser,
+  faRandom,
+  faFacebookSquare,
+  faTwitterSquare,
+  faGooglePlusSquare,
+  faGithubSquare,
+  faVuejs
+);
+
+// USAGE https://github.com/FortAwesome/vue-fontawesome#usage
+/*
+<font-awesome-icon :icon="['fas', 'random']" />
+<font-awesome-icon :icon="['fab', 'facebook-square']" />
+*/
+
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 // new Vue({
