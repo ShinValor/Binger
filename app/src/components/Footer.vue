@@ -3,6 +3,15 @@
     <div class="container">
       <div class="section1">
         <div class="item1">
+          <h1 class="title">Design</h1>
+            <p class="content">
+              <a href="https://vuejs.org/">Vue.js</a>
+            </p>
+            <p class="content">
+              <a href="https://ant.design/">Ant Design</a>
+            </p>
+        </div>
+        <div class="item1">
           <h1 class="title">Resources</h1>
           <p class="content">
             <a href="https://github.com/ShinValor/Binger">Github</a>
@@ -14,10 +23,7 @@
             <a href="https://github.com/ShinValor/Binger/tree/dev/api">API</a>
           </p>
           <p class="content">
-            <a href="https://vuejs.org/">Vue.js</a>
-          </p>
-          <p class="content">
-            <a href="https://ant.design/">Ant Design</a>
+            <a href="https://firebase.google.com/">Firebase</a>
           </p>
         </div>
         <div class="item1">
