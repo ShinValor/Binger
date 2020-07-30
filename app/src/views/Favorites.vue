@@ -1,7 +1,7 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
     <chart :options="option" />
-    <a-button class="swiper" @click="toggleModal">Try Our Swiper</a-button>
+    <a-button class="swiper-btn" @click="toggleModal">Try Our Swiper</a-button>
     <FavoriteMovieList class="favoriteList" />
     <a-modal
       v-model="modalVisible"
@@ -122,10 +122,17 @@ export default {
   margin: 25px;
 }
 
-.swiper {
+.swiper-btn {
   position: absolute;
   top: 10%;
   right: 1%;
+  background-color: transparent;
+  color: white;
+}
+
+.swiper-btn:hover,
+.swiper-btn:active {
+  border-color: white;
 }
 
 @media screen and (max-width: 500px) {

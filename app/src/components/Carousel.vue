@@ -39,7 +39,7 @@
           onerror="this.style.display='none'"
         />
       </div>
-      <a-button>
+      <a-button :style="{ 'background-color': 'transparent', color: 'white' }">
         <router-link
           :to="{ name: 'MovieSynopsis', params: { id: this.modalId } }"
         >

@@ -5,7 +5,7 @@
     @submit="handleSubmit"
     @submit.prevent
   >
-    <h1 :style="{ color: 'white' }">Log In</h1>
+    <!-- <h1 :style="{ color: 'white' }">Log In</h1> -->
     <a-form-item>
       <a-input
         v-decorator="[
@@ -49,7 +49,7 @@
       <a :style="{ float: 'right' }" href="">
         Forgot password
       </a>
-      <a-button type="primary" html-type="submit" :style="{ width: '100%' }">
+      <a-button class="submit-btn" html-type="submit">
         Log in
       </a-button>
       <router-link to="/signup">
@@ -107,6 +107,16 @@ export default {
 .login-form {
   width: 500px;
   margin: 100px auto 0;
+}
+
+.submit-btn {
+  background-color: transparent;
+  width: 100%;
+  color: white;
+}
+
+.submit-btn:hover {
+  border-color: white;
 }
 
 @media screen and (max-width: 500px) {
