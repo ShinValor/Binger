@@ -4,15 +4,15 @@
       <div class="section1">
         <div class="item1">
           <h1 class="title">Design</h1>
-            <p class="content">
-              <a href="https://vuejs.org/">Vue.js</a>
-            </p>
-            <p class="content">
-              <a href="https://ant.design/">Ant Design</a>
-            </p>
-            <p class="content">
-              <a href="https://www.antdv.com/components/icon/">Icons</a>
-            </p>
+          <p class="content">
+            <a href="https://vuejs.org/">Vue.js</a>
+          </p>
+          <p class="content">
+            <a href="https://ant.design/">Ant Design</a>
+          </p>
+          <p class="content">
+            <a href="https://www.antdv.com/components/icon/">Icons</a>
+          </p>
         </div>
         <div class="item1">
           <h1 class="title">Resources</h1>
@@ -20,7 +20,10 @@
             <a href="https://github.com/ShinValor/Binger">Github</a>
           </p>
           <p class="content">
-            <a href="https://developers.themoviedb.org/3/getting-started/introduction">TMDB API</a>
+            <a
+              href="https://developers.themoviedb.org/3/getting-started/introduction"
+              >TMDB API</a
+            >
           </p>
           <p class="content">
             <a href="https://github.com/ShinValor/Binger/tree/dev/api">API</a>
@@ -32,7 +35,9 @@
         <div class="item1">
           <h1 class="title">About</h1>
           <p class="content">
-            <a href="https://github.com/ShinValor/Binger#contributors">Contributors</a>
+            <a href="https://github.com/ShinValor/Binger#contributors"
+              >Contributors</a
+            >
           </p>
           <p class="content">
             <a href="https://binger.vercel.app/about">About Us</a>
@@ -43,7 +48,9 @@
           <p class="content">
             <a href="https://github.com/junqili259">Contact Us</a>
           </p>
-          <p class="content"><a href="https://github.com/ShinValor/Binger/issues">Issues</a></p>
+          <p class="content">
+            <a href="https://github.com/ShinValor/Binger/issues">Issues</a>
+          </p>
         </div>
       </div>
     </div>
