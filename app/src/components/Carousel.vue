@@ -3,12 +3,18 @@
     <div v-if="loading">
       <Loading />
     </div>
-    <flickity class="carousel" ref="flickity" :options="flickityOptions" v-else>
+    <flickity
+      v-on:ModalToggle="console.log(this.movieList)"
+      class="carousel"
+      ref="flickity"
+      :options="flickityOptions"
+      @init="onInit"
+      v-else
+    >
       <div
         class="carousel-cell"
         v-for="(movie, index) in movieList"
         v-bind:key="index"
-        @click="toggleModal(movie)"
       >
         <img
           class="carousel-cell-image"
@@ -19,7 +25,8 @@
         <div class="carousel-cell-desc">
           <h1 class="title">{{ movie.title }}</h1>
           <p class="content" :style="{ color: 'gray' }">
-            <a-icon type="like" /> {{ movie.vote_count }} Votes
+            <a-icon type="like" />
+            {{ movie.vote_count }} Votes
           </p>
         </div>
       </div>
@@ -42,9 +49,8 @@
       <a-button>
         <router-link
           :to="{ name: 'MovieSynopsis', params: { id: this.modalId } }"
+          >More Info</router-link
         >
-          More Info
-        </router-link>
       </a-button>
     </a-modal>
   </div>
@@ -87,7 +93,20 @@ export default {
     this.fetchMovies(this.movieUrls);
   },
   methods: {
-    toggleModal(movie) {
+    onInit() {
+      let vm = this;
+      this.$refs.flickity.on("staticClick", function(
+        event,
+        pointer,
+        cellElement,
+        cellIndex
+      ) {
+        console.log(event, pointer, cellElement, cellIndex);
+        vm.toggleModal(cellIndex);
+      });
+    },
+    toggleModal(cellIndex) {
+      let movie = this.movieList[cellIndex];
       this.modalVisible = !this.modalVisible;
       this.modalId = movie.id;
       this.modalTitle = movie.original_title;
