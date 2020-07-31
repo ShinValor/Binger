@@ -136,6 +136,7 @@ export default {
 
 .nav-btn,
 .nav-dropdown {
+  font-size: 1.2em;
   color: white;
   display: inline-block;
   vertical-align: middle;
