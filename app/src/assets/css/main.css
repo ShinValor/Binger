@@ -4,44 +4,43 @@
   color: white !important;
 }
 
+/* .ant-menu-item > a:hover {
+  color: lightpink !important;
+} */
+
 .ant-menu-item-selected {
   background-color: transparent !important;
 }
 
-.ant-menu-item-selected > a {
-  color: white !important;
-}
-
-/* .ant-menu-item:hover {
-  background-color: #1890ff !important;
-} */
-
-.ant-menu-item > a:hover {
-  color: lightpink !important;
-}
-
+/* 
 .ant-card-body {
   margin: 5px !important;
   padding: 0px !important;
-}
+} */
 
 /* ================== Drop down Menu ================== */
 
-a.ant-dropdown-link {
+/* .ant-dropdown-link {
   color:white;
 }
 
-a.ant-dropdown-link:hover {
+.ant-dropdown-link:hover {
   color: lightpink;
-}
+} */
+
+/* ================== Layout ================== */
 
 .ant-layout {
   background-color: #222831 !important;
 }
 
+/* ================== Footer ================== */
+
 .ant-layout-footer {
-  background-color: #222831 !important;
+  background-color: #001528 !important;
 }
+
+/* ================== Form ================== */
 
 .ant-form-item label {
   color: white !important;
@@ -53,24 +52,36 @@ a.ant-dropdown-link:hover {
   color: white !important;
 }
 
-.ant-pagination-item-ellipsis:hover {
-  color: white !important;
-}
-
-.anticon-double-right {
-  color: white !important;
-}
-
+.anticon-double-right,
 .anticon-double-left {
+  color: white !important;
+}
+
+.ant-pagination-item a,
+.ant-pagination-item-link {
+  background-color: #414141 !important;
+  color: white !important
+}
+
+.ant-pagination-item:hover,
+.ant-pagination-item-link:hover {
+  border-color: white !important;
+  filter: brightness(200%);
+}
+
+.ant-pagination-item-active {
+  border-color: white !important;
+  filter: brightness(100%) !important;
+}
+
+.ant-pagination-item-active a {
+  background-color: #f3c669 !important;
   color: white !important;
 }
 
 /* ================== 404 ================== */
 
-.ant-result-title {
-  color: white !important;
-}
-
+.ant-result-title,
 .ant-result-subtitle {
   color: white !important;
 }
@@ -78,10 +89,11 @@ a.ant-dropdown-link:hover {
 /* ================== Modal ================== */
 
 .ant-modal-header {
-  background-color: #222831 !important;  
+  background-color: #222831 !important;
 }
 
-.ant-modal-title {
+.ant-modal-title,
+.ant-modal-close-x {
   color: white !important;
 }
 
@@ -90,6 +102,9 @@ a.ant-dropdown-link:hover {
   color: white !important;
 }
 
-.ant-modal-close-x {
-  color: white !important;
+/* ================== CheckBox ================== */
+
+.ant-checkbox-inner {
+  background-color: black !important;
+  border-color: white !important;
 }

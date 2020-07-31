@@ -4,7 +4,7 @@
       <b>{{ heading }}</b>
     </h1>
     <p class="desc">{{ description }}</p>
-    <a-button class="btn-desc">
+    <a-button class="desc-btn">
       <router-link to="/login">
         <b>{{ buttonDesc }}</b>
       </router-link>
@@ -46,16 +46,17 @@ export default {
   color: white;
 }
 
-.btn-desc {
+.desc-btn {
   background-color: transparent;
   width: 300px;
   margin: 25px auto;
-  border-color: white;
+  /* border-color: white; */
   color: white;
 }
 
-.btn-desc:hover {
-  border-color: gray;
+.desc-btn:hover {
+  /* border-color: gray; */
+  border-color: white;
 }
 
 @media screen and (max-width: 500px) {
@@ -75,7 +76,7 @@ export default {
     margin: 10px;
   }
 
-  .btn-desc {
+  .desc-btn {
     width: 125px;
     margin: 0 auto;
     padding: 0px;

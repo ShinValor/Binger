@@ -15,6 +15,7 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+// firebase.analytics();
 
 // utils
 const db = firebase.firestore();
@@ -22,16 +23,18 @@ const auth = firebase.auth();
 
 // collection references
 const usersCollection = db.collection("users");
-const postsCollection = db.collection("posts");
-const commentsCollection = db.collection("comments");
+// const postsCollection = db.collection("posts");
+// const commentsCollection = db.collection("comments");
 const likesCollection = db.collection("likes");
+const dislikesCollection = db.collection("dislikes");
 
 // export utils
 export {
   db,
   auth,
   usersCollection,
-  postsCollection,
-  commentsCollection,
-  likesCollection
+  // postsCollection,
+  // commentsCollection,
+  likesCollection,
+  dislikesCollection
 };
