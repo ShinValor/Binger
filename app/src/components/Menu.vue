@@ -1,50 +1,28 @@
 <template>
   <PushRotate width="250">
-    <!-- <a-menu
-      style="width: 256px"
-      :default-selected-keys="['1']"
-      :default-open-keys="['sub1']"
-      mode="inline"
-      :theme="theme"
-      :selected-keys="[current]"
-      @click="handleClick"
-    >
-      <a-menu-item key="1">
-        <a-icon type="mail" />
-        Movie Recommendations
-      </a-menu-item>
-      <a-menu-item key="2">
-        <a-icon type="calendar" />
-        Movie Summary
-      </a-menu-item>
-      <a-sub-menu key="sub1">
-        <span slot="title"
-          ><a-icon type="appstore" /><span>Movie List</span></span
-        >
-        <a-menu-item key="3">
-          Option 3
-        </a-menu-item>
-        <a-sub-menu key="sub1-2" title="Submenu">
-          <a-menu-item key="5">
-            Option 5
-          </a-menu-item>
-        </a-sub-menu>
-      </a-sub-menu>
-      <a-sub-menu key="sub2">
-        <span slot="title"
-          ><a-icon type="setting" /><span>Navigation Four</span></span
-        >
-        <a-menu-item key="6">
-          Option 6
-        </a-menu-item>
-      </a-sub-menu>
-    </a-menu> -->
-    <router-link to="/movie-recommendations">
-      <span>Recommendation</span>
-    </router-link>
-    <router-link to="/movie-list">
-      <span>Movie List</span>
-    </router-link>
+    <div class="sidebar">
+      <header class="sidebar-header">
+        <a-avatar :size="64" icon="user" class="ant-icon" />
+        <span class="username">{{ username }}</span>
+      </header>
+      <div class="sidebar-list">
+        <div id="Recommendations" class="sidebar-item">
+          <router-link class="link" to="/movie-recommendations">
+            <span>Recommendation</span>
+          </router-link>
+        </div>
+        <div id="MovieList" class="sidebar-item">
+          <router-link class="link" to="/movie-list">
+            <span>Movie List</span>
+          </router-link>
+        </div>
+        <div id="Favorites" class="sidebar-item">
+          <router-link class="link" to="/favorite-movies">
+            <span>My Favorites</span>
+          </router-link>
+        </div>
+      </div>
+    </div>
   </PushRotate>
 </template>
 
@@ -55,6 +33,34 @@ export default {
   name: "Menu",
   components: {
     PushRotate
+  },
+  data() {
+    return {
+      username: "BrightBurn",
+      currentPage: ""
+    };
+  },
+  methods: {},
+  watch: {
+    $route(to, from) {
+      // console.log(to.name, from.name);
+      if (from) {
+        let current_active = document.getElementById(from.name);
+        // console.log("from " + current_active);
+        if (current_active) {
+          // console.log(current_active);
+          current_active.classList.toggle("current-route");
+        }
+      }
+      if (to) {
+        let new_active = document.getElementById(to.name);
+        // console.log("to " + new_active);
+        if (new_active) {
+          // console.log(new_active);
+          new_active.classList.toggle("current-route");
+        }
+      }
+    }
   }
 };
 </script>
@@ -67,6 +73,11 @@ export default {
   height: 20px !important;
   margin: 25px 10px !important;
   position: relative !important;
+}
+
+.bm-burger-button:hover {
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
 }
 
 .bm-burger-bars {
@@ -150,5 +161,61 @@ export default {
   .bm-item-list > * {
     padding: 0 !important;
   }
+
+  .ant-icon {
+    display: block;
+  }
+}
+
+.sidebar {
+  display: block;
+}
+
+.sidebar-header {
+  padding: 10px 5px;
+  border-bottom: 1px solid white;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.sidebar-list {
+  padding: 10px 0;
+  /* overflow-y: auto; */
+}
+
+.sidebar-item {
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  box-sizing: border-box;
+  /* display: inline; */
+  /* width: 100%;
+  height: 40px; */
+  width: auto;
+  height: auto;
+  padding: 10px;
+  /* display: inline-block; */
+  line-height: 1.5;
+  color: #1890ff;
+}
+
+.break {
+  flex-basis: 100%;
+  height: 0;
+}
+
+.current-route {
+  border-right: 3px solid#5c29ad !important;
+  color: #5c29ad;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+.link {
+  color: inherit;
 }
 </style>

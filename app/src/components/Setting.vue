@@ -8,17 +8,17 @@
     <a-form-model-item label="Nick Name">
       <a-input v-model="form.name" />
     </a-form-model-item>
-    <a-form-model-item label="Send Email">
+    <!-- <a-form-model-item label="Send Email">
       <a-switch v-model="form.email" />
-    </a-form-model-item>
+    </a-form-model-item> -->
     <a-form-model-item label="Introduction">
       <a-input v-model="form.desc" type="textarea" />
     </a-form-model-item>
     <a-form-model-item :wrapper-col="{ span: 14, offset: 4 }">
-      <a-button type="primary" @click="onSubmit">
+      <a-button class="update-btn" @click="onSubmit">
         Update
       </a-button>
-      <a-button style="margin-left: 10px;">
+      <a-button class="cancel-btn" style="margin-left: 10px;">
         Cancel
       </a-button>
     </a-form-model-item>
@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     onSubmit() {
-      // console.log("submit!", this.form);
+      // On Submit
     }
   }
 };
@@ -53,7 +53,18 @@ export default {
   margin: 50px 20px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
+}
+
+.update-btn,
+.cancel-btn {
+  background-color: transparent;
+  color: white;
+}
+
+.update-btn:hover,
+.cancel-btn:hover {
+  border-color: white;
 }
 
 @media screen and (max-width: 500px) {

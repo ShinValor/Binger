@@ -53,7 +53,7 @@ export default {
 
 .title {
   margin: 20px;
-  text-align: left;
+  text-align: center;
   font-size: 30px;
   color: white;
 }
@@ -69,7 +69,6 @@ export default {
 
   .title {
     margin: 0 auto;
-    text-align: center;
     font-size: 20px;
   }
 }

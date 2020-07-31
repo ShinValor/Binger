@@ -1,23 +1,10 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-// import Home from "../views/Home.vue";
-// import About from "../views/About.vue";
-// import Login from "../views/Login.vue";
-// import Signup from "../views/Signup.vue";
-// import User from "../views/User.vue";
-// import Favorites from "../views/Favorites.vue";
-// import Recommendations from "../views/Recommendations.vue";
-// import MovieSynopsis from "../views/MovieSynopsis.vue";
-// import PageNotFound from "../views/PageNotFound.vue";
+import { auth } from "../firebase";
 
 Vue.use(VueRouter);
 
 const routes = [
-  // {
-  //   path: "/",
-  //   name: "Home",
-  //   component: Home
-  // },
   {
     path: "/",
     name: "Home",
@@ -29,98 +16,87 @@ const routes = [
   {
     path: "/about",
     name: "About",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/About.vue")
+    component: () => import("../views/About.vue")
   },
   {
     path: "/login",
     name: "Login",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Login.vue")
+    component: () => import("../views/Login.vue")
   },
   {
     path: "/signup",
     name: "Signup",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Signup.vue")
+    component: () => import("../views/Signup.vue")
   },
   {
     path: "/movie-synopsis/:id",
     name: "MovieSynopsis",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/MovieSynopsis.vue")
+    component: () => import("../views/MovieSynopsis.vue"),
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: "/user",
     name: "User",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ "../views/User.vue")
+    component: () => import("../views/User.vue"),
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: "/favorite-movies",
     name: "Favorites",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Favorites.vue")
+    component: () => import("../views/Favorites.vue"),
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: "/movie-recommendations",
     name: "Recommendations",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/Recommendations.vue")
+    component: () => import("../views/Recommendations.vue"),
+    meta: {
+      requiresAuth: true
+    }
   },
   {
-    path: "/movie-list",
+    path: "/movie-list/:path",
     name: "MovieList",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/MovieList.vue")
+    component: () => import("../views/MovieList.vue")
   },
   {
     path: "/search-results",
     name: "Search",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/SearchResults.vue")
+    component: () => import("../views/SearchResults.vue"),
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: "**",
     name: "PageNotFound",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/PageNotFound.vue")
+    component: () => import("../views/PageNotFound.vue")
   }
 ];
 
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
-  routes
+  routes,
+  scrollBehavior() {
+    return { x: 0, y: 0 };
+  }
+});
+
+// navigation guard to check for logged in users
+router.beforeEach((to, from, next) => {
+  const requiresAuth = to.matched.some(x => x.meta.requiresAuth);
+  if (requiresAuth && !auth.currentUser) {
+    next("/login");
+  } else {
+    next();
+  }
 });
 
 export default router;

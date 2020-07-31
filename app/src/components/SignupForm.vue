@@ -1,17 +1,22 @@
 <template>
-  <a-form class="signup-form" :form="form" @submit="handleSubmit">
-    <h1 :style="{ color: 'white' }">Register Here !</h1>
+  <a-form
+    class="signup-form"
+    :form="form"
+    @submit="handleSubmit"
+    @submit.prevent
+  >
+    <!-- <h1 :style="{ color: 'white' }">Register Here !</h1> -->
     <a-form-item>
       <a-input
         v-decorator="[
-          'nickname',
+          'name',
           {
             rules: [
               { required: true, message: 'Please input your display name!' }
             ]
           }
         ]"
-        placeholder="Nickname"
+        placeholder="Name"
       >
         <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" />
       </a-input>
@@ -60,7 +65,7 @@
       </a-input>
     </a-form-item>
     <a-form-item>
-      <a-button type="primary" html-type="submit" :style="{ width: '100%' }">
+      <a-button class="submit-btn" html-type="submit">
         Register
       </a-button>
     </a-form-item>
@@ -68,7 +73,7 @@
 </template>
 
 <script>
-import firebase from "firebase";
+// import firebase from "firebase";
 
 export default {
   name: "SignupForm",
@@ -76,25 +81,39 @@ export default {
     this.form = this.$form.createForm(this, { name: "register" });
   },
   methods: {
-    handleSubmit(e) {
-      e.preventDefault();
+    handleSubmit() {
+      // e.preventDefault();
       this.form.validateFields((err, values) => {
         if (!err) {
           if (values.password == values.confirmPassword) {
-            firebase
-              .auth()
-              .createUserWithEmailAndPassword(values.email, values.password)
-              .then(data => {
-                data.user
-                  .updateProfile({
-                    displayName: values.nickname
-                  })
-                  .then(() => {
-                    this.$router.replace({ name: "Login" });
-                  });
+            // firebase
+            //   .auth()
+            //   .createUserWithEmailAndPassword(values.email, values.password)
+            //   .then(data => {
+            //     data.user
+            //       .updateProfile({
+            //         displayName: values.nickname
+            //       })
+            //       .then(() => {
+            //         this.$router.replace({ name: "Login" });
+            //       });
+            //   })
+            //   .catch(err => {
+            //     this.error = err.message;
+            //   });
+            this.$store
+              .dispatch("signup", {
+                email: values.email,
+                password: values.password,
+                name: values.name
+              })
+              .then(() => {
+                // this.$router.replace({ name: "Login" });
+                this.$message.success("Successfully Logged In");
               })
               .catch(err => {
                 this.error = err.message;
+                this.$message.warning(this.error);
               });
           } else {
             this.$message.warning("Please Enter Same Password");
@@ -110,6 +129,16 @@ export default {
 .signup-form {
   width: 500px;
   margin: 100px auto 0;
+}
+
+.submit-btn {
+  background-color: transparent;
+  width: 100%;
+  color: white;
+}
+
+.submit-btn:hover {
+  border-color: white;
 }
 
 @media screen and (max-width: 500px) {

@@ -3,7 +3,7 @@
     <div class="section">
       <Menu />
       <h1 class="app-name">
-        <router-link to="/" :style="{ color: 'white' }">
+        <router-link to="/" class="app-link">
           <img class="small-image" src="@/assets/svg/binger-logo.svg" />
           Binger <i :style="{ color: 'gray', 'font-size': '15px' }">By Lala</i>
         </router-link>
@@ -30,17 +30,19 @@
         </a-menu-item>
       </a-menu>
       <a-dropdown :trigger="['click']" :style="{ padding: '0px 20px' }" v-else>
-        <a class="ant-dropdown-link" @click="e => e.preventDefault()">
-          {{ username }} <a-icon type="caret-down" /> <a-icon type="user" />
+        <a class="nav-dropdown" @click.prevent>
+          {{ username }}
+          <a-icon type="caret-down" /> <a-icon type="user" />
+          <!-- <font-awesome-icon :icon="['fas', 'user']" /> -->
         </a>
         <a-menu theme="dark" slot="overlay">
           <a-menu-item key="0">
-            <router-link to="/favorite-movies">My Profile</router-link>
+            <router-link to="/favorite-movies">My Dashboard</router-link>
           </a-menu-item>
           <a-menu-item key="1">
             <router-link to="/user">Account Setting</router-link>
           </a-menu-item>
-          <a-menu-divider />
+          <!-- <a-menu-divider /> -->
           <a-menu-item key="2" @click="logout">
             <router-link to="/">Log out</router-link>
           </a-menu-item>
@@ -61,24 +63,24 @@ export default {
   },
   data() {
     return {
-      loggedIn: false,
-      username: "Username"
+      loggedIn: false
+      // username: null
     };
   },
   methods: {
     logout() {
-      firebase
-        .auth()
-        .signOut()
-        .catch(error => {
-          this.error = error.message;
-        });
+      this.$store.dispatch("logout");
+    }
+  },
+  computed: {
+    username() {
+      return this.$store.state.userProfile["name"];
     }
   },
   created() {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        this.username = user.displayName;
+        // this.username = user.displayName;
         this.loggedIn = true;
       } else {
         this.loggedIn = false;
@@ -100,6 +102,27 @@ export default {
   margin: 0px;
 }
 
+.app-link {
+  color: white;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transform-origin: 0 100%;
+  transform-origin: 0 100%;
+}
+
+.app-link:hover {
+  /* color: pink; */
+  -webkit-transform: skew(-10deg);
+  transform: skew(-10deg);
+}
+
 .section {
   display: flex;
   justify-content: center;
@@ -111,8 +134,31 @@ export default {
   width: 32px;
 }
 
-.nav-btn {
-  width: 100px;
+.nav-btn,
+.nav-dropdown {
+  font-size: 1.2em;
+  color: white;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+
+.nav-btn:hover,
+.nav-btn:focus,
+.nav-btn:active,
+.nav-dropdown:hover,
+.nav-dropdown:focus,
+.nav-dropdown:active {
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);
 }
 
 @media screen and (max-width: 500px) {

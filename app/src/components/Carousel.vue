@@ -1,6 +1,9 @@
 <template>
   <div>
-    <flickity class="carousel" ref="flickity" :options="flickityOptions">
+    <div v-if="loading">
+      <Loading />
+    </div>
+    <flickity class="carousel" ref="flickity" :options="flickityOptions" v-else>
       <div
         class="carousel-cell"
         v-for="(movie, index) in movieList"
@@ -9,7 +12,7 @@
       >
         <img
           class="carousel-cell-image"
-          :data-flickity-lazyload="resolve_img_url(movie.poster_path)"
+          :data-flickity-lazyload="loadImg(movie.poster_path)"
           :alt="movie.title"
           onerror="this.style.display='none'"
         />
@@ -28,9 +31,7 @@
       :footer="null"
     >
       <div :style="{ display: 'flex' }">
-        <p class="content">
-          {{ this.modalSummary }}
-        </p>
+        <p class="content">{{ this.modalSummary }}</p>
         <img
           class="large-image"
           :src="modalImg"
@@ -38,7 +39,7 @@
           onerror="this.style.display='none'"
         />
       </div>
-      <a-button>
+      <a-button class="more-info">
         <router-link
           :to="{ name: 'MovieSynopsis', params: { id: this.modalId } }"
         >
@@ -48,31 +49,24 @@
     </a-modal>
   </div>
 </template>
+
 <script>
-import Flickity from "vue-flickity";
 import axios from "axios";
+import Flickity from "vue-flickity";
+import Loading from "@/components/Loading.vue";
 
 export default {
   name: "Carousel",
   components: {
-    Flickity
+    Flickity,
+    Loading
   },
   props: {
     url: String
   },
-  created() {
-    axios
-      .get(this.movieUrls)
-      .then(res => {
-        this.movieList = res.data;
-      })
-      .catch(err => {
-        this.error = err;
-      })
-      .finally(() => this.$refs.flickity.rerender());
-  },
   data() {
     return {
+      loading: false,
       flickityOptions: {
         initialIndex: 0,
         groupCells: 5,
@@ -89,19 +83,33 @@ export default {
       movieUrls: this.url
     };
   },
+  mounted() {
+    this.fetchMovies(this.movieUrls);
+  },
   methods: {
     toggleModal(movie) {
       this.modalVisible = !this.modalVisible;
       this.modalId = movie.id;
       this.modalTitle = movie.original_title;
-      this.modalImg = this.resolve_img_url(movie.poster_path);
+      this.modalImg = this.loadImg(movie.poster_path);
       this.modalSummary = movie.overview;
     },
-    resolve_img_url(path) {
-      if (path === null) {
-        // return "https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/tulip.jpg";
+    loadImg(path) {
+      if (path != null) {
+        return "https://image.tmdb.org/t/p/w342" + path;
       }
-      return "https://image.tmdb.org/t/p/w342" + path;
+    },
+    async fetchMovies(url) {
+      try {
+        this.loading = !this.loading;
+        const res = await axios.get(url);
+        this.movieList = res.data;
+      } catch (err) {
+        this.error = err;
+      } finally {
+        this.loading = !this.loading;
+        this.$refs.flickity.rerender();
+      }
     }
   }
 };
@@ -169,6 +177,15 @@ export default {
   height: 100%;
   margin: 5px;
   object-fit: cover;
+}
+
+.more-info {
+  background-color: transparent;
+  color: white;
+}
+
+.more-info:hover {
+  border-color: white;
 }
 
 @media screen and (max-width: 500px) {

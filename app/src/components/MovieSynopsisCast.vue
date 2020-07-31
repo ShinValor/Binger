@@ -6,7 +6,7 @@
         shape="square"
         icon="user"
         style="margin-right: 8px"
-        :src="resolve_img_url(cast.profile_path)"
+        :src="loadImg(cast.profile_path)"
       />
     </div>
     <p class="content">
@@ -38,8 +38,10 @@ export default {
     }
   },
   methods: {
-    resolve_img_url(path) {
-      return "https://image.tmdb.org/t/p/w342" + path;
+    loadImg(path) {
+      if (path != null) {
+        return "https://image.tmdb.org/t/p/w342" + path;
+      }
     }
   }
 };

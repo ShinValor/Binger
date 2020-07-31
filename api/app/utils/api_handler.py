@@ -6,6 +6,10 @@ data from API. API requests will be sent asynchronously using the
 grequests module with the help of modules from the requests module.
 
 Reference: https://developers.themoviedb.org/3/getting-started/introduction
+
+This module has been deprecated and replaced with the new_api_handler module.
+Code was too 'heavy' and didn't mesh well with the rest of the project, should
+only be used for a reference for the new_api_handler module.
 """
 
 import copy

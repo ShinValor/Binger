@@ -2,31 +2,64 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import { auth } from "./firebase";
 import "./assets/css/main.css";
-import * as firebase from "firebase";
+
+/* Ant Design */
 import Antd from "ant-design-vue";
 import "ant-design-vue/dist/antd.css";
+
+/* Font Awesome Icon */
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { faUser, faRandom } from "@fortawesome/free-solid-svg-icons";
+import {
+  faFacebookSquare,
+  faTwitterSquare,
+  faGooglePlusSquare,
+  faGithubSquare,
+  faVuejs
+} from "@fortawesome/free-brands-svg-icons";
 
 Vue.config.productionTip = false;
 
 Vue.use(Antd);
 
-const firebaseConfig = {
-  apiKey: "AIzaSyDHOUq-c694Z3-0uHuxPutfR7Erd6u-lOg",
-  authDomain: "binger-2910d.firebaseapp.com",
-  databaseURL: "https://binger-2910d.firebaseio.com",
-  projectId: "binger-2910d",
-  storageBucket: "binger-2910d.appspot.com",
-  messagingSenderId: "393236901641",
-  appId: "1:393236901641:web:fb2594c6fb95687a716dd8",
-  measurementId: "G-66C9TKWWSX"
-};
+library.add(
+  faUser,
+  faRandom,
+  faFacebookSquare,
+  faTwitterSquare,
+  faGooglePlusSquare,
+  faGithubSquare,
+  faVuejs
+);
 
-firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+// USAGE https://github.com/FortAwesome/vue-fontawesome#usage
+/*
+<font-awesome-icon :icon="['fas', 'random']" />
+<font-awesome-icon :icon="['fab', 'facebook-square']" />
+*/
 
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount("#app");
+Vue.component("font-awesome-icon", FontAwesomeIcon);
+
+// new Vue({
+//   router,
+//   store,
+//   render: h => h(App)
+// }).$mount("#app");
+
+let app;
+auth.onAuthStateChanged(user => {
+  if (!app) {
+    app = new Vue({
+      router,
+      store,
+      render: h => h(App)
+    }).$mount("#app");
+  }
+
+  if (user) {
+    store.dispatch("fetchUserProfile", user);
+  }
+});
