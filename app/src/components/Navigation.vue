@@ -30,7 +30,7 @@
         </a-menu-item>
       </a-menu>
       <a-dropdown :trigger="['click']" :style="{ padding: '0px 20px' }" v-else>
-        <a class="ant-dropdown-link" @click.prevent>
+        <a class="nav-dropdown" @click.prevent>
           {{ username }}
           <a-icon type="caret-down" /> <a-icon type="user" />
           <!-- <font-awesome-icon :icon="['fas', 'user']" /> -->
@@ -104,10 +104,23 @@ export default {
 
 .app-link {
   color: white;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transform-origin: 0 100%;
+  transform-origin: 0 100%;
 }
 
 .app-link:hover {
-  color: pink;
+  /* color: pink; */
+  -webkit-transform: skew(-10deg);
+  transform: skew(-10deg);
 }
 
 .section {
@@ -121,8 +134,30 @@ export default {
   width: 32px;
 }
 
-.nav-btn {
-  width: 100px;
+.nav-btn,
+.nav-dropdown {
+  color: white;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+
+.nav-btn:hover,
+.nav-btn:focus,
+.nav-btn:active,
+.nav-dropdown:hover,
+.nav-dropdown:focus,
+.nav-dropdown:active {
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);
 }
 
 @media screen and (max-width: 500px) {

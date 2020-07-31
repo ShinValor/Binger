@@ -39,7 +39,7 @@
           onerror="this.style.display='none'"
         />
       </div>
-      <a-button :style="{ 'background-color': 'transparent', color: 'white' }">
+      <a-button class="more-info">
         <router-link
           :to="{ name: 'MovieSynopsis', params: { id: this.modalId } }"
         >
@@ -177,6 +177,15 @@ export default {
   height: 100%;
   margin: 5px;
   object-fit: cover;
+}
+
+.more-info {
+  background-color: transparent;
+  color: white;
+}
+
+.more-info:hover {
+  border-color: white;
 }
 
 @media screen and (max-width: 500px) {

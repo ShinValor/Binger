@@ -60,7 +60,11 @@
             <div class="detailed-info left-align">
               <h1 class="text-overview fontColor">Overview</h1>
               <div class="play-trailer">
-                <a class="trailer-btn" :href="vidUrl(movie.trailer_key)">
+                <a
+                  class="trailer-btn"
+                  :href="vidUrl(movie.trailer_key)"
+                  target="_blank_"
+                >
                   <a-icon type="play-circle" :style="{ color: '#ff0000' }" />
                   Play Trailer
                 </a>
@@ -258,7 +262,8 @@ export default {
 }
 
 .trailer-btn:hover {
-  color: pink;
+  /* color: pink; */
+  transform: scale(1.1);
 }
 
 .movie-score {

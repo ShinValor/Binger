@@ -57,7 +57,7 @@
           onerror="this.style.display='none'"
         />
       </div>
-      <a-button :style="{ 'background-color': 'transparent', color: 'white' }">
+      <a-button class="more-info">
         <router-link
           :to="{ name: 'MovieSynopsis', params: { id: this.modalId } }"
         >
@@ -191,6 +191,15 @@ export default {
 
 .pagination {
   margin: 20px;
+}
+
+.more-info {
+  background-color: transparent;
+  color: white;
+}
+
+.more-info:hover {
+  border-color: white;
 }
 
 .rand-btn {
