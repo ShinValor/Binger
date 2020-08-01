@@ -117,10 +117,10 @@ export default {
 }
 
 .search {
-  width: 50%;
+  width: 75%;
   align-content: center;
   align-items: center;
-  margin: 5%;
+  margin: 15px auto;
   /* margin-bottom: 2.5rem; */
 }
 </style>
