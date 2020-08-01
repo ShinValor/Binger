@@ -86,23 +86,23 @@ export default {
       );
       if (this.movieQuery || this.movieQuery !== "") {
         queryParams = { query: this.movieQuery, page: this.currentPage };
-        link = "https://binger-api-testv1.azurewebsites.net//movie/search";
-        link = "http://127.0.0.1:5000/movie/search";
+        link = "https://binger-api-testv1.azurewebsites.net/movie/search";
+        // link = "http://127.0.0.1:5000/movie/search";
       } else if (this.genreQuery || this.genreQuery !== "") {
         console.log("going to the else");
         queryParams = { with_genres: this.genreQuery, page: this.currentPage };
         link = "https://binger-api-testv1.azurewebsites.net/movie/search/genre";
-        link = "http://127.0.0.1:5000/movie/search/genre";
+        // link = "http://127.0.0.1:5000/movie/search/genre";
       }
       axios
-        .get(link, { params: queryParams})
+        .get(link, { params: queryParams })
         .then(res => {
-          console.log("data" + res);
+          console.log("data", res);
           this.list = res.data.results;
           this.totalItems = res.data.total_results;
         })
         .catch(err => {
-          console.log("error " +err);
+          console.log("error " + err);
           this.error = err;
         });
     },
