@@ -2,11 +2,7 @@
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
     <div class="container">
       <Setting />
-      <Card
-        class="profile-card"
-        :name="username"
-        desc="I love to watch movies."
-      />
+      <Card class="profile-card" :name="username" :desc="description" />
     </div>
   </a-layout>
 </template>
@@ -77,6 +73,9 @@ export default {
   computed: {
     username() {
       return this.$store.state.userProfile["name"];
+    },
+    description() {
+      return this.$store.state.userProfile["description"];
     }
   }
 };

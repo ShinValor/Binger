@@ -53,6 +53,8 @@ const store = new Vuex.Store({
 
       // Fetch user profile and set in state
       dispatch("fetchUserProfile", user);
+
+      router.push("/");
     },
     async signup({ dispatch }, form) {
       // Sign user up
@@ -63,11 +65,14 @@ const store = new Vuex.Store({
 
       // Create user object in userCollections
       await fb.usersCollection.doc(user.uid).set({
-        name: form.name
+        name: form.name,
+        description: "Add a bio"
       });
 
       // Fetch user profile and set in state
       dispatch("fetchUserProfile", user);
+
+      router.push("/");
     },
     async logout({ commit }) {
       // Log user out
@@ -87,12 +92,12 @@ const store = new Vuex.Store({
       commit("setUserProfile", userProfile.data());
 
       // Change route
-      if (
-        router.currentRoute.path === "/login" ||
-        router.currentRoute.path === "/signup"
-      ) {
-        router.push("/");
-      }
+      // if (
+      //   router.currentRoute.path === "/login" ||
+      //   router.currentRoute.path === "/signup"
+      // ) {
+      //   router.push("/");
+      // }
     },
     async fetchLikedMovies({ commit }, userId) {
       // Fetch user movie list
@@ -228,7 +233,7 @@ const store = new Vuex.Store({
       // fb.postsCollection.dislikedoc(movieId).update({
       //   dislikes: movie.dislikesCount + 1
       // });
-    }
+    },
     // async createPost({ state }, post) {
     //   // create post in firebase
     //   await fb.postsCollection.add({
@@ -270,6 +275,19 @@ const store = new Vuex.Store({
     //     });
     //   });
     // }
+    async updateProfile({ dispatch }, user) {
+      const userId = fb.auth.currentUser.uid;
+
+      console.log(user);
+
+      // update user object
+      await fb.usersCollection.doc(userId).update({
+        name: user.name,
+        description: user.description
+      });
+
+      dispatch("fetchUserProfile", { uid: userId });
+    }
   }
 });
 

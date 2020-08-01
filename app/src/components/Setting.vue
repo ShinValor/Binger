@@ -7,19 +7,26 @@
   >
     <a-form-model-item label="Nick Name">
       <a-input v-model="form.name" />
+      <!-- <a-input v-model="username" /> -->
     </a-form-model-item>
     <!-- <a-form-model-item label="Send Email">
       <a-switch v-model="form.email" />
     </a-form-model-item> -->
     <a-form-model-item label="Introduction">
-      <a-input v-model="form.desc" type="textarea" />
+      <a-input v-model="form.description" type="textarea" />
+      <!-- <a-input v-model="description" type="textarea" /> -->
     </a-form-model-item>
     <a-form-model-item :wrapper-col="{ span: 14, offset: 4 }">
-      <a-button class="update-btn" @click="onSubmit">
+      <a-button
+        class="update-btn"
+        @click="onUpdate(form.name, form.description)"
+      >
         Update
       </a-button>
       <a-button class="cancel-btn" style="margin-left: 10px;">
-        Cancel
+        <router-link :to="{ name: 'Home' }">
+          Cancel
+        </router-link>
       </a-button>
     </a-form-model-item>
   </a-form-model>
@@ -35,13 +42,21 @@ export default {
       form: {
         name: "",
         email: false,
-        desc: ""
+        description: ""
       }
     };
   },
   methods: {
-    onSubmit() {
-      // On Submit
+    onUpdate(name, description) {
+      this.$store.dispatch("updateProfile", { name, description });
+    }
+  },
+  computed: {
+    username() {
+      return this.$store.state.userProfile["name"];
+    },
+    description() {
+      return this.$store.state.userProfile["description"];
     }
   }
 };
