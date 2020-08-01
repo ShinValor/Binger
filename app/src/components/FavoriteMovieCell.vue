@@ -1,6 +1,6 @@
 <template>
   <li class="movie-list">
-    <img class="poster" :src="item.poster_path" />
+    <img class="poster" :src="imgUrl(item.poster_path)" />
     <br />
     <div>
       <a class="title">{{ item.title }}</a>
@@ -25,6 +25,11 @@ export default {
     item: {
       type: Object,
       required: true
+    }
+  },
+  methods: {
+    imgUrl(path) {
+      return "https://image.tmdb.org/t/p/w342" + path;
     }
   },
   computed: {

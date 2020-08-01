@@ -22,9 +22,36 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     userProfile: {},
-    likedMovies: {},
-    dislikedMovies: {}
-    // posts: []
+    likedMovies: [],
+    dislikedMovies: [],
+    genres: [
+      { name: "Adventure", value: 0 },
+      { name: "Fantasy", value: 0 },
+      { name: "Animation", value: 0 },
+      { name: "Drama", value: 0 },
+      { name: "Horror", value: 0 },
+      { name: "Comedy", value: 0 },
+      { name: "History", value: 0 },
+      { name: "Western", value: 0 },
+      { name: "Thriller", value: 0 },
+      { name: "Crime", value: 0 },
+      { name: "Documentary", value: 0 },
+      { name: "Science Fiction", value: 0 },
+      { name: "Mystery", value: 0 },
+      { name: "Music", value: 0 },
+      { name: "Romance", value: 0 },
+      { name: "Family", value: 0 },
+      { name: "War", value: 0 },
+      { name: "Action & Adventure", value: 0 },
+      { name: "News", value: 0 },
+      { name: "Reality", value: 0 },
+      { name: "Sci-Fi & Fantasy", value: 0 },
+      { name: "Soaps", value: 0 },
+      { name: "Talk", value: 0 },
+      { name: "War & Politics", value: 0 },
+      { name: "TV Movie", value: 0 }
+    ]
+    // posts: [],
   },
   mutations: {
     setUserProfile(state, val) {

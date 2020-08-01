@@ -2,19 +2,10 @@
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
     <chart :options="option" />
     <a-button class="swiper-btn" @click="toggleModal">Try Our Swiper</a-button>
-    <h1 :style="{ color: 'white' }">Liked Movie Id</h1>
-    <ul :style="{ color: 'white' }">
-      <li v-for="(movie, index) in likedMovies" :key="index">
-        {{ movie.id }}
-      </li>
-    </ul>
-    <h1 :style="{ color: 'white' }">Disliked Movie Id</h1>
-    <ul :style="{ color: 'white' }">
-      <li v-for="(movie, index) in dislikedMovies" :key="index">
-        {{ movie.id }}
-      </li>
-    </ul>
-    <FavoriteMovieList class="favoriteList" />
+    <h1 :style="{ color: 'white' }">Liked Movies</h1>
+    <FavoriteMovieList class="favoriteList" :movieList="likedMovies" />
+    <h1 :style="{ color: 'white' }">Disliked Movies</h1>
+    <FavoriteMovieList class="favoriteList" :movieList="dislikedMovies" />
     <a-modal
       v-model="modalVisible"
       :title="'Movie Swiper'"
@@ -46,8 +37,8 @@ export default {
       modalVisible: false,
       option: {
         title: {
-          text: "Your Movie Dashboard",
-          subtext: "Most Searched Movie Genre",
+          text: "Movie Dashboard",
+          subtext: "Most Searched Movie Genres",
           left: "center",
           textStyle: {
             color: "white"
@@ -61,49 +52,46 @@ export default {
           left: "center",
           top: "bottom",
           data: [
-            "Action",
-            "Comedy",
-            "Thriller",
-            "Crime Film",
+            "Adventure",
+            "Fantasy",
+            "Animation",
             "Drama",
             "Horror",
-            "Adventure",
-            "Night Shows"
+            "Action",
+            "Comedy",
+            "History",
+            "Western",
+            "Thriller",
+            "Crime",
+            "Documentary",
+            "Science Fiction",
+            "Mystery",
+            "Music",
+            "Romance",
+            "Family",
+            "War",
+            "Action & Adventure",
+            "Kids",
+            "News",
+            "Reality",
+            "Sci-Fi & Fantasy",
+            "Soaps",
+            "Talk",
+            "War & Politics",
+            "TV Movie"
           ],
           textStyle: {
             color: "white"
           }
         },
-        // toolbox: {
-        //   show: true,
-        //   feature: {
-        //     mark: { show: true },
-        //     dataView: { show: true, readOnly: false },
-        //     magicType: {
-        //       show: true,
-        //       type: ["pie", "funnel"]
-        //     },
-        //     restore: { show: true },
-        //     saveAsImage: { show: true }
-        //   }
-        // },
         series: [
           {
             name: "You",
             type: "pie",
-            radius: [30, 110],
+            radius: [30, 100],
             center: ["50%", "50%"],
             roseType: "area",
-            data: [
-              { name: "Action", value: 10 },
-              { name: "Comedy", value: 5 },
-              { name: "Thriller", value: 15 },
-              { name: "Crime Film", value: 25 },
-              { name: "Drama", value: 20 },
-              { name: "Horror", value: 35 },
-              { name: "Adventure", value: 30 },
-              { name: "Night Shows", value: 40 }
-            ]
+            data: this.dataset()
           }
         ]
       }
@@ -112,6 +100,11 @@ export default {
   methods: {
     toggleModal() {
       this.modalVisible = !this.modalVisible;
+    },
+    dataset() {
+      let dataset = this.$store.state.genres;
+      dataset = JSON.parse(JSON.stringify(dataset));
+      return dataset;
     }
   },
   computed: {
@@ -161,6 +154,11 @@ export default {
   .echarts {
     width: 600px;
     margin: 25px auto;
+  }
+
+  .swiper-btn {
+    top: 15%;
+    right: 60%;
   }
 
   .favoriteList {
