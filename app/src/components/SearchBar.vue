@@ -16,13 +16,13 @@
             <a-checkable-tag
               :key="tag"
               :checked="selectedTags.indexOf(tag) > -1"
-              @change="(checked) => handleChange(tag, checked)"
+              @change="checked => handleChange(tag, checked)"
             >
               {{ tag }}
             </a-checkable-tag>
           </template>
         </div>
-        </a-tab-pane>
+      </a-tab-pane>
     </a-tabs>
   </div>
 </template>
@@ -68,7 +68,7 @@ export default {
         "War & Politics",
         "TV Movie"
       ],
-      selectedTags: [],
+      selectedTags: []
     };
   },
   methods: {
@@ -81,16 +81,22 @@ export default {
     onGenreSearch() {
       this.$router.push({
         name: "Search",
-        query: { movieQuery: this.movieQuery }
+        query: { with_genres: this.genres }
       });
     },
     handleChange(tag, checked) {
       const { selectedTags } = this;
-      console.log({selectedTags})
-      const nextSelectedTags = checked  ? [...selectedTags, tag] : selectedTags.filter(t => t !== tag);
-      console.log('You are interested in: ', nextSelectedTags);
+      const nextSelectedTags = checked
+        ? [...selectedTags, tag]
+        : selectedTags.filter(t => t !== tag);
       this.selectedTags = nextSelectedTags;
-    },
+      this.onGenreSearch();
+    }
+  },
+  computed: {
+    genres: function() {
+      return this.selectedTags.join(",");
+    }
   }
 };
 </script>

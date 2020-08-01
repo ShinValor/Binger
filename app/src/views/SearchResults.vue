@@ -5,7 +5,7 @@
       class="searchList"
       :movieQuery="searchTitleQuery"
       :genreQuery="searchGenreQuery"
-      :key="searchTitleQuery + searchGenreQuery"
+      :key="searchResultListKey"
     />
     <Footer />
   </a-layout>
@@ -31,12 +31,14 @@ export default {
       return "";
     },
     searchGenreQuery: function() {
-      console.log(this.$route.query.with_genres)
       if (this.$route.query.with_genres) {
         return this.$route.query.with_genres;
       }
       return "";
     },
+    searchResultListKey: function() {
+      return this.searchGenreQuery + this.searchTitleQuery;
+    }
   }
 };
 </script>
