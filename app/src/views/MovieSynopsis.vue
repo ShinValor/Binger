@@ -40,7 +40,7 @@ export default {
 </script>
 
 <style scoped>
-.left-align {
+/* .left-align {
   text-align: left;
 }
 
@@ -159,10 +159,10 @@ export default {
 
 .fontColor {
   color: ivory;
-}
+} */
 
 @media only screen and (max-width: 600px) {
-  .header-contents,
+  /* .header-contents,
   .tagline,
   .movie-title {
     display: block;
@@ -189,6 +189,6 @@ export default {
     display: block;
     margin-left: auto;
     margin-right: auto;
-  }
+  } */
 }
 </style>
