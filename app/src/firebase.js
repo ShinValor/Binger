@@ -2,7 +2,7 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 
-// firebase init
+// firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyDHOUq-c694Z3-0uHuxPutfR7Erd6u-lOg",
   authDomain: "binger-2910d.firebaseapp.com",
@@ -14,6 +14,7 @@ const firebaseConfig = {
   measurementId: "G-66C9TKWWSX"
 };
 
+// firebase init
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
@@ -23,18 +24,18 @@ const auth = firebase.auth();
 
 // collection references
 const usersCollection = db().collection("users");
-// const postsCollection = db.collection("posts");
-// const commentsCollection = db.collection("comments");
 const likesCollection = db().collection("likes");
 const dislikesCollection = db().collection("dislikes");
+// const postsCollection = db.collection("posts");
+// const commentsCollection = db.collection("comments");
 
 // export utils
 export {
   db,
   auth,
   usersCollection,
-  // postsCollection,
-  // commentsCollection,
   likesCollection,
   dislikesCollection
+  // postsCollection,
+  // commentsCollection,
 };

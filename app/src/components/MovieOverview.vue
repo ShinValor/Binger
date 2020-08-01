@@ -136,9 +136,11 @@ export default {
     },
     likeMovie(movie) {
       this.$store.dispatch("likeMovie", movie);
+      this.$message.success(`You liked ${movie.title}`);
     },
     dislikeMovie(movie) {
       this.$store.dispatch("dislikeMovie", movie);
+      this.$message.error(`You disliked ${movie.title}`);
     }
   }
 };
@@ -307,6 +309,12 @@ export default {
   background-color: white;
   color: #222831;
   transform: scale(1.2);
+}
+
+.like-btn:active,
+.dislike-btn:active {
+  background-color: #222831;
+  color: white;
 }
 
 @media only screen and (max-width: 600px) {
