@@ -4,14 +4,14 @@
     <a-button class="swiper-btn" @click="toggleModal">Try Our Swiper</a-button>
     <h1 :style="{ color: 'white' }">Liked Movie Id</h1>
     <ul :style="{ color: 'white' }">
-      <li v-for="(movieId, index) in likedMovies" :key="index">
-        {{ movieId }}
+      <li v-for="(movie, index) in likedMovies" :key="index">
+        {{ movie.id }}
       </li>
     </ul>
     <h1 :style="{ color: 'white' }">Disliked Movie Id</h1>
     <ul :style="{ color: 'white' }">
-      <li v-for="(movieId, index) in dislikedMovies" :key="index">
-        {{ movieId }}
+      <li v-for="(movie, index) in dislikedMovies" :key="index">
+        {{ movie.id }}
       </li>
     </ul>
     <FavoriteMovieList class="favoriteList" />

@@ -115,7 +115,7 @@ const store = new Vuex.Store({
     },
     // eslint-disable-next-line no-unused-vars
     async likeMovie({ dispatch }, movie) {
-      const movieId = movie.id.toString();
+      // const movieId = movie.id.toString();
       const userId = fb.auth.currentUser.uid;
 
       const likedMovies = await fb.likesCollection.doc(userId).get();
@@ -123,19 +123,19 @@ const store = new Vuex.Store({
 
       if (likedMovies.exists) {
         await fb.likesCollection.doc(userId).update({
-          movies: fb.db.FieldValue.arrayUnion(movieId)
+          movies: fb.db.FieldValue.arrayUnion(movie)
         });
       }
 
       if (dislikedMovies.exists) {
         await fb.dislikesCollection.doc(userId).update({
-          movies: fb.db.FieldValue.arrayRemove(movieId)
+          movies: fb.db.FieldValue.arrayRemove(movie)
         });
       }
 
       if (!likedMovies.exists) {
         await fb.likesCollection.doc(userId).set({
-          movies: [movieId]
+          movies: [movie]
         });
       }
 
@@ -176,7 +176,7 @@ const store = new Vuex.Store({
     },
     // eslint-disable-next-line no-unused-vars
     async dislikeMovie({ dispatch }, movie) {
-      const movieId = movie.id.toString();
+      // const movieId = movie.id.toString();
       const userId = fb.auth.currentUser.uid;
 
       const likedMovies = await fb.likesCollection.doc(userId).get();
@@ -184,19 +184,19 @@ const store = new Vuex.Store({
 
       if (dislikedMovies.exists) {
         await fb.dislikesCollection.doc(userId).update({
-          movies: fb.db.FieldValue.arrayUnion(movieId)
+          movies: fb.db.FieldValue.arrayUnion(movie)
         });
       }
 
       if (likedMovies.exists) {
         await fb.likesCollection.doc(userId).update({
-          movies: fb.db.FieldValue.arrayRemove(movieId)
+          movies: fb.db.FieldValue.arrayRemove(movie)
         });
       }
 
       if (!dislikedMovies.exists) {
         await fb.dislikesCollection.doc(userId).set({
-          movies: [movieId]
+          movies: [movie]
         });
       }
 
