@@ -85,7 +85,7 @@ const store = new Vuex.Store({
 
       // redirect to login view
       router.push("/login");
-    }
+    },
     // async createPost({ state }, post) {
     //   // create post in firebase
     //   await fb.postsCollection.add({
@@ -97,27 +97,66 @@ const store = new Vuex.Store({
     //     likes: 0
     //   });
     // },
-    // async likePost(post) {
-    //   const userId = fb.auth.currentUser.uid;
-    //   const docId = `${userId}_${post.id}`;
+    // eslint-disable-next-line no-unused-vars
+    async likeMovie({ dispatch }, movie) {
+      const movieId = movie.id.toString();
 
-    //   // check if user has liked post
-    //   const doc = await fb.likesCollection.doc(docId).get();
-    //   if (doc.exists) {
-    //     return;
-    //   }
+      const userId = fb.auth.currentUser.uid;
+      const docId = `${userId}_${movieId}`;
 
-    //   // create post
-    //   await fb.likesCollection.doc(docId).set({
-    //     postId: post.id,
-    //     userId: userId
-    //   });
+      // check if user has liked or disliked post
+      const likedoc = await fb.likesCollection.doc(docId).get();
+      const dislikedoc = await fb.dislikesCollection.doc(docId).get();
+      if (dislikedoc.exists) {
+        await fb.dislikesCollection.doc(docId).delete();
+      }
+      if (likedoc.exists) {
+        // console.log("You Already liked This Movie");
+        await fb.likesCollection.doc(docId).delete();
+        return;
+      }
 
-    //   // update post likes count
-    //   fb.postsCollection.doc(post.id).update({
-    //     likes: post.likesCount + 1
-    //   });
-    // },
+      // create post
+      await fb.likesCollection.doc(docId).set({
+        movieId: movieId,
+        userId: userId
+      });
+
+      // update post likes count
+      // fb.postsCollection.likedoc(movieId).update({
+      //   likes: movie.likesCount + 1
+      // });
+    },
+    // eslint-disable-next-line no-unused-vars
+    async dislikeMovie({ dispatch }, movie) {
+      const movieId = movie.id.toString();
+
+      const userId = fb.auth.currentUser.uid;
+      const docId = `${userId}_${movieId}`;
+
+      // check if user has liked or disliked post
+      const likedoc = await fb.likesCollection.doc(docId).get();
+      const dislikedoc = await fb.dislikesCollection.doc(docId).get();
+      if (likedoc.exists) {
+        await fb.likesCollection.doc(docId).delete();
+      }
+      if (dislikedoc.exists) {
+        // console.log("You Already Disliked This Movie");
+        await fb.dislikesCollection.doc(docId).delete();
+        return;
+      }
+
+      // create post
+      await fb.dislikesCollection.doc(docId).set({
+        movieId: movieId,
+        userId: userId
+      });
+
+      // update post dislikes count
+      // fb.postsCollection.dislikedoc(movieId).update({
+      //   dislikes: movie.dislikesCount + 1
+      // });
+    }
     // async updateProfile({ dispatch }, user) {
     //   const userId = fb.auth.currentUser.uid;
     //   // update user object

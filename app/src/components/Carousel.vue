@@ -95,7 +95,7 @@ export default {
       this.modalSummary = movie.overview;
     },
     loadImg(path) {
-      if (path !== null || path !== undefined) {
+      if (path != null) {
         return "https://image.tmdb.org/t/p/w342" + path;
       }
     },
@@ -177,6 +177,15 @@ export default {
   height: 100%;
   margin: 5px;
   object-fit: cover;
+}
+
+.more-info {
+  background-color: transparent;
+  color: white;
+}
+
+.more-info:hover {
+  border-color: white;
 }
 
 @media screen and (max-width: 500px) {

@@ -58,6 +58,11 @@ export default {
   position: relative !important;
 }
 
+.bm-burger-button:hover {
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+}
+
 .bm-burger-bars {
   background-color: white !important;
 }
@@ -144,24 +149,27 @@ export default {
     display: block;
   }
 }
+
 .sidebar {
   display: flex;
   flex-direction: column;
 }
+
 .sidebar-header {
   padding: 10px 5px;
   border-bottom: 1px solid white;
   display: flex;
-
   align-content: center;
   align-items: center;
   flex-direction: column;
 }
+
 .sidebar-list {
   padding: 10px 0;
   overflow-y: auto;
   display: block;
 }
+
 .sidebar-item {
   text-align: left;
   margin: 0;
@@ -183,16 +191,19 @@ export default {
   color: white;
   font-weight: 600;
 }
+
 .break {
   flex-basis: 100%;
   height: 0;
 }
+
 .current-route {
   border-right: 3px solid#00adb5 !important;
   color: #00adb5;
   font-weight: 900;
   pointer-events: none;
 }
+
 .link {
   color: inherit;
 }

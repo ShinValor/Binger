@@ -5,7 +5,7 @@
     @submit="handleSubmit"
     @submit.prevent
   >
-    <h1 :style="{ color: 'white' }">Register Here !</h1>
+    <!-- <h1 :style="{ color: 'white' }">Register Here !</h1> -->
     <a-form-item>
       <a-input
         v-decorator="[
@@ -65,7 +65,7 @@
       </a-input>
     </a-form-item>
     <a-form-item>
-      <a-button type="primary" html-type="submit" :style="{ width: '100%' }">
+      <a-button class="submit-btn" html-type="submit">
         Register
       </a-button>
     </a-form-item>
@@ -129,6 +129,16 @@ export default {
 .signup-form {
   width: 500px;
   margin: 100px auto 0;
+}
+
+.submit-btn {
+  background-color: transparent;
+  width: 100%;
+  color: white;
+}
+
+.submit-btn:hover {
+  border-color: white;
 }
 
 @media screen and (max-width: 500px) {

@@ -36,13 +36,13 @@
         <div class="item2">
           <h1 class="title">Stay Connected</h1>
           <p class="content">
-            <a><a-icon type="facebook" /> Facebook</a>
+            <a><a-icon type="facebook" theme="filled" /> Facebook</a>
           </p>
           <p class="content">
             <a><a-icon type="twitter" /> Twitter</a>
           </p>
           <p class="content">
-            <a><a-icon type="google-plus" /> Google +</a>
+            <a><a-icon type="google" /> Google</a>
           </p>
         </div>
       </div>

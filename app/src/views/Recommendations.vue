@@ -4,8 +4,8 @@
     <div :style="{ width: '90%', margin: '0 auto' }">
       <div class="header">
         <h1 class="title">Random</h1>
-        <a-button class="more-btn" @click="onMore('/random', true)">
-          More
+        <a-button class="all-btn" @click="onMore('/random', true)">
+          <font-awesome-icon :icon="['fas', 'random']" />
         </a-button>
       </div>
       <Carousel
@@ -13,8 +13,8 @@
       />
       <div class="header">
         <h1 class="title">Top Rated</h1>
-        <a-button class="more-btn" @click="onMore('/ratings/best', false)">
-          More
+        <a-button class="all-btn" @click="onMore('/ratings/best', false)">
+          View All
         </a-button>
       </div>
       <Carousel
@@ -22,8 +22,8 @@
       />
       <div class="header">
         <h1 class="title">Worst Rated</h1>
-        <a-button class="more-btn" @click="onMore('/ratings/worst', false)">
-          More
+        <a-button class="all-btn" @click="onMore('/ratings/worst', false)">
+          View All
         </a-button>
       </div>
       <Carousel
@@ -31,8 +31,8 @@
       />
       <div class="header">
         <h1 class="title">Most Popular</h1>
-        <a-button class="more-btn" @click="onMore('/popular', false)">
-          More
+        <a-button class="all-btn" @click="onMore('/popular', false)">
+          View All
         </a-button>
       </div>
       <Carousel
@@ -40,8 +40,8 @@
       />
       <div class="header">
         <h1 class="title">Least Popular</h1>
-        <a-button class="more-btn" @click="onMore('/unpopular', false)">
-          More
+        <a-button class="all-btn" @click="onMore('/unpopular', false)">
+          View All
         </a-button>
       </div>
       <Carousel
@@ -49,8 +49,8 @@
       />
       <div class="header">
         <h1 class="title">Most Recent</h1>
-        <a-button class="more-btn" @click="onMore('/latest', false)">
-          More
+        <a-button class="all-btn" @click="onMore('/latest', false)">
+          View All
         </a-button>
       </div>
       <Carousel
@@ -58,15 +58,15 @@
       />
       <div class="header">
         <h1 class="title">Oldest Movie</h1>
-        <a-button class="more-btn" @click="onMore('/oldest', false)">
-          More
+        <a-button class="all-btn" @click="onMore('/oldest', false)">
+          View All
         </a-button>
       </div>
       <Carousel
         :url="'https://binger-api-testv1.azurewebsites.net/movie/oldest'"
       />
     </div>
-    <Footer />
+    <Footer :style="{ 'margin-top': '50px' }" />
   </a-layout>
 </template>
 
@@ -128,11 +128,18 @@ export default {
   color: white;
 }
 
-.more-btn {
-  /* width: 100%; */
+.all-btn {
+  width: 100px;
   height: 100%;
   margin: 20px;
   padding: 5px 20px;
+  background-color: transparent;
+  color: white;
+}
+
+.all-btn:hover,
+.all-btn:active {
+  border-color: white;
 }
 
 @media screen and (max-width: 500px) {
@@ -149,9 +156,11 @@ export default {
     font-size: 20px;
   }
 
-  .more-btn {
+  .all-btn {
+    width: 50px;
     margin: 5px 0;
-    padding: 2px 5px;
+    padding: 5px;
+    font-size: 10px;
   }
 }
 </style>
