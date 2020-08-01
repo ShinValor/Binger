@@ -5,7 +5,7 @@
     </ul>
     <div v-show="!errors.length">
       <!-- <p v-show="loading">Loading...</p> -->
-      <ul class="list">
+      <ul class="movie-list">
         <FavoriteMovieCell
           v-for="item in movieList"
           :key="item.title"
@@ -36,11 +36,11 @@ export default {
 </script>
 
 <style scoped>
-.list {
-  padding: 0;
+.movie-list {
+  padding: 1px;
   border-radius: 4px;
-  /* border: 1px solid #e0e0e0; */
-  border: 1px solid black;
+  border: 1px solid white;
+  /* border: 1px solid black; */
 }
 
 .errors {

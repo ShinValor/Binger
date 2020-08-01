@@ -1,5 +1,5 @@
 <template>
-  <li class="movie-list">
+  <li class="movie">
     <img class="poster" :src="imgUrl(item.poster_path)" />
     <!-- <br /> -->
     <div>
@@ -69,14 +69,15 @@ export default {
   content: "|";
 }
 
-.movie-list {
+.movie {
   background-color: #222831;
   display: flex;
   align-items: flex-start;
   padding: 1em;
+  border-bottom: 1px solid white;
 }
 
-.movie-list:hover {
+.movie:hover {
   background-color: #2a313c;
 }
 
