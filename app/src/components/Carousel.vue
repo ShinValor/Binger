@@ -108,7 +108,8 @@ export default {
         this.error = err;
       } finally {
         this.loading = !this.loading;
-        this.$refs.flickity.rerender();
+        // this.$refs.flickity.rerender();
+        // let flickityInstance = this.$refs.flickity.reloadCells();
       }
     }
   }
