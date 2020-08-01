@@ -74,7 +74,7 @@ export default {
   display: flex;
   align-items: flex-start;
   padding: 1em;
-  border-bottom: 1px solid white;
+  /* border-bottom: 1px solid white; */
 }
 
 .movie:hover {

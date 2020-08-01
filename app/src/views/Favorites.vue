@@ -6,10 +6,10 @@
         <chart :options="option" />
       </a-tab-pane>
       <a-tab-pane key="2" tab="Liked Movies">
-        <FavoriteMovieList :movieList="likedMovies" />
+        <FavoriteMovieList class="favorite-movie" :movieList="likedMovies" />
       </a-tab-pane>
       <a-tab-pane key="3" tab="Disliked Movies" force-render>
-        <FavoriteMovieList :movieList="dislikedMovies" />
+        <FavoriteMovieList class="favorite-movie" :movieList="dislikedMovies" />
       </a-tab-pane>
     </a-tabs>
     <a-modal
@@ -136,12 +136,16 @@ export default {
 .echarts {
   width: 800px;
   height: 400px;
-  margin: 50px auto;
+  margin: 20px auto;
 }
 
 .tabs {
   width: 90%;
   margin: 100px auto;
+}
+
+.favorite-movie {
+  margin-top: 20px;
 }
 
 .swiper-btn {

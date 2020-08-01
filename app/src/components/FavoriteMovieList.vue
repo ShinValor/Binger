@@ -38,9 +38,8 @@ export default {
 <style scoped>
 .movie-list {
   padding: 1px;
-  border-radius: 4px;
-  border: 1px solid white;
-  /* border: 1px solid black; */
+  /* border: 1px solid white; */
+  /* border-radius: 4px; */
 }
 
 .errors {
