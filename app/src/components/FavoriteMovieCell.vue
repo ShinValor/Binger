@@ -1,9 +1,14 @@
 <template>
   <li class="movie-list">
     <img class="poster" :src="imgUrl(item.poster_path)" />
-    <br />
+    <!-- <br /> -->
     <div>
-      <a class="title">{{ item.title }}</a>
+      <router-link
+        class="title"
+        :to="{ name: 'MovieSynopsis', params: { id: item.id } }"
+      >
+        {{ item.title }}
+      </router-link>
       <div class="d-flex items-center area muted">
         <p class="para-tag">{{ item.release_year }}</p>
         <p class="separator genres para-tag">{{ genres }}</p>
@@ -92,6 +97,21 @@ export default {
 .title {
   font-size: 1.2em;
   color: white;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+
+.title:hover {
+  transform: scale(1.1);
 }
 
 .plot {

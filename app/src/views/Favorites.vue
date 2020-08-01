@@ -1,6 +1,5 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
-    <!-- <chart :options="option" /> -->
     <a-button class="swiper-btn" @click="toggleModal">Try Our Swiper</a-button>
     <a-tabs class="tabs" default-active-key="1" @change="switchTabs">
       <a-tab-pane key="1" tab="Dashboard" force-render>
@@ -170,10 +169,6 @@ export default {
   .swiper-btn {
     top: 12%;
     right: 5%;
-  }
-
-  .favoriteList {
-    margin: 15px 10px;
   }
 }
 </style>
