@@ -1,11 +1,18 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
-    <chart :options="option" />
+    <!-- <chart :options="option" /> -->
     <a-button class="swiper-btn" @click="toggleModal">Try Our Swiper</a-button>
-    <h1 :style="{ color: 'white' }">Liked Movies</h1>
-    <FavoriteMovieList class="favoriteList" :movieList="likedMovies" />
-    <h1 :style="{ color: 'white' }">Disliked Movies</h1>
-    <FavoriteMovieList class="favoriteList" :movieList="dislikedMovies" />
+    <a-tabs class="tabs" default-active-key="1" @change="switchTabs">
+      <a-tab-pane key="1" tab="Dashboard" force-render>
+        <chart :options="option" />
+      </a-tab-pane>
+      <a-tab-pane key="2" tab="Liked Movies">
+        <FavoriteMovieList :movieList="likedMovies" />
+      </a-tab-pane>
+      <a-tab-pane key="3" tab="Disliked Movies" force-render>
+        <FavoriteMovieList :movieList="dislikedMovies" />
+      </a-tab-pane>
+    </a-tabs>
     <a-modal
       v-model="modalVisible"
       :title="'Movie Swiper'"
@@ -105,6 +112,9 @@ export default {
       let dataset = this.$store.state.genres;
       dataset = JSON.parse(JSON.stringify(dataset));
       return dataset;
+    },
+    switchTabs(key) {
+      console.log(key);
     }
   },
   computed: {
@@ -130,8 +140,9 @@ export default {
   margin: 50px auto;
 }
 
-.favoriteList {
-  margin: 25px;
+.tabs {
+  width: 90%;
+  margin: 100px auto;
 }
 
 .swiper-btn {
@@ -157,8 +168,8 @@ export default {
   }
 
   .swiper-btn {
-    top: 15%;
-    right: 60%;
+    top: 12%;
+    right: 5%;
   }
 
   .favoriteList {

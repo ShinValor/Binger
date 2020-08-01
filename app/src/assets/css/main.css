@@ -108,3 +108,21 @@
   background-color: black !important;
   border-color: white !important;
 }
+
+/* ================== Tabs ================== */
+
+/* .ant-tabs-nav {
+  color: white !important;
+} */
+
+.ant-tabs-tab {
+  color: white !important;
+}
+
+.ant-tabs-tab-active {
+  color: pink !important;
+}
+
+.ant-tabs-ink-bar {
+  background-color: pink !important;
+}
