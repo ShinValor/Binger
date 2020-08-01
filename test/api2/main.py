@@ -345,7 +345,6 @@ def get_genres_movies():
 
     page_num = request.args.get('page')
     genres = request.args.get('with_genres')
-    print(genres)
 
     options = DEFAULT_OPTIONS.copy()
     options["page"] = page_num if page_num else 1
@@ -357,7 +356,6 @@ def get_genres_movies():
 
     data = response.json()
     movies = data["results"]
-    print(response.url)
 
     for movie in movies:
         movie["genre_ids"] = [(GENRE_IDS_TO_NAME[x])
@@ -390,3 +388,6 @@ def get_search_result():
         movie["genres"] = movie.pop("genre_ids")
     data["results"] = movies
     return jsonify(data)
+
+
+app.run()
