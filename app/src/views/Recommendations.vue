@@ -137,8 +137,8 @@ export default {
   color: white;
 }
 
-.all-btn:hover,
-.all-btn:active {
+.view-btn:hover,
+.view-btn:active {
   border-color: white;
 }
 
