@@ -2,6 +2,18 @@
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
     <chart :options="option" />
     <a-button class="swiper-btn" @click="toggleModal">Try Our Swiper</a-button>
+    <h1 :style="{ color: 'white' }">Liked Movie Id</h1>
+    <ul :style="{ color: 'white' }">
+      <li v-for="(movieId, index) in likedMovies" :key="index">
+        {{ movieId }}
+      </li>
+    </ul>
+    <h1 :style="{ color: 'white' }">Disliked Movie Id</h1>
+    <ul :style="{ color: 'white' }">
+      <li v-for="(movieId, index) in dislikedMovies" :key="index">
+        {{ movieId }}
+      </li>
+    </ul>
     <FavoriteMovieList class="favoriteList" />
     <a-modal
       v-model="modalVisible"
@@ -100,7 +112,14 @@ export default {
   methods: {
     toggleModal() {
       this.modalVisible = !this.modalVisible;
-      // console.log(this.option.series[0].data);
+    }
+  },
+  computed: {
+    likedMovies() {
+      return this.$store.state.likedMovies;
+    },
+    dislikedMovies() {
+      return this.$store.state.dislikedMovies;
     }
   }
 };

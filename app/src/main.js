@@ -61,5 +61,7 @@ auth.onAuthStateChanged(user => {
 
   if (user) {
     store.dispatch("fetchUserProfile", user);
+    store.dispatch("fetchLikedMovies", user.uid);
+    store.dispatch("fetchDislikedMovies", user.uid);
   }
 });
