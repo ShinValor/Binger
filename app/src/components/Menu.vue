@@ -7,26 +7,17 @@
       </header>
       <!-- <div class="break"></div> -->
       <div class="sidebar-list">
-        <div
-          :class="activeRoute('Recommendations') ? 'current-route' : ''"
-          class="sidebar-item"
-        >
+        <div :class="activeRoute('Recommendations') ? 'current-route' : ''" class="sidebar-item">
           <router-link class="link" to="/movie-recommendations">
             <span>Recommendation</span>
           </router-link>
         </div>
-        <div
-          :class="activeRoute('MovieList') ? 'current-route' : ''"
-          class="sidebar-item"
-        >
+        <div :class="activeRoute('MovieList') ? 'current-route' : ''" class="sidebar-item">
           <router-link class="link" to="/movie-list/1">
             <span>Movie List</span>
           </router-link>
         </div>
-        <div
-          :class="activeRoute('Favorites') ? 'current-route' : ''"
-          class="sidebar-item"
-        >
+        <div :class="activeRoute('Favorites') ? 'current-route' : ''" class="sidebar-item">
           <router-link class="link" to="/favorite-movies">
             <span>My Favorites</span>
           </router-link>
@@ -54,27 +45,6 @@ export default {
       return this.$route.name === check ? true : false;
     }
   }
-  // watch: {
-  //   $route(to, from) {
-  //     console.log("to:" + to.name," from:" + from.name);
-  //     if (from) {
-  //       let current_active = document.getElementById(from.name);
-  //       // console.log("from " + current_active);
-  //       if (current_active) {
-  //         // console.log(current_active);
-  //         current_active.classList.toggle("current-route");
-  //       }
-  //     }
-  //     if (to) {
-  //       let new_active = document.getElementById(to.name);
-  //       // console.log("to " + new_active);
-  //       if (new_active) {
-  //         // console.log(new_active);
-  //         new_active.classList.toggle("current-route");
-  //       }
-  //     }
-  //   }
-  // }
 };
 </script>
 
@@ -116,7 +86,7 @@ export default {
 }
 
 .bm-menu {
-  background-color: rgb(48, 71, 94, 0.85) !important;
+  background-color: rgb(44, 62, 80, 0.85) !important;
   top: 0;
   left: 0;
   height: 100%; /* 100% Full-height */
@@ -207,10 +177,10 @@ export default {
   padding: 10px;
   /* display: inline-block; */
   line-height: 1.5;
-  color: #faa5de;
+  /* color: #faa5de; */
 }
 .username {
-  color: #faa5de;
+  color: white;
   font-weight: 600;
 }
 .break {
