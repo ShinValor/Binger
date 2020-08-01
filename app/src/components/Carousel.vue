@@ -109,7 +109,7 @@ export default {
       } finally {
         this.loading = !this.loading;
         // this.$refs.flickity.rerender();
-        // let flickityInstance = this.$refs.flickity.reloadCells();
+        // let flickityInstance = this.$refs.flickity.reloadCells(); // Better Option
       }
     }
   }
