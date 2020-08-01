@@ -3,8 +3,9 @@
     <SearchBar class="searchBar" :movieQuery="searchQuery" />
     <SearchResultsList
       class="searchList"
-      :movieQuery="searchQuery"
-      :key="searchQuery"
+      :movieQuery="searchTitleQuery"
+      :genreQuery="searchGenreQuery"
+      :key="searchTitleQuery + searchGenreQuery"
     />
     <Footer />
   </a-layout>
@@ -23,12 +24,19 @@ export default {
     Footer
   },
   computed: {
-    searchQuery: function() {
+    searchTitleQuery: function() {
       if (this.$route.query.movieQuery) {
         return this.$route.query.movieQuery;
       }
       return "";
-    }
+    },
+    searchGenreQuery: function() {
+      console.log(this.$route.query.with_genres)
+      if (this.$route.query.with_genres) {
+        return this.$route.query.with_genres;
+      }
+      return "";
+    },
   }
 };
 </script>
