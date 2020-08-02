@@ -1,7 +1,7 @@
 <template>
   <div class="search">
     <a-tabs default-active-key="1" @change="callback">
-      <a-tab-pane key="1" tab="Title Search">
+      <a-tab-pane key="1" tab="Title Search" class="ant-tab">
         <a-input-search
           class="search-bar"
           placeholder="Search Movies"
@@ -14,7 +14,9 @@
         <div class="genre-tags">
           <template v-for="tag in Genres">
             <a-checkable-tag
+              color="pink"
               :key="tag"
+              class="ant-tags"
               :checked="selectedTags.indexOf(tag) > -1"
               @change="checked => handleChange(tag, checked)"
             >
@@ -59,13 +61,7 @@ export default {
         "Family",
         "War",
         "Action & Adventure",
-        "Kids",
-        "News",
-        "Reality",
         "Sci-Fi & Fantasy",
-        "Soaps",
-        "Talk",
-        "War & Politics",
         "TV Movie"
       ],
       selectedTags: []
@@ -121,6 +117,15 @@ export default {
   align-content: center;
   align-items: center;
   margin: 15px auto;
-  /* margin-bottom: 2.5rem; */
+}
+.ant-tags {
+  /* background-color: #001529 ;
+  padding: 10px ;
+  border: 1px solid black ; */
+  color: black;
+}
+.ant-tabs {
+  font-weight: 400;
+  color: whitesmoke;
 }
 </style>
