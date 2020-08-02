@@ -1,9 +1,9 @@
 <template>
   <li class="movie-list">
     <img class="poster" :src="resolve_img_url(item.poster_path)" />
-    <br />
+    <!-- <br /> -->
     <div>
-      <a class="title">{{ item.title }}</a>
+      <h1 class="title">{{ item.title }}</h1>
       <div class="d-flex items-center area muted">
         <p class="para-tag">{{ releaseDate }}</p>
         <p class="separator genres para-tag">{{ genres }}</p>

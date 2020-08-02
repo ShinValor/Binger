@@ -6,21 +6,13 @@
         <span class="username">{{ username }}</span>
       </header>
       <!-- <div class="break"></div> -->
-      <div class="sidebar-list">
+      <div class="sidebar-item">
         <div
           :class="activeRoute('Recommendations') ? 'current-route' : ''"
           class="sidebar-item"
         >
           <router-link class="link" to="/movie-recommendations">
-            <span>Recommendation</span>
-          </router-link>
-        </div>
-        <div
-          :class="activeRoute('MovieList') ? 'current-route' : ''"
-          class="sidebar-item"
-        >
-          <router-link class="link" to="/movie-list/1">
-            <span>Movie List</span>
+            <span>Recommendations</span>
           </router-link>
         </div>
         <div
@@ -29,6 +21,14 @@
         >
           <router-link class="link" to="/favorite-movies">
             <span>My Favorites</span>
+          </router-link>
+        </div>
+        <div
+          :class="activeRoute('Login') ? 'current-route' : ''"
+          class="sidebar-item"
+        >
+          <router-link class="link" to="/login">
+            <span>Login</span>
           </router-link>
         </div>
       </div>
@@ -215,5 +215,10 @@ export default {
 
 .link {
   color: inherit;
+}
+
+.link:active,
+.link:hover {
+  color: white;
 }
 </style>

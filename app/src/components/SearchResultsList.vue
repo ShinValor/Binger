@@ -2,6 +2,7 @@
   <div>
     <ul class="list">
       <SearchResultsCell
+        class="movie-cell"
         v-for="item in list"
         :key="item.title"
         :item="item"
@@ -135,9 +136,9 @@ export default {
 <style scoped>
 .list {
   padding: 0;
-  border-radius: 4px;
+  /* border-radius: 4px; */
   /* border: 1px solid #e0e0e0; */
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 .errors {
@@ -167,6 +168,24 @@ export default {
 
 .pageBar {
   margin: 20px;
+}
+
+.movie-cell {
+  /* display: inline-block; */
+  /* vertical-align: middle; */
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+
+.movie-cell:hover {
+  transform: scale(1.01);
 }
 
 @media screen and (max-width: 500px) {
