@@ -1,8 +1,12 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
-    <a-button class="swiper-btn" @click="toggleModal">Try Our Swiper</a-button>
+    <div :style="{ display: 'flex', 'justify-content': 'flex-end' }">
+      <a-button class="swiper-btn" @click="toggleModal"
+        >Try Our Swiper</a-button
+      >
+    </div>
     <a-tabs class="tabs" default-active-key="1" @change="switchTabs">
-      <a-tab-pane key="1" tab="Dashboard" force-render>
+      <a-tab-pane key="1" tab="My Dashboard" force-render>
         <chart :options="option" />
       </a-tab-pane>
       <a-tab-pane key="2" tab="Liked Movies">
@@ -11,8 +15,8 @@
       <a-tab-pane key="3" tab="Disliked Movies" force-render>
         <FavoriteMovieList class="favorite-movie" :movieList="dislikedMovies" />
       </a-tab-pane>
-      <a-tab-pane key="4" tab="User Recommendations" force-render>
-        <h1>Something</h1>
+      <a-tab-pane key="4" tab="Recommendations" force-render>
+        <h1 :style="{ color: 'white' }">Something</h1>
       </a-tab-pane>
     </a-tabs>
     <a-modal
@@ -23,6 +27,7 @@
     >
       <MovieSwiper />
     </a-modal>
+    <BackToTop />
   </a-layout>
 </template>
 
@@ -33,13 +38,15 @@ import "echarts/lib/component/polar";
 import "echarts/theme/dark";
 import FavoriteMovieList from "@/components/FavoriteMovieList.vue";
 import MovieSwiper from "@/components/MovieSwiper.vue";
+import BackToTop from "@/components/BackToTop.vue";
 
 export default {
   name: "Favorites",
   components: {
     FavoriteMovieList,
     MovieSwiper,
-    chart: ECharts
+    chart: ECharts,
+    BackToTop
   },
   data() {
     return {
@@ -97,7 +104,7 @@ export default {
           {
             name: "You",
             type: "pie",
-            radius: [30, 100],
+            radius: [30, 200],
             center: ["50%", "50%"],
             roseType: "area",
             data: this.dataset()
@@ -137,14 +144,14 @@ export default {
  * don't forget to provide a size for the container).
  */
 .echarts {
-  width: 800px;
-  height: 400px;
+  width: 100%;
+  height: 600px;
   margin: 20px auto;
 }
 
 .tabs {
-  width: 90%;
-  margin: 100px auto;
+  width: 85%;
+  margin: 50px auto;
 }
 
 .favorite-movie {
@@ -152,30 +159,28 @@ export default {
 }
 
 .swiper-btn {
-  position: absolute;
-  top: 10%;
-  right: 1%;
   background-color: transparent;
+  width: 125px;
+  height: 100%;
+  margin: 20px;
+  padding: 5px;
   color: white;
+  border-color: #f3c669;
 }
 
-.swiper-btn:hover,
-.swiper-btn:active,
-.swiper-btn:focus {
-  border-color: white;
-}
-
-@media screen and (max-width: 500px) {
-  /* applies styles to any device screen sizes below 800px wide */
+@media screen and (max-width: 800px) {
+  .tabs {
+    width: 95%;
+    margin: 10px auto;
+  }
 
   .echarts {
     width: 600px;
-    margin: 25px auto;
+    height: 700px;
   }
 
   .swiper-btn {
-    top: 12%;
-    right: 5%;
+    margin: 10px;
   }
 }
 </style>

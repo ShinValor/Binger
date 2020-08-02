@@ -12,6 +12,8 @@
   background-color: transparent !important;
 }
 
+/* ================== Card ================== */
+
 /* 
 .ant-card-body {
   margin: 5px !important;
@@ -124,5 +126,5 @@
 } */
 
 .ant-tabs-ink-bar {
-  background-color: pink !important;
+  background-color: #f3c669 !important;
 }

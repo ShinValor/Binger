@@ -9,6 +9,7 @@
           // eslint-disable-next-line prettier/prettier
           this.$route.params.path"/>
     <Footer class="footer" />
+    <BackToTop />
   </a-layout>
 </template>
 
@@ -16,13 +17,15 @@
 import MovieGallery from "@/components/MovieGallery.vue";
 // import Pagination from "@/components/Pagination.vue";
 import Footer from "@/components/Footer.vue";
+import BackToTop from "@/components/BackToTop.vue";
 
 export default {
   name: "MovieList",
   components: {
     MovieGallery,
     // Pagination
-    Footer
+    Footer,
+    BackToTop
   }
 };
 </script>
