@@ -27,11 +27,11 @@ export default {
 }
 /* Change Selection Text Color When Highlighting */
 #app ::-moz-selection {
-  background-color: #9ea5f1;
+  background-color: #f3c669;
   color: #fff;
 }
 #app ::selection {
-  background-color: #9ea5f1;
+  background-color: #f3c669;
   color: #fff;
 }
 </style>

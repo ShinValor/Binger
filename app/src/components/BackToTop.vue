@@ -1,6 +1,6 @@
 <template>
   <button id="btn" @click="topFunction" :style="{ color: 'black' }">
-    <a-icon type="caret-up" />
+    <a-icon type="up" />
   </button>
 </template>
 

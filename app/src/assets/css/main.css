@@ -119,6 +119,12 @@
 
 .ant-tabs-tab {
   color: white !important;
+  margin: 0 0 2px 0 !important;
+  padding: 12px 50px !important;
+}
+
+.ant-tabs-tab:hover {
+  background-color: #2a323d !important;
 }
 
 /* .ant-tabs-tab-active {

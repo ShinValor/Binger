@@ -16,7 +16,7 @@
     <Content
       class="content-background"
       heading="Welcome To Binger"
-      description="Get started by signing up Binger, and learn how you can find movies and shows recommendation."
+      description="Get started by signing up Binger, and learn how you can find movies and shows you like."
       buttonDesc="Get started with Binger"
     />
     <div class="container2">
