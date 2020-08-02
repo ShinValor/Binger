@@ -11,6 +11,9 @@
       <a-tab-pane key="3" tab="Disliked Movies" force-render>
         <FavoriteMovieList class="favorite-movie" :movieList="dislikedMovies" />
       </a-tab-pane>
+      <a-tab-pane key="4" tab="User Recommendations" force-render>
+        <h1>Something</h1>
+      </a-tab-pane>
     </a-tabs>
     <a-modal
       v-model="modalVisible"

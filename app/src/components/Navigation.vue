@@ -6,7 +6,6 @@
         <router-link to="/" class="app-link">
           <img class="small-image" src="@/assets/svg/binger-logo.svg" />
           Binger <i :style="{ color: 'gray', 'font-size': '15px' }">By Lala</i>
-          {{ checkIfLoggedIn }}
         </router-link>
       </h1>
     </div>
@@ -76,9 +75,6 @@ export default {
   computed: {
     username() {
       return this.$store.state.userProfile["name"];
-    },
-    checkIfLoggedIn() {
-      return this.$store.state.loggedIn;
     }
   },
   created() {
