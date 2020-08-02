@@ -6,6 +6,7 @@
         <router-link to="/" class="app-link">
           <img class="small-image" src="@/assets/svg/binger-logo.svg" />
           Binger <i :style="{ color: 'gray', 'font-size': '15px' }">By Lala</i>
+          {{ checkIfLoggedIn }}
         </router-link>
       </h1>
     </div>
@@ -14,7 +15,7 @@
         theme="dark"
         mode="horizontal"
         :style="{ lineHeight: '64px' }"
-        v-if="!loggedIn"
+        v-if="!this.$store.state.loggedIn"
       >
         <a-menu-item class="nav-btn">
           <router-link to="/about">About Us</router-link>
@@ -53,7 +54,7 @@
 </template>
 
 <script>
-import firebase from "firebase";
+// import firebase from "firebase";
 import Menu from "@/components/Menu.vue";
 
 export default {
@@ -63,7 +64,7 @@ export default {
   },
   data() {
     return {
-      loggedIn: false
+      // loggedIn: false
       // username: null
     };
   },
@@ -75,17 +76,20 @@ export default {
   computed: {
     username() {
       return this.$store.state.userProfile["name"];
+    },
+    checkIfLoggedIn() {
+      return this.$store.state.loggedIn;
     }
   },
   created() {
-    firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        // this.username = user.displayName;
-        this.loggedIn = true;
-      } else {
-        this.loggedIn = false;
-      }
-    });
+    // firebase.auth().onAuthStateChanged(user => {
+    //   if (user) {
+    //     // this.username = user.displayName;
+    //     this.loggedIn = true;
+    //   } else {
+    //     this.loggedIn = false;
+    //   }
+    // });
   }
 };
 </script>

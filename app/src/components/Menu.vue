@@ -1,23 +1,45 @@
 <template>
   <PushRotate width="250">
     <div class="sidebar">
-      <header class="sidebar-header">
+      <header class="sidebar-header" v-if="this.$store.state.loggedIn">
         <a-avatar :size="64" icon="user" class="ant-icon" />
         <span class="username">{{ username }}</span>
       </header>
+      <header class="sidebar-header" v-else>
+        <a-avatar :size="64" icon="user" class="ant-icon" />
+        <span class="username">Not Sign In</span>
+      </header>
       <!-- <div class="break"></div> -->
-      <div class="sidebar-item">
+      <div class="sidebar-list">
+        <div
+          :class="activeRoute('Home') ? 'current-route' : ''"
+          class="sidebar-item"
+        >
+          <router-link class="link" to="/">
+            <span>Home</span>
+          </router-link>
+        </div>
+        <div
+          :class="activeRoute('About') ? 'current-route' : ''"
+          class="sidebar-item"
+        >
+          <router-link class="link" to="/about">
+            <span>About</span>
+          </router-link>
+        </div>
         <div
           :class="activeRoute('Recommendations') ? 'current-route' : ''"
           class="sidebar-item"
+          v-if="this.$store.state.loggedIn"
         >
           <router-link class="link" to="/movie-recommendations">
-            <span>Recommendations</span>
+            <span>Search Movies</span>
           </router-link>
         </div>
         <div
           :class="activeRoute('Favorites') ? 'current-route' : ''"
           class="sidebar-item"
+          v-if="this.$store.state.loggedIn"
         >
           <router-link class="link" to="/favorite-movies">
             <span>My Favorites</span>
@@ -26,6 +48,7 @@
         <div
           :class="activeRoute('Login') ? 'current-route' : ''"
           class="sidebar-item"
+          v-if="!this.$store.state.loggedIn"
         >
           <router-link class="link" to="/login">
             <span>Login</span>
@@ -44,14 +67,14 @@ export default {
   components: {
     PushRotate
   },
-  data() {
-    return {
-      username: "BrightBurn"
-    };
-  },
   methods: {
     activeRoute(check) {
       return this.$route.name === check ? true : false;
+    }
+  },
+  computed: {
+    username() {
+      return this.$store.state.userProfile["name"];
     }
   }
 };
@@ -175,7 +198,7 @@ export default {
 
 .sidebar-list {
   padding: 10px 0;
-  overflow-y: auto;
+  /* overflow-y: auto; */
   display: block;
 }
 

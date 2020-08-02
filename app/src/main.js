@@ -60,8 +60,11 @@ auth.onAuthStateChanged(user => {
   }
 
   if (user) {
+    store.commit("setAuthentication", true);
     store.dispatch("fetchUserProfile", user);
     store.dispatch("fetchLikedMovies", user.uid);
     store.dispatch("fetchDislikedMovies", user.uid);
+  } else {
+    store.commit("setAuthentication", false);
   }
 });

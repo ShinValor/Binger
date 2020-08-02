@@ -50,7 +50,8 @@ const store = new Vuex.Store({
       { name: "Talk", value: 0 },
       { name: "War & Politics", value: 0 },
       { name: "TV Movie", value: 0 }
-    ]
+    ],
+    loggedIn: Boolean
     // posts: [],
   },
   mutations: {
@@ -62,6 +63,9 @@ const store = new Vuex.Store({
     },
     setDislikedMovies(state, val) {
       state.dislikedMovies = val;
+    },
+    setAuthentication(state, val) {
+      state.loggedIn = val;
     }
     // setPerformingRequest(state, val) {
     //   state.performingRequest = val;
@@ -71,18 +75,6 @@ const store = new Vuex.Store({
     // }
   },
   actions: {
-    async login({ dispatch }, form) {
-      // Sign user in
-      const { user } = await fb.auth.signInWithEmailAndPassword(
-        form.email,
-        form.password
-      );
-
-      // Fetch user profile and set in state
-      dispatch("fetchUserProfile", user);
-
-      router.push("/");
-    },
     async signup({ dispatch }, form) {
       // Sign user up
       const { user } = await fb.auth.createUserWithEmailAndPassword(
@@ -101,12 +93,26 @@ const store = new Vuex.Store({
 
       router.push("/");
     },
+    async login({ dispatch, commit }, form) {
+      // Sign user in
+      const { user } = await fb.auth.signInWithEmailAndPassword(
+        form.email,
+        form.password
+      );
+
+      // Fetch user profile and set in state
+      dispatch("fetchUserProfile", user);
+      commit("setAuthentication", true);
+
+      router.push("/");
+    },
     async logout({ commit }) {
       // Log user out
       await fb.auth.signOut();
 
       // Clear user data from state
       commit("setUserProfile", {});
+      commit("setAuthentication", false);
 
       // Redirect to login view
       router.push("/login");
@@ -126,6 +132,10 @@ const store = new Vuex.Store({
       //   router.push("/");
       // }
     },
+    // async fetchAuthentication({ commit }, val) {
+    //   // Set if user logged in
+    //   commit("setAuthentication", val);
+    // },
     async fetchLikedMovies({ commit }, userId) {
       // Fetch user movie list
       const movieList = await fb.likesCollection.doc(userId).get();
