@@ -3,8 +3,18 @@
     <div v-if="loading">
       <Loading />
     </div>
-    <flickity class="carousel" ref="flickity" :options="flickityOptions" @init="onInit" v-else>
-      <div class="carousel-cell" v-for="(movie, index) in movieList" v-bind:key="index">
+    <flickity
+      class="carousel"
+      ref="flickity"
+      :options="flickityOptions"
+      @init="onInit"
+      v-else
+    >
+      <div
+        class="carousel-cell"
+        v-for="(movie, index) in movieList"
+        v-bind:key="index"
+      >
         <img
           class="carousel-cell-image"
           :data-flickity-lazyload="loadImg(movie.poster_path)"
@@ -20,7 +30,12 @@
         </div>
       </div>
     </flickity>
-    <a-modal v-model="modalVisible" :title="modalTitle" :width="750" :footer="null">
+    <a-modal
+      v-model="modalVisible"
+      :title="modalTitle"
+      :width="750"
+      :footer="null"
+    >
       <div :style="{ display: 'flex' }">
         <p class="content">{{ this.modalSummary }}</p>
         <img
@@ -31,7 +46,10 @@
         />
       </div>
       <a-button>
-        <router-link :to="{ name: 'MovieSynopsis', params: { id: this.modalId } }">More Info</router-link>
+        <router-link
+          :to="{ name: 'MovieSynopsis', params: { id: this.modalId } }"
+          >More Info</router-link
+        >
       </a-button>
     </a-modal>
   </div>
@@ -82,7 +100,7 @@ export default {
         cellElement,
         cellIndex
       ) {
-        console.log(event, pointer, cellElement, cellIndex);
+        // console.log(event, pointer, cellElement, cellIndex);
         vm.toggleModal(cellIndex);
       });
     },

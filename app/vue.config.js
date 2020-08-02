@@ -1,5 +1,4 @@
 module.exports = {
-  mode: "production",
   devServer: {
     clientLogLevel: "info",
     proxy: {

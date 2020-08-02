@@ -185,7 +185,6 @@ const store = new Vuex.Store({
 
       // // If user already liked this movie
       // if (likedoc.exists) {
-      //   // console.log("You Already liked This Movie");
       //   await fb.likesCollection.doc(docId).delete();
       //   return;
       // }
@@ -304,8 +303,6 @@ const store = new Vuex.Store({
     // }
     async updateProfile({ dispatch }, user) {
       const userId = fb.auth.currentUser.uid;
-
-      console.log(user);
 
       // update user object
       await fb.usersCollection.doc(userId).update({
