@@ -230,8 +230,8 @@ export default {
 }
 
 .current-route {
-  border-right: 3px solid#00adb5 !important;
-  color: #00adb5;
+  border-right: 3px solid#f3c669 !important;
+  color: #f3c669;
   font-weight: 900;
   pointer-events: none;
 }
@@ -242,6 +242,6 @@ export default {
 
 .link:active,
 .link:hover {
-  color: white;
+  color: #f3c669;
 }
 </style>

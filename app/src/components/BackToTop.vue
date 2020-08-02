@@ -5,20 +5,6 @@
 </template>
 
 <script>
-window.onscroll = function() {
-  scrollFunction();
-};
-
-const scrollFunction = function() {
-  console.log("RUNNING");
-  const mybutton = document.getElementById("btn");
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
-};
-
 export default {
   name: "BackToTop",
   methods: {
@@ -26,6 +12,26 @@ export default {
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0;
     }
+  },
+  mounted() {
+    window.onscroll = function() {
+      scrollFunction();
+    };
+
+    const scrollFunction = function() {
+      const mybutton = document.getElementById("btn");
+      if (
+        document.body.scrollTop > 20 ||
+        document.documentElement.scrollTop > 20
+      ) {
+        mybutton.style.display = "block";
+      } else {
+        mybutton.style.display = "none";
+      }
+    };
+  },
+  destroyed() {
+    window.onscroll = function() {};
   }
 };
 </script>

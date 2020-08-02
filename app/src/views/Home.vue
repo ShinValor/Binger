@@ -72,9 +72,7 @@
         :style="{
           'grid-area': 'content',
           display: 'flex',
-          'justify-content': 'center',
-          'margin-left': '50px',
-          'margin-top': '50px'
+          'justify-content': 'center'
         }"
       >
         <p class="content">
@@ -193,9 +191,10 @@ export default {
   ); */
   /* background-color: #21D4FD;
   background-image: linear-gradient(19deg, #21d4fd 0%, #b721ff 100%); */
-  background-color: #8ec5fc;
+  /* background-color: #8ec5fc; */
   /* background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%); */
-  background-image: linear-gradient(19deg, #a18cd1 0%, #fbc2eb 100%);
+  background-color: #323b49;
+  /* background-image: linear-gradient(19deg, #a18cd1 0%, #fbc2eb 100%); */
 }
 
 .container1 {
