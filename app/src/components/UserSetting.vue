@@ -41,7 +41,7 @@ export default {
       wrapperCol: { span: 14 },
       form: {
         name: "",
-        email: false,
+        // email: false,
         description: ""
       }
     };
@@ -75,12 +75,13 @@ export default {
 .cancel-btn {
   background-color: transparent;
   color: white;
+  border-color: #f3c669;
 }
 
-.update-btn:hover,
+/* .update-btn:hover,
 .cancel-btn:hover {
   border-color: white;
-}
+} */
 
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */

@@ -196,11 +196,12 @@ export default {
 .more-info {
   background-color: transparent;
   color: white;
+  border-color: #f3c669;
 }
 
-.more-info:hover {
+/* .more-info:hover {
   border-color: white;
-}
+} */
 
 .rand-btn {
   width: 100px;

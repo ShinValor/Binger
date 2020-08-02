@@ -14,11 +14,26 @@
 
 /* ================== Card ================== */
 
-/* 
-.ant-card-body {
+/* .ant-card-body {
   margin: 5px !important;
   padding: 0px !important;
 } */
+
+.ant-card-bordered {
+  border: none;
+}
+
+.ant-card-meta-detail {
+  margin: 25px !important;
+}
+
+.ant-card-meta-title {
+  color: white !important;
+}
+
+.ant-card-meta-description {
+  color: white !important;
+}
 
 /* ================== Drop down Menu ================== */
 
@@ -108,12 +123,20 @@
   color: white !important;
 }
 
-/* ================== CheckBox ================== */
+/* ================== Checkbox ================== */
+
+.ant-checkbox-checked::after {
+  border-color: #f3c669 !important;
+}
 
 .ant-checkbox-inner {
-  background-color: black !important;
-  border-color: white !important;
+  background-color: #2a323d !important;
+  border-color: #f3c669 !important;
 }
+
+/* .ant-checkbox-inner::after {
+  border-color: white !important;
+} */
 
 /* ================== Tabs ================== */
 
@@ -131,10 +154,23 @@
   background-color: #2a323d !important;
 }
 
-/* .ant-tabs-tab-active {
-  color: pink !important;
-} */
+.ant-tabs-tab-active {
+  color: #f3c669 !important;
+}
 
 .ant-tabs-ink-bar {
   background-color: #f3c669 !important;
+}
+
+/* ================== Input ================== */
+
+.ant-input:hover,
+.ant-input:active,
+.ant-input:focus {
+  border-color: black !important;
+}
+
+.ant-input-search-button {
+  background-color: #f3c669 !important;
+  border-color: #f3c669 !important;
 }

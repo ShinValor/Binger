@@ -29,9 +29,11 @@ export default {
 #app ::-moz-selection {
   background-color: #f3c669;
   color: #fff;
+  border-color: #f3c669;
 }
 #app ::selection {
   background-color: #f3c669;
   color: #fff;
+  border-color: #f3c669;
 }
 </style>

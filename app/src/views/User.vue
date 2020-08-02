@@ -1,7 +1,7 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
     <div class="container">
-      <Setting />
+      <UserSetting />
       <Card class="profile-card" :name="username" :desc="description" />
     </div>
   </a-layout>
@@ -9,13 +9,13 @@
 
 <script>
 import firebase from "firebase";
-import Setting from "@/components/Setting.vue";
+import UserSetting from "@/components/UserSetting.vue";
 import Card from "@/components/Card.vue";
 
 export default {
   name: "User",
   components: {
-    Setting,
+    UserSetting,
     Card
   },
   data() {
@@ -89,8 +89,8 @@ export default {
 }
 
 .profile-card {
-  height: 400px;
-  width: 400px;
+  height: 500px;
+  width: 450px;
 }
 
 @media screen and (max-width: 500px) {
@@ -102,7 +102,7 @@ export default {
   }
 
   .profile-card {
-    height: 300px;
+    height: 400px;
     width: 300px;
   }
 }

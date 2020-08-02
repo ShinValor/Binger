@@ -1,5 +1,6 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
+    <h1 class="team">The Binger Team</h1>
     <div class="about">
       <div class="about-row">
         <Card
@@ -45,23 +46,29 @@ export default {
 </script>
 
 <style scoped>
+.team {
+  margin: 25px 0 0;
+  color: white;
+  font-size: 2.5em;
+}
+
 .about {
-  margin: 50px 150px;
+  margin: 0 100px 50px;
   display: flex;
   flex-direction: column;
   align-items: space-evenly;
 }
 
 .about-row {
-  margin: 10px 0;
+  margin: 25px 0;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
 }
 
 .about-card {
-  height: 400px;
-  width: 400px;
+  height: 500px;
+  width: 450px;
 }
 
 @media screen and (max-width: 500px) {

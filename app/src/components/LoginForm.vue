@@ -35,7 +35,7 @@
     </a-form-item>
     <a-form-item>
       <a-checkbox
-        :style="{ float: 'left', color: 'white' }"
+        class="remember-btn"
         v-decorator="[
           'remember',
           {
@@ -46,13 +46,13 @@
       >
         Remember Me
       </a-checkbox>
-      <a :style="{ float: 'right' }" href="">
+      <router-link class="forget-btn" to="/signup">
         Forgot password
-      </a>
+      </router-link>
       <a-button class="submit-btn" html-type="submit">
         Log in
       </a-button>
-      <router-link to="/signup">
+      <router-link class="register-btn" to="/signup">
         Register now!
       </router-link>
     </a-form-item>
@@ -109,15 +109,37 @@ export default {
   margin: 100px auto 0;
 }
 
+.remember-btn {
+  float: left;
+}
+
+.forget-btn {
+  float: right;
+  color: white;
+}
+
+.forget-btn:hover {
+  color: #f3c669;
+}
+
+.register-btn {
+  color: white;
+}
+
+.register-btn:hover {
+  color: #f3c669;
+}
+
 .submit-btn {
   background-color: transparent;
   width: 100%;
   color: white;
+  border-color: #f3c669;
 }
 
-.submit-btn:hover {
+/* .submit-btn:hover {
   border-color: white;
-}
+} */
 
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */

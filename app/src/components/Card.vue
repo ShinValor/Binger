@@ -1,11 +1,13 @@
 <template>
   <a-card class="card" hoverable>
-    <img
-      class="large-image"
-      slot="cover"
-      alt="example"
-      src="../assets/svg/ethnic-friendship-pana.svg"
-    />
+    <div class="container">
+      <img
+        class="large-image"
+        slot="cover"
+        alt="example"
+        src="../assets/svg/profile-pic.svg"
+      />
+    </div>
     <a-card-meta :title="name" :description="desc" />
   </a-card>
 </template>
@@ -23,7 +25,14 @@ export default {
 
 <style scoped>
 .card {
-  margin: 25px;
+  background-color: #2a323d;
+  margin: 10px;
+  /* border-color: #f3c669; */
+}
+
+.container {
+  /* background-color: white; */
+  margin: 5px;
 }
 
 .large-image {

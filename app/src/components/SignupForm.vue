@@ -135,11 +135,12 @@ export default {
   background-color: transparent;
   width: 100%;
   color: white;
+  border-color: #f3c669;
 }
 
-.submit-btn:hover {
+/* .submit-btn:hover {
   border-color: white;
-}
+} */
 
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */

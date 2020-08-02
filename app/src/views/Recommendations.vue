@@ -1,6 +1,6 @@
 <template>
   <a-layout class="container">
-    <SearchBar class="searchBar" />
+    <SearchBar class="search-bar" />
     <div :style="{ width: '90%', margin: '0 auto' }">
       <div class="header">
         <h1 class="title">Random</h1>
@@ -138,10 +138,10 @@ export default {
   color: white;
 }
 
-.view-btn:hover,
+/* .view-btn:hover,
 .view-btn:active {
   border-color: white;
-}
+} */
 
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */

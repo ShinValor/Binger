@@ -151,7 +151,7 @@ export default {
 
 .tabs {
   width: 85%;
-  margin: 50px auto;
+  margin: 25px auto 50px;
 }
 
 .favorite-movie {
