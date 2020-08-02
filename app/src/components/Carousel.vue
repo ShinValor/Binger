@@ -3,13 +3,8 @@
     <div v-if="loading">
       <Loading />
     </div>
-    <flickity class="carousel" ref="flickity" :options="flickityOptions" v-else>
-      <div
-        class="carousel-cell"
-        v-for="(movie, index) in movieList"
-        v-bind:key="index"
-        @click="toggleModal(movie)"
-      >
+    <flickity class="carousel" ref="flickity" :options="flickityOptions" @init="onInit" v-else>
+      <div class="carousel-cell" v-for="(movie, index) in movieList" v-bind:key="index">
         <img
           class="carousel-cell-image"
           :data-flickity-lazyload="loadImg(movie.poster_path)"
@@ -19,17 +14,13 @@
         <div class="carousel-cell-desc">
           <h1 class="title">{{ movie.title }}</h1>
           <p class="content" :style="{ color: 'gray' }">
-            <a-icon type="like" /> {{ movie.vote_count }} Votes
+            <a-icon type="like" />
+            {{ movie.vote_count }} Votes
           </p>
         </div>
       </div>
     </flickity>
-    <a-modal
-      v-model="modalVisible"
-      :title="modalTitle"
-      :width="750"
-      :footer="null"
-    >
+    <a-modal v-model="modalVisible" :title="modalTitle" :width="750" :footer="null">
       <div :style="{ display: 'flex' }">
         <p class="content">{{ this.modalSummary }}</p>
         <img
@@ -39,12 +30,8 @@
           onerror="this.style.display='none'"
         />
       </div>
-      <a-button class="more-info">
-        <router-link
-          :to="{ name: 'MovieSynopsis', params: { id: this.modalId } }"
-        >
-          More Info
-        </router-link>
+      <a-button>
+        <router-link :to="{ name: 'MovieSynopsis', params: { id: this.modalId } }">More Info</router-link>
       </a-button>
     </a-modal>
   </div>
@@ -87,7 +74,20 @@ export default {
     this.fetchMovies(this.movieUrls);
   },
   methods: {
-    toggleModal(movie) {
+    onInit() {
+      let vm = this;
+      this.$refs.flickity.on("staticClick", function(
+        event,
+        pointer,
+        cellElement,
+        cellIndex
+      ) {
+        console.log(event, pointer, cellElement, cellIndex);
+        vm.toggleModal(cellIndex);
+      });
+    },
+    toggleModal(cellIndex) {
+      let movie = this.movieList[cellIndex];
       this.modalVisible = !this.modalVisible;
       this.modalId = movie.id;
       this.modalTitle = movie.original_title;
