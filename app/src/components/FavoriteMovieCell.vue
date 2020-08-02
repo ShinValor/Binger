@@ -1,26 +1,26 @@
 <template>
-  <li class="movie">
-    <img class="poster" :src="imgUrl(item.poster_path)" />
-    <!-- <br /> -->
-    <div>
-      <router-link
-        class="title"
-        :to="{ name: 'MovieSynopsis', params: { id: item.id } }"
-      >
-        {{ item.title }}
-      </router-link>
-      <div class="d-flex items-center area muted">
-        <p class="para-tag">{{ item.release_year }}</p>
-        <p class="separator genres para-tag">{{ genres }}</p>
+  <li>
+    <router-link
+      class="movie"
+      :to="{ name: 'MovieSynopsis', params: { id: item.id } }"
+    >
+      <img class="poster" :src="imgUrl(item.poster_path)" />
+      <!-- <br /> -->
+      <div>
+        <h1 class="title">{{ item.title }}</h1>
+        <div class="d-flex items-center area muted">
+          <p class="para-tag">{{ item.release_year }}</p>
+          <p class="separator genres para-tag">{{ genres }}</p>
+        </div>
+        <p class="area plot para-tag">{{ item.overview }}</p>
+        <div class="d-flex items-center area">
+          <p class="rating para-tag" title="Rating" v-show="item.popularity">
+            <span class="rating-star"></span>
+            {{ item.vote_average }}
+          </p>
+        </div>
       </div>
-      <p class="area plot para-tag">{{ item.overview }}</p>
-      <div class="d-flex items-center area">
-        <p class="rating para-tag" title="Rating" v-show="item.popularity">
-          <span class="rating-star"></span>
-          {{ item.vote_average }}
-        </p>
-      </div>
-    </div>
+    </router-link>
   </li>
 </template>
 
@@ -75,10 +75,22 @@ export default {
   align-items: flex-start;
   padding: 1em;
   /* border-bottom: 1px solid white; */
+  /* display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out; */
 }
 
 .movie:hover {
   background-color: #2a313c;
+  /* transform: scale(1.1); */
 }
 
 .poster {
@@ -98,7 +110,7 @@ export default {
 .title {
   font-size: 1.2em;
   color: white;
-  display: inline-block;
+  /* display: inline-block;
   vertical-align: middle;
   -webkit-transform: perspective(1px) translateZ(0);
   transform: perspective(1px) translateZ(0);
@@ -108,12 +120,12 @@ export default {
   -webkit-transition-property: transform;
   transition-property: transform;
   -webkit-transition-timing-function: ease-out;
-  transition-timing-function: ease-out;
+  transition-timing-function: ease-out; */
 }
 
-.title:hover {
+/* .title:hover {
   transform: scale(1.1);
-}
+} */
 
 .plot {
   color: white;

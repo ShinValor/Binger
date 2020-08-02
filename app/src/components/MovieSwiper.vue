@@ -72,20 +72,17 @@ export default {
         draggedRight: INTERACT_DRAGGED_RIGHT
       },
       movie: {},
-      // posterUrl: String,
       loading: false
     };
   },
   methods: {
     draggedLeft() {
-      const movie = this.movie;
-      this.$store.dispatch("dislikeMovie", movie);
+      this.$store.dispatch("dislikeMovie", this.movie);
       this.hideCard();
       this.generateMovie();
     },
     draggedRight() {
-      const movie = this.movie;
-      this.$store.dispatch("likeMovie", movie);
+      this.$store.dispatch("likeMovie", this.movie);
       this.hideCard();
       this.generateMovie();
     },
@@ -111,10 +108,10 @@ export default {
       try {
         this.loading = !this.loading;
         const res = await axios.get(
-          "https://binger-api-testv1.azurewebsites.net/movie/random"
+          "https://binger-api-testv1.azurewebsites.net/movie/random",
+          { params: { size: 1 } }
         );
         this.movie = res.data[0];
-        // this.posterUrl = `https://image.tmdb.org/t/p/w342${this.movie["poster_path"]}`;
       } catch (err) {
         this.error = err;
       } finally {
