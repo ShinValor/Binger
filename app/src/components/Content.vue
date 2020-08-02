@@ -51,13 +51,14 @@ export default {
   width: 300px;
   margin: 25px auto;
   /* border-color: white; */
+  border-color: #f3c669;
   color: white;
 }
 
-.desc-btn:hover {
-  /* border-color: gray; */
+/* .desc-btn:hover {
+  border-color: gray;
   border-color: white;
-}
+} */
 
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */

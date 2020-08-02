@@ -132,8 +132,9 @@ export default {
   width: 100px;
   height: 100%;
   margin: 20px;
-  padding: 5px 20px;
+  padding: 5px 10px;
   background-color: transparent;
+  border-color: #f3c669;
   color: white;
 }
 
@@ -157,7 +158,7 @@ export default {
   }
 
   .view-btn {
-    width: 50px;
+    width: 75px;
     margin: 5px 0;
     padding: 5px;
     font-size: 10px;

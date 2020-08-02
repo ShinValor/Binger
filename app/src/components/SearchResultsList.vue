@@ -167,7 +167,7 @@ export default {
 }
 
 .pagination {
-  margin: 20px;
+  margin: 20px auto;
 }
 
 .movie-cell {
@@ -199,6 +199,10 @@ export default {
   .content {
     margin: 0 auto;
     font-size: 5px;
+  }
+
+  .pagination {
+    width: 100%;
   }
 }
 </style>

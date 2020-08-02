@@ -1,6 +1,6 @@
 <template>
-  <button id="btn" @click="topFunction" :style="{ color: 'black' }">
-    <a-icon type="up" />
+  <button id="btn" @click="topFunction">
+    <font-awesome-icon :icon="['fas', 'angle-double-up']" />
   </button>
 </template>
 
@@ -15,10 +15,6 @@ export default {
   },
   mounted() {
     window.onscroll = function() {
-      scrollFunction();
-    };
-
-    const scrollFunction = function() {
       const mybutton = document.getElementById("btn");
       if (
         document.body.scrollTop > 20 ||
@@ -40,12 +36,37 @@ export default {
 #btn {
   position: fixed;
   left: 95%;
-  bottom: 10px;
+  bottom: 2%;
   width: 50px;
   height: 50px;
   padding: 0.5px;
-  background-color: #f3c669;
-  border-color: black;
+  background-color: #2a323d;
+  border: 1px solid #f3c669;
   border-radius: 50%;
+  outline: none;
+  color: white;
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+
+#btn:hover {
+  transform: scale(1.1);
+}
+
+@media screen and (max-width: 500px) {
+  /* applies styles to any device screen sizes below 800px wide */
+
+  #btn {
+    left: 85%;
+  }
 }
 </style>

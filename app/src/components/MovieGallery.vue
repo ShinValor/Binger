@@ -190,7 +190,7 @@ export default {
 }
 
 .pagination {
-  margin: 20px;
+  margin: 20px auto;
 }
 
 .more-info {
@@ -232,6 +232,10 @@ export default {
     width: 50px;
     margin: 20px 0 5px;
     padding: 0;
+  }
+
+  .pagination {
+    width: 100%;
   }
 }
 </style>

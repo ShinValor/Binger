@@ -12,14 +12,18 @@ import "ant-design-vue/dist/antd.css";
 /* Font Awesome Icon */
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faUser, faRandom } from "@fortawesome/free-solid-svg-icons";
 import {
-  faFacebookSquare,
-  faTwitterSquare,
-  faGooglePlusSquare,
-  faGithubSquare,
-  faVuejs
-} from "@fortawesome/free-brands-svg-icons";
+  faUser,
+  faRandom,
+  faAngleDoubleUp
+} from "@fortawesome/free-solid-svg-icons";
+// import {
+//   faFacebookSquare,
+//   faTwitterSquare,
+//   faGooglePlusSquare,
+//   faGithubSquare,
+//   faVuejs
+// } from "@fortawesome/free-brands-svg-icons";
 
 Vue.config.productionTip = false;
 
@@ -28,11 +32,12 @@ Vue.use(Antd);
 library.add(
   faUser,
   faRandom,
-  faFacebookSquare,
-  faTwitterSquare,
-  faGooglePlusSquare,
-  faGithubSquare,
-  faVuejs
+  faAngleDoubleUp
+  // faFacebookSquare,
+  // faTwitterSquare,
+  // faGooglePlusSquare,
+  // faGithubSquare,
+  // faVuejs
 );
 
 // USAGE https://github.com/FortAwesome/vue-fontawesome#usage

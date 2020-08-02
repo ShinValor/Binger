@@ -59,7 +59,11 @@
   color: white !important;
 }
 
-.ant-pagination-item a,
+.ant-pagination-item a {
+  color: white !important
+}
+
+.ant-pagination-item,
 .ant-pagination-item-link {
   background-color: #414141 !important;
   color: white !important
@@ -71,14 +75,14 @@
   filter: brightness(200%);
 }
 
-.ant-pagination-item-active {
-  border-color: white !important;
+.ant-pagination-item-active,
+.ant-pagination-item-active:hover {
+  border-color: #f3c669 !important;
   filter: brightness(100%) !important;
 }
 
 .ant-pagination-item-active a {
-  background-color: #f3c669 !important;
-  color: white !important;
+  color: #f3c669 !important;
 }
 
 /* ================== 404 ================== */
