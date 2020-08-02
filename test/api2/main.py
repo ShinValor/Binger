@@ -299,15 +299,18 @@ def get_best_rated_movies():
 def get_random_movies():
 
     api_url = MOVIE_DISCOVER_URL
+    
+    size = request.args.get('size')
+    size = size if size else 20
+    print(size)
+
 
     sample_population = []
     sample_pages = random.sample(range(MAX_PAGE_NUMBER), 5)
-#    print(sample_pages)
-
     for page_num in sample_pages:
         options = DEFAULT_OPTIONS.copy()
         options["page"] = page_num
-
+        
         response = requests.get(url=api_url, params=options)
 
         data = response.json()
@@ -317,26 +320,29 @@ def get_random_movies():
 
     movies = random.choices(sample_population, k=25)
 
-    seen = set()
-    new_l = []
-    for d in movies:
-        t = d['id']
-        if t not in seen:
-            seen.add(t)
-            new_l.append(d)
-    movies = new_l
-    while len(movies) != 20:
-        if len(movies) > 20:
-            movies.pop()
-        else:
-            movies.append(sample_population.pop())
-
     for movie in movies:
         if "genre_ids" in movie:
             ids = movie["genre_ids"]
             movie["genre_ids"] = [(GENRE_IDS_TO_NAME[x]) for x in ids]
             movie["genres"] = movie.pop("genre_ids")
-
+    
+    if size == 20:
+        seen = set()
+        new_l = []
+        for d in movies:
+            t = d['id']
+            if t not in seen:
+                seen.add(t)
+                new_l.append(d)
+        movies = new_l
+        while len(movies) != 20:
+            if len(movies) > 20:
+                movies.pop()
+            else:
+                movies.append(sample_population.pop())
+    else:
+        movies = random.choices(movies, k=int(size))
+    
     return jsonify(movies)
 
 
