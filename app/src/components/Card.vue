@@ -4,7 +4,7 @@
       <img
         class="large-image"
         slot="cover"
-        alt="example"
+        alt="Profile Picture"
         src="../assets/svg/profile-pic.svg"
       />
     </div>

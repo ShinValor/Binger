@@ -20,7 +20,7 @@
 } */
 
 .ant-card-bordered {
-  border: none;
+  border: none !important;
 }
 
 .ant-card-meta-detail {

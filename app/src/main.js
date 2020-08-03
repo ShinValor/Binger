@@ -67,6 +67,7 @@ auth.onAuthStateChanged(user => {
   if (user) {
     store.commit("setAuthentication", true);
     store.dispatch("fetchUserProfile", user);
+    store.dispatch("fetchUserImage", user);
     store.dispatch("fetchLikedMovies", user.uid);
     store.dispatch("fetchDislikedMovies", user.uid);
   } else {

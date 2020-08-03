@@ -96,7 +96,7 @@
       </div>
       <div class="section2" :style="{ 'grid-area': 'advert' }">
         <img class="small-image" src="../assets/svg/work-time-rafiki.svg" />
-        <h2 class="sub-title">3. Wait For Recommendations</h2>
+        <h2 class="sub-title">3. Look For Recommendations</h2>
       </div>
       <div class="section2" :style="{ 'grid-area': 'footer' }">
         <img class="small-image" src="../assets/svg/movie-night-bro.svg" />
