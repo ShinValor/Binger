@@ -65,6 +65,9 @@ const store = new Vuex.Store({
     setDislikedMovies(state, val) {
       state.dislikedMovies = val;
     },
+    setGenres(state, val) {
+      state.genres[val.genre].value = val.value;
+    },
     setAuthentication(state, val) {
       state.loggedIn = val;
     },
@@ -230,6 +233,9 @@ const store = new Vuex.Store({
 
       // Fetch dislikedMovies and set in state
       dispatch("fetchDislikedMovies", userId);
+    },
+    async updateGenres({ commit }, genre) {
+      commit("setGenres", genre);
     }
   }
 });

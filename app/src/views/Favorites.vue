@@ -7,7 +7,8 @@
     </div>
     <a-tabs class="tabs" default-active-key="1" @change="switchTabs">
       <a-tab-pane key="1" tab="My Dashboard" force-render>
-        <chart :options="option" />
+        <ECharts :options="option" />
+        <a-button @click="changeData">Change</a-button>
       </a-tab-pane>
       <a-tab-pane key="2" tab="Liked Movies">
         <FavoriteMovieList class="favorite-movie" :movieList="likedMovies" />
@@ -45,7 +46,7 @@ export default {
   components: {
     FavoriteMovieList,
     MovieSwiper,
-    chart: ECharts,
+    ECharts,
     BackToTop
   },
   data() {
@@ -107,7 +108,7 @@ export default {
             radius: [30, 200],
             center: ["50%", "50%"],
             roseType: "area",
-            data: this.dataset()
+            data: this.$store.state.genres
           }
         ]
       }
@@ -117,10 +118,11 @@ export default {
     toggleModal() {
       this.modalVisible = !this.modalVisible;
     },
-    dataset() {
-      let dataset = this.$store.state.genres;
-      dataset = JSON.parse(JSON.stringify(dataset));
-      return dataset;
+    changeData() {
+      const genre = Math.floor(Math.random() * (25 - 0)) + 0;
+      const value = this.$store.state.genres[genre].value + 1;
+      console.log("Genre: ", genre, "Value: ", value);
+      this.$store.dispatch("updateGenres", { genre: genre, value: value });
     },
     switchTabs(key) {
       console.log(key);
