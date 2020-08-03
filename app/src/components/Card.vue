@@ -5,7 +5,15 @@
         class="large-image"
         slot="cover"
         alt="Profile Picture"
-        :src="imgUrl"
+        :src="img"
+        v-if="img"
+      />
+      <img
+        class="large-image"
+        slot="cover"
+        alt="Profile Picture"
+        src="../assets/svg/profile-pic.svg"
+        v-else
       />
     </div>
     <a-card-meta :title="name" :description="desc" />
@@ -18,7 +26,10 @@ export default {
   props: {
     name: String,
     desc: String,
-    imgUrl: String
+    img: String
+  },
+  mounted() {
+    console.log(this.img);
   }
 };
 </script>

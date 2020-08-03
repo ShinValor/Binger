@@ -75,10 +75,10 @@ export default {
   margin-left: 20px;
 }
 
-/* .update-btn:hover,
+.update-btn:hover,
 .cancel-btn:hover {
-  border-color: white;
-} */
+  background-color: #f3c669;
+}
 
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */

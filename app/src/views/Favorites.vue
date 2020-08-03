@@ -1,9 +1,9 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
     <div :style="{ display: 'flex', 'justify-content': 'flex-end' }">
-      <a-button class="swiper-btn" @click="toggleModal"
-        >Try Our Swiper</a-button
-      >
+      <a-button class="swiper-btn" @click="toggleModal">
+        Try Our Swiper
+      </a-button>
     </div>
     <a-tabs class="tabs" default-active-key="1" @change="switchTabs">
       <a-tab-pane key="1" tab="My Dashboard" force-render>
@@ -168,6 +168,10 @@ export default {
   padding: 5px;
   color: white;
   border-color: #f3c669;
+}
+
+.swiper-btn:hover {
+  background-color: #f3c669;
 }
 
 @media screen and (max-width: 800px) {

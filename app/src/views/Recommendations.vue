@@ -138,10 +138,9 @@ export default {
   color: white;
 }
 
-/* .view-btn:hover,
-.view-btn:active {
-  border-color: white;
-} */
+.view-btn:hover {
+  background-color: #f3c669;
+}
 
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */

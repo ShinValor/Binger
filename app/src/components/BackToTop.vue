@@ -59,7 +59,8 @@ export default {
 }
 
 #btn:hover {
-  transform: scale(1.1);
+  transform: scale(1.2);
+  background-color: #f3c669;
 }
 
 @media screen and (max-width: 500px) {

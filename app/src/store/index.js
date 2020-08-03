@@ -23,6 +23,7 @@ const store = new Vuex.Store({
   state: {
     userProfile: {},
     userImage: "",
+    loggedIn: Boolean,
     likedMovies: [],
     dislikedMovies: [],
     genres: [
@@ -51,8 +52,7 @@ const store = new Vuex.Store({
       { name: "Talk", value: 0 },
       { name: "War & Politics", value: 0 },
       { name: "TV Movie", value: 0 }
-    ],
-    loggedIn: Boolean
+    ]
     // posts: [],
   },
   mutations: {

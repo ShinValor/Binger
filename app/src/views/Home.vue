@@ -8,7 +8,7 @@
         <p class="sub-heading content">
           Millions of movies, TV shows and people to discover. Explore now.
         </p>
-        <a-button class="sub-button">
+        <a-button class="sub-btn">
           <a href="/#how-it-work"><b>Learn More</b></a>
         </a-button>
       </div>
@@ -16,8 +16,8 @@
     <Content
       class="content-background"
       heading="Welcome To Binger"
-      description="Get started by signing up Binger, and learn how you can find movies and shows you like."
-      buttonDesc="Get started with Binger"
+      description="Learn how you can find your favorite movies and shows."
+      button="Get started"
     />
     <div class="container2">
       <div class="section1">
@@ -159,7 +159,7 @@ export default {
   margin: 30px 0px 0px 30px;
 }
 
-.sub-button {
+.sub-btn {
   background-color: transparent;
   width: 200px;
   margin: 20px 20px 20px 30px;
@@ -169,10 +169,9 @@ export default {
   color: white;
 }
 
-/* .sub-button:hover {
-  border-color: gray;
-  border-color: white;
-} */
+.sub-btn:hover {
+  background-color: #f3c669;
+}
 
 .title {
   font-size: 35px;
@@ -194,8 +193,8 @@ export default {
   /* background-image: linear-gradient(19deg, #21d4fd 0%, #b721ff 100%); */
   /* background-color: #8ec5fc; */
   /* background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%); */
-  /* background-color: #323b49; */
-  background-image: linear-gradient(19deg, #a18cd1 0%, #fbc2eb 100%);
+  background-color: #323b49;
+  /* background-image: linear-gradient(19deg, #a18cd1 0%, #fbc2eb 100%); */
 }
 
 .container1 {
@@ -260,20 +259,20 @@ export default {
   }
 
   .heading {
-    margin: 50px 10px 10px 15px;
+    margin: 90px 10px 10px;
     width: 100px;
     font-size: 15px;
   }
 
   .sub-heading {
     width: 200px;
-    margin: 10px 10px 5px 15px;
+    margin: 10px;
     color: white;
   }
 
-  .sub-button {
+  .sub-btn {
     width: 100px;
-    margin: 20px 10px 10px 10px;
+    margin: 10px;
     padding: 0;
   }
 
@@ -312,9 +311,9 @@ export default {
   }
 
   .section3 {
-    margin-top: 15px;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
   }
 
   .content {

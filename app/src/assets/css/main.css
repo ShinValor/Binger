@@ -20,19 +20,22 @@
 } */
 
 .ant-card-bordered {
-  border: none !important;
+  border-radius: 5px !important;
+  border-color: transparent !important;
 }
 
 .ant-card-meta-detail {
-  margin: 25px !important;
+  margin: 15px 5px 5px !important;
 }
 
 .ant-card-meta-title {
   color: white !important;
+  font-size: 25px !important;
 }
 
 .ant-card-meta-description {
   color: white !important;
+  font-size: 1.2em !important;
 }
 
 /* ================== Drop down Menu ================== */
@@ -173,4 +176,14 @@
 .ant-input-search-button {
   background-color: #f3c669 !important;
   border-color: #f3c669 !important;
+}
+
+/* ================== Spin ================== */
+
+.ant-spin-dot-item {
+  background-color: #f3c669 !important;
+}
+
+.ant-spin-text {
+  color: #f3c669 !important;
 }

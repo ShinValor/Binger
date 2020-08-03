@@ -65,7 +65,7 @@
       </a-input>
     </a-form-item>
     <a-form-item>
-      <a-button class="submit-btn" html-type="submit">
+      <a-button class="signup-btn" html-type="submit">
         Register
       </a-button>
     </a-form-item>
@@ -131,16 +131,16 @@ export default {
   margin: 100px auto 0;
 }
 
-.submit-btn {
+.signup-btn {
   background-color: transparent;
   width: 100%;
   color: white;
   border-color: #f3c669;
 }
 
-/* .submit-btn:hover {
-  border-color: white;
-} */
+.signup-btn:hover {
+  background-color: #f3c669;
+}
 
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */

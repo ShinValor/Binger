@@ -3,85 +3,102 @@
     <h1 class="title">
       <b>{{ heading }}</b>
     </h1>
-    <p class="desc">{{ description }}</p>
-    <a-button class="desc-btn">
-      <router-link to="/login">
-        <b>{{ buttonDesc }}</b>
-      </router-link>
-    </a-button>
+    <div class="section">
+      <p class="description"></p>
+      <a-button class="description-btn">
+        <router-link to="/login">
+          <b>{{ button }}</b>
+        </router-link>
+      </a-button>
+    </div>
   </div>
 </template>
 
 <script>
+import typer from "typer-js";
+
 export default {
   name: "Content",
   props: {
     heading: String,
     description: String,
-    buttonDesc: String
+    button: String
+  },
+  mounted() {
+    typer(".description", { min: 20, max: 50 })
+      .cursor({ block: true, blink: "soft", color: "#f3c669" })
+      .line(this.description)
+      .line("Subscribe To Movie Recommendations.")
+      .line("Share With Friends.")
+      .pause(3000)
+      .back("all")
+      .repeat(Infinity, true);
   }
 };
 </script>
 
 <style scoped>
+@import "https://unpkg.com/typer-js/typer.css";
+
 .container {
   height: 350px;
-  margin: 30px;
+  margin: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-content: center;
-  text-align: center;
 }
 
 .title {
-  margin: 0 auto;
+  margin: 5px auto;
   font-size: 35px;
   color: white;
 }
 
-.desc {
-  margin: 0 auto;
+.section {
+  padding: 10px;
+}
+
+.description {
+  height: 100px;
+  margin: 20px auto;
   font-size: 20px;
   color: white;
 }
 
-.desc-btn {
+.description-btn {
+  width: 200px;
+  margin: 5px auto;
+  padding: 0px;
   background-color: transparent;
-  width: 300px;
-  margin: 25px auto;
-  /* border-color: white; */
   border-color: #f3c669;
   color: white;
 }
 
-/* .desc-btn:hover {
-  border-color: gray;
-  border-color: white;
-} */
+.description-btn:hover {
+  background-color: #f3c669;
+}
 
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */
 
   .title {
+    margin: 5px auto;
     font-size: 20px;
   }
 
   .container {
-    height: 150px;
+    height: 200px;
     margin: 15px;
   }
 
-  .desc {
-    font-size: 10px;
-    margin: 10px;
+  .description {
+    height: 80px;
+    margin: 5px auto;
+    font-size: 1em;
   }
 
-  .desc-btn {
-    width: 125px;
-    margin: 0 auto;
-    padding: 0px;
-    font-size: 10px;
+  .description-btn {
+    width: 100px;
   }
 }
 </style>

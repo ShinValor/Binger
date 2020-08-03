@@ -49,7 +49,7 @@
       <router-link class="forget-btn" to="/signup">
         Forgot password
       </router-link>
-      <a-button class="submit-btn" html-type="submit">
+      <a-button class="login-btn" html-type="submit">
         Log in
       </a-button>
       <router-link class="register-btn" to="/signup">
@@ -130,16 +130,16 @@ export default {
   color: #f3c669;
 }
 
-.submit-btn {
+.login-btn {
   background-color: transparent;
   width: 100%;
   color: white;
   border-color: #f3c669;
 }
 
-/* .submit-btn:hover {
-  border-color: white;
-} */
+.login-btn:hover {
+  background-color: #f3c669;
+}
 
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */

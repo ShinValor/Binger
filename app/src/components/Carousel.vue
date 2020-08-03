@@ -45,7 +45,7 @@
           onerror="this.style.display='none'"
         />
       </div>
-      <a-button class="more-info">
+      <a-button class="info-btn">
         <router-link
           :to="{ name: 'MovieSynopsis', params: { id: this.modalId } }"
           >More Info</router-link
@@ -197,15 +197,15 @@ export default {
   object-fit: cover;
 }
 
-.more-info {
+.info-btn {
   background-color: transparent;
   color: white;
   border-color: #f3c669;
 }
 
-/* .more-info:hover {
-  border-color: white;
-} */
+.info-btn:hover {
+  background-color: #f3c669;
+}
 
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */

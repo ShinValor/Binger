@@ -6,7 +6,7 @@
         class="profile-card"
         :name="username"
         :desc="description"
-        :imgUrl="avatarUrl"
+        :img="avatarUrl"
       />
     </div>
     <div :style="{ display: 'inline' }">
@@ -165,6 +165,10 @@ export default {
   background-color: transparent;
   color: white;
   border-color: #f3c669;
+}
+
+.upload-btn:hover {
+  background-color: #f3c669;
 }
 
 @media screen and (max-width: 500px) {

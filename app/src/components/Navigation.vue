@@ -32,7 +32,8 @@
       <a-dropdown :trigger="['click']" :style="{ padding: '0px 20px' }" v-else>
         <a class="nav-dropdown" @click.prevent>
           {{ username }}
-          <a-icon type="caret-down" /> <a-icon type="user" />
+          <a-icon type="caret-down" />
+          <a-icon type="user" />
           <!-- <font-awesome-icon :icon="['fas', 'user']" /> -->
         </a>
         <a-menu theme="dark" slot="overlay">
