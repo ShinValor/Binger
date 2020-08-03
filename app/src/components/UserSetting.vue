@@ -6,15 +6,15 @@
     :wrapper-col="wrapperCol"
   >
     <a-form-model-item label="Nick Name">
-      <a-input v-model="form.name" />
-      <!-- <a-input v-model="username" /> -->
+      <!-- <a-input v-model="form.name" /> -->
+      <a-input v-model="username" />
     </a-form-model-item>
     <!-- <a-form-model-item label="Send Email">
       <a-switch v-model="form.email" />
     </a-form-model-item> -->
     <a-form-model-item label="Introduction">
-      <a-input v-model="form.description" type="textarea" />
-      <!-- <a-input v-model="description" type="textarea" /> -->
+      <!-- <a-input v-model="form.description" type="textarea" /> -->
+      <a-input v-model="description" type="textarea" />
     </a-form-model-item>
     <a-form-model-item :wrapper-col="{ span: 14, offset: 4 }">
       <a-button
@@ -23,7 +23,7 @@
       >
         Update
       </a-button>
-      <a-button class="cancel-btn" style="margin-left: 10px;">
+      <a-button class="cancel-btn">
         <router-link :to="{ name: 'Home' }">
           Cancel
         </router-link>
@@ -34,29 +34,25 @@
 
 <script>
 export default {
-  name: "Setting",
+  name: "UserSetting",
+  props: {
+    username: String,
+    description: String
+  },
   data() {
     return {
       labelCol: { span: 4 },
       wrapperCol: { span: 14 },
       form: {
         name: "",
-        // email: false,
         description: ""
+        // email: false,
       }
     };
   },
   methods: {
     onUpdate(name, description) {
       this.$store.dispatch("updateProfile", { name, description });
-    }
-  },
-  computed: {
-    username() {
-      return this.$store.state.userProfile["name"];
-    },
-    description() {
-      return this.$store.state.userProfile["description"];
     }
   }
 };
@@ -76,6 +72,7 @@ export default {
   background-color: transparent;
   color: white;
   border-color: #f3c669;
+  margin-left: 20px;
 }
 
 /* .update-btn:hover,

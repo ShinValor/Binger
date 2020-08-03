@@ -1,7 +1,7 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
     <div class="container">
-      <UserSetting />
+      <UserSetting :username="username" :description="description" />
       <Card
         class="profile-card"
         :name="username"
@@ -17,10 +17,7 @@
         @change="previewImage"
         accept="image/*"
       />
-      <a-button
-        :style="{ width: '200px', 'margin-right': '125px', float: 'right' }"
-        @click="onClick"
-      >
+      <a-button class="upload-btn" @click="onClick">
         Upload Picture
       </a-button>
     </div>
@@ -159,6 +156,15 @@ export default {
 .profile-card {
   height: 500px;
   width: 450px;
+}
+
+.upload-btn {
+  width: 200px;
+  margin-right: 125px;
+  float: right;
+  background-color: transparent;
+  color: white;
+  border-color: #f3c669;
 }
 
 @media screen and (max-width: 500px) {
