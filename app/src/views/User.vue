@@ -2,32 +2,27 @@
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
     <div class="container">
       <UserSetting />
-      <Card class="profile-card" :name="username" :desc="description" />
+      <Card
+        class="profile-card"
+        :name="username"
+        :desc="description"
+        :imgUrl="avatarUrl"
+      />
     </div>
-    <div>
-      <div
-        :style="{
-          'background-color': 'white',
-          height: '350px',
-          width: '350px',
-          margin: '25px auto',
-          display: 'flex',
-          'justify-content': 'center',
-          'align-items': 'center'
-        }"
+    <div :style="{ display: 'inline' }">
+      <input
+        type="file"
+        ref="imageInput"
+        :style="{ display: 'none' }"
+        @change="previewImage"
+        accept="image/*"
+      />
+      <a-button
+        :style="{ width: '200px', 'margin-right': '125px', float: 'right' }"
+        @click="onClick"
       >
-        <img class="preview" height="300" width="300" :src="userImage" />
-      </div>
-      <div :style="{ margin: '25px' }">
-        <input
-          type="file"
-          ref="imageInput"
-          :style="{ display: 'none' }"
-          @change="previewImage"
-          accept="image/*"
-        />
-        <a-button @click="onClick">Upload Picture</a-button>
-      </div>
+        Upload Picture
+      </a-button>
     </div>
   </a-layout>
 </template>
@@ -140,7 +135,7 @@ export default {
     username() {
       return this.$store.state.userProfile["name"];
     },
-    userImage() {
+    avatarUrl() {
       if (this.$store.state.userImage) {
         return this.$store.state.userImage;
       } else {

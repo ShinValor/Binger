@@ -5,7 +5,7 @@
         class="large-image"
         slot="cover"
         alt="Profile Picture"
-        src="../assets/svg/profile-pic.svg"
+        :src="imgUrl"
       />
     </div>
     <a-card-meta :title="name" :description="desc" />
@@ -18,7 +18,7 @@ export default {
   props: {
     name: String,
     desc: String,
-    avatarUrl: String
+    imgUrl: String
   }
 };
 </script>
