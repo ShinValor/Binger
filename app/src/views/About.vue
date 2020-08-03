@@ -48,8 +48,8 @@ export default {
 <style scoped>
 .team {
   margin: 25px 0 0;
-  color: white;
   font-size: 2.5em;
+  color: white;
 }
 
 .about {

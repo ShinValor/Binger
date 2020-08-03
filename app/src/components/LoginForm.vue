@@ -5,7 +5,6 @@
     @submit="handleSubmit"
     @submit.prevent
   >
-    <!-- <h1 :style="{ color: 'white' }">Log In</h1> -->
     <a-form-item>
       <a-input
         v-decorator="[
@@ -60,7 +59,6 @@
 </template>
 
 <script>
-// import firebase from "firebase";
 
 export default {
   name: "LoginForm",
@@ -69,27 +67,14 @@ export default {
   },
   methods: {
     handleSubmit() {
-      // e.preventDefault();
       this.form.validateFields((err, values) => {
         if (!err) {
-          // firebase
-          //   .auth()
-          //   .signInWithEmailAndPassword(values.email, values.password)
-          //   .then(() => {
-          //     this.$router.push({ name: "Home" });
-          //     this.$message.success("Successfully Logged In");
-          //   })
-          //   .catch(err => {
-          //     this.error = err.message;
-          //     this.$message.warning(this.error);
-          //   });
           this.$store
             .dispatch("login", {
               email: values.email,
               password: values.password
             })
             .then(() => {
-              // this.$router.push({ name: "Home" });
               this.$message.success("Successfully Logged In");
             })
             .catch(err => {

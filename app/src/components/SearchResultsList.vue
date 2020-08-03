@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul class="list">
+    <ul class="movie-list">
       <SearchResultsCell
         class="movie-cell"
         v-for="item in list"
@@ -23,7 +23,7 @@
             onerror="this.style.display='none'"
           />
         </div>
-        <a-button>
+        <a-button class="info-btn">
           <router-link
             :to="{ name: 'MovieSynopsis', params: { id: this.modalId } }"
           >
@@ -134,16 +134,29 @@ export default {
 </script>
 
 <style scoped>
-.list {
-  padding: 0;
-  /* border-radius: 4px; */
-  /* border: 1px solid #e0e0e0; */
-  /* border: 1px solid black; */
-}
-
 .errors {
   padding: 0;
   color: red;
+}
+
+.movie-list {
+  padding: 0;
+}
+
+.movie-cell {
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  transform: perspective(1px) translateZ(0);
+  -webkit-transform: perspective(1px) translateZ(0);
+  transition-duration: 0.3s;
+  -webkit-transition-duration: 0.3s;
+  transition-property: transform;
+  -webkit-transition-property: transform;
+  transition-timing-function: ease-out;
+  -webkit-transition-timing-function: ease-out;
+}
+
+.movie-cell:hover {
+  transform: scale(1.01);
 }
 
 .title {
@@ -156,7 +169,16 @@ export default {
   width: 66%;
   margin: 5px auto;
   font-size: 15px;
-  /* color: white; */
+}
+
+.info-btn {
+  background-color: transparent;
+  color: white;
+  border-color: #f3c669;
+}
+
+.info-btn:hover {
+  background-color: #f3c669;
 }
 
 .large-image {
@@ -168,24 +190,6 @@ export default {
 
 .pagination {
   margin: 20px auto;
-}
-
-.movie-cell {
-  /* display: inline-block; */
-  /* vertical-align: middle; */
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-property: transform;
-  transition-property: transform;
-  -webkit-transition-timing-function: ease-out;
-  transition-timing-function: ease-out;
-}
-
-.movie-cell:hover {
-  transform: scale(1.01);
 }
 
 @media screen and (max-width: 500px) {

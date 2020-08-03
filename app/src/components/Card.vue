@@ -36,13 +36,11 @@ export default {
 
 <style scoped>
 .card {
-  background-color: #2a323d;
   margin: 10px;
-  /* border-color: #f3c669; */
+  background-color: #2a323d;
 }
 
 .container {
-  /* background-color: white; */
   margin: 5px;
 }
 

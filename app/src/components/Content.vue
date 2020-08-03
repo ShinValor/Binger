@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="content">
     <h1 class="title">
       <b>{{ heading }}</b>
     </h1>
@@ -25,11 +25,11 @@ export default {
     button: String
   },
   mounted() {
-    typer(".description", { min: 20, max: 50 })
+    typer(".description", { min: 20, max: 60 })
       .cursor({ block: true, blink: "soft", color: "#f3c669" })
       .line(this.description)
       .line("Subscribe To Movie Recommendations.")
-      .line("Share With Friends.")
+      .line("Enjoy Movies With Friends.")
       .pause(3000)
       .back("all")
       .repeat(Infinity, true);
@@ -40,12 +40,22 @@ export default {
 <style scoped>
 @import "https://unpkg.com/typer-js/typer.css";
 
-.container {
+.content {
   height: 350px;
   margin: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-color: #323b49;
+  /* background: rgb(229, 193, 233); */
+  /* background: linear-gradient(
+    145deg,
+    rgba(229, 193, 233, 1) 39%,
+    rgba(79, 190, 252, 1) 100%
+  ); */
+  /* background-image: linear-gradient(19deg, #21d4fd 0%, #b721ff 100%); */
+  /* background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%); */
+  /* background-image: linear-gradient(19deg, #a18cd1 0%, #fbc2eb 100%); */
 }
 
 .title {
@@ -86,7 +96,7 @@ export default {
     font-size: 20px;
   }
 
-  .container {
+  .content {
     height: 200px;
     margin: 15px;
   }

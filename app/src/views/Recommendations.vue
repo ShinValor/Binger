@@ -123,7 +123,6 @@ export default {
 
 .title {
   margin: 20px;
-  /* text-align: left; */
   font-size: 30px;
   color: white;
 }
@@ -152,7 +151,6 @@ export default {
 
   .title {
     margin: 0;
-    /* text-align: center; */
     font-size: 20px;
   }
 

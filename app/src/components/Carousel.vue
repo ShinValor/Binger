@@ -139,25 +139,20 @@ export default {
 }
 
 .carousel-cell {
-  /* background-color: #222; */
-  height: 500px;
   width: 20%;
+  height: 500px;
+  margin-right: 4px;
   display: flex;
   flex-direction: column;
-  /* justify-content: flex-start; */
-  margin-right: 4px;
-  /* padding: 0 2px; */
 }
 
 .carousel-cell-image {
   max-height: 100%;
   max-width: 100%;
-  /* margin: 0 auto; */
-  /* display: block; */
   object-fit: cover;
   opacity: 0;
-  -webkit-transition: opacity 0.4s;
   transition: opacity 0.4s;
+  -webkit-transition: opacity 0.4s;
 }
 
 .carousel-cell:hover {
@@ -187,7 +182,6 @@ export default {
   width: 66%;
   margin: 5px auto;
   font-size: 15px;
-  /* color: white; */
 }
 
 .large-image {

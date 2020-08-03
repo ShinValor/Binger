@@ -50,12 +50,10 @@ export default {
 <style scoped>
 .cast {
   height: 100%;
-  padding-top: 10px;
-  margin-left: -50px;
-  background: #e6ecf1;
-  /* max-width: 500px; */
   margin: 0 auto;
+  padding-top: 10px;
   padding-bottom: 15px;
+  background: #e6ecf1;
 }
 
 .box {
@@ -64,15 +62,15 @@ export default {
 }
 
 .content {
-  align-content: center;
-  display: inline-block;
   padding: 10px;
+  display: inline-block;
+  align-content: center;
   justify-content: flex-start;
 }
 
 .image {
-  display: inline-block;
   margin: 2px;
+  display: inline-block;
   justify-content: flex-start;
 }
 </style>

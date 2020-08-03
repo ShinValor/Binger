@@ -5,7 +5,6 @@
       :to="{ name: 'MovieSynopsis', params: { id: item.id } }"
     >
       <img class="poster" :src="imgUrl(item.poster_path)" />
-      <!-- <br /> -->
       <div>
         <h1 class="title">{{ item.title }}</h1>
         <div class="d-flex items-center area muted">
@@ -74,23 +73,10 @@ export default {
   display: flex;
   align-items: flex-start;
   padding: 1em;
-  /* border-bottom: 1px solid white; */
-  /* display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-property: transform;
-  transition-property: transform;
-  -webkit-transition-timing-function: ease-out;
-  transition-timing-function: ease-out; */
 }
 
 .movie:hover {
   background-color: #2a313c;
-  /* transform: scale(1.1); */
 }
 
 .poster {
@@ -110,29 +96,13 @@ export default {
 .title {
   font-size: 1.2em;
   color: white;
-  /* display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-property: transform;
-  transition-property: transform;
-  -webkit-transition-timing-function: ease-out;
-  transition-timing-function: ease-out; */
 }
-
-/* .title:hover {
-  transform: scale(1.1);
-} */
 
 .plot {
   color: white;
 }
 
 .rating {
-  /* color: #666; */
   color: white;
   font-size: 0.9em;
   display: flex;

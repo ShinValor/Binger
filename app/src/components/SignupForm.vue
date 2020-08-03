@@ -73,7 +73,6 @@
 </template>
 
 <script>
-// import firebase from "firebase";
 
 export default {
   name: "SignupForm",
@@ -82,25 +81,9 @@ export default {
   },
   methods: {
     handleSubmit() {
-      // e.preventDefault();
       this.form.validateFields((err, values) => {
         if (!err) {
           if (values.password == values.confirmPassword) {
-            // firebase
-            //   .auth()
-            //   .createUserWithEmailAndPassword(values.email, values.password)
-            //   .then(data => {
-            //     data.user
-            //       .updateProfile({
-            //         displayName: values.nickname
-            //       })
-            //       .then(() => {
-            //         this.$router.replace({ name: "Login" });
-            //       });
-            //   })
-            //   .catch(err => {
-            //     this.error = err.message;
-            //   });
             this.$store
               .dispatch("signup", {
                 email: values.email,
@@ -108,7 +91,6 @@ export default {
                 name: values.name
               })
               .then(() => {
-                // this.$router.replace({ name: "Login" });
                 this.$message.success("Successfully Logged In");
               })
               .catch(err => {

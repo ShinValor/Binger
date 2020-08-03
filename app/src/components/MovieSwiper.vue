@@ -26,21 +26,21 @@
         </Vue2InteractDraggable>
       </div>
     </div>
-    <div class="btn-container">
+    <div class="section">
       <a-icon
-        class="btn"
+        class="swiper-btn"
         type="close"
         :style="{ color: '#eb2f96' }"
         @click="dragLeft"
       />
       <a-icon
-        class="btn"
+        class="swiper-btn"
         type="redo"
         :style="{ color: '#1a90ff' }"
         @click="reload"
       />
       <a-icon
-        class="btn"
+        class="swiper-btn"
         type="heart"
         theme="twoTone"
         two-tone-color="#52c41a"
@@ -145,27 +145,25 @@ export default {
   background-position: center; */
 }
 
-.btn-container {
+.section {
   display: flex;
   justify-content: center;
   margin: 20px;
 }
 
-.btn {
-  /* border: 2px solid #222831; */
-  border-radius: 50%;
+.swiper-btn {
   margin: 0 25px;
   padding: 10px;
+  border-radius: 50%;
   font-size: 30px;
-  /* color: white; */
   background-color: white;
 }
 
-.btn:hover {
+.swiper-btn:hover {
   transform: scale(1.1);
 }
 
-.btn:active {
+.swiper-btn:active {
   background-color: #222;
 }
 
@@ -173,7 +171,6 @@ export default {
   margin: 0 auto;
   position: absolute;
   top: 50%;
-  left: 42%;
-  /* right: 1%; */
+  left: 40%;
 }
 </style>

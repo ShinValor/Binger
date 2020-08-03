@@ -57,7 +57,7 @@
           onerror="this.style.display='none'"
         />
       </div>
-      <a-button class="more-info">
+      <a-button class="info-btn">
         <router-link
           :to="{ name: 'MovieSynopsis', params: { id: this.modalId } }"
         >
@@ -172,9 +172,9 @@ export default {
 }
 
 .small-image {
-  margin: 20px 10px;
   width: 250px;
   height: 100%;
+  margin: 20px 10px;
   object-fit: cover;
 }
 
@@ -193,28 +193,28 @@ export default {
   margin: 20px auto;
 }
 
-.more-info {
+.info-btn {
   background-color: transparent;
   color: white;
   border-color: #f3c669;
 }
 
-/* .more-info:hover {
-  border-color: white;
-} */
+.info-btn:hover {
+  background-color: #f3c669;
+}
 
 .rand-btn {
   width: 100px;
   height: 100%;
-  margin: 40px 0 20px;
-  padding: 5px 20px;
+  margin: 20px;
+  padding: 5px 10px;
   background-color: transparent;
+  border-color: #f3c669;
   color: white;
 }
 
-.rand-btn:hover,
-.rand-btn:active {
-  border-color: white;
+.rand-btn:hover {
+  background-color: #f3c669;
 }
 
 @media screen and (max-width: 500px) {
@@ -230,9 +230,7 @@ export default {
   }
 
   .rand-btn {
-    width: 50px;
     margin: 20px 0 5px;
-    padding: 0;
   }
 
   .pagination {

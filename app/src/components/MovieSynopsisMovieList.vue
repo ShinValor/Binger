@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="movie-list">
     <h1 class="title">{{ listType }}</h1>
     <Carousel :url="moviesUrl" />
   </div>
@@ -43,7 +43,7 @@ export default {
 };
 </script>
 <style scoped>
-.container {
+.movie-list {
   margin: 2.5em;
 }
 

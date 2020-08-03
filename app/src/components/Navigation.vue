@@ -54,19 +54,12 @@
 </template>
 
 <script>
-// import firebase from "firebase";
 import Menu from "@/components/Menu.vue";
 
 export default {
   name: "Navigation",
   components: {
     Menu
-  },
-  data() {
-    return {
-      // loggedIn: false
-      // username: null
-    };
   },
   methods: {
     logout() {
@@ -77,16 +70,6 @@ export default {
     username() {
       return this.$store.state.userProfile["name"];
     }
-  },
-  created() {
-    // firebase.auth().onAuthStateChanged(user => {
-    //   if (user) {
-    //     // this.username = user.displayName;
-    //     this.loggedIn = true;
-    //   } else {
-    //     this.loggedIn = false;
-    //   }
-    // });
   }
 };
 </script>
@@ -107,21 +90,20 @@ export default {
   color: white;
   display: inline-block;
   vertical-align: middle;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
   box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  -webkit-transition-duration: 0.3s;
+  transform: perspective(1px) translateZ(0);
+  -webkit-transform: perspective(1px) translateZ(0);
   transition-duration: 0.3s;
-  -webkit-transition-property: transform;
+  -webkit-transition-duration: 0.3s;
   transition-property: transform;
-  -webkit-transform-origin: 0 100%;
+  -webkit-transition-property: transform;
   transform-origin: 0 100%;
+  -webkit-transform-origin: 0 100%;
 }
 
 .app-link:hover {
-  /* color: pink; */
-  -webkit-transform: skew(-10deg);
   transform: skew(-10deg);
+  -webkit-transform: skew(-10deg);
 }
 
 .section {
@@ -141,15 +123,15 @@ export default {
   color: white;
   display: inline-block;
   vertical-align: middle;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
   box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  -webkit-transition-duration: 0.3s;
+  transform: perspective(1px) translateZ(0);
+  -webkit-transform: perspective(1px) translateZ(0);
   transition-duration: 0.3s;
-  -webkit-transition-property: transform;
+  -webkit-transition-duration: 0.3s;
   transition-property: transform;
-  -webkit-transition-timing-function: ease-out;
+  -webkit-transition-property: transform;
   transition-timing-function: ease-out;
+  -webkit-transition-timing-function: ease-out;
 }
 
 .nav-btn:hover,
@@ -158,8 +140,8 @@ export default {
 .nav-dropdown:hover,
 .nav-dropdown:focus,
 .nav-dropdown:active {
-  -webkit-transform: translateY(4px);
   transform: translateY(4px);
+  -webkit-transform: translateY(4px);
 }
 
 @media screen and (max-width: 500px) {

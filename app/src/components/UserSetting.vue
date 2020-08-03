@@ -69,10 +69,10 @@ export default {
 
 .update-btn,
 .cancel-btn {
-  background-color: transparent;
-  color: white;
-  border-color: #f3c669;
   margin-left: 20px;
+  background-color: transparent;
+  border-color: #f3c669;
+  color: white;
 }
 
 .update-btn:hover,
