@@ -64,17 +64,20 @@ export default {
     switchTabs(key) {
       console.log(key);
     },
-    updateChart() {
+    updateChart(dataset) {
       this.$refs.echarts.mergeOptions({
         series: [
           {
-            data: this.$store.state.genres
+            data: dataset
           }
         ]
       });
     }
   },
   computed: {
+    favoriteGenres() {
+      return this.$store.state.genres;
+    },
     likedMovies() {
       return this.$store.state.likedMovies;
     },
@@ -82,14 +85,15 @@ export default {
       return this.$store.state.dislikedMovies;
     }
   },
-  created() {
-    this.updateChart();
+  watch: {
+    favoriteGenres(newGenres, oldGenres) {
+      console.log("old", oldGenres);
+      console.log("new", newGenres);
+      this.updateChart(newGenres);
+    }
   },
   mounted() {
-    this.updateChart();
-  },
-  beforeUpdate() {
-    this.updateChart();
+    this.updateChart(this.favoriteGenres);
   }
 };
 </script>

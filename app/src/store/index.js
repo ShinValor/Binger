@@ -29,6 +29,11 @@ const store = new Vuex.Store({
     dislikedMovies: []
     // posts: [],
   },
+  getters: {
+    genres: state => {
+      return state.genres;
+    }
+  },
   mutations: {
     setUserProfile(state, val) {
       state.userProfile = val;
@@ -121,7 +126,6 @@ const store = new Vuex.Store({
     async fetchGenres({ commit }, userId) {
       // Fetch genre
       const genres = await fb.genreCollection.doc(userId).get();
-      // console.log("LALA", genres.data().genres);
 
       // Set user genre in state
       commit("setGenres", genres.data().genres);
