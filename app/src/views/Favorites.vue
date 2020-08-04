@@ -7,14 +7,24 @@
     </div>
     <a-tabs class="tabs" default-active-key="1" @change="switchTabs">
       <a-tab-pane key="1" tab="My Dashboard" force-render>
-        <ECharts ref="echarts" :options="eChartsOption" />
-        <!-- <a-button @click="updateChart"> View </a-button> -->
+        <ECharts ref="echarts" :options="eChartsOption" v-if="favoriteGenres" />
+        <h1 v-else>No Data To Display</h1>
       </a-tab-pane>
       <a-tab-pane key="2" tab="Liked Movies">
-        <FavoriteMovieList class="favorite-movie" :movieList="likedMovies" />
+        <FavoriteMovieList
+          class="favorite-movie"
+          :movieList="likedMovies"
+          v-if="likedMovies"
+        />
+        <h1 v-else>You Did Not Liked Any Movies</h1>
       </a-tab-pane>
       <a-tab-pane key="3" tab="Disliked Movies" force-render>
-        <FavoriteMovieList class="favorite-movie" :movieList="dislikedMovies" />
+        <FavoriteMovieList
+          class="favorite-movie"
+          :movieList="dislikedMovies"
+          v-if="dislikedMovies"
+        />
+        <h1 v-else>You Did Not Disliked Any Movies</h1>
       </a-tab-pane>
       <a-tab-pane key="4" tab="Recommendations" force-render>
         <h1 :style="{ color: 'white' }">Something</h1>

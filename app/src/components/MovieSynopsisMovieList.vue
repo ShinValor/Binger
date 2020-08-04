@@ -48,7 +48,7 @@ export default {
 }
 
 .title {
-  margin: 20px;
+  margin: 20px 10px;
   text-align: left;
   font-size: 30px;
   color: white;
