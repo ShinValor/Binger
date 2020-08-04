@@ -27,9 +27,6 @@ export default {
     name: String,
     desc: String,
     img: String
-  },
-  mounted() {
-    console.log(this.img);
   }
 };
 </script>

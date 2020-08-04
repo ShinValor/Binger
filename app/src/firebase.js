@@ -26,6 +26,7 @@ const storage = firebase.storage();
 
 // collection references
 const usersCollection = db().collection("users");
+const genreCollection = db().collection("genres");
 const likesCollection = db().collection("likes");
 const dislikesCollection = db().collection("dislikes");
 // const postsCollection = db.collection("posts");
@@ -37,6 +38,7 @@ export {
   auth,
   storage,
   usersCollection,
+  genreCollection,
   likesCollection,
   dislikesCollection
   // postsCollection,

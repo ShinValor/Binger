@@ -24,56 +24,29 @@ const store = new Vuex.Store({
     userProfile: {},
     userImage: "",
     loggedIn: Boolean,
+    genres: [],
     likedMovies: [],
-    dislikedMovies: [],
-    genres: [
-      { name: "Adventure", value: 0 },
-      { name: "Fantasy", value: 0 },
-      { name: "Animation", value: 0 },
-      { name: "Drama", value: 0 },
-      { name: "Horror", value: 0 },
-      { name: "Comedy", value: 0 },
-      { name: "History", value: 0 },
-      { name: "Western", value: 0 },
-      { name: "Thriller", value: 0 },
-      { name: "Crime", value: 0 },
-      { name: "Documentary", value: 0 },
-      { name: "Science Fiction", value: 0 },
-      { name: "Mystery", value: 0 },
-      { name: "Music", value: 0 },
-      { name: "Romance", value: 0 },
-      { name: "Family", value: 0 },
-      { name: "War", value: 0 },
-      { name: "Action & Adventure", value: 0 },
-      { name: "News", value: 0 },
-      { name: "Reality", value: 0 },
-      { name: "Sci-Fi & Fantasy", value: 0 },
-      { name: "Soaps", value: 0 },
-      { name: "Talk", value: 0 },
-      { name: "War & Politics", value: 0 },
-      { name: "TV Movie", value: 0 }
-    ]
+    dislikedMovies: []
     // posts: [],
   },
   mutations: {
     setUserProfile(state, val) {
       state.userProfile = val;
     },
+    setUserImage(state, val) {
+      state.userImage = val;
+    },
+    setAuthentication(state, val) {
+      state.loggedIn = val;
+    },
+    setGenres(state, val) {
+      state.genres = val;
+    },
     setLikedMovies(state, val) {
       state.likedMovies = val;
     },
     setDislikedMovies(state, val) {
       state.dislikedMovies = val;
-    },
-    setGenres(state, val) {
-      state.genres[val.genre].value = val.value;
-    },
-    setAuthentication(state, val) {
-      state.loggedIn = val;
-    },
-    setUserImage(state, val) {
-      // state.userProfile["imageUrl"] = val;
-      state.userImage = val;
     }
     // setPerformingRequest(state, val) {
     //   state.performingRequest = val;
@@ -101,7 +74,7 @@ const store = new Vuex.Store({
 
       router.push("/");
     },
-    async login({ dispatch, commit }, form) {
+    async login({ dispatch }, form) {
       // Sign user in
       const { user } = await fb.auth.signInWithEmailAndPassword(
         form.email,
@@ -109,8 +82,7 @@ const store = new Vuex.Store({
       );
 
       // Fetch user profile and set in state
-      dispatch("fetchUserProfile", user);
-      commit("setAuthentication", true);
+      dispatch("fetchUserProfile", user.uid);
 
       router.push("/");
     },
@@ -120,35 +92,39 @@ const store = new Vuex.Store({
 
       // Clear user data from state
       commit("setUserProfile", {});
-      commit("setAuthentication", false);
 
       // Redirect to login view
       router.push("/login");
     },
-    async fetchUserProfile({ commit }, user) {
+    async fetchUserProfile({ commit }, userId) {
       // Fetch user profile
-      const userProfile = await fb.usersCollection.doc(user.uid).get();
+      const userProfile = await fb.usersCollection.doc(userId).get();
 
       // Set user profile in state
       commit("setUserProfile", userProfile.data());
     },
-    async fetchUserImage({ commit }, user) {
+    async fetchUserImage({ commit }, userId) {
       // Fetch user image
-      let imageUrl;
-      const storageRef = await fb.storage.ref().child(user.uid);
+      const storageRef = await fb.storage.ref().child(userId);
 
       // Get the download URL
       await storageRef
         .getDownloadURL()
-        .then(function(url) {
-          imageUrl = url;
+        .then(url => {
+          // Set user profile in state
+          commit("setUserImage", url);
         })
-        .catch(function(error) {
+        .catch(error => {
           console.log(error.message);
         });
+    },
+    async fetchGenres({ commit }, userId) {
+      // Fetch genre
+      const genres = await fb.genreCollection.doc(userId).get();
+      // console.log("LALA", genres.data().genres);
 
-      // Set user profile in state
-      commit("setUserImage", imageUrl);
+      // Set user genre in state
+      commit("setGenres", genres.data().genres);
     },
     async fetchLikedMovies({ commit }, userId) {
       // Fetch user movie list
@@ -173,14 +149,51 @@ const store = new Vuex.Store({
         description: user.description
       });
 
-      dispatch("fetchUserProfile", { uid: userId });
+      dispatch("fetchUserProfile", userId);
     },
     async updateProfileImage({ dispatch }, image) {
       const userId = fb.auth.currentUser.uid;
 
       await fb.storage.ref(userId).put(image);
 
-      dispatch("fetchUserImage", { uid: userId });
+      dispatch("fetchUserImage", userId);
+    },
+    async updateGenres({ dispatch }, genres) {
+      const userId = fb.auth.currentUser.uid;
+      const favoriteGenres = await fb.genreCollection.doc(userId).get();
+
+      if (favoriteGenres.exists) {
+        const dataset = favoriteGenres.data().genres;
+
+        genres.map(genre => {
+          let added = false;
+          favoriteGenres.data().genres.map((data, index) => {
+            if (data.name === genre) {
+              dataset[index].value += 1;
+              added = true;
+            }
+          });
+          if (added === false) {
+            dataset.push({ name: genre, value: 1 });
+          }
+        });
+
+        await fb.genreCollection.doc(userId).update({
+          genres: dataset
+        });
+      } else {
+        const dataset = [];
+
+        genres.map(genre => {
+          dataset.push({ name: genre, value: 1 });
+        });
+
+        await fb.genreCollection.doc(userId).set({
+          genres: dataset
+        });
+      }
+
+      dispatch("fetchGenres", userId);
     },
     async likeMovie({ dispatch }, movie) {
       const userId = fb.auth.currentUser.uid;
@@ -191,6 +204,10 @@ const store = new Vuex.Store({
         await fb.likesCollection.doc(userId).update({
           movies: fb.db.FieldValue.arrayUnion(movie)
         });
+      } else {
+        await fb.likesCollection.doc(userId).set({
+          movies: [movie]
+        });
       }
 
       if (dislikedMovies.exists) {
@@ -199,14 +216,11 @@ const store = new Vuex.Store({
         });
       }
 
-      if (!likedMovies.exists) {
-        await fb.likesCollection.doc(userId).set({
-          movies: [movie]
-        });
-      }
-
       // Fetch likedMovies and set in state
       dispatch("fetchLikedMovies", userId);
+
+      // Update Genres
+      dispatch("updateGenres", movie.genres);
     },
     async dislikeMovie({ dispatch }, movie) {
       const userId = fb.auth.currentUser.uid;
@@ -217,6 +231,10 @@ const store = new Vuex.Store({
         await fb.dislikesCollection.doc(userId).update({
           movies: fb.db.FieldValue.arrayUnion(movie)
         });
+      } else {
+        await fb.dislikesCollection.doc(userId).set({
+          movies: [movie]
+        });
       }
 
       if (likedMovies.exists) {
@@ -225,17 +243,8 @@ const store = new Vuex.Store({
         });
       }
 
-      if (!dislikedMovies.exists) {
-        await fb.dislikesCollection.doc(userId).set({
-          movies: [movie]
-        });
-      }
-
       // Fetch dislikedMovies and set in state
       dispatch("fetchDislikedMovies", userId);
-    },
-    async updateGenres({ commit }, genre) {
-      commit("setGenres", genre);
     }
   }
 });

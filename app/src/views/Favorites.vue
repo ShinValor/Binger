@@ -1,14 +1,14 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
-    <div :style="{ display: 'flex', 'justify-content': 'flex-end' }">
+    <div :style="{ display: 'inline' }">
       <a-button class="swiper-btn" @click="toggleModal">
         Try Our Swiper
       </a-button>
     </div>
     <a-tabs class="tabs" default-active-key="1" @change="switchTabs">
       <a-tab-pane key="1" tab="My Dashboard" force-render>
-        <ECharts :options="option" />
-        <a-button @click="changeData">Change</a-button>
+        <ECharts ref="echarts" :options="eChartsOption" />
+        <!-- <a-button @click="updateChart"> View </a-button> -->
       </a-tab-pane>
       <a-tab-pane key="2" tab="Liked Movies">
         <FavoriteMovieList class="favorite-movie" :movieList="likedMovies" />
@@ -40,6 +40,7 @@ import "echarts/theme/dark";
 import FavoriteMovieList from "@/components/FavoriteMovieList.vue";
 import MovieSwiper from "@/components/MovieSwiper.vue";
 import BackToTop from "@/components/BackToTop.vue";
+import { eChartsOption } from "../util/eChartsOption";
 
 export default {
   name: "Favorites",
@@ -52,81 +53,25 @@ export default {
   data() {
     return {
       modalVisible: false,
-      option: {
-        title: {
-          text: "Movie Dashboard",
-          subtext: "Most Searched Movie Genres",
-          left: "center",
-          textStyle: {
-            color: "white"
-          }
-        },
-        tooltip: {
-          trigger: "item",
-          formatter: "{a} <br/>{b} : {c} ({d}%)"
-        },
-        legend: {
-          left: "center",
-          top: "bottom",
-          data: [
-            "Adventure",
-            "Fantasy",
-            "Animation",
-            "Drama",
-            "Horror",
-            "Action",
-            "Comedy",
-            "History",
-            "Western",
-            "Thriller",
-            "Crime",
-            "Documentary",
-            "Science Fiction",
-            "Mystery",
-            "Music",
-            "Romance",
-            "Family",
-            "War",
-            "Action & Adventure",
-            "Kids",
-            "News",
-            "Reality",
-            "Sci-Fi & Fantasy",
-            "Soaps",
-            "Talk",
-            "War & Politics",
-            "TV Movie"
-          ],
-          textStyle: {
-            color: "white"
-          }
-        },
-        series: [
-          {
-            name: "You",
-            type: "pie",
-            radius: [30, 200],
-            center: ["50%", "50%"],
-            roseType: "area",
-            data: this.$store.state.genres
-          }
-        ]
-      }
+      eChartsOption
     };
   },
   methods: {
     toggleModal() {
       this.modalVisible = !this.modalVisible;
     },
-    changeData() {
-      const genre = Math.floor(Math.random() * (25 - 0)) + 0;
-      const value = this.$store.state.genres[genre].value + 1;
-      console.log("Genre: ", genre, "Value: ", value);
-      this.$store.dispatch("updateGenres", { genre: genre, value: value });
-    },
     switchTabs(key) {
       console.log(key);
     }
+    // updateChart() {
+    //   this.$refs.echarts.mergeOptions({
+    //     series: [
+    //       {
+    //         data: this.$store.state.genres
+    //       }
+    //     ]
+    //   });
+    // }
   },
   computed: {
     likedMovies() {
@@ -135,6 +80,15 @@ export default {
     dislikedMovies() {
       return this.$store.state.dislikedMovies;
     }
+  },
+  beforeUpdate() {
+    this.$refs.echarts.mergeOptions({
+      series: [
+        {
+          data: this.$store.state.genres
+        }
+      ]
+    });
   }
 };
 </script>
@@ -168,6 +122,7 @@ export default {
   padding: 5px;
   color: white;
   border-color: #f3c669;
+  float: right;
 }
 
 .swiper-btn:hover {

@@ -59,7 +59,6 @@
 </template>
 
 <script>
-
 export default {
   name: "LoginForm",
   beforeCreate() {
