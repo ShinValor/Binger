@@ -6,19 +6,13 @@
     :wrapper-col="wrapperCol"
   >
     <a-form-model-item label="Nick Name">
-      <a-input v-model="form.name" :placeholder="username" />
-      <!-- <a-input v-model="username" /> -->
+      <a-input v-model="form.name" />
     </a-form-model-item>
     <!-- <a-form-model-item label="Send Email">
       <a-switch v-model="form.email" />
     </a-form-model-item> -->
     <a-form-model-item label="Introduction">
-      <a-input
-        v-model="form.description"
-        type="textarea"
-        :placeholder="description"
-      />
-      <!-- <a-input v-model="description" type="textarea" /> -->
+      <a-input v-model="form.description" type="textarea" />
     </a-form-model-item>
     <a-form-model-item :wrapper-col="{ span: 14, offset: 4 }">
       <a-button
@@ -48,8 +42,8 @@ export default {
       labelCol: { span: 4 },
       wrapperCol: { span: 14 },
       form: {
-        name: "",
-        description: ""
+        name: this.username,
+        description: this.description
         // email: false,
       }
     };
