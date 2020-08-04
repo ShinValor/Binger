@@ -159,7 +159,7 @@ export default {
 
 .large-image {
   height: 300px;
-  width: 200px;
+  /* width: 200px; */
   margin: 5px;
 }
 
