@@ -205,6 +205,8 @@ const store = new Vuex.Store({
       const dislikedMovies = await fb.dislikesCollection.doc(userId).get();
 
       if (likedMovies.exists) {
+        /* TODO - Ability To UNLIKE */
+
         await fb.likesCollection.doc(userId).update({
           movies: fb.db.FieldValue.arrayUnion(movie)
         });
@@ -232,6 +234,8 @@ const store = new Vuex.Store({
       const dislikedMovies = await fb.dislikesCollection.doc(userId).get();
 
       if (dislikedMovies.exists) {
+        /* TODO - Ability To UN-DISLIKE */
+
         await fb.dislikesCollection.doc(userId).update({
           movies: fb.db.FieldValue.arrayUnion(movie)
         });

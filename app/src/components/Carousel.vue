@@ -1,35 +1,36 @@
 <template>
-  <div>
+  <div v-if="movieList.length">
     <div v-if="loading">
       <Loading />
     </div>
-    <flickity
-      class="carousel"
-      ref="flickity"
-      :options="flickityOptions"
-      @init="onInit"
-      v-else
-    >
-      <div
-        class="carousel-cell"
-        v-for="(movie, index) in movieList"
-        v-bind:key="index"
+    <div v-else>
+      <flickity
+        class="carousel"
+        ref="flickity"
+        :options="flickityOptions"
+        @init="onInit"
       >
-        <img
-          class="carousel-cell-image"
-          :data-flickity-lazyload="loadImg(movie.poster_path)"
-          :alt="movie.title"
-          onerror="this.style.display='none'"
-        />
-        <div class="carousel-cell-desc">
-          <h1 class="title">{{ movie.title }}</h1>
-          <p class="content" :style="{ color: 'gray' }">
-            <a-icon type="like" />
-            {{ movie.vote_count }} Votes
-          </p>
+        <div
+          class="carousel-cell"
+          v-for="(movie, index) in movieList"
+          v-bind:key="index"
+        >
+          <img
+            class="carousel-cell-image"
+            :data-flickity-lazyload="loadImg(movie.poster_path)"
+            :alt="movie.title"
+            onerror="this.style.display='none'"
+          />
+          <div class="carousel-cell-desc">
+            <h1 class="title">{{ movie.title }}</h1>
+            <p class="content" :style="{ color: 'gray' }">
+              <a-icon type="like" />
+              {{ movie.vote_count }} Votes
+            </p>
+          </div>
         </div>
-      </div>
-    </flickity>
+      </flickity>
+    </div>
     <a-modal
       v-model="modalVisible"
       :title="modalTitle"

@@ -48,7 +48,6 @@ export default {
       this.$refs.imageInput.click();
     },
     previewImage(event) {
-      // console.log("EVENT", event);
       // this.uploadValue = 0;
       this.imageData = event.target.files[0];
       this.uploadImage();
@@ -133,11 +132,7 @@ export default {
       return this.$store.state.userProfile["name"];
     },
     avatarUrl() {
-      if (this.$store.state.userImage) {
-        return this.$store.state.userImage;
-      } else {
-        return "../assets/svg/profile-pic.svg";
-      }
+      return this.$store.state.userImage;
     },
     description() {
       return this.$store.state.userProfile["description"];

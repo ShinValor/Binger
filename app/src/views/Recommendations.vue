@@ -122,7 +122,7 @@ export default {
 }
 
 .title {
-  margin: 20px;
+  margin: 20px 10px;
   font-size: 30px;
   color: white;
 }

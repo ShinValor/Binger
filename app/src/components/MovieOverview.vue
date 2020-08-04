@@ -1,83 +1,81 @@
 <template>
-  <section>
-    <div
-      class="header"
-      :style="{
-        'background-image': 'url(' + imgUrl(movie.backdrop_path) + ')'
-      }"
-    >
-      <div class="header-contents fontColor">
-        <div class="poster-wrapper">
-          <img
-            class="poster"
-            :src="imgUrl(movie.poster_path)"
-            :alt="movie.title"
-          />
-        </div>
-        <div class="movie-info-part">
-          <div class="movie-info">
-            <div class="key-info">
-              <div class="title-wrapper left-align">
-                <h2 class="movie-title left-align fontColor">
-                  {{ movie.title }}
-                </h2>
-                <span class="tagline">{{ movie.tagline }}</span>
-              </div>
-              <div class="general-info">
-                <span class="release-date">{{ releaseDate() }}</span>
-                <span class="genres">{{ genres() }}</span>
-                <span class="runtime">{{ runtime(movie.runtime) }}</span>
-              </div>
+  <div
+    class="header"
+    :style="{
+      'background-image': 'url(' + imgUrl(movie.backdrop_path) + ')'
+    }"
+  >
+    <div class="header-contents fontColor">
+      <div class="poster-wrapper">
+        <img
+          class="poster"
+          :src="imgUrl(movie.poster_path)"
+          :alt="movie.title"
+        />
+      </div>
+      <div class="movie-info-part">
+        <div class="movie-info">
+          <div class="key-info">
+            <div class="title-wrapper left-align">
+              <h2 class="movie-title left-align fontColor">
+                {{ movie.title }}
+              </h2>
+              <span class="tagline">{{ movie.tagline }}</span>
             </div>
-            <div class="movie-rating">
-              <div class="score-section">
-                <div class="user-avg-score">
-                  <span class="movie-score">{{ movie.vote_average }}</span>
-                </div>
-                <span class="score-section-text">
-                  Average
-                  <br />
-                  User Score
-                </span>
-              </div>
-              <div class="favorite-btn">
-                <a-button
-                  class="like-btn"
-                  type="primary"
-                  shape="circle"
-                  icon="like"
-                  @click="likeMovie(movie)"
-                />
-                <a-button
-                  class="dislike-btn"
-                  type="primary"
-                  shape="circle"
-                  icon="dislike"
-                  @click="dislikeMovie(movie)"
-                />
-              </div>
+            <div class="general-info">
+              <span class="release-date">{{ releaseDate() }}</span>
+              <span class="genres">{{ genres() }}</span>
+              <span class="runtime">{{ runtime(movie.runtime) }}</span>
             </div>
-            <div class="detailed-info left-align">
-              <h1 class="text-overview fontColor">Overview</h1>
-              <div class="play-trailer">
-                <a
-                  class="trailer-btn"
-                  :href="vidUrl(movie.trailer_key)"
-                  target="_blank_"
-                >
-                  <a-icon type="play-circle" :style="{ color: '#ff0000' }" />
-                  Play Trailer
-                </a>
+          </div>
+          <div class="movie-rating">
+            <div class="score-section">
+              <div class="user-avg-score">
+                <span class="movie-score">{{ movie.vote_average }}</span>
               </div>
-              <div class="movie-overview" dir="auto">
-                <p class="movie-overview-text">{{ movie.overview }}</p>
-              </div>
+              <span class="score-section-text">
+                Average
+                <br />
+                User Score
+              </span>
+            </div>
+            <div class="favorite-btn">
+              <a-button
+                class="like-btn"
+                type="primary"
+                shape="circle"
+                icon="like"
+                @click="likeMovie(movie)"
+              />
+              <a-button
+                class="dislike-btn"
+                type="primary"
+                shape="circle"
+                icon="dislike"
+                @click="dislikeMovie(movie)"
+              />
+            </div>
+          </div>
+          <div class="detailed-info left-align">
+            <h1 class="text-overview fontColor">Overview</h1>
+            <div class="play-trailer">
+              <a
+                class="trailer-btn"
+                :href="vidUrl(movie.trailer_key)"
+                target="_blank_"
+              >
+                <a-icon type="play-circle" :style="{ color: '#ff0000' }" />
+                Play Trailer
+              </a>
+            </div>
+            <div class="movie-overview" dir="auto">
+              <p class="movie-overview-text">{{ movie.overview }}</p>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
@@ -156,12 +154,12 @@ export default {
   flex-wrap: nowrap;
   padding-bottom: 4rem !important;
   padding-top: 4.5rem !important;
+  background-color: #2a323d;
+  background-blend-mode: multiply;
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-color: rgba(0, 34, 95, 0.7);
-  background-blend-mode: multiply;
 }
 
 .header-contents {
