@@ -1,9 +1,13 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, Blueprint
 import requests
 from flask_cors import CORS
 import random
+from recommendationSystem import recommendation_system
+
 
 app = Flask(__name__)
+app.register_blueprint(recommendation_system)
+
 CORS(app)
 
 
@@ -299,18 +303,17 @@ def get_best_rated_movies():
 def get_random_movies():
 
     api_url = MOVIE_DISCOVER_URL
-    
+
     size = request.args.get('size')
     size = size if size else 20
     print(size)
-
 
     sample_population = []
     sample_pages = random.sample(range(MAX_PAGE_NUMBER), 5)
     for page_num in sample_pages:
         options = DEFAULT_OPTIONS.copy()
         options["page"] = page_num
-        
+
         response = requests.get(url=api_url, params=options)
 
         data = response.json()
@@ -325,7 +328,7 @@ def get_random_movies():
             ids = movie["genre_ids"]
             movie["genre_ids"] = [(GENRE_IDS_TO_NAME[x]) for x in ids]
             movie["genres"] = movie.pop("genre_ids")
-    
+
     if size == 20:
         seen = set()
         new_l = []
@@ -342,7 +345,7 @@ def get_random_movies():
                 movies.append(sample_population.pop())
     else:
         movies = random.choices(movies, k=int(size))
-    
+
     return jsonify(movies)
 
 
@@ -351,6 +354,14 @@ def get_genres_movies():
 
     page_num = request.args.get('page')
     genres = request.args.get('with_genres')
+    genres = genres.split(',')
+    print("Reguest parameter ", genres)
+
+    inverted_genres_dict = dict(map(reversed, GENRE_IDS_TO_NAME.items()))
+    genres = [inverted_genres_dict[x] for x in genres]
+    print("inverted genre", genres)
+
+    genres = ",".join(map(str, genres))
 
     options = DEFAULT_OPTIONS.copy()
     options["page"] = page_num if page_num else 1
@@ -362,12 +373,14 @@ def get_genres_movies():
 
     data = response.json()
     movies = data["results"]
+    print(response.url)
 
     for movie in movies:
         movie["genre_ids"] = [(GENRE_IDS_TO_NAME[x])
                               for x in movie["genre_ids"]]
         movie["genres"] = movie.pop("genre_ids")
     data["results"] = movies
+
     return jsonify(data)
 
 
@@ -396,4 +409,5 @@ def get_search_result():
     return jsonify(data)
 
 
-app.run()
+if __name__ == "__main__":
+    app.run(threaded=True, debug=True)
