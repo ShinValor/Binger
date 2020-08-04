@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request, Blueprint
 import requests
 from flask_cors import CORS
 import random
-from recomendationSystem import recommendation_system
+from recommendationSystem import recommendation_system
 
 
 app = Flask(__name__)
