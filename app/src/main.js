@@ -2,7 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import { auth } from "./firebase";
+import { auth } from "./util/firebase";
 import "./assets/css/main.css";
 
 /* Ant Design */
