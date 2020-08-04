@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import * as fb from "../firebase";
+import * as fb from "../util/firebase";
 import router from "../router/index";
 
 Vue.use(Vuex);
@@ -21,12 +21,37 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    userProfile: {}
-    // posts: []
+    userProfile: {},
+    userImage: "",
+    loggedIn: Boolean,
+    genres: [],
+    likedMovies: [],
+    dislikedMovies: []
+    // posts: [],
+  },
+  getters: {
+    genres: state => {
+      return state.genres;
+    }
   },
   mutations: {
     setUserProfile(state, val) {
       state.userProfile = val;
+    },
+    setUserImage(state, val) {
+      state.userImage = val;
+    },
+    setAuthentication(state, val) {
+      state.loggedIn = val;
+    },
+    setGenres(state, val) {
+      state.genres = val;
+    },
+    setLikedMovies(state, val) {
+      state.likedMovies = val;
+    },
+    setDislikedMovies(state, val) {
+      state.dislikedMovies = val;
     }
     // setPerformingRequest(state, val) {
     //   state.performingRequest = val;
@@ -36,157 +61,195 @@ const store = new Vuex.Store({
     // }
   },
   actions: {
-    async login({ dispatch }, form) {
-      // sign user in
-      const { user } = await fb.auth.signInWithEmailAndPassword(
-        form.email,
-        form.password
-      );
-
-      // fetch user profile and set in state
-      dispatch("fetchUserProfile", user);
-    },
     async signup({ dispatch }, form) {
-      // sign user up
+      // Sign user up
       const { user } = await fb.auth.createUserWithEmailAndPassword(
         form.email,
         form.password
       );
 
-      // create user object in userCollections
+      // Create user object in userCollections
       await fb.usersCollection.doc(user.uid).set({
-        name: form.name
+        name: form.name,
+        description: "Add a bio"
       });
 
-      // fetch user profile and set in state
+      // Fetch user profile and set in state
       dispatch("fetchUserProfile", user);
+
+      router.push("/");
     },
-    async fetchUserProfile({ commit }, user) {
-      // fetch user profile
-      const userProfile = await fb.usersCollection.doc(user.uid).get();
+    async login({ dispatch }, form) {
+      // Sign user in
+      const { user } = await fb.auth.signInWithEmailAndPassword(
+        form.email,
+        form.password
+      );
 
-      // set user profile in state
-      commit("setUserProfile", userProfile.data());
+      // Fetch user profile and set in state
+      dispatch("fetchUserProfile", user.uid);
 
-      // change route
-      if (
-        router.currentRoute.path === "/login" ||
-        router.currentRoute.path === "/signup"
-      ) {
-        router.push("/");
-      }
+      router.push("/");
     },
     async logout({ commit }) {
-      // log user out
+      // Log user out
       await fb.auth.signOut();
 
-      // clear user data from state
+      // Clear user data from state
       commit("setUserProfile", {});
 
-      // redirect to login view
+      // Redirect to login view
       router.push("/login");
     },
-    // async createPost({ state }, post) {
-    //   // create post in firebase
-    //   await fb.postsCollection.add({
-    //     createdOn: new Date(),
-    //     content: post.content,
-    //     userId: fb.auth.currentUser.uid,
-    //     userName: state.userProfile.name,
-    //     comments: 0,
-    //     likes: 0
-    //   });
-    // },
-    // eslint-disable-next-line no-unused-vars
-    async likeMovie({ dispatch }, movie) {
-      const movieId = movie.id.toString();
+    async fetchUserProfile({ commit }, userId) {
+      // Fetch user profile
+      const userProfile = await fb.usersCollection.doc(userId).get();
 
-      const userId = fb.auth.currentUser.uid;
-      const docId = `${userId}_${movieId}`;
-
-      // check if user has liked or disliked post
-      const likedoc = await fb.likesCollection.doc(docId).get();
-      const dislikedoc = await fb.dislikesCollection.doc(docId).get();
-      if (dislikedoc.exists) {
-        await fb.dislikesCollection.doc(docId).delete();
-      }
-      if (likedoc.exists) {
-        // console.log("You Already liked This Movie");
-        await fb.likesCollection.doc(docId).delete();
-        return;
-      }
-
-      // create post
-      await fb.likesCollection.doc(docId).set({
-        movieId: movieId,
-        userId: userId
-      });
-
-      // update post likes count
-      // fb.postsCollection.likedoc(movieId).update({
-      //   likes: movie.likesCount + 1
-      // });
+      // Set user profile in state
+      commit("setUserProfile", userProfile.data());
     },
-    // eslint-disable-next-line no-unused-vars
-    async dislikeMovie({ dispatch }, movie) {
-      const movieId = movie.id.toString();
+    async fetchUserImage({ commit }, userId) {
+      // Fetch user image
+      const storageRef = await fb.storage.ref().child(userId);
 
+      // Get the download URL
+      await storageRef
+        .getDownloadURL()
+        .then(url => {
+          // Set user profile in state
+          commit("setUserImage", url);
+        })
+        .catch(error => {
+          console.log(error.message);
+        });
+    },
+    async fetchGenres({ commit }, userId) {
+      // Fetch genre
+      const genres = await fb.genreCollection.doc(userId).get();
+
+      // Set user genre in state
+      commit("setGenres", genres.data().genres);
+    },
+    async fetchLikedMovies({ commit }, userId) {
+      // Fetch user movie list
+      const movieList = await fb.likesCollection.doc(userId).get();
+
+      // Set user movie list in state
+      commit("setLikedMovies", movieList.data().movies);
+    },
+    async fetchDislikedMovies({ commit }, userId) {
+      // Fetch user movie list
+      const movieList = await fb.dislikesCollection.doc(userId).get();
+
+      // Set user movie list in state
+      commit("setDislikedMovies", movieList.data().movies);
+    },
+    async updateProfile({ dispatch }, user) {
       const userId = fb.auth.currentUser.uid;
-      const docId = `${userId}_${movieId}`;
 
-      // check if user has liked or disliked post
-      const likedoc = await fb.likesCollection.doc(docId).get();
-      const dislikedoc = await fb.dislikesCollection.doc(docId).get();
-      if (likedoc.exists) {
-        await fb.likesCollection.doc(docId).delete();
-      }
-      if (dislikedoc.exists) {
-        // console.log("You Already Disliked This Movie");
-        await fb.dislikesCollection.doc(docId).delete();
-        return;
-      }
-
-      // create post
-      await fb.dislikesCollection.doc(docId).set({
-        movieId: movieId,
-        userId: userId
+      // update user info
+      await fb.usersCollection.doc(userId).update({
+        name: user.name,
+        description: user.description
       });
 
-      // update post dislikes count
-      // fb.postsCollection.dislikedoc(movieId).update({
-      //   dislikes: movie.dislikesCount + 1
-      // });
+      dispatch("fetchUserProfile", userId);
+    },
+    async updateProfileImage({ dispatch }, image) {
+      const userId = fb.auth.currentUser.uid;
+
+      await fb.storage.ref(userId).put(image);
+
+      dispatch("fetchUserImage", userId);
+    },
+    async updateGenres({ dispatch }, genres) {
+      const userId = fb.auth.currentUser.uid;
+      const favoriteGenres = await fb.genreCollection.doc(userId).get();
+
+      if (favoriteGenres.exists) {
+        const dataset = favoriteGenres.data().genres;
+
+        genres.map(genre => {
+          let added = false;
+          favoriteGenres.data().genres.map((data, index) => {
+            if (data.name === genre) {
+              dataset[index].value += 1;
+              added = true;
+            }
+          });
+          if (added === false) {
+            dataset.push({ name: genre, value: 1 });
+          }
+        });
+
+        await fb.genreCollection.doc(userId).update({
+          genres: dataset
+        });
+      } else {
+        const dataset = [];
+
+        genres.map(genre => {
+          dataset.push({ name: genre, value: 1 });
+        });
+
+        await fb.genreCollection.doc(userId).set({
+          genres: dataset
+        });
+      }
+
+      dispatch("fetchGenres", userId);
+    },
+    async likeMovie({ dispatch }, movie) {
+      const userId = fb.auth.currentUser.uid;
+      const likedMovies = await fb.likesCollection.doc(userId).get();
+      const dislikedMovies = await fb.dislikesCollection.doc(userId).get();
+
+      if (likedMovies.exists) {
+        await fb.likesCollection.doc(userId).update({
+          movies: fb.db.FieldValue.arrayUnion(movie)
+        });
+      } else {
+        await fb.likesCollection.doc(userId).set({
+          movies: [movie]
+        });
+      }
+
+      if (dislikedMovies.exists) {
+        await fb.dislikesCollection.doc(userId).update({
+          movies: fb.db.FieldValue.arrayRemove(movie)
+        });
+      }
+
+      // Fetch likedMovies and set in state
+      dispatch("fetchLikedMovies", userId);
+
+      // Update Genres
+      dispatch("updateGenres", movie.genres);
+    },
+    async dislikeMovie({ dispatch }, movie) {
+      const userId = fb.auth.currentUser.uid;
+      const likedMovies = await fb.likesCollection.doc(userId).get();
+      const dislikedMovies = await fb.dislikesCollection.doc(userId).get();
+
+      if (dislikedMovies.exists) {
+        await fb.dislikesCollection.doc(userId).update({
+          movies: fb.db.FieldValue.arrayUnion(movie)
+        });
+      } else {
+        await fb.dislikesCollection.doc(userId).set({
+          movies: [movie]
+        });
+      }
+
+      if (likedMovies.exists) {
+        await fb.likesCollection.doc(userId).update({
+          movies: fb.db.FieldValue.arrayRemove(movie)
+        });
+      }
+
+      // Fetch dislikedMovies and set in state
+      dispatch("fetchDislikedMovies", userId);
     }
-    // async updateProfile({ dispatch }, user) {
-    //   const userId = fb.auth.currentUser.uid;
-    //   // update user object
-    //   await fb.usersCollection.doc(userId).update({
-    //     name: user.name,
-    //     title: user.title
-    //   });
-
-    //   dispatch("fetchUserProfile", { uid: userId });
-
-    //   // update all posts by user
-    //   const postDocs = await fb.postsCollection
-    //     .where("userId", "==", userId)
-    //     .get();
-    //   postDocs.forEach(doc => {
-    //     fb.postsCollection.doc(doc.id).update({
-    //       userName: user.name
-    //     });
-    //   });
-
-    //   // update all comments by user
-    //   const commentDocs = await fb.commentsCollection
-    //     .where("userId", "==", userId)
-    //     .get();
-    //   commentDocs.forEach(doc => {
-    //     fb.commentsCollection.doc(doc.id).update({
-    //       userName: user.name
-    //     });
-    //   });
-    // }
   }
 });
 

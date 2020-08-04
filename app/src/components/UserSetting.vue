@@ -6,20 +6,27 @@
     :wrapper-col="wrapperCol"
   >
     <a-form-model-item label="Nick Name">
-      <a-input v-model="form.name" />
+      <!-- <a-input v-model="form.name" /> -->
+      <a-input v-model="username" />
     </a-form-model-item>
     <!-- <a-form-model-item label="Send Email">
       <a-switch v-model="form.email" />
     </a-form-model-item> -->
     <a-form-model-item label="Introduction">
-      <a-input v-model="form.desc" type="textarea" />
+      <!-- <a-input v-model="form.description" type="textarea" /> -->
+      <a-input v-model="description" type="textarea" />
     </a-form-model-item>
     <a-form-model-item :wrapper-col="{ span: 14, offset: 4 }">
-      <a-button class="update-btn" @click="onSubmit">
+      <a-button
+        class="update-btn"
+        @click="onUpdate(form.name, form.description)"
+      >
         Update
       </a-button>
-      <a-button class="cancel-btn" style="margin-left: 10px;">
-        Cancel
+      <a-button class="cancel-btn">
+        <router-link :to="{ name: 'Home' }">
+          Cancel
+        </router-link>
       </a-button>
     </a-form-model-item>
   </a-form-model>
@@ -27,21 +34,25 @@
 
 <script>
 export default {
-  name: "Setting",
+  name: "UserSetting",
+  props: {
+    username: String,
+    description: String
+  },
   data() {
     return {
       labelCol: { span: 4 },
       wrapperCol: { span: 14 },
       form: {
         name: "",
-        email: false,
-        desc: ""
+        description: ""
+        // email: false,
       }
     };
   },
   methods: {
-    onSubmit() {
-      // On Submit
+    onUpdate(name, description) {
+      this.$store.dispatch("updateProfile", { name, description });
     }
   }
 };
@@ -58,13 +69,15 @@ export default {
 
 .update-btn,
 .cancel-btn {
+  margin-left: 20px;
   background-color: transparent;
+  border-color: #f3c669;
   color: white;
 }
 
 .update-btn:hover,
 .cancel-btn:hover {
-  border-color: white;
+  background-color: #f3c669;
 }
 
 @media screen and (max-width: 500px) {

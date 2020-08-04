@@ -1,21 +1,25 @@
 <template>
-  <li class="movie-list">
-    <img class="poster" :src="item.poster_path" />
-    <br />
-    <div>
-      <a class="title">{{ item.title }}</a>
-      <div class="d-flex items-center area muted">
-        <p class="para-tag">{{ item.release_year }}</p>
-        <p class="separator genres para-tag">{{ genres }}</p>
+  <li>
+    <router-link
+      class="movie"
+      :to="{ name: 'MovieSynopsis', params: { id: item.id } }"
+    >
+      <img class="poster" :src="imgUrl(item.poster_path)" />
+      <div>
+        <h1 class="title">{{ item.title }}</h1>
+        <div class="d-flex items-center area muted">
+          <p class="para-tag">{{ item.release_year }}</p>
+          <p class="separator genres para-tag">{{ genres }}</p>
+        </div>
+        <p class="area plot para-tag">{{ item.overview }}</p>
+        <div class="d-flex items-center area">
+          <p class="rating para-tag" title="Rating" v-show="item.popularity">
+            <span class="rating-star"></span>
+            {{ item.vote_average }}
+          </p>
+        </div>
       </div>
-      <p class="area plot para-tag">{{ item.overview }}</p>
-      <div class="d-flex items-center area">
-        <p class="rating para-tag" title="Rating" v-show="item.popularity">
-          <span class="rating-star"></span>
-          {{ item.vote_average }}
-        </p>
-      </div>
-    </div>
+    </router-link>
   </li>
 </template>
 
@@ -25,6 +29,11 @@ export default {
     item: {
       type: Object,
       required: true
+    }
+  },
+  methods: {
+    imgUrl(path) {
+      return "https://image.tmdb.org/t/p/w342" + path;
     }
   },
   computed: {
@@ -59,14 +68,14 @@ export default {
   content: "|";
 }
 
-.movie-list {
+.movie {
   background-color: #222831;
   display: flex;
   align-items: flex-start;
   padding: 1em;
 }
 
-.movie-list:hover {
+.movie:hover {
   background-color: #2a313c;
 }
 
@@ -94,7 +103,6 @@ export default {
 }
 
 .rating {
-  /* color: #666; */
   color: white;
   font-size: 0.9em;
   display: flex;

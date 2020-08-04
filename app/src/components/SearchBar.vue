@@ -1,6 +1,5 @@
 <template>
   <a-input-search
-    class="search-bar"
     placeholder="Search Movies"
     v-model="movieQuery"
     enter-button
@@ -31,18 +30,5 @@ export default {
   }
 };
 </script>
-<style scoped>
-/* .search-bar {
-  width: 50%;
-  margin: 50px auto 25px;
-} */
 
-@media screen and (max-width: 500px) {
-  /* applies styles to any device screen sizes below 800px wide */
-
-  /* .search-bar {
-    width: 75%;
-    margin: 15px auto;
-  } */
-}
-</style>
+<style scoped></style>

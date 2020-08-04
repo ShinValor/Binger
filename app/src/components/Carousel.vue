@@ -3,8 +3,18 @@
     <div v-if="loading">
       <Loading />
     </div>
-    <flickity class="carousel" ref="flickity" :options="flickityOptions" @init="onInit" v-else>
-      <div class="carousel-cell" v-for="(movie, index) in movieList" v-bind:key="index">
+    <flickity
+      class="carousel"
+      ref="flickity"
+      :options="flickityOptions"
+      @init="onInit"
+      v-else
+    >
+      <div
+        class="carousel-cell"
+        v-for="(movie, index) in movieList"
+        v-bind:key="index"
+      >
         <img
           class="carousel-cell-image"
           :data-flickity-lazyload="loadImg(movie.poster_path)"
@@ -20,7 +30,12 @@
         </div>
       </div>
     </flickity>
-    <a-modal v-model="modalVisible" :title="modalTitle" :width="750" :footer="null">
+    <a-modal
+      v-model="modalVisible"
+      :title="modalTitle"
+      :width="750"
+      :footer="null"
+    >
       <div :style="{ display: 'flex' }">
         <p class="content">{{ this.modalSummary }}</p>
         <img
@@ -30,8 +45,11 @@
           onerror="this.style.display='none'"
         />
       </div>
-      <a-button>
-        <router-link :to="{ name: 'MovieSynopsis', params: { id: this.modalId } }">More Info</router-link>
+      <a-button class="info-btn">
+        <router-link
+          :to="{ name: 'MovieSynopsis', params: { id: this.modalId } }"
+          >More Info</router-link
+        >
       </a-button>
     </a-modal>
   </div>
@@ -82,7 +100,7 @@ export default {
         cellElement,
         cellIndex
       ) {
-        console.log(event, pointer, cellElement, cellIndex);
+        // console.log(event, pointer, cellElement, cellIndex);
         vm.toggleModal(cellIndex);
       });
     },
@@ -121,25 +139,20 @@ export default {
 }
 
 .carousel-cell {
-  /* background-color: #222; */
-  height: 500px;
   width: 20%;
+  height: 500px;
+  margin-right: 4px;
   display: flex;
   flex-direction: column;
-  /* justify-content: flex-start; */
-  margin-right: 4px;
-  /* padding: 0 2px; */
 }
 
 .carousel-cell-image {
   max-height: 100%;
   max-width: 100%;
-  /* margin: 0 auto; */
-  /* display: block; */
   object-fit: cover;
   opacity: 0;
-  -webkit-transition: opacity 0.4s;
   transition: opacity 0.4s;
+  -webkit-transition: opacity 0.4s;
 }
 
 .carousel-cell:hover {
@@ -169,7 +182,6 @@ export default {
   width: 66%;
   margin: 5px auto;
   font-size: 15px;
-  /* color: white; */
 }
 
 .large-image {
@@ -179,13 +191,14 @@ export default {
   object-fit: cover;
 }
 
-.more-info {
+.info-btn {
   background-color: transparent;
   color: white;
+  border-color: #f3c669;
 }
 
-.more-info:hover {
-  border-color: white;
+.info-btn:hover {
+  background-color: #f3c669;
 }
 
 @media screen and (max-width: 500px) {

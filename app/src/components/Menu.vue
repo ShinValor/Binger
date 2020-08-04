@@ -1,25 +1,57 @@
 <template>
   <PushRotate width="250">
     <div class="sidebar">
-      <header class="sidebar-header">
+      <header class="sidebar-header" v-if="this.$store.state.loggedIn">
         <a-avatar :size="64" icon="user" class="ant-icon" />
         <span class="username">{{ username }}</span>
       </header>
+      <header class="sidebar-header" v-else>
+        <a-avatar :size="64" icon="user" class="ant-icon" />
+        <span class="username">Not Sign In</span>
+      </header>
       <!-- <div class="break"></div> -->
       <div class="sidebar-list">
-        <div :class="activeRoute('Recommendations') ? 'current-route' : ''" class="sidebar-item">
+        <div
+          :class="activeRoute('Home') ? 'current-route' : ''"
+          class="sidebar-item"
+        >
+          <router-link class="link" to="/">
+            <span>Home</span>
+          </router-link>
+        </div>
+        <div
+          :class="activeRoute('About') ? 'current-route' : ''"
+          class="sidebar-item"
+        >
+          <router-link class="link" to="/about">
+            <span>About</span>
+          </router-link>
+        </div>
+        <div
+          :class="activeRoute('Recommendations') ? 'current-route' : ''"
+          class="sidebar-item"
+          v-if="this.$store.state.loggedIn"
+        >
           <router-link class="link" to="/movie-recommendations">
-            <span>Recommendation</span>
+            <span>Search Movies</span>
           </router-link>
         </div>
-        <div :class="activeRoute('MovieList') ? 'current-route' : ''" class="sidebar-item">
-          <router-link class="link" to="/movie-list/1">
-            <span>Movie List</span>
-          </router-link>
-        </div>
-        <div :class="activeRoute('Favorites') ? 'current-route' : ''" class="sidebar-item">
+        <div
+          :class="activeRoute('Favorites') ? 'current-route' : ''"
+          class="sidebar-item"
+          v-if="this.$store.state.loggedIn"
+        >
           <router-link class="link" to="/favorite-movies">
             <span>My Favorites</span>
+          </router-link>
+        </div>
+        <div
+          :class="activeRoute('Login') ? 'current-route' : ''"
+          class="sidebar-item"
+          v-if="!this.$store.state.loggedIn"
+        >
+          <router-link class="link" to="/login">
+            <span>Login</span>
           </router-link>
         </div>
       </div>
@@ -35,14 +67,14 @@ export default {
   components: {
     PushRotate
   },
-  data() {
-    return {
-      username: "BrightBurn"
-    };
-  },
   methods: {
     activeRoute(check) {
       return this.$route.name === check ? true : false;
+    }
+  },
+  computed: {
+    username() {
+      return this.$store.state.userProfile["name"];
     }
   }
 };
@@ -128,6 +160,68 @@ export default {
   /* color: black; */
 }
 
+.sidebar {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header {
+  padding: 10px 5px;
+  border-bottom: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+
+.sidebar-list {
+  padding: 10px 0;
+  display: block;
+  /* overflow-y: auto; */
+}
+
+.sidebar-item {
+  box-sizing: border-box;
+  width: auto;
+  height: auto;
+  margin: 0;
+  padding: 10px;
+  text-align: left;
+  line-height: 1.5;
+  transition: all 0.25s ease;
+  -webkit-transition: all 0.25s ease;
+  /* display: inline; */
+  /* display: inline-block; */
+  /* width: 100%; */
+  /* height: 40px; */
+  /* color: #faa5de; */
+}
+.username {
+  color: white;
+  font-weight: 600;
+}
+
+.break {
+  height: 0;
+  flex-basis: 100%;
+}
+
+.current-route {
+  border-right: 3px solid#f3c669 !important;
+  color: #f3c669;
+  font-weight: 900;
+  pointer-events: none;
+}
+
+.link {
+  color: inherit;
+}
+
+.link:active,
+.link:hover {
+  color: #f3c669;
+}
+
 @media screen and (max-width: 800px) {
   /* applies styles to any device screen sizes below 800px wide */
 
@@ -148,63 +242,5 @@ export default {
   .ant-icon {
     display: block;
   }
-}
-
-.sidebar {
-  display: flex;
-  flex-direction: column;
-}
-
-.sidebar-header {
-  padding: 10px 5px;
-  border-bottom: 1px solid white;
-  display: flex;
-  align-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.sidebar-list {
-  padding: 10px 0;
-  overflow-y: auto;
-  display: block;
-}
-
-.sidebar-item {
-  text-align: left;
-  margin: 0;
-  padding: 0;
-  -webkit-transition: all 0.25s ease;
-  transition: all 0.25s ease;
-  box-sizing: border-box;
-  /* display: inline; */
-  /* width: 100%;
-  height: 40px; */
-  width: auto;
-  height: auto;
-  padding: 10px;
-  /* display: inline-block; */
-  line-height: 1.5;
-  /* color: #faa5de; */
-}
-.username {
-  color: white;
-  font-weight: 600;
-}
-
-.break {
-  flex-basis: 100%;
-  height: 0;
-}
-
-.current-route {
-  border-right: 3px solid#00adb5 !important;
-  color: #00adb5;
-  font-weight: 900;
-  pointer-events: none;
-}
-
-.link {
-  color: inherit;
 }
 </style>

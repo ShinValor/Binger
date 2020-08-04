@@ -136,9 +136,11 @@ export default {
     },
     likeMovie(movie) {
       this.$store.dispatch("likeMovie", movie);
+      this.$message.success(`You liked ${movie.title}`);
     },
     dislikeMovie(movie) {
       this.$store.dispatch("dislikeMovie", movie);
+      this.$message.error(`You disliked ${movie.title}`);
     }
   }
 };
@@ -152,38 +154,38 @@ export default {
 .header {
   display: flex;
   flex-wrap: nowrap;
-  background-color: rgba(0, 34, 95, 0.7);
-  background-blend-mode: multiply;
+  padding-bottom: 4rem !important;
+  padding-top: 4.5rem !important;
+  background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;
-  padding-bottom: 4rem !important;
-  padding-top: 4.5rem !important;
+  background-color: rgba(0, 34, 95, 0.7);
+  background-blend-mode: multiply;
 }
 
 .header-contents {
+  margin: 2em;
   display: flex;
   flex-wrap: nowrap;
-  margin: 2em;
 }
 
 .poster-wrapper {
-  display: block;
   min-width: 300px;
   width: 300px;
   height: 450px;
+  display: block;
   position: relative;
   top: 0;
   left: 0;
 }
 
 .poster {
-  display: block;
   width: 100%;
   min-width: 100%;
   height: 100%;
   min-height: 100%;
+  display: block;
   border-width: 0px;
   outline: none;
 }
@@ -197,27 +199,26 @@ export default {
 }
 
 .key-info {
-  width: 100%;
   margin-bottom: 10px;
+  width: 100%;
 }
 
 .movie-title {
   margin: 0;
   padding: 0;
+  display: inline;
   font-size: 2.2rem;
   font-weight: 700;
-  display: inline;
 }
 
 .tagline {
   margin: 0;
-  padding: 0;
+  padding: 0 0 0 15px;
+  display: inline;
   font-weight: 350;
   font-size: 1.3rem;
   font-style: italic;
   opacity: 0.7;
-  display: inline;
-  padding-left: 15px;
 }
 
 .general-info {
@@ -235,34 +236,44 @@ export default {
 }
 
 .movie-rating {
+  margin-bottom: 20px;
   display: flex;
   justify-content: left;
   align-items: center;
   text-align: left;
-  margin-bottom: 20px;
 }
 
 .score-section {
+  margin-right: 10px;
   display: flex;
   justify-content: left;
-  margin-right: 10px;
 }
 
 .play-trailer {
+  box-sizing: border-box;
   margin: 0 0 10px;
   display: inline-flex;
   align-items: left;
   justify-content: left;
-  box-sizing: border-box;
 }
 
 .trailer-btn {
+  display: inline-block;
+  vertical-align: middle;
   color: white;
   font-size: 1.3em;
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  transform: perspective(1px) translateZ(0);
+  -webkit-transform: perspective(1px) translateZ(0);
+  transition-duration: 0.3s;
+  -webkit-transition-duration: 0.3s;
+  transition-property: transform;
+  -webkit-transition-property: transform;
+  transition-timing-function: ease-out;
+  -webkit-transition-timing-function: ease-out;
 }
 
 .trailer-btn:hover {
-  /* color: pink; */
   transform: scale(1.1);
 }
 
@@ -273,10 +284,10 @@ export default {
 }
 
 .score-section-text {
-  font-weight: 700;
   margin-right: 5px;
-  white-space: pre-line;
+  font-weight: 700;
   font-size: 14px;
+  white-space: pre-line;
 }
 
 .movie-overview-text {
@@ -297,9 +308,9 @@ export default {
 
 .like-btn,
 .dislike-btn {
+  margin-left: 15px;
   background-color: #222831;
   border-color: white;
-  margin-left: 15px;
 }
 
 .like-btn:hover,
@@ -307,6 +318,12 @@ export default {
   background-color: white;
   color: #222831;
   transform: scale(1.2);
+}
+
+.like-btn:active,
+.dislike-btn:active {
+  background-color: #222831;
+  color: white;
 }
 
 @media only screen and (max-width: 600px) {

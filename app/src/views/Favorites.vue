@@ -1,16 +1,35 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
-    <chart :options="option" />
-    <a-button class="swiper-btn" @click="toggleModal">Try Our Swiper</a-button>
-    <FavoriteMovieList class="favoriteList" />
-    <a-modal
+    <div :style="{ display: 'inline' }">
+      <a-button class="swiper-btn" @click="toggleModal">
+        Try Our Swiper
+      </a-button>
+    </div>
+    <a-tabs class="tabs" default-active-key="1" @change="switchTabs">
+      <a-tab-pane key="1" tab="My Dashboard" force-render>
+        <ECharts ref="echarts" :options="eChartsOption" />
+        <!-- <a-button @click="updateChart"> View </a-button> -->
+      </a-tab-pane>
+      <a-tab-pane key="2" tab="Liked Movies">
+        <FavoriteMovieList class="favorite-movie" :movieList="likedMovies" />
+      </a-tab-pane>
+      <a-tab-pane key="3" tab="Disliked Movies" force-render>
+        <FavoriteMovieList class="favorite-movie" :movieList="dislikedMovies" />
+      </a-tab-pane>
+      <a-tab-pane key="4" tab="Recommendations" force-render>
+        <h1 :style="{ color: 'white' }">Something</h1>
+      </a-tab-pane>
+    </a-tabs>
+    <!-- <a-modal
       v-model="modalVisible"
       :title="'Movie Swiper'"
-      :width="600"
+      :width="650"
       :footer="null"
-    >
+    > -->
+    <a-modal v-model="modalVisible" :width="650" :footer="null">
       <MovieSwiper />
     </a-modal>
+    <BackToTop />
   </a-layout>
 </template>
 
@@ -21,87 +40,60 @@ import "echarts/lib/component/polar";
 import "echarts/theme/dark";
 import FavoriteMovieList from "@/components/FavoriteMovieList.vue";
 import MovieSwiper from "@/components/MovieSwiper.vue";
+import BackToTop from "@/components/BackToTop.vue";
+import { eChartsOption } from "../util/eChartsOption";
 
 export default {
   name: "Favorites",
   components: {
     FavoriteMovieList,
     MovieSwiper,
-    chart: ECharts
+    ECharts,
+    BackToTop
   },
   data() {
     return {
       modalVisible: false,
-      option: {
-        title: {
-          text: "Your Movie Dashboard",
-          subtext: "Most Searched Movie Genre",
-          left: "center",
-          textStyle: {
-            color: "white"
-          }
-        },
-        tooltip: {
-          trigger: "item",
-          formatter: "{a} <br/>{b} : {c} ({d}%)"
-        },
-        legend: {
-          left: "center",
-          top: "bottom",
-          data: [
-            "Action",
-            "Comedy",
-            "Thriller",
-            "Crime Film",
-            "Drama",
-            "Horror",
-            "Adventure",
-            "Night Shows"
-          ],
-          textStyle: {
-            color: "white"
-          }
-        },
-        // toolbox: {
-        //   show: true,
-        //   feature: {
-        //     mark: { show: true },
-        //     dataView: { show: true, readOnly: false },
-        //     magicType: {
-        //       show: true,
-        //       type: ["pie", "funnel"]
-        //     },
-        //     restore: { show: true },
-        //     saveAsImage: { show: true }
-        //   }
-        // },
-        series: [
-          {
-            name: "You",
-            type: "pie",
-            radius: [30, 110],
-            center: ["50%", "50%"],
-            roseType: "area",
-            data: [
-              { name: "Action", value: 10 },
-              { name: "Comedy", value: 5 },
-              { name: "Thriller", value: 15 },
-              { name: "Crime Film", value: 25 },
-              { name: "Drama", value: 20 },
-              { name: "Horror", value: 35 },
-              { name: "Adventure", value: 30 },
-              { name: "Night Shows", value: 40 }
-            ]
-          }
-        ]
-      }
+      eChartsOption
     };
   },
   methods: {
     toggleModal() {
       this.modalVisible = !this.modalVisible;
-      // console.log(this.option.series[0].data);
+    },
+    switchTabs(key) {
+      console.log(key);
+    },
+    updateChart(dataset) {
+      this.$refs.echarts.mergeOptions({
+        series: [
+          {
+            data: dataset
+          }
+        ]
+      });
     }
+  },
+  computed: {
+    favoriteGenres() {
+      return this.$store.state.genres;
+    },
+    likedMovies() {
+      return this.$store.state.likedMovies;
+    },
+    dislikedMovies() {
+      return this.$store.state.dislikedMovies;
+    }
+  },
+  watch: {
+    favoriteGenres(newGenres, oldGenres) {
+      console.log("old", oldGenres);
+      console.log("new", newGenres);
+      this.updateChart(newGenres);
+    }
+  },
+  mounted() {
+    this.updateChart(this.favoriteGenres);
   }
 };
 </script>
@@ -113,39 +105,48 @@ export default {
  * don't forget to provide a size for the container).
  */
 .echarts {
-  width: 800px;
-  height: 400px;
-  margin: 50px auto;
+  width: 100%;
+  height: 600px;
+  margin: 20px auto;
 }
 
-.favoriteList {
-  margin: 25px;
+.tabs {
+  width: 85%;
+  margin: 25px auto 50px;
+}
+
+.favorite-movie {
+  margin-top: 20px;
 }
 
 .swiper-btn {
-  position: absolute;
-  top: 10%;
-  right: 1%;
   background-color: transparent;
+  width: 125px;
+  height: 100%;
+  margin: 20px;
+  padding: 5px;
   color: white;
+  border-color: #f3c669;
+  float: right;
 }
 
-.swiper-btn:hover,
-.swiper-btn:active,
-.swiper-btn:focus {
-  border-color: white;
+.swiper-btn:hover {
+  background-color: #f3c669;
 }
 
-@media screen and (max-width: 500px) {
-  /* applies styles to any device screen sizes below 800px wide */
+@media screen and (max-width: 800px) {
+  .tabs {
+    width: 95%;
+    margin: 10px auto;
+  }
 
   .echarts {
     width: 600px;
-    margin: 25px auto;
+    height: 700px;
   }
 
-  .favoriteList {
-    margin: 15px 10px;
+  .swiper-btn {
+    margin: 10px;
   }
 }
 </style>
