@@ -20,12 +20,13 @@
         <h1 :style="{ color: 'white' }">Something</h1>
       </a-tab-pane>
     </a-tabs>
-    <a-modal
+    <!-- <a-modal
       v-model="modalVisible"
       :title="'Movie Swiper'"
       :width="650"
       :footer="null"
-    >
+    > -->
+    <a-modal v-model="modalVisible" :width="650" :footer="null">
       <MovieSwiper />
     </a-modal>
     <BackToTop />
@@ -62,16 +63,16 @@ export default {
     },
     switchTabs(key) {
       console.log(key);
+    },
+    updateChart() {
+      this.$refs.echarts.mergeOptions({
+        series: [
+          {
+            data: this.$store.state.genres
+          }
+        ]
+      });
     }
-    // updateChart() {
-    //   this.$refs.echarts.mergeOptions({
-    //     series: [
-    //       {
-    //         data: this.$store.state.genres
-    //       }
-    //     ]
-    //   });
-    // }
   },
   computed: {
     likedMovies() {
@@ -81,14 +82,14 @@ export default {
       return this.$store.state.dislikedMovies;
     }
   },
+  created() {
+    this.updateChart();
+  },
+  mounted() {
+    this.updateChart();
+  },
   beforeUpdate() {
-    this.$refs.echarts.mergeOptions({
-      series: [
-        {
-          data: this.$store.state.genres
-        }
-      ]
-    });
+    this.updateChart();
   }
 };
 </script>

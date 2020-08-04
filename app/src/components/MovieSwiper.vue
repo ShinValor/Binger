@@ -16,9 +16,12 @@
           :interact-lock-y-axis="true"
           v-if="showDraggable"
         >
-          <p class="summary">
-            {{ movie.overview }}
-          </p>
+          <div class="movie-info">
+            <h1 class="title">{{ movie.title }}</h1>
+            <p class="summary">
+              {{ movie.overview }}
+            </p>
+          </div>
           <img
             class="large-image"
             :src="'https://image.tmdb.org/t/p/w342' + this.movie['poster_path']"
@@ -142,8 +145,16 @@ export default {
   background-color: #2a323d;
 }
 
-.summary {
+.movie-info {
   margin: 5px 10px 5px 5px;
+}
+
+.title {
+  color: white;
+}
+
+.summary {
+  font-size: 1em;
 }
 
 .large-image {
@@ -178,6 +189,26 @@ export default {
   margin: 0 auto;
   position: absolute;
   top: 50%;
-  left: 40%;
+  left: 42%;
+}
+
+@media screen and (max-width: 800px) {
+  .title {
+    font-size: 1.5em;
+  }
+
+  .summary {
+    font-size: 1em;
+  }
+
+  .large-image {
+    height: 150px;
+    width: 100px;
+    margin: 5px;
+  }
+
+  .loading {
+    left: 35%;
+  }
 }
 </style>
