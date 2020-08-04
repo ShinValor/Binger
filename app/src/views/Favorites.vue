@@ -23,7 +23,7 @@
     <a-modal
       v-model="modalVisible"
       :title="'Movie Swiper'"
-      :width="600"
+      :width="650"
       :footer="null"
     >
       <MovieSwiper />

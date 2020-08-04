@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="draggable-container">
+    <div class="draggable">
       <div v-if="loading">
         <Loading class="loading" />
       </div>
@@ -16,9 +16,11 @@
           :interact-lock-y-axis="true"
           v-if="showDraggable"
         >
+          <p class="summary">
+            {{ movie.overview }}
+          </p>
           <img
-            height="400"
-            weight="300"
+            class="large-image"
             :src="'https://image.tmdb.org/t/p/w342' + this.movie['poster_path']"
             :alt="this.movie['title']"
             onerror="this.style.display='none'"
@@ -126,23 +128,28 @@ export default {
 </script>
 
 <style scoped>
-.draggable-container {
+.draggable {
   height: 400px;
-  width: 300px;
-  margin: 0 auto;
 }
 
 .card {
   height: 400px;
-  width: 300px;
-  margin: 0 auto;
+  width: 100%;
+  padding: 15px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  /* background-image: url("https://picsum.photos/200/300");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center; */
+  justify-content: space-evenly;
+  align-items: flex-start;
+  background-color: #2a323d;
+}
+
+.summary {
+  margin: 5px 10px 5px 5px;
+}
+
+.large-image {
+  height: 300px;
+  width: 200px;
+  margin: 5px;
 }
 
 .section {

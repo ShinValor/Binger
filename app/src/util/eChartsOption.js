@@ -3,7 +3,7 @@
 export const eChartsOption = {
   title: {
     text: "Movie Dashboard",
-    subtext: "Most Searched Movie Genres",
+    subtext: "Most Liked Movie Genres",
     left: "center",
     textStyle: {
       color: "white"
