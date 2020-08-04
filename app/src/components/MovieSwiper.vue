@@ -193,18 +193,37 @@ export default {
 }
 
 @media screen and (max-width: 800px) {
+  .card {
+    padding: 0px;
+    flex-direction: column-reverse;
+    overflow-y: auto;
+  }
+
+  .movie-info {
+    margin: 5px;
+    padding: 10px;
+  }
+
   .title {
     font-size: 1.5em;
+    text-align: center;
   }
 
   .summary {
     font-size: 1em;
+    text-align: center;
   }
 
   .large-image {
-    height: 150px;
-    width: 100px;
-    margin: 5px;
+    margin: 5px auto;
+  }
+
+  .section {
+    margin: 20px 0 0;
+  }
+
+  .swiper-btn {
+    font-size: 25px;
   }
 
   .loading {
