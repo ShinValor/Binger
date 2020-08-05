@@ -85,7 +85,7 @@ import "echarts/lib/chart/line";
 import "echarts/lib/component/polar";
 import "echarts/theme/dark";
 import { eChartsOption } from "../util/eChartsOption";
-import { GENRE_NAME_TO_ID } from "../util/genres";
+// import { GENRE_NAME_TO_ID } from "../util/genres";
 
 import axios from "axios";
 import FavoriteMovieList from "@/components/FavoriteMovieList.vue";
@@ -131,16 +131,20 @@ export default {
     async fetchRecommendations(genres) {
       let topGenres = [];
       genres.map(genre => {
-        topGenres.push(GENRE_NAME_TO_ID[genre.name]);
+        // topGenres.push(GENRE_NAME_TO_ID[genre.name]);
+        topGenres.push(genre.name);
       });
-      // console.log("GENRE ID", topGenres);
+      // console.log("Genre ID", topGenres);
+      // console.log("Genre Name", topGenres.join(","));
 
-      if (topGenres.length) {
+      if (topGenres.length > 0) {
         try {
           const res = await axios.get(
-            "https://binger-api-testv1.azurewebsites.net/movie/ratings/worst"
+            "https://binger-api-testv1.azurewebsites.net/movie/search/genre",
+            { params: { with_genres: topGenres.join(",") } }
           );
-          this.recommendations = res.data;
+          console.log(res.data);
+          this.recommendations = res.data.results;
         } catch (err) {
           this.error = err;
         }

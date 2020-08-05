@@ -103,7 +103,10 @@ export default {
   },
   watch: {
     $route() {
-      this.fetchMovies(this.movieUrls);
+      if (!this.random) {
+        this.currentPage = parseInt(this.$route.query.current_page);
+        this.fetchMovies(this.movieUrls);
+      }
     }
   },
   methods: {
@@ -114,7 +117,6 @@ export default {
         params: { path: this.$route.params.path },
         query: { current_page: this.currentPage }
       });
-      this.fetchMovies(this.movieUrls, page);
     },
     toggleModal(movie) {
       this.modalVisible = !this.modalVisible;

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Vue from "vue";
 import Vuex from "vuex";
 import * as fb from "../util/firebase";
@@ -20,8 +21,11 @@ const store = new Vuex.Store({
       const sorted = state.genres.sort(
         (a, b) => parseFloat(a.value) - parseFloat(b.value)
       );
-      const res = sorted.slice(sorted.length - 3, sorted.length);
-      return res;
+      if (sorted.length >= 3) {
+        const res = sorted.slice(sorted.length - 3, sorted.length);
+        return res;
+      }
+      return sorted;
     }
   },
   mutations: {
@@ -62,37 +66,42 @@ const store = new Vuex.Store({
       });
 
       // Fetch user profile and set in state
-      dispatch("fetchUserProfile", user);
+      // dispatch("fetchUserProfile", user);
 
       router.push("/");
     },
+    // async login(form) {
     async login({ dispatch }, form) {
       // Sign user in
-      const { user } = await fb.auth.signInWithEmailAndPassword(
-        form.email,
-        form.password
-      );
+
+      await fb.auth.signInWithEmailAndPassword(form.email, form.password);
+
+      // const { user } = await fb.auth.signInWithEmailAndPassword(
+      //   form.email,
+      //   form.password
+      // );
 
       // Fetch user profile and set in state
-      dispatch("fetchUserProfile", user.uid);
-      dispatch("fetchUserImage", user.uid);
-      dispatch("fetchGenres", user.uid);
-      dispatch("fetchLikedMovies", user.uid);
-      dispatch("fetchDislikedMovies", user.uid);
+      // dispatch("fetchUserProfile", user.uid);
+      // dispatch("fetchUserImage", user.uid);
+      // dispatch("fetchGenres", user.uid);
+      // dispatch("fetchLikedMovies", user.uid);
+      // dispatch("fetchDislikedMovies", user.uid);
 
       router.push("/");
     },
-    async logout({ commit }) {
+    // async logout({ commit }) {
+    async logout() {
       // Log user out
       await fb.auth.signOut();
 
       // Clear user data from state
-      commit("setUID", "");
-      commit("setUserProfile", {});
-      commit("setUserImage", "");
-      commit("setGenres", []);
-      commit("setLikedMovies", []);
-      commit("setDislikedMovies", []);
+      // commit("setUID", "");
+      // commit("setUserProfile", {});
+      // commit("setUserImage", "");
+      // commit("setGenres", []);
+      // commit("setLikedMovies", []);
+      // commit("setDislikedMovies", []);
 
       // Redirect to login view
       router.push("/login");
