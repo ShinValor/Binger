@@ -1,42 +1,78 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
     <div :style="{ display: 'inline' }">
-      <a-button class="swiper-btn" @click="toggleModal">
+      <a-button class="swiper-btn" @click="toggleSwiper">
         Try Our Swiper
       </a-button>
     </div>
-    <a-tabs class="tabs" default-active-key="1" @change="switchTabs">
+    <a-tabs class="tabs" default-active-key="1">
       <a-tab-pane key="1" tab="My Dashboard" force-render>
-        <ECharts ref="echarts" :options="eChartsOption" v-if="favoriteGenres" />
-        <h1 v-else>No Data To Display</h1>
+        <ECharts :options="config" v-if="favoriteGenres.length" />
+        <h1 class="message" v-else>No Data To Display</h1>
       </a-tab-pane>
       <a-tab-pane key="2" tab="Liked Movies">
         <FavoriteMovieList
           class="favorite-movie"
           :movieList="likedMovies"
-          v-if="likedMovies"
+          v-if="likedMovies.length"
         />
-        <h1 v-else>You Did Not Liked Any Movies</h1>
+        <h1 class="message" v-else>You Did Not Liked Any Movies</h1>
       </a-tab-pane>
       <a-tab-pane key="3" tab="Disliked Movies" force-render>
         <FavoriteMovieList
           class="favorite-movie"
           :movieList="dislikedMovies"
-          v-if="dislikedMovies"
+          v-if="dislikedMovies.length"
         />
-        <h1 v-else>You Did Not Disliked Any Movies</h1>
+        <h1 class="message" v-else>You Did Not Disliked Any Movies</h1>
       </a-tab-pane>
       <a-tab-pane key="4" tab="Recommendations" force-render>
-        <h1 :style="{ color: 'white' }">Something</h1>
+        <div class="container" v-if="recommendations">
+          <img
+            class="small-image"
+            v-for="(movie, index) in recommendations"
+            v-bind:key="index"
+            :src="loadImg(movie.poster_path)"
+            :alt="movie.title"
+            @click="toggleMovie(movie)"
+          />
+        </div>
+        <h1 class="message" v-else>No Recommendation Available</h1>
+        <!-- <a-button @click="initialize" :style="{ margin: '25px' }"
+          >Initialize
+        </a-button>
+        <br />
+        <a-button @click="request" :style="{ margin: '25px' }"
+          >Request
+        </a-button>
+        <br />
+        <a-button @click="reply" :style="{ margin: '25px' }">Reply</a-button> -->
       </a-tab-pane>
     </a-tabs>
-    <!-- <a-modal
-      v-model="modalVisible"
-      :title="'Movie Swiper'"
+    <a-modal
+      v-model="movieModal"
+      :title="this.movieTitle"
       :width="650"
       :footer="null"
-    > -->
-    <a-modal v-model="modalVisible" :width="650" :footer="null">
+    >
+      <div :style="{ display: 'flex' }">
+        <p class="content">{{ this.movieSummary }}</p>
+        <img
+          class="large-image"
+          :src="movieImg"
+          :alt="movieTitle"
+          onerror="this.style.display='none'"
+        />
+      </div>
+      <a-button class="info-btn">
+        <router-link
+          :to="{ name: 'MovieSynopsis', params: { id: this.movieId } }"
+        >
+          More Info
+        </router-link>
+      </a-button>
+    </a-modal>
+    <a-modal v-model="swiperModal" :width="650" :footer="null">
       <MovieSwiper />
     </a-modal>
     <BackToTop />
@@ -48,10 +84,13 @@ import ECharts from "vue-echarts";
 import "echarts/lib/chart/line";
 import "echarts/lib/component/polar";
 import "echarts/theme/dark";
+import { eChartsOption } from "../util/eChartsOption";
+import { GENRE_NAME_TO_ID } from "../util/genres";
+
+import axios from "axios";
 import FavoriteMovieList from "@/components/FavoriteMovieList.vue";
 import MovieSwiper from "@/components/MovieSwiper.vue";
 import BackToTop from "@/components/BackToTop.vue";
-import { eChartsOption } from "../util/eChartsOption";
 
 export default {
   name: "Favorites",
@@ -63,28 +102,125 @@ export default {
   },
   data() {
     return {
-      modalVisible: false,
-      eChartsOption
+      swiperModal: false,
+      config: {},
+      // eChartsOption
+      recommendations: Array,
+      movieModal: false,
+      movieId: String,
+      movieTitle: String,
+      movieImg: String,
+      movieSummary: String
     };
   },
   methods: {
-    toggleModal() {
-      this.modalVisible = !this.modalVisible;
+    toggleSwiper() {
+      this.swiperModal = !this.swiperModal;
     },
-    switchTabs(key) {
-      console.log(key);
+    toggleMovie(movie) {
+      this.movieModal = !this.movieModal;
+      this.movieId = movie.id;
+      this.movieTitle = movie.original_title;
+      this.movieImg = this.loadImg(movie.poster_path);
+      this.movieSummary = movie.overview;
     },
     updateChart(dataset) {
-      this.$refs.echarts.mergeOptions({
-        series: [
-          {
-            data: dataset
-          }
-        ]
+      eChartsOption.series[0].data = dataset;
+      this.config = eChartsOption;
+    },
+    async fetchRecommendations(genres) {
+      let topGenres = [];
+      genres.map(genre => {
+        topGenres.push(GENRE_NAME_TO_ID[genre.name]);
       });
+      // console.log("GENRE ID", topGenres);
+
+      if (topGenres.length) {
+        try {
+          const res = await axios.get(
+            "https://binger-api-testv1.azurewebsites.net/movie/ratings/worst"
+          );
+          this.recommendations = res.data;
+        } catch (err) {
+          this.error = err;
+        }
+      }
+    },
+    loadImg(path) {
+      if (path != null) {
+        return "https://image.tmdb.org/t/p/w342" + path;
+      }
     }
+    // async initialize() {
+    //   let interestedGenre = "12,14,35,28";
+    //   const uid = this.userUID;
+    //   console.log(uid);
+
+    //   await axios
+    //     .get(
+    //       "https://binger-api-testv1.azurewebsites.net/game/recommendation/intialize",
+    //       {
+    //         params: { user_uid: uid, interested_genres: interestedGenre }
+    //       }
+    //     )
+    //     .then(res => {
+    //       console.log(res.data);
+    //     })
+    //     .catch(err => {
+    //       console.log(err);
+    //     });
+    // },
+    // async request() {
+    //   const uid = this.userUID;
+    //   console.log(uid);
+
+    //   await axios
+    //     .get(
+    //       "https://binger-api-testv1.azurewebsites.net/game/recommendation/request",
+    //       {
+    //         params: { user_uid: uid }
+    //       }
+    //     )
+    //     .then(res => {
+    //       console.log(res.data);
+    //     })
+    //     .catch(err => {
+    //       console.log(err);
+    //     });
+    // },
+    // async reply() {
+    //   const uid = this.userUID;
+    //   console.log(uid);
+
+    //   let current_movie_id = 11324;
+    //   let current_movie_reply = "like";
+
+    //   await axios
+    //     .get(
+    //       "https://binger-api-testv1.azurewebsites.net/game/recommendation/reply",
+    //       {
+    //         params: {
+    //           user_uid: uid,
+    //           movie_id: current_movie_id,
+    //           movie_reply: current_movie_reply
+    //         }
+    //       }
+    //     )
+    //     .then(res => {
+    //       console.log(res.data);
+    //     })
+    //     .catch(err => {
+    //       console.log(err);
+    //     });
+    // }
   },
   computed: {
+    userUID() {
+      return this.$store.state.uid;
+    },
+    topGenres() {
+      return this.$store.getters.topGenres;
+    },
     favoriteGenres() {
       return this.$store.state.genres;
     },
@@ -96,14 +232,22 @@ export default {
     }
   },
   watch: {
-    favoriteGenres(newGenres, oldGenres) {
-      console.log("old", oldGenres);
-      console.log("new", newGenres);
+    // topGenres(newTopGenres, oldTopGenres) {
+    topGenres(newTopGenres) {
+      // console.log("Old Top Genres", oldTopGenres);
+      // console.log("New Top Genres", newTopGenres);
+      this.fetchRecommendations(newTopGenres);
+    },
+    // favoriteGenres(newGenres, oldGenres) {
+    favoriteGenres(newGenres) {
+      // console.log("Old Genres", oldGenres);
+      // console.log("New Genres", newGenres);
       this.updateChart(newGenres);
     }
   },
   mounted() {
     this.updateChart(this.favoriteGenres);
+    this.fetchRecommendations(this.topGenres);
   }
 };
 </script>
@@ -129,6 +273,16 @@ export default {
   margin-top: 20px;
 }
 
+.info-btn {
+  background-color: transparent;
+  color: white;
+  border-color: #f3c669;
+}
+
+.info-btn:hover {
+  background-color: #f3c669;
+}
+
 .swiper-btn {
   background-color: transparent;
   width: 125px;
@@ -142,6 +296,35 @@ export default {
 
 .swiper-btn:hover {
   background-color: #f3c669;
+}
+
+.message {
+  color: white;
+}
+
+.container {
+  margin: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.small-image {
+  width: 250px;
+  height: 100%;
+  margin: 20px 10px;
+  object-fit: cover;
+}
+
+.small-image:hover {
+  opacity: 0.7;
+}
+
+.large-image {
+  width: 33%;
+  height: 100%;
+  margin: 5px;
+  object-fit: cover;
 }
 
 @media screen and (max-width: 800px) {

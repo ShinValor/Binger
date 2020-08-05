@@ -29,8 +29,6 @@ const usersCollection = db().collection("users");
 const genreCollection = db().collection("genres");
 const likesCollection = db().collection("likes");
 const dislikesCollection = db().collection("dislikes");
-// const postsCollection = db.collection("posts");
-// const commentsCollection = db.collection("comments");
 
 // export utils
 export {
@@ -41,6 +39,4 @@ export {
   genreCollection,
   likesCollection,
   dislikesCollection
-  // postsCollection,
-  // commentsCollection,
 };

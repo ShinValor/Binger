@@ -65,6 +65,7 @@ auth.onAuthStateChanged(user => {
   }
 
   if (user) {
+    store.commit("setUID", user.uid);
     store.commit("setAuthentication", true);
     store.dispatch("fetchUserProfile", user.uid);
     store.dispatch("fetchUserImage", user.uid);
