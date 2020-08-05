@@ -143,7 +143,7 @@ export default {
             "https://binger-api-testv1.azurewebsites.net/movie/search/genre",
             { params: { with_genres: topGenres.join(",") } }
           );
-          console.log(res.data);
+          // console.log(res.data);
           this.recommendations = res.data.results;
         } catch (err) {
           this.error = err;

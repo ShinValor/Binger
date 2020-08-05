@@ -23,9 +23,8 @@
         <h1 class="title"><b>Optimized Movie Search Engine</b></h1>
         <p class="content">
           Our optimized movie search engine has millions of movies and shows to
-          query from. Movies and shows are added to a weighted queue, duplicates
-          increase weight. Based on user decisions, the weight will increase
-          like and decrease on dislike.
+          query from. Based on user preferences, Binger will recommend the
+          movies and shows you enjoy.
         </p>
       </div>
       <div class="section1">
@@ -40,9 +39,8 @@
         <h1 class="title"><b>Movie Nights</b></h1>
         <p class="content">
           Summer may be slipping away but it’s still the perfect time to take
-          movie night outside. Public parks and rooftops offer free and ticketed
-          outdoor screenings across the city. Prepare your picnic blanket to
-          watch your favorite films under the stars.
+          movie night outside. Public parks and rooftops offer free outdoor
+          screenings across the city.
         </p>
       </div>
     </div>
@@ -50,9 +48,9 @@
       <div class="section1">
         <h1 class="title"><b>Watch With Friends</b></h1>
         <p class="content">
-          Imagine being able to watch your favorite Netflix series or movies
-          with your best friends while social distancing. Using Binger you can
-          now search for your favorite movies and shows.
+          Imagine being able to watch your favorite Netflix series with your
+          best friends while social distancing. With Binger you can now search
+          for your favorite movies and shows.
         </p>
       </div>
       <div class="section1">
@@ -66,20 +64,14 @@
       <strong> How It Works </strong>
     </h1>
     <div class="container2">
-      <div
-        class="section2"
-        :style="{
-          'grid-area': 'content',
-          display: 'flex',
-          'justify-content': 'center'
-        }"
-      >
+      <div class="section2" :style="{ 'grid-area': 'content' }">
         <p class="content">
-          During the quarantine, people have watched all the movies and shows on
-          their movie queues and are left looking for something new to watch.
-          Streaming services have huge libraries and it takes effort and time to
-          find a show. There is no centralized movie queue across different
-          streaming services.
+          During quarantine, people needed to look for new movies and shows to
+          binge to kill time.<br />
+          Streaming services have huge libraries and it takes lots of effort to
+          search for movies.<br />
+          There is also no centralized movie queue across different streaming
+          services.
         </p>
       </div>
       <div class="section2" :style="{ 'grid-area': 'header' }">
@@ -188,10 +180,10 @@ export default {
 .section1 {
   height: 500px;
   width: 50%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 0 auto;
 }
 
 .section2 {

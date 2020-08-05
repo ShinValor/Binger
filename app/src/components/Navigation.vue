@@ -20,7 +20,7 @@
           <router-link to="/about">About Us</router-link>
         </a-menu-item>
         <a-menu-item class="nav-btn">
-          <router-link to="/#services">Services</router-link>
+          <router-link to="/login">Services</router-link>
         </a-menu-item>
         <a-menu-item class="nav-btn">
           <a href="https://github.com/ShinValor/Binger">Contact</a>
