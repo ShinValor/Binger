@@ -6,6 +6,7 @@
         v-model="movieQuery"
         enter-button
         @search="onTitleSearch"
+        :disabled="collapse"
       >
         <a-icon slot="prefix" type="menu"  @click="toggle" :class="collapse ? 'active' : '' "/>
       </a-input-search>
