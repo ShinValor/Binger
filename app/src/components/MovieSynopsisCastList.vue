@@ -1,14 +1,12 @@
 <template>
-  <div class="container">
+  <div class="cast-list">
     <h1 class="title">Cast List</h1>
-    <div>
-      <MovieSynopsisCast
-        class="list-item"
-        v-for="item in castList"
-        :key="item.order"
-        :cast="item"
-      />
-    </div>
+    <MovieSynopsisCast
+      class="movie-cast"
+      v-for="item in castList"
+      :key="item.order"
+      :cast="item"
+    />
   </div>
 </template>
 
@@ -47,10 +45,6 @@ export default {
 };
 </script>
 <style scoped>
-.container {
-  margin: 2em;
-}
-
 .title {
   margin: 20px;
   text-align: center;
@@ -58,7 +52,11 @@ export default {
   color: white;
 }
 
-.list-item {
+.cast-list {
+  margin: 2em;
+}
+
+.movie-cast {
   display: inline-block;
   margin: 10px;
   padding: 2px;

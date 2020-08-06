@@ -1,7 +1,8 @@
 <template>
   <div>
-    <ul class="list">
+    <ul class="movie-list">
       <SearchResultsCell
+        class="movie-cell"
         v-for="item in list"
         :key="item.title"
         :item="item"
@@ -22,16 +23,17 @@
             onerror="this.style.display='none'"
           />
         </div>
-        <a-button>
+        <a-button class="info-btn">
           <router-link
             :to="{ name: 'MovieSynopsis', params: { id: this.modalId } }"
-            >More Info</router-link
           >
+            More Info
+          </router-link>
         </a-button>
       </a-modal>
     </ul>
     <a-pagination
-      class="pageBar"
+      class="pagination"
       :total="totalItems"
       v-model="currentPage"
       @change="pageUpdate"
@@ -50,6 +52,10 @@ export default {
   },
   props: {
     movieQuery: {
+      type: String,
+      default: ""
+    },
+    genreQuery: {
       type: String,
       default: ""
     }
@@ -76,15 +82,29 @@ export default {
       this.fetchResults();
     },
     fetchResults() {
+      let queryParams, link;
+      // console.log(
+      //   "moviequery: " + this.movieQuery + "genrequery: " + this.genreQuery
+      // );
+      if (this.movieQuery || this.movieQuery !== "") {
+        queryParams = { query: this.movieQuery, page: this.currentPage };
+        link = "https://binger-api-testv1.azurewebsites.net/movie/search";
+        // link = "http://127.0.0.1:5000/movie/search";
+      } else if (this.genreQuery || this.genreQuery !== "") {
+        // console.log("going to the else");
+        queryParams = { with_genres: this.genreQuery, page: this.currentPage };
+        link = "https://binger-api-testv1.azurewebsites.net/movie/search/genre";
+        // link = "http://127.0.0.1:5000/movie/search/genre";
+      }
       axios
-        .get("https://binger-api-testv1.azurewebsites.net//movie/search", {
-          params: { query: this.movieQuery, page: this.currentPage }
-        })
+        .get(link, { params: queryParams })
         .then(res => {
+          // console.log("data", res);
           this.list = res.data.results;
           this.totalItems = res.data.total_results;
         })
         .catch(err => {
+          // console.log("error " + err);
           this.error = err;
         });
     },
@@ -103,13 +123,6 @@ export default {
     }
   },
   computed: {
-    genres: function() {
-      var _genres = [];
-      this.item.genres.forEach(function(genre) {
-        _genres.push(genre);
-      });
-      return _genres.join(", ");
-    },
     overview: function() {
       return this.item.overview.length < 200
         ? this.item.overview
@@ -132,16 +145,29 @@ export default {
 </script>
 
 <style scoped>
-.list {
-  padding: 0;
-  border-radius: 4px;
-  /* border: 1px solid #e0e0e0; */
-  border: 1px solid black;
-}
-
 .errors {
   padding: 0;
   color: red;
+}
+
+.movie-list {
+  padding: 0;
+}
+
+.movie-cell {
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  transform: perspective(1px) translateZ(0);
+  -webkit-transform: perspective(1px) translateZ(0);
+  transition-duration: 0.3s;
+  -webkit-transition-duration: 0.3s;
+  transition-property: transform;
+  -webkit-transition-property: transform;
+  transition-timing-function: ease-out;
+  -webkit-transition-timing-function: ease-out;
+}
+
+.movie-cell:hover {
+  transform: scale(1.01);
 }
 
 .title {
@@ -154,7 +180,16 @@ export default {
   width: 66%;
   margin: 5px auto;
   font-size: 15px;
-  /* color: white; */
+}
+
+.info-btn {
+  background-color: transparent;
+  color: white;
+  border-color: #f3c669;
+}
+
+.info-btn:hover {
+  background-color: #f3c669;
 }
 
 .large-image {
@@ -164,8 +199,8 @@ export default {
   object-fit: cover;
 }
 
-.pageBar {
-  margin: 20px;
+.pagination {
+  margin: 20px auto;
 }
 
 @media screen and (max-width: 500px) {
@@ -179,6 +214,10 @@ export default {
   .content {
     margin: 0 auto;
     font-size: 5px;
+  }
+
+  .pagination {
+    width: 100%;
   }
 }
 </style>

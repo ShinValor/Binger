@@ -1,82 +1,96 @@
 <template>
-  <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
+  <a-layout>
     <div class="container">
-      <Setting />
+      <UserSetting class="setting" />
       <Card
-        class="profile-card"
+        class="profile"
         :name="username"
-        desc="I love to watch movies."
+        :desc="description"
+        :img="avatarUrl"
       />
+    </div>
+    <div>
+      <input
+        type="file"
+        ref="imageInput"
+        :style="{ display: 'none' }"
+        @change="previewImage"
+        accept="image/*"
+      />
+      <a-button class="upload-btn" @click="onClick">
+        Upload Picture
+      </a-button>
     </div>
   </a-layout>
 </template>
 
 <script>
-import firebase from "firebase";
-import Setting from "@/components/Setting.vue";
+// import firebase from "firebase";
+import UserSetting from "@/components/UserSetting.vue";
 import Card from "@/components/Card.vue";
 
 export default {
   name: "User",
   components: {
-    Setting,
+    UserSetting,
     Card
   },
   data() {
     return {
-      // name: "Username"
+      // name: "Username",
+      // caption: "",
+      // imageUrl: "",
+      imageData: null
     };
   },
   methods: {
-    profile() {
-      const user = firebase.auth().currentUser;
-      if (user != null) {
-        // const name = user.displayName;
-        // const email = user.email;
-        // const photoUrl = user.photoURL;
-        // const emailVerified = user.emailVerified;
-        // const uid = user.uid;
-      }
+    onClick() {
+      this.$refs.imageInput.click();
     },
-    updateProfile() {
-      const user = firebase.auth().currentUser;
-      user
-        .updateProfile({
-          displayName: "Jane Q. User",
-          photoURL: "https://example.com/jane-q-user/profile.jpg"
-        })
-        .catch(error => {
-          this.error = error.message;
-        });
+    previewImage(event) {
+      // this.uploadValue = 0;
+      this.imageData = event.target.files[0];
+      this.uploadImage();
     },
-    updateEmail() {
-      const user = firebase.auth().currentUser;
+    uploadImage() {
+      this.$store.dispatch("updateProfileImage", this.imageData);
 
-      user.updateEmail("user@example.com").catch(error => {
-        this.error = error.message;
-      });
-    },
-    setPassword() {
-      const user = firebase.auth().currentUser;
-      const newPassword = "onetwothreefourfivesix";
+      // this.imageUrl = null;
+      // const storageRef = firebase
+      //   .storage()
+      //   // .ref(`${this.imageData.name}`)
+      //   .ref(firebase.auth().currentUser.uid)
+      //   .put(this.imageData);
 
-      user.updatePassword(newPassword).catch(error => {
-        this.error = error.message;
-      });
-    },
-    resetPassword() {
-      const user = firebase.auth().currentUser;
-      const emailAddress = user.email;
-      const auth = firebase.auth();
-
-      auth.sendPasswordResetEmail(emailAddress).catch(error => {
-        this.error = error.message;
-      });
+      // storageRef.on(
+      //   "state_changed",
+      //   snapshot => {
+      //     this.uploadValue =
+      //       (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      //   },
+      //   err => {
+      //     this.error = err;
+      //     // console.log(err.message);
+      //   },
+      //   () => {
+      //     this.uploadValue = 100;
+      //     storageRef.snapshot.ref.getDownloadURL().then(url => {
+      //       this.imageUrl = url;
+      //       console.log(this.imageUrl);
+      //     });
+      //   }
+      // );
     }
   },
   computed: {
     username() {
       return this.$store.state.userProfile["name"];
+    },
+    avatarUrl() {
+      return this.$store.state.userImage;
+    },
+    description() {
+      return this.$store.state.userProfile["description"];
     }
   }
 };
@@ -84,14 +98,32 @@ export default {
 
 <style scoped>
 .container {
-  margin: 64px;
+  margin: 50px 0 25px;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
-.profile-card {
-  height: 400px;
-  width: 400px;
+.profile {
+  height: 500px;
+  width: 450px;
+}
+
+.setting {
+  width: 500px;
+  margin: 0;
+}
+
+.upload-btn {
+  width: 200px;
+  margin-right: 275px;
+  float: right;
+  background-color: transparent;
+  border-color: #f3c669;
+  color: white;
+}
+
+.upload-btn:hover {
+  background-color: #f3c669;
 }
 
 @media screen and (max-width: 500px) {
@@ -102,9 +134,18 @@ export default {
     flex-direction: column-reverse;
   }
 
-  .profile-card {
-    height: 300px;
+  .profile {
+    height: 400px;
     width: 300px;
+  }
+
+  .setting {
+    width: 300px;
+    margin: 0 auto;
+  }
+
+  .upload-btn {
+    margin: 30px 75px 30px;
   }
 }
 </style>

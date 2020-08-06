@@ -15,7 +15,7 @@ export default {
 </script>
 
 <style scoped>
-.spin-content {
+/* .spin-content {
   border: 1px solid #91d5ff;
   background-color: #e6f7ff;
   width: 90%;
@@ -23,5 +23,5 @@ export default {
   margin: 0 auto;
   padding: 100px;
   font-size: 50px;
-}
+} */
 </style>

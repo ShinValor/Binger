@@ -1,29 +1,36 @@
 <template>
-  <div>
+  <div v-if="movieList.length">
     <div v-if="loading">
       <Loading />
     </div>
-    <flickity class="carousel" ref="flickity" :options="flickityOptions" v-else>
-      <div
-        class="carousel-cell"
-        v-for="(movie, index) in movieList"
-        v-bind:key="index"
-        @click="toggleModal(movie)"
+    <div v-else>
+      <flickity
+        class="carousel"
+        ref="flickity"
+        :options="flickityOptions"
+        @init="onInit"
       >
-        <img
-          class="carousel-cell-image"
-          :data-flickity-lazyload="loadImg(movie.poster_path)"
-          :alt="movie.title"
-          onerror="this.style.display='none'"
-        />
-        <div class="carousel-cell-desc">
-          <h1 class="title">{{ movie.title }}</h1>
-          <p class="content" :style="{ color: 'gray' }">
-            <a-icon type="like" /> {{ movie.vote_count }} Votes
-          </p>
+        <div
+          class="carousel-cell"
+          v-for="(movie, index) in movieList"
+          v-bind:key="index"
+        >
+          <img
+            class="carousel-cell-image"
+            :data-flickity-lazyload="loadImg(movie.poster_path)"
+            :alt="movie.title"
+            onerror="this.style.display='none'"
+          />
+          <div class="carousel-cell-desc">
+            <h1 class="title">{{ movie.title }}</h1>
+            <p class="content" :style="{ color: 'gray' }">
+              <a-icon type="like" />
+              {{ movie.vote_count }} Votes
+            </p>
+          </div>
         </div>
-      </div>
-    </flickity>
+      </flickity>
+    </div>
     <a-modal
       v-model="modalVisible"
       :title="modalTitle"
@@ -39,7 +46,7 @@
           onerror="this.style.display='none'"
         />
       </div>
-      <a-button class="more-info">
+      <a-button class="info-btn">
         <router-link
           :to="{ name: 'MovieSynopsis', params: { id: this.modalId } }"
         >
@@ -87,7 +94,20 @@ export default {
     this.fetchMovies(this.movieUrls);
   },
   methods: {
-    toggleModal(movie) {
+    onInit() {
+      let vm = this;
+      this.$refs.flickity.on("staticClick", function(
+        event,
+        pointer,
+        cellElement,
+        cellIndex
+      ) {
+        // console.log(event, pointer, cellElement, cellIndex);
+        vm.toggleModal(cellIndex);
+      });
+    },
+    toggleModal(cellIndex) {
+      let movie = this.movieList[cellIndex];
       this.modalVisible = !this.modalVisible;
       this.modalId = movie.id;
       this.modalTitle = movie.original_title;
@@ -121,25 +141,20 @@ export default {
 }
 
 .carousel-cell {
-  /* background-color: #222; */
-  height: 500px;
   width: 20%;
+  height: 500px;
+  margin-right: 4px;
   display: flex;
   flex-direction: column;
-  /* justify-content: flex-start; */
-  margin-right: 4px;
-  /* padding: 0 2px; */
 }
 
 .carousel-cell-image {
   max-height: 100%;
   max-width: 100%;
-  /* margin: 0 auto; */
-  /* display: block; */
   object-fit: cover;
   opacity: 0;
-  -webkit-transition: opacity 0.4s;
   transition: opacity 0.4s;
+  -webkit-transition: opacity 0.4s;
 }
 
 .carousel-cell:hover {
@@ -169,7 +184,6 @@ export default {
   width: 66%;
   margin: 5px auto;
   font-size: 15px;
-  /* color: white; */
 }
 
 .large-image {
@@ -179,13 +193,14 @@ export default {
   object-fit: cover;
 }
 
-.more-info {
+.info-btn {
   background-color: transparent;
   color: white;
+  border-color: #f3c669;
 }
 
-.more-info:hover {
-  border-color: white;
+.info-btn:hover {
+  background-color: #f3c669;
 }
 
 @media screen and (max-width: 500px) {

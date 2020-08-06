@@ -4,29 +4,42 @@
   color: white !important;
 }
 
-/* .ant-menu-item > a:hover {
-  color: lightpink !important;
-} */
-
 .ant-menu-item-selected {
   background-color: transparent !important;
 }
 
-/* 
-.ant-card-body {
+/* ================== Card ================== */
+
+/* .ant-card-body {
   margin: 5px !important;
   padding: 0px !important;
 } */
+
+.ant-card-bordered {
+  border-radius: 5px !important;
+  border-color: transparent !important;
+}
+
+.ant-card-meta-detail {
+  margin: 15px 5px 5px !important;
+}
+
+.ant-card-meta-title {
+  color: white !important;
+  font-size: 25px !important;
+}
+
+.ant-card-meta-description {
+  color: white !important;
+  font-size: 1.2em !important;
+}
 
 /* ================== Drop down Menu ================== */
 
 /* .ant-dropdown-link {
   color:white;
 }
-
-.ant-dropdown-link:hover {
-  color: lightpink;
-} */
+*/
 
 /* ================== Layout ================== */
 
@@ -57,7 +70,11 @@
   color: white !important;
 }
 
-.ant-pagination-item a,
+.ant-pagination-item a {
+  color: white !important
+}
+
+.ant-pagination-item,
 .ant-pagination-item-link {
   background-color: #414141 !important;
   color: white !important
@@ -69,14 +86,14 @@
   filter: brightness(200%);
 }
 
-.ant-pagination-item-active {
-  border-color: white !important;
+.ant-pagination-item-active,
+.ant-pagination-item-active:hover {
+  border-color: #f3c669 !important;
   filter: brightness(100%) !important;
 }
 
 .ant-pagination-item-active a {
-  background-color: #f3c669 !important;
-  color: white !important;
+  color: #f3c669 !important;
 }
 
 /* ================== 404 ================== */
@@ -102,9 +119,84 @@
   color: white !important;
 }
 
-/* ================== CheckBox ================== */
+.ant-modal-confirm-title {
+  color: white !important;
+}
+
+.ant-modal-confirm-content {
+  color: white !important;
+}
+
+/* ================== Checkbox ================== */
+
+.ant-checkbox-checked::after {
+  border-color: #f3c669 !important;
+}
 
 .ant-checkbox-inner {
-  background-color: black !important;
+  background-color: #2a323d !important;
+  border-color: #f3c669 !important;
+}
+
+/* .ant-checkbox-inner::after {
   border-color: white !important;
+} */
+
+/* ================== Tabs ================== */
+
+/* .ant-tabs-nav {
+  color: white !important;
+} */
+
+.ant-tabs-tab {
+  margin: 0 0 2px 0 !important;
+  padding: 12px 50px !important;
+  color: white !important;
+}
+
+.ant-tabs-tab:hover {
+  background-color: #2a323d !important;
+}
+
+.ant-tabs-tab-active {
+  color: #f3c669 !important;
+}
+
+.ant-tabs-ink-bar {
+  background-color: #f3c669 !important;
+}
+
+/* ================== Input ================== */
+
+.ant-input:hover,
+.ant-input:active,
+.ant-input:focus {
+  border-color: black !important;
+}
+
+.ant-input-search-button {
+  background-color: #f3c669 !important;
+  border-color: #f3c669 !important;
+}
+
+/* ================== Spin ================== */
+
+.ant-spin-dot-item {
+  background-color: #f3c669 !important;
+}
+
+.ant-spin-text {
+  color: #f3c669 !important;
+}
+
+/* ================== Button ================== */
+
+.ant-btn {
+  background-color: #2a323d !important;
+  border-color: #f3c669 !important;
+  color: white !important;
+}
+
+.ant-btn:hover {
+  background-color: #f3c669 !important;
 }

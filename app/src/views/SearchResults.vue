@@ -1,10 +1,11 @@
 <template>
-  <a-layout class="container">
-    <SearchBar class="searchBar" :movieQuery="searchQuery" />
+  <a-layout>
+    <SearchBar class="search-bar" :movieQuery="searchQuery" />
     <SearchResultsList
       class="searchList"
-      :movieQuery="searchQuery"
-      :key="searchQuery"
+      :movieQuery="searchTitleQuery"
+      :genreQuery="searchGenreQuery"
+      :key="searchResultListKey"
     />
     <Footer />
   </a-layout>
@@ -23,40 +24,44 @@ export default {
     Footer
   },
   computed: {
-    searchQuery: function() {
+    searchTitleQuery: function() {
       if (this.$route.query.movieQuery) {
         return this.$route.query.movieQuery;
       }
       return "";
+    },
+    searchGenreQuery: function() {
+      if (this.$route.query.with_genres) {
+        return this.$route.query.with_genres;
+      }
+      return "";
+    },
+    searchResultListKey: function() {
+      return this.searchGenreQuery + this.searchTitleQuery;
     }
   }
 };
 </script>
 
 <style scoped>
-.container {
-  min-height: 100%;
-  overflow: auto;
-}
-
-.searchBar {
+.search-bar {
   width: 50%;
   margin: 50px auto 25px;
 }
 
-.searchList {
+.search-list {
   margin: 25px;
 }
 
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */
 
-  .searchBar {
+  .search-bar {
     width: 75%;
     margin: 15px auto;
   }
 
-  .searchList {
+  .search-list {
     margin: 15px 10px;
   }
 }

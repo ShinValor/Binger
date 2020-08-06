@@ -1,9 +1,8 @@
 <template>
-  <li class="movie-list">
+  <li class="movie">
     <img class="poster" :src="resolve_img_url(item.poster_path)" />
-    <br />
     <div>
-      <a class="title">{{ item.title }}</a>
+      <h1 class="title">{{ item.title }}</h1>
       <div class="d-flex items-center area muted">
         <p class="para-tag">{{ releaseDate }}</p>
         <p class="separator genres para-tag">{{ genres }}</p>
@@ -75,20 +74,20 @@ export default {
 }
 
 .separator::before {
-  color: #ddd;
   margin-left: 0.3em;
   margin-right: 0.3em;
+  color: #ddd;
   content: "|";
 }
 
-.movie-list {
-  background-color: #222831;
+.movie {
+  padding: 1em;
   display: flex;
   align-items: flex-start;
-  padding: 1em;
+  background-color: #222831;
 }
 
-.movie-list:hover {
+.movie:hover {
   background-color: #2a313c;
 }
 
@@ -109,7 +108,7 @@ export default {
 .title {
   font-size: 1.2em;
   color: white;
-  /* text-align: left;t */
+  text-align: left;
 }
 
 .plot {
@@ -117,20 +116,19 @@ export default {
 }
 
 .rating {
-  /* color: #666; */
-  color: white;
-  font-size: 0.9em;
   display: flex;
   align-items: center;
+  font-size: 0.9em;
+  color: white;
 }
 
 .rating-star {
-  background: url(https://m.media-amazon.com/images/G/01/imdb/images/listo/sprite-2426358703._V_.png)
-    no-repeat 0 -241px;
-  display: inline-block;
+  width: 12px;
   height: 12px;
   margin-right: 0.3em;
+  display: inline-block;
   vertical-align: middle;
-  width: 12px;
+  background: url(https://m.media-amazon.com/images/G/01/imdb/images/listo/sprite-2426358703._V_.png)
+    no-repeat 0 -241px;
 }
 </style>

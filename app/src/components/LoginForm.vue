@@ -1,11 +1,5 @@
 <template>
-  <a-form
-    class="login-form"
-    :form="form"
-    @submit="handleSubmit"
-    @submit.prevent
-  >
-    <!-- <h1 :style="{ color: 'white' }">Log In</h1> -->
+  <a-form :form="form" @submit="onLogin" @submit.prevent>
     <a-form-item>
       <a-input
         v-decorator="[
@@ -35,7 +29,7 @@
     </a-form-item>
     <a-form-item>
       <a-checkbox
-        :style="{ float: 'left', color: 'white' }"
+        class="remember-btn"
         v-decorator="[
           'remember',
           {
@@ -46,13 +40,13 @@
       >
         Remember Me
       </a-checkbox>
-      <a :style="{ float: 'right' }" href="">
+      <router-link class="forget-btn" to="/signup">
         Forgot password
-      </a>
-      <a-button class="submit-btn" html-type="submit">
+      </router-link>
+      <a-button class="login-btn" html-type="submit">
         Log in
       </a-button>
-      <router-link to="/signup">
+      <router-link class="register-btn" to="/signup">
         Register now!
       </router-link>
     </a-form-item>
@@ -60,36 +54,21 @@
 </template>
 
 <script>
-// import firebase from "firebase";
-
 export default {
   name: "LoginForm",
   beforeCreate() {
     this.form = this.$form.createForm(this, { name: "normal_login" });
   },
   methods: {
-    handleSubmit() {
-      // e.preventDefault();
+    onLogin() {
       this.form.validateFields((err, values) => {
         if (!err) {
-          // firebase
-          //   .auth()
-          //   .signInWithEmailAndPassword(values.email, values.password)
-          //   .then(() => {
-          //     this.$router.push({ name: "Home" });
-          //     this.$message.success("Successfully Logged In");
-          //   })
-          //   .catch(err => {
-          //     this.error = err.message;
-          //     this.$message.warning(this.error);
-          //   });
           this.$store
             .dispatch("login", {
               email: values.email,
               password: values.password
             })
             .then(() => {
-              // this.$router.push({ name: "Home" });
               this.$message.success("Successfully Logged In");
             })
             .catch(err => {
@@ -104,26 +83,35 @@ export default {
 </script>
 
 <style scoped>
-.login-form {
-  width: 500px;
-  margin: 100px auto 0;
-}
-
-.submit-btn {
+.login-btn {
   background-color: transparent;
   width: 100%;
   color: white;
+  border-color: #f3c669;
 }
 
-.submit-btn:hover {
-  border-color: white;
+.login-btn:hover {
+  background-color: #f3c669;
 }
 
-@media screen and (max-width: 500px) {
-  /* applies styles to any device screen sizes below 800px wide */
+.forget-btn {
+  float: right;
+  color: white;
+}
 
-  .login-form {
-    width: 250px;
-  }
+.forget-btn:hover {
+  color: #f3c669;
+}
+
+.register-btn {
+  color: white;
+}
+
+.register-btn:hover {
+  color: #f3c669;
+}
+
+.remember-btn {
+  float: left;
 }
 </style>

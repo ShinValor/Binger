@@ -1,11 +1,22 @@
 <template>
-  <a-card class="card" hoverable>
-    <img
-      class="large-image"
-      slot="cover"
-      alt="example"
-      src="../assets/svg/ethnic-friendship-pana.svg"
-    />
+  <!-- <a-card class="card" hoverable> -->
+  <a-card class="card">
+    <div class="container">
+      <img
+        class="large-image"
+        slot="cover"
+        alt="Profile Picture"
+        :src="img"
+        v-if="img"
+      />
+      <img
+        class="large-image"
+        slot="cover"
+        alt="Profile Picture"
+        src="../assets/svg/profile-pic.svg"
+        v-else
+      />
+    </div>
     <a-card-meta :title="name" :description="desc" />
   </a-card>
 </template>
@@ -16,14 +27,19 @@ export default {
   props: {
     name: String,
     desc: String,
-    avatarUrl: String
+    img: String
   }
 };
 </script>
 
 <style scoped>
 .card {
-  margin: 25px;
+  margin: 10px;
+  background-color: #2a323d;
+}
+
+.container {
+  margin: 5px;
 }
 
 .large-image {

@@ -1,8 +1,9 @@
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
+import "firebase/storage";
 
-// firebase init
+// firebase config
 const firebaseConfig = {
   apiKey: "AIzaSyDHOUq-c694Z3-0uHuxPutfR7Erd6u-lOg",
   authDomain: "binger-2910d.firebaseapp.com",
@@ -14,27 +15,28 @@ const firebaseConfig = {
   measurementId: "G-66C9TKWWSX"
 };
 
+// firebase init
 firebase.initializeApp(firebaseConfig);
 // firebase.analytics();
 
 // utils
-const db = firebase.firestore();
+const db = firebase.firestore;
 const auth = firebase.auth();
+const storage = firebase.storage();
 
 // collection references
-const usersCollection = db.collection("users");
-// const postsCollection = db.collection("posts");
-// const commentsCollection = db.collection("comments");
-const likesCollection = db.collection("likes");
-const dislikesCollection = db.collection("dislikes");
+const usersCollection = db().collection("users");
+const genreCollection = db().collection("genres");
+const likesCollection = db().collection("likes");
+const dislikesCollection = db().collection("dislikes");
 
 // export utils
 export {
   db,
   auth,
+  storage,
   usersCollection,
-  // postsCollection,
-  // commentsCollection,
+  genreCollection,
   likesCollection,
   dislikesCollection
 };

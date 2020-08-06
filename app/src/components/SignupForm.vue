@@ -1,11 +1,5 @@
 <template>
-  <a-form
-    class="signup-form"
-    :form="form"
-    @submit="handleSubmit"
-    @submit.prevent
-  >
-    <!-- <h1 :style="{ color: 'white' }">Register Here !</h1> -->
+  <a-form :form="form" @submit="onSignup" @submit.prevent>
     <a-form-item>
       <a-input
         v-decorator="[
@@ -65,7 +59,7 @@
       </a-input>
     </a-form-item>
     <a-form-item>
-      <a-button class="submit-btn" html-type="submit">
+      <a-button class="signup-btn" html-type="submit">
         Register
       </a-button>
     </a-form-item>
@@ -73,34 +67,16 @@
 </template>
 
 <script>
-// import firebase from "firebase";
-
 export default {
   name: "SignupForm",
   beforeCreate() {
     this.form = this.$form.createForm(this, { name: "register" });
   },
   methods: {
-    handleSubmit() {
-      // e.preventDefault();
+    onSignup() {
       this.form.validateFields((err, values) => {
         if (!err) {
           if (values.password == values.confirmPassword) {
-            // firebase
-            //   .auth()
-            //   .createUserWithEmailAndPassword(values.email, values.password)
-            //   .then(data => {
-            //     data.user
-            //       .updateProfile({
-            //         displayName: values.nickname
-            //       })
-            //       .then(() => {
-            //         this.$router.replace({ name: "Login" });
-            //       });
-            //   })
-            //   .catch(err => {
-            //     this.error = err.message;
-            //   });
             this.$store
               .dispatch("signup", {
                 email: values.email,
@@ -108,7 +84,6 @@ export default {
                 name: values.name
               })
               .then(() => {
-                // this.$router.replace({ name: "Login" });
                 this.$message.success("Successfully Logged In");
               })
               .catch(err => {
@@ -126,26 +101,14 @@ export default {
 </script>
 
 <style scoped>
-.signup-form {
-  width: 500px;
-  margin: 100px auto 0;
-}
-
-.submit-btn {
+.signup-btn {
   background-color: transparent;
   width: 100%;
   color: white;
+  border-color: #f3c669;
 }
 
-.submit-btn:hover {
-  border-color: white;
-}
-
-@media screen and (max-width: 500px) {
-  /* applies styles to any device screen sizes below 800px wide */
-
-  .signup-form {
-    width: 250px;
-  }
+.signup-btn:hover {
+  background-color: #f3c669;
 }
 </style>

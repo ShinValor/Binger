@@ -132,22 +132,16 @@ export default {
 
   .section1 {
     width: 100%;
-    flex-direction: column;
+    flex-wrap: wrap;
   }
 
   .section2 {
     width: 100%;
-    flex-direction: column;
   }
 
-  .item1 {
-    width: 100%;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-
+  .item1,
   .item2 {
-    width: 100%;
+    width: 50%;
     margin-bottom: 20px;
     text-align: center;
   }
