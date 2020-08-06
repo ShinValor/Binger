@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Navigation />
-    <router-view id="page-wrap" />
+    <router-view />
   </div>
 </template>
 
@@ -21,7 +21,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  /* color: #2c3e50; */
   height: 100%;
   background-color: #222831;
 }

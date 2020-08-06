@@ -65,6 +65,7 @@ auth.onAuthStateChanged(user => {
   }
 
   if (user) {
+    store.commit("setUID", user.uid);
     store.commit("setAuthentication", true);
     store.dispatch("fetchUserProfile", user.uid);
     store.dispatch("fetchUserImage", user.uid);
@@ -72,6 +73,12 @@ auth.onAuthStateChanged(user => {
     store.dispatch("fetchLikedMovies", user.uid);
     store.dispatch("fetchDislikedMovies", user.uid);
   } else {
+    store.commit("setUID", "");
     store.commit("setAuthentication", false);
+    store.commit("setUserProfile", {});
+    store.commit("setUserImage", "");
+    store.commit("setGenres", []);
+    store.commit("setLikedMovies", []);
+    store.commit("setDislikedMovies", []);
   }
 });

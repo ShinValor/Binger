@@ -1,5 +1,5 @@
 <template>
-  <a-layout class="container">
+  <a-layout>
     <SearchBar class="search-bar" :movieQuery="searchQuery" />
     <SearchResultsList
       class="searchList"
@@ -44,11 +44,6 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  min-height: 100%;
-  overflow: auto;
-}
-
 .search-bar {
   width: 50%;
   margin: 50px auto 25px;

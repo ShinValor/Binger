@@ -1,6 +1,6 @@
 <template>
-  <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
-    <SignupForm />
+  <a-layout>
+    <SignupForm class="signup-form" />
   </a-layout>
 </template>
 
@@ -16,4 +16,18 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.signup-form {
+  width: 500px;
+  margin: 200px auto;
+}
+
+@media screen and (max-width: 500px) {
+  /* applies styles to any device screen sizes below 800px wide */
+
+  .signup-form {
+    margin: 150px auto;
+    width: 250px;
+  }
+}
+</style>

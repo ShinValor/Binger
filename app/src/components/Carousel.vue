@@ -49,8 +49,9 @@
       <a-button class="info-btn">
         <router-link
           :to="{ name: 'MovieSynopsis', params: { id: this.modalId } }"
-          >More Info</router-link
         >
+          More Info
+        </router-link>
       </a-button>
     </a-modal>
   </div>

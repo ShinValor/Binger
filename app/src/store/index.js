@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Vue from "vue";
 import Vuex from "vuex";
 import * as fb from "../util/firebase";
@@ -5,44 +6,40 @@ import router from "../router/index";
 
 Vue.use(Vuex);
 
-// realtime firebase
-// fb.postsCollection.orderBy("createdOn", "desc").onSnapshot(snapshot => {
-//   let postsArray = [];
-
-//   snapshot.forEach(doc => {
-//     let post = doc.data();
-//     post.id = doc.id;
-
-//     postsArray.push(post);
-//   });
-
-//   store.commit("setPosts", postsArray);
-// });
-
 const store = new Vuex.Store({
   state: {
+    uid: "",
+    loggedIn: Boolean,
     userProfile: {},
     userImage: "",
-    loggedIn: Boolean,
     genres: [],
     likedMovies: [],
     dislikedMovies: []
-    // posts: [],
   },
   getters: {
-    genres: state => {
-      return state.genres;
+    topGenres: state => {
+      const sorted = state.genres.sort(
+        (a, b) => parseFloat(a.value) - parseFloat(b.value)
+      );
+      if (sorted.length >= 3) {
+        const res = sorted.slice(sorted.length - 3, sorted.length);
+        return res;
+      }
+      return sorted;
     }
   },
   mutations: {
+    setUID(state, val) {
+      state.uid = val;
+    },
+    setAuthentication(state, val) {
+      state.loggedIn = val;
+    },
     setUserProfile(state, val) {
       state.userProfile = val;
     },
     setUserImage(state, val) {
       state.userImage = val;
-    },
-    setAuthentication(state, val) {
-      state.loggedIn = val;
     },
     setGenres(state, val) {
       state.genres = val;
@@ -53,12 +50,6 @@ const store = new Vuex.Store({
     setDislikedMovies(state, val) {
       state.dislikedMovies = val;
     }
-    // setPerformingRequest(state, val) {
-    //   state.performingRequest = val;
-    // },
-    // setPosts(state, val) {
-    //   state.posts = val;
-    // }
   },
   actions: {
     async signup({ dispatch }, form) {
@@ -75,28 +66,42 @@ const store = new Vuex.Store({
       });
 
       // Fetch user profile and set in state
-      dispatch("fetchUserProfile", user);
+      // dispatch("fetchUserProfile", user);
 
       router.push("/");
     },
+    // async login(form) {
     async login({ dispatch }, form) {
       // Sign user in
-      const { user } = await fb.auth.signInWithEmailAndPassword(
-        form.email,
-        form.password
-      );
+
+      await fb.auth.signInWithEmailAndPassword(form.email, form.password);
+
+      // const { user } = await fb.auth.signInWithEmailAndPassword(
+      //   form.email,
+      //   form.password
+      // );
 
       // Fetch user profile and set in state
-      dispatch("fetchUserProfile", user.uid);
+      // dispatch("fetchUserProfile", user.uid);
+      // dispatch("fetchUserImage", user.uid);
+      // dispatch("fetchGenres", user.uid);
+      // dispatch("fetchLikedMovies", user.uid);
+      // dispatch("fetchDislikedMovies", user.uid);
 
       router.push("/");
     },
-    async logout({ commit }) {
+    // async logout({ commit }) {
+    async logout() {
       // Log user out
       await fb.auth.signOut();
 
       // Clear user data from state
-      commit("setUserProfile", {});
+      // commit("setUID", "");
+      // commit("setUserProfile", {});
+      // commit("setUserImage", "");
+      // commit("setGenres", []);
+      // commit("setLikedMovies", []);
+      // commit("setDislikedMovies", []);
 
       // Redirect to login view
       router.push("/login");
@@ -253,6 +258,14 @@ const store = new Vuex.Store({
 
       // Fetch dislikedMovies and set in state
       dispatch("fetchDislikedMovies", userId);
+    },
+    async deleteData({ commit }, userId) {
+      await fb.genreCollection.doc(userId).delete();
+      await fb.likesCollection.doc(userId).delete();
+      await fb.dislikesCollection.doc(userId).delete();
+      commit("setGenres", []);
+      commit("setLikedMovies", []);
+      commit("setDislikedMovies", []);
     }
   }
 });

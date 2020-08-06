@@ -1,15 +1,15 @@
 <template>
-  <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
+  <a-layout>
     <div class="container">
-      <UserSetting :username="username" :description="description" />
+      <UserSetting class="setting" />
       <Card
-        class="profile-card"
+        class="profile"
         :name="username"
         :desc="description"
         :img="avatarUrl"
       />
     </div>
-    <div :style="{ display: 'inline' }">
+    <div>
       <input
         type="file"
         ref="imageInput"
@@ -81,51 +81,6 @@ export default {
       //   }
       // );
     }
-    // profile() {
-    //   const user = firebase.auth().currentUser;
-    //   if (user != null) {
-    //     // const name = user.displayName;
-    //     // const email = user.email;
-    //     // const photoUrl = user.photoURL;
-    //     // const emailVerified = user.emailVerified;
-    //     // const uid = user.uid;
-    //   }
-    // },
-    // updateProfile() {
-    //   const user = firebase.auth().currentUser;
-    //   user
-    //     .updateProfile({
-    //       displayName: "Jane Q. User",
-    //       photoURL: "https://example.com/jane-q-user/profile.jpg"
-    //     })
-    //     .catch(error => {
-    //       this.error = error.message;
-    //     });
-    // },
-    // updateEmail() {
-    //   const user = firebase.auth().currentUser;
-
-    //   user.updateEmail("user@example.com").catch(error => {
-    //     this.error = error.message;
-    //   });
-    // },
-    // setPassword() {
-    //   const user = firebase.auth().currentUser;
-    //   const newPassword = "onetwothreefourfivesix";
-
-    //   user.updatePassword(newPassword).catch(error => {
-    //     this.error = error.message;
-    //   });
-    // },
-    // resetPassword() {
-    //   const user = firebase.auth().currentUser;
-    //   const emailAddress = user.email;
-    //   const auth = firebase.auth();
-
-    //   auth.sendPasswordResetEmail(emailAddress).catch(error => {
-    //     this.error = error.message;
-    //   });
-    // }
   },
   computed: {
     username() {
@@ -143,23 +98,28 @@ export default {
 
 <style scoped>
 .container {
-  margin: 64px;
+  margin: 50px 0 25px;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
-.profile-card {
+.profile {
   height: 500px;
   width: 450px;
 }
 
+.setting {
+  width: 500px;
+  margin: 0;
+}
+
 .upload-btn {
   width: 200px;
-  margin-right: 125px;
+  margin-right: 275px;
   float: right;
   background-color: transparent;
-  color: white;
   border-color: #f3c669;
+  color: white;
 }
 
 .upload-btn:hover {
@@ -174,9 +134,18 @@ export default {
     flex-direction: column-reverse;
   }
 
-  .profile-card {
+  .profile {
     height: 400px;
     width: 300px;
+  }
+
+  .setting {
+    width: 300px;
+    margin: 0 auto;
+  }
+
+  .upload-btn {
+    margin: 30px 75px 30px;
   }
 }
 </style>

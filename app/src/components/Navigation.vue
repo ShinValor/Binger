@@ -1,5 +1,5 @@
 <template>
-  <a-layout-header class="nav-bar">
+  <a-layout-header class="navigation">
     <div class="section">
       <Menu />
       <h1 class="app-name">
@@ -20,7 +20,7 @@
           <router-link to="/about">About Us</router-link>
         </a-menu-item>
         <a-menu-item class="nav-btn">
-          <router-link to="/#services">Services</router-link>
+          <router-link to="/login">Services</router-link>
         </a-menu-item>
         <a-menu-item class="nav-btn">
           <a href="https://github.com/ShinValor/Binger">Contact</a>
@@ -75,7 +75,7 @@ export default {
 </script>
 
 <style scoped>
-.nav-bar {
+.navigation {
   width: 100%;
   padding: 0px;
   display: flex;
