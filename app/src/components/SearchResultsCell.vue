@@ -108,6 +108,7 @@ export default {
 .title {
   font-size: 1.2em;
   color: white;
+  text-align: left;
 }
 
 .plot {
