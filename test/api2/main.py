@@ -1,9 +1,13 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, Blueprint
 import requests
 from flask_cors import CORS
 import random
+from recommendationSystem import recommendation_system
+
 
 app = Flask(__name__)
+app.register_blueprint(recommendation_system)
+
 CORS(app)
 
 
@@ -300,9 +304,13 @@ def get_random_movies():
 
     api_url = MOVIE_DISCOVER_URL
 
-    sample_population = []
+    size = request.args.get('size')
+    size = size if size else 20
+    print(size)
 
-    for page_num in random.sample(range(MAX_PAGE_NUMBER), 5):
+    sample_population = []
+    sample_pages = random.sample(range(MAX_PAGE_NUMBER), 5)
+    for page_num in sample_pages:
         options = DEFAULT_OPTIONS.copy()
         options["page"] = page_num
 
@@ -313,7 +321,7 @@ def get_random_movies():
             movies_set = data["results"]
             sample_population.extend(movies_set)
 
-    movies = random.choices(sample_population, k=20)
+    movies = random.choices(sample_population, k=25)
 
     for movie in movies:
         if "genre_ids" in movie:
@@ -321,7 +329,59 @@ def get_random_movies():
             movie["genre_ids"] = [(GENRE_IDS_TO_NAME[x]) for x in ids]
             movie["genres"] = movie.pop("genre_ids")
 
+    if size == 20:
+        seen = set()
+        new_l = []
+        for d in movies:
+            t = d['id']
+            if t not in seen:
+                seen.add(t)
+                new_l.append(d)
+        movies = new_l
+        while len(movies) != 20:
+            if len(movies) > 20:
+                movies.pop()
+            else:
+                movies.append(sample_population.pop())
+    else:
+        movies = random.choices(movies, k=int(size))
+
     return jsonify(movies)
+
+
+@app.route('/movie/search/genre', methods=['GET'])
+def get_genres_movies():
+
+    page_num = request.args.get('page')
+    genres = request.args.get('with_genres')
+    genres = genres.split(',')
+    print("Reguest parameter ", genres)
+
+    inverted_genres_dict = dict(map(reversed, GENRE_IDS_TO_NAME.items()))
+    genres = [inverted_genres_dict[x] for x in genres]
+    print("inverted genre", genres)
+
+    genres = ",".join(map(str, genres))
+
+    options = DEFAULT_OPTIONS.copy()
+    options["page"] = page_num if page_num else 1
+    options["with_genres"] = genres
+
+    api_url = MOVIE_DISCOVER_URL
+
+    response = requests.get(url=api_url, params=options)
+
+    data = response.json()
+    movies = data["results"]
+    print(response.url)
+
+    for movie in movies:
+        movie["genre_ids"] = [(GENRE_IDS_TO_NAME[x])
+                              for x in movie["genre_ids"]]
+        movie["genres"] = movie.pop("genre_ids")
+    data["results"] = movies
+
+    return jsonify(data)
 
 
 @app.route('/movie/search', methods=['GET'])
@@ -347,3 +407,7 @@ def get_search_result():
         movie["genres"] = movie.pop("genre_ids")
     data["results"] = movies
     return jsonify(data)
+
+
+if __name__ == "__main__":
+    app.run(threaded=True, debug=True)

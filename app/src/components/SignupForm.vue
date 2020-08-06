@@ -65,7 +65,7 @@
       </a-input>
     </a-form-item>
     <a-form-item>
-      <a-button class="submit-btn" html-type="submit">
+      <a-button class="signup-btn" html-type="submit">
         Register
       </a-button>
     </a-form-item>
@@ -73,8 +73,6 @@
 </template>
 
 <script>
-// import firebase from "firebase";
-
 export default {
   name: "SignupForm",
   beforeCreate() {
@@ -82,25 +80,9 @@ export default {
   },
   methods: {
     handleSubmit() {
-      // e.preventDefault();
       this.form.validateFields((err, values) => {
         if (!err) {
           if (values.password == values.confirmPassword) {
-            // firebase
-            //   .auth()
-            //   .createUserWithEmailAndPassword(values.email, values.password)
-            //   .then(data => {
-            //     data.user
-            //       .updateProfile({
-            //         displayName: values.nickname
-            //       })
-            //       .then(() => {
-            //         this.$router.replace({ name: "Login" });
-            //       });
-            //   })
-            //   .catch(err => {
-            //     this.error = err.message;
-            //   });
             this.$store
               .dispatch("signup", {
                 email: values.email,
@@ -108,7 +90,6 @@ export default {
                 name: values.name
               })
               .then(() => {
-                // this.$router.replace({ name: "Login" });
                 this.$message.success("Successfully Logged In");
               })
               .catch(err => {
@@ -131,14 +112,15 @@ export default {
   margin: 100px auto 0;
 }
 
-.submit-btn {
+.signup-btn {
   background-color: transparent;
   width: 100%;
   color: white;
+  border-color: #f3c669;
 }
 
-.submit-btn:hover {
-  border-color: white;
+.signup-btn:hover {
+  background-color: #f3c669;
 }
 
 @media screen and (max-width: 500px) {

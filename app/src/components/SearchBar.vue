@@ -119,6 +119,7 @@ export default {
 };
 </script>
 
+
 <style scoped>
 /* .search-bar {
   width: 50%;
