@@ -2,7 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import { auth } from "./firebase";
+import { auth } from "./util/firebase";
 import "./assets/css/main.css";
 
 /* Ant Design */
@@ -12,14 +12,18 @@ import "ant-design-vue/dist/antd.css";
 /* Font Awesome Icon */
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faUser, faRandom } from "@fortawesome/free-solid-svg-icons";
 import {
-  faFacebookSquare,
-  faTwitterSquare,
-  faGooglePlusSquare,
-  faGithubSquare,
-  faVuejs
-} from "@fortawesome/free-brands-svg-icons";
+  faUser,
+  faRandom,
+  faAngleDoubleUp
+} from "@fortawesome/free-solid-svg-icons";
+// import {
+//   faFacebookSquare,
+//   faTwitterSquare,
+//   faGooglePlusSquare,
+//   faGithubSquare,
+//   faVuejs
+// } from "@fortawesome/free-brands-svg-icons";
 
 Vue.config.productionTip = false;
 
@@ -28,11 +32,12 @@ Vue.use(Antd);
 library.add(
   faUser,
   faRandom,
-  faFacebookSquare,
-  faTwitterSquare,
-  faGooglePlusSquare,
-  faGithubSquare,
-  faVuejs
+  faAngleDoubleUp
+  // faFacebookSquare,
+  // faTwitterSquare,
+  // faGooglePlusSquare,
+  // faGithubSquare,
+  // faVuejs
 );
 
 // USAGE https://github.com/FortAwesome/vue-fontawesome#usage
@@ -60,6 +65,13 @@ auth.onAuthStateChanged(user => {
   }
 
   if (user) {
-    store.dispatch("fetchUserProfile", user);
+    store.commit("setAuthentication", true);
+    store.dispatch("fetchUserProfile", user.uid);
+    store.dispatch("fetchUserImage", user.uid);
+    store.dispatch("fetchGenres", user.uid);
+    store.dispatch("fetchLikedMovies", user.uid);
+    store.dispatch("fetchDislikedMovies", user.uid);
+  } else {
+    store.commit("setAuthentication", false);
   }
 });

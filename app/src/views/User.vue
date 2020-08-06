@@ -1,82 +1,141 @@
 <template>
   <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
     <div class="container">
-      <Setting />
+      <UserSetting :username="username" :description="description" />
       <Card
         class="profile-card"
         :name="username"
-        desc="I love to watch movies."
+        :desc="description"
+        :img="avatarUrl"
       />
+    </div>
+    <div :style="{ display: 'inline' }">
+      <input
+        type="file"
+        ref="imageInput"
+        :style="{ display: 'none' }"
+        @change="previewImage"
+        accept="image/*"
+      />
+      <a-button class="upload-btn" @click="onClick">
+        Upload Picture
+      </a-button>
     </div>
   </a-layout>
 </template>
 
 <script>
-import firebase from "firebase";
-import Setting from "@/components/Setting.vue";
+// import firebase from "firebase";
+import UserSetting from "@/components/UserSetting.vue";
 import Card from "@/components/Card.vue";
 
 export default {
   name: "User",
   components: {
-    Setting,
+    UserSetting,
     Card
   },
   data() {
     return {
-      // name: "Username"
+      // name: "Username",
+      // caption: "",
+      // imageUrl: "",
+      imageData: null
     };
   },
   methods: {
-    profile() {
-      const user = firebase.auth().currentUser;
-      if (user != null) {
-        // const name = user.displayName;
-        // const email = user.email;
-        // const photoUrl = user.photoURL;
-        // const emailVerified = user.emailVerified;
-        // const uid = user.uid;
-      }
+    onClick() {
+      this.$refs.imageInput.click();
     },
-    updateProfile() {
-      const user = firebase.auth().currentUser;
-      user
-        .updateProfile({
-          displayName: "Jane Q. User",
-          photoURL: "https://example.com/jane-q-user/profile.jpg"
-        })
-        .catch(error => {
-          this.error = error.message;
-        });
+    previewImage(event) {
+      // this.uploadValue = 0;
+      this.imageData = event.target.files[0];
+      this.uploadImage();
     },
-    updateEmail() {
-      const user = firebase.auth().currentUser;
+    uploadImage() {
+      this.$store.dispatch("updateProfileImage", this.imageData);
 
-      user.updateEmail("user@example.com").catch(error => {
-        this.error = error.message;
-      });
-    },
-    setPassword() {
-      const user = firebase.auth().currentUser;
-      const newPassword = "onetwothreefourfivesix";
+      // this.imageUrl = null;
+      // const storageRef = firebase
+      //   .storage()
+      //   // .ref(`${this.imageData.name}`)
+      //   .ref(firebase.auth().currentUser.uid)
+      //   .put(this.imageData);
 
-      user.updatePassword(newPassword).catch(error => {
-        this.error = error.message;
-      });
-    },
-    resetPassword() {
-      const user = firebase.auth().currentUser;
-      const emailAddress = user.email;
-      const auth = firebase.auth();
-
-      auth.sendPasswordResetEmail(emailAddress).catch(error => {
-        this.error = error.message;
-      });
+      // storageRef.on(
+      //   "state_changed",
+      //   snapshot => {
+      //     this.uploadValue =
+      //       (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      //   },
+      //   err => {
+      //     this.error = err;
+      //     // console.log(err.message);
+      //   },
+      //   () => {
+      //     this.uploadValue = 100;
+      //     storageRef.snapshot.ref.getDownloadURL().then(url => {
+      //       this.imageUrl = url;
+      //       console.log(this.imageUrl);
+      //     });
+      //   }
+      // );
     }
+    // profile() {
+    //   const user = firebase.auth().currentUser;
+    //   if (user != null) {
+    //     // const name = user.displayName;
+    //     // const email = user.email;
+    //     // const photoUrl = user.photoURL;
+    //     // const emailVerified = user.emailVerified;
+    //     // const uid = user.uid;
+    //   }
+    // },
+    // updateProfile() {
+    //   const user = firebase.auth().currentUser;
+    //   user
+    //     .updateProfile({
+    //       displayName: "Jane Q. User",
+    //       photoURL: "https://example.com/jane-q-user/profile.jpg"
+    //     })
+    //     .catch(error => {
+    //       this.error = error.message;
+    //     });
+    // },
+    // updateEmail() {
+    //   const user = firebase.auth().currentUser;
+
+    //   user.updateEmail("user@example.com").catch(error => {
+    //     this.error = error.message;
+    //   });
+    // },
+    // setPassword() {
+    //   const user = firebase.auth().currentUser;
+    //   const newPassword = "onetwothreefourfivesix";
+
+    //   user.updatePassword(newPassword).catch(error => {
+    //     this.error = error.message;
+    //   });
+    // },
+    // resetPassword() {
+    //   const user = firebase.auth().currentUser;
+    //   const emailAddress = user.email;
+    //   const auth = firebase.auth();
+
+    //   auth.sendPasswordResetEmail(emailAddress).catch(error => {
+    //     this.error = error.message;
+    //   });
+    // }
   },
   computed: {
     username() {
       return this.$store.state.userProfile["name"];
+    },
+    avatarUrl() {
+      return this.$store.state.userImage;
+    },
+    description() {
+      return this.$store.state.userProfile["description"];
     }
   }
 };
@@ -90,8 +149,21 @@ export default {
 }
 
 .profile-card {
-  height: 400px;
-  width: 400px;
+  height: 500px;
+  width: 450px;
+}
+
+.upload-btn {
+  width: 200px;
+  margin-right: 125px;
+  float: right;
+  background-color: transparent;
+  color: white;
+  border-color: #f3c669;
+}
+
+.upload-btn:hover {
+  background-color: #f3c669;
 }
 
 @media screen and (max-width: 500px) {
@@ -103,7 +175,7 @@ export default {
   }
 
   .profile-card {
-    height: 300px;
+    height: 400px;
     width: 300px;
   }
 }

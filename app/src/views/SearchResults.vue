@@ -1,6 +1,6 @@
 <template>
   <a-layout class="container">
-    <SearchBar class="searchBar" :movieQuery="searchQuery" />
+    <SearchBar class="search-bar" :movieQuery="searchQuery" />
     <SearchResultsList
       class="searchList"
       :movieQuery="searchTitleQuery"
@@ -49,24 +49,24 @@ export default {
   overflow: auto;
 }
 
-.searchBar {
+.search-bar {
   width: 50%;
   margin: 50px auto 25px;
 }
 
-.searchList {
+.search-list {
   margin: 25px;
 }
 
 @media screen and (max-width: 500px) {
   /* applies styles to any device screen sizes below 800px wide */
 
-  .searchBar {
+  .search-bar {
     width: 75%;
     margin: 15px auto;
   }
 
-  .searchList {
+  .search-list {
     margin: 15px 10px;
   }
 }

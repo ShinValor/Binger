@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="draggable-container">
+    <div class="draggable">
       <div v-if="loading">
         <Loading class="loading" />
       </div>
@@ -16,9 +16,14 @@
           :interact-lock-y-axis="true"
           v-if="showDraggable"
         >
+          <div class="movie-info">
+            <h1 class="title">{{ movie.title }}</h1>
+            <p class="summary">
+              {{ movie.overview }}
+            </p>
+          </div>
           <img
-            height="400"
-            weight="300"
+            class="large-image"
             :src="'https://image.tmdb.org/t/p/w342' + this.movie['poster_path']"
             :alt="this.movie['title']"
             onerror="this.style.display='none'"
@@ -26,21 +31,21 @@
         </Vue2InteractDraggable>
       </div>
     </div>
-    <div class="btn-container">
+    <div class="section">
       <a-icon
-        class="btn"
+        class="swiper-btn"
         type="close"
         :style="{ color: '#eb2f96' }"
         @click="dragLeft"
       />
       <a-icon
-        class="btn"
+        class="swiper-btn"
         type="redo"
         :style="{ color: '#1a90ff' }"
         @click="reload"
       />
       <a-icon
-        class="btn"
+        class="swiper-btn"
         type="heart"
         theme="twoTone"
         two-tone-color="#52c41a"
@@ -72,20 +77,17 @@ export default {
         draggedRight: INTERACT_DRAGGED_RIGHT
       },
       movie: {},
-      // posterUrl: String,
       loading: false
     };
   },
   methods: {
     draggedLeft() {
-      const movie = this.movie;
-      this.$store.dispatch("dislikeMovie", movie);
+      this.$store.dispatch("dislikeMovie", this.movie);
       this.hideCard();
       this.generateMovie();
     },
     draggedRight() {
-      const movie = this.movie;
-      this.$store.dispatch("likeMovie", movie);
+      this.$store.dispatch("likeMovie", this.movie);
       this.hideCard();
       this.generateMovie();
     },
@@ -111,10 +113,10 @@ export default {
       try {
         this.loading = !this.loading;
         const res = await axios.get(
-          "https://binger-api-testv1.azurewebsites.net/movie/random"
+          "https://binger-api-testv1.azurewebsites.net/movie/random",
+          { params: { size: 1 } }
         );
         this.movie = res.data[0];
-        // this.posterUrl = `https://image.tmdb.org/t/p/w342${this.movie["poster_path"]}`;
       } catch (err) {
         this.error = err;
       } finally {
@@ -129,46 +131,57 @@ export default {
 </script>
 
 <style scoped>
-.draggable-container {
+.draggable {
   height: 400px;
-  width: 300px;
-  margin: 0 auto;
 }
 
 .card {
   height: 400px;
-  width: 300px;
-  margin: 0 auto;
+  width: 100%;
+  padding: 15px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  /* background-image: url("https://picsum.photos/200/300");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center; */
+  justify-content: space-evenly;
+  align-items: flex-start;
+  background-color: #2a323d;
 }
 
-.btn-container {
+.movie-info {
+  margin: 5px 10px 5px 5px;
+}
+
+.title {
+  color: white;
+}
+
+.summary {
+  font-size: 1em;
+}
+
+.large-image {
+  height: 300px;
+  /* width: 200px; */
+  margin: 5px;
+}
+
+.section {
   display: flex;
   justify-content: center;
   margin: 20px;
 }
 
-.btn {
-  /* border: 2px solid #222831; */
-  border-radius: 50%;
+.swiper-btn {
   margin: 0 25px;
   padding: 10px;
+  border-radius: 50%;
   font-size: 30px;
-  /* color: white; */
   background-color: white;
 }
 
-.btn:hover {
+.swiper-btn:hover {
   transform: scale(1.1);
 }
 
-.btn:active {
+.swiper-btn:active {
   background-color: #222;
 }
 
@@ -177,6 +190,44 @@ export default {
   position: absolute;
   top: 50%;
   left: 42%;
-  /* right: 1%; */
+}
+
+@media screen and (max-width: 800px) {
+  .card {
+    padding: 0px;
+    flex-direction: column-reverse;
+    overflow-y: auto;
+  }
+
+  .movie-info {
+    margin: 5px;
+    padding: 10px;
+  }
+
+  .title {
+    font-size: 1.5em;
+    text-align: center;
+  }
+
+  .summary {
+    font-size: 1em;
+    text-align: center;
+  }
+
+  .large-image {
+    margin: 5px auto;
+  }
+
+  .section {
+    margin: 20px 0 0;
+  }
+
+  .swiper-btn {
+    font-size: 25px;
+  }
+
+  .loading {
+    left: 35%;
+  }
 }
 </style>
