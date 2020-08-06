@@ -1,31 +1,27 @@
 <template>
   <div class="search">
-    <a-tabs default-active-key="1" @change="callback">
-      <a-tab-pane key="1" tab="Title Search" class="ant-tab">
-        <a-input-search
-          class="search-bar"
-          placeholder="Search Movies"
-          v-model="movieQuery"
-          enter-button
-          @search="onTitleSearch"
-        />
-      </a-tab-pane>
-      <a-tab-pane key="2" tab="Genre Search">
-        <div class="genre-tags">
-          <template v-for="tag in Genres">
-            <a-checkable-tag
-              color="pink"
-              :key="tag"
-              class="ant-tags"
-              :checked="selectedTags.indexOf(tag) > -1"
-              @change="checked => handleChange(tag, checked)"
-            >
-              {{ tag }}
-            </a-checkable-tag>
-          </template>
-        </div>
-      </a-tab-pane>
-    </a-tabs>
+    <div class="search-bar collapsible" @click="toggle">
+      <a-input-search
+        placeholder="Search Movies"
+        v-model="movieQuery"
+        enter-button
+        @search="onTitleSearch"
+      >
+        <a-icon slot="prefix" type="menu" />
+      </a-input-search>
+    </div>
+    <div class="genre-tags content">
+      <h4 class="genre-search-title">Genres</h4>
+      <template v-for="tag in Genres">
+        <a-checkable-tag
+          :key="tag"
+          :checked="selectedTags.indexOf(tag) > -1"
+          @change="checked => handleChange(tag, checked)"
+        >
+          {{ tag }}
+        </a-checkable-tag>
+      </template>
+    </div>
   </div>
 </template>
 
@@ -68,6 +64,18 @@ export default {
     };
   },
   methods: {
+    toggle() {
+      var coll = document.getElementsByClassName("collapsible")[0];
+      coll.addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+      });
+    },
     onTitleSearch() {
       this.$router.push({
         name: "Search",
@@ -111,21 +119,49 @@ export default {
     margin: 15px auto;
   } */
 }
-
 .search {
   width: 75%;
   align-content: center;
   align-items: center;
   margin: 15px auto;
 }
-.ant-tags {
-  /* background-color: #001529 ;
-  padding: 10px ;
-  border: 1px solid black ; */
-  color: black;
+.genre-tags {
+  background-color: aqua;
 }
-.ant-tabs {
-  font-weight: 400;
-  color: whitesmoke;
+
+.collapsible {
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.content {
+  display: none;
+  overflow: hidden;
+  background-color: rgb(238, 241, 246);
+  width: 75%;
+  margin-left: 18px;
+}
+.genre-search-title {
+  text-align: left;
+  padding-top: 1.5rem;
+  padding-left: 1.5rem;
+  padding-bottom: 1rem;
+}
+.ant-tag {
+  padding: 5px;
+  margin: 2px;
+  /* border: 1px solid #001529; */
+  border-left: 3px solid gold;
+  background-color: white;
+}
+.ant-tag-checkable-checked {
+  color: #fff;
+  background-color: #1890ff;
+  background-color: gb(0, 21, 41);
 }
 </style>
