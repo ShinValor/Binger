@@ -2,9 +2,10 @@
   <a-layout class="container">
     <SearchBar class="search-bar" :movieQuery="searchQuery" />
     <SearchResultsList
-      class="search-list"
-      :movieQuery="searchQuery"
-      :key="searchQuery"
+      class="searchList"
+      :movieQuery="searchTitleQuery"
+      :genreQuery="searchGenreQuery"
+      :key="searchResultListKey"
     />
     <Footer />
   </a-layout>
@@ -23,11 +24,20 @@ export default {
     Footer
   },
   computed: {
-    searchQuery: function() {
+    searchTitleQuery: function() {
       if (this.$route.query.movieQuery) {
         return this.$route.query.movieQuery;
       }
       return "";
+    },
+    searchGenreQuery: function() {
+      if (this.$route.query.with_genres) {
+        return this.$route.query.with_genres;
+      }
+      return "";
+    },
+    searchResultListKey: function() {
+      return this.searchGenreQuery + this.searchTitleQuery;
     }
   }
 };

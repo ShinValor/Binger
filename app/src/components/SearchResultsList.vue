@@ -54,6 +54,10 @@ export default {
     movieQuery: {
       type: String,
       default: ""
+    },
+    genreQuery: {
+      type: String,
+      default: ""
     }
   },
   data() {
@@ -78,15 +82,29 @@ export default {
       this.fetchResults();
     },
     fetchResults() {
+      let queryParams, link;
+      console.log(
+        "moviequery: " + this.movieQuery + "genrequery: " + this.genreQuery
+      );
+      if (this.movieQuery || this.movieQuery !== "") {
+        queryParams = { query: this.movieQuery, page: this.currentPage };
+        link = "https://binger-api-testv1.azurewebsites.net/movie/search";
+        // link = "http://127.0.0.1:5000/movie/search";
+      } else if (this.genreQuery || this.genreQuery !== "") {
+        console.log("going to the else");
+        queryParams = { with_genres: this.genreQuery, page: this.currentPage };
+        link = "https://binger-api-testv1.azurewebsites.net/movie/search/genre";
+        // link = "http://127.0.0.1:5000/movie/search/genre";
+      }
       axios
-        .get("https://binger-api-testv1.azurewebsites.net//movie/search", {
-          params: { query: this.movieQuery, page: this.currentPage }
-        })
+        .get(link, { params: queryParams })
         .then(res => {
+          console.log("data", res);
           this.list = res.data.results;
           this.totalItems = res.data.total_results;
         })
         .catch(err => {
+          console.log("error " + err);
           this.error = err;
         });
     },
@@ -105,13 +123,6 @@ export default {
     }
   },
   computed: {
-    genres: function() {
-      var _genres = [];
-      this.item.genres.forEach(function(genre) {
-        _genres.push(genre);
-      });
-      return _genres.join(", ");
-    },
     overview: function() {
       return this.item.overview.length < 200
         ? this.item.overview
