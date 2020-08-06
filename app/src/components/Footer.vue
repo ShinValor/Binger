@@ -118,6 +118,10 @@ export default {
   color: white;
 }
 
+.content a {
+  color: #f3c669;
+}
+
 .small-image {
   height: 32px;
   width: 32px;

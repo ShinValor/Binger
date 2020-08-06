@@ -8,9 +8,9 @@
         <p class="sub-heading content">
           Millions of Movies, TV Shows And, People To Discover. Explore Now.
         </p>
-        <a-button class="sub-btn">
+        <!-- <a-button class="sub-btn">
           <a href="/#how-it-work"><b>Learn More</b></a>
-        </a-button>
+        </a-button> -->
       </div>
     </div>
     <Content
@@ -125,7 +125,7 @@ export default {
 .heading {
   color: white;
   float: left;
-  margin: 320px 0px 0px 50px;
+  margin: 350px 0px 0px 50px;
   width: 500px;
   text-align: left;
   font-size: 40px;
@@ -223,7 +223,7 @@ export default {
   }
 
   .heading {
-    margin: 90px 15px 10px;
+    margin: 100px 15px 10px;
     width: 100px;
     font-size: 15px;
   }
