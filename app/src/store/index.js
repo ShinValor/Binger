@@ -258,6 +258,14 @@ const store = new Vuex.Store({
 
       // Fetch dislikedMovies and set in state
       dispatch("fetchDislikedMovies", userId);
+    },
+    async deleteData({ commit }, userId) {
+      await fb.genreCollection.doc(userId).delete();
+      await fb.likesCollection.doc(userId).delete();
+      await fb.dislikesCollection.doc(userId).delete();
+      commit("setGenres", []);
+      commit("setLikedMovies", []);
+      commit("setDislikedMovies", []);
     }
   }
 });

@@ -27,7 +27,7 @@
         <h1 class="message" v-else>You Did Not Disliked Any Movies</h1>
       </a-tab-pane>
       <a-tab-pane key="4" tab="Recommendations" force-render>
-        <div class="container" v-if="recommendations">
+        <div class="container" v-if="recommendations.length > 0">
           <img
             class="small-image"
             v-for="(movie, index) in recommendations"
@@ -104,7 +104,7 @@ export default {
     return {
       swiperModal: false,
       config: {},
-      recommendations: Array,
+      recommendations: [],
       movieModal: false,
       movieId: String,
       movieTitle: String,

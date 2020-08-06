@@ -1,11 +1,7 @@
 <template>
   <a-layout>
     <div class="container">
-      <UserSetting
-        class="setting"
-        :username="username"
-        :description="description"
-      />
+      <UserSetting class="setting" />
       <Card
         class="profile"
         :name="username"
@@ -104,7 +100,7 @@ export default {
 .container {
   margin: 50px 0 25px;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
 .profile {
@@ -113,17 +109,17 @@ export default {
 }
 
 .setting {
-  width: 700px;
-  margin: 50px 20px;
+  width: 500px;
+  margin: 0;
 }
 
 .upload-btn {
   width: 200px;
-  margin-right: 225px;
+  margin-right: 275px;
   float: right;
   background-color: transparent;
-  color: white;
   border-color: #f3c669;
+  color: white;
 }
 
 .upload-btn:hover {
@@ -144,12 +140,12 @@ export default {
   }
 
   .setting {
-    width: 250px;
+    width: 300px;
     margin: 0 auto;
   }
 
   .upload-btn {
-    margin-right: 75px;
+    margin: 30px 75px 30px;
   }
 }
 </style>

@@ -126,6 +126,14 @@
   color: white !important;
 }
 
+.ant-modal-confirm-title {
+  color: white !important;
+}
+
+.ant-modal-confirm-content {
+  color: white !important;
+}
+
 /* ================== Checkbox ================== */
 
 .ant-checkbox-checked::after {
@@ -186,4 +194,16 @@
 
 .ant-spin-text {
   color: #f3c669 !important;
+}
+
+/* ================== Button ================== */
+
+.ant-btn {
+  background-color: transparent !important;
+  border-color: #f3c669 !important;
+  color: white !important;
+}
+
+.ant-btn:hover {
+  background-color: #f3c669 !important;
 }

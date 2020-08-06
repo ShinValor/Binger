@@ -1,20 +1,18 @@
 <template>
-  <a-form-model
-    class="container"
-    :model="form"
-    :label-col="labelCol"
-    :wrapper-col="wrapperCol"
-  >
-    <a-form-model-item label="Nick Name">
-      <a-input v-model="form.name" />
-    </a-form-model-item>
-    <!-- <a-form-model-item label="Send Email">
-      <a-switch v-model="form.email" />
-    </a-form-model-item> -->
-    <a-form-model-item label="Introduction">
-      <a-input v-model="form.description" type="textarea" />
-    </a-form-model-item>
-    <a-form-model-item :wrapper-col="{ span: 14, offset: 4 }">
+  <a-form-model>
+    <div class="form">
+      <h1 class="label">Name</h1>
+      <a-input v-model="username" />
+    </div>
+    <div class="form">
+      <h1 class="label">Introduction</h1>
+      <a-input
+        class="introduction-input"
+        v-model="description"
+        type="textarea"
+      />
+    </div>
+    <div class="form-btn">
       <a-button
         class="update-btn"
         @click="onUpdate(form.name, form.description)"
@@ -26,46 +24,81 @@
           Cancel
         </router-link>
       </a-button>
-    </a-form-model-item>
+    </div>
+    <div class="form-btn2">
+      <div>
+        <h1 class="label">Purge Movie Data</h1>
+        <a-button class="delete-btn" @click="onDelete">
+          Delete
+        </a-button>
+      </div>
+    </div>
   </a-form-model>
 </template>
 
 <script>
 export default {
   name: "UserSetting",
-  props: {
-    username: String,
-    description: String
-  },
-  data() {
-    return {
-      labelCol: { span: 4 },
-      wrapperCol: { span: 14 },
-      form: {
-        name: this.username,
-        description: this.description
-        // email: false,
-      }
-    };
-  },
   methods: {
     onUpdate(name, description) {
       this.$store.dispatch("updateProfile", { name, description });
+    },
+    onDelete() {
+      this.$confirm({
+        title: "Do you want to delete all movie data?",
+        onOk: () => {
+          this.$store.dispatch("deleteData", this.$store.state.uid);
+          this.$message.success("You have deleted your movie data");
+        }
+      });
+    }
+  },
+  computed: {
+    username() {
+      return this.$store.state.userProfile["name"];
+    },
+    description() {
+      return this.$store.state.userProfile["description"];
     }
   }
 };
 </script>
 
 <style scoped>
-.container {
+.form {
+  margin-top: 50px;
+}
+
+.label {
+  text-align: left;
+  color: white;
+}
+
+.introduction-input {
+  height: 100px;
+}
+
+.form-btn {
+  margin-top: 20px;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+}
+
+.form-btn2 {
+  margin-top: 50px;
+  display: flex;
   justify-content: center;
 }
 
 .update-btn,
 .cancel-btn {
-  margin-left: 20px;
+  margin: 0 20px;
+  background-color: transparent;
+  border-color: #f3c669;
+  color: white;
+}
+
+.delete-btn {
   background-color: transparent;
   border-color: #f3c669;
   color: white;
@@ -74,5 +107,35 @@ export default {
 .update-btn:hover,
 .cancel-btn:hover {
   background-color: #f3c669;
+}
+
+.delete-btn:hover {
+  border-color: #ff9299 !important;
+  background-color: #ff9299 !important;
+}
+
+@media screen and (max-width: 500px) {
+  /* applies styles to any device screen sizes below 800px wide */
+
+  .form {
+    margin-top: 20px;
+  }
+
+  .label {
+    font-size: 15px;
+  }
+
+  .form-btn {
+    justify-content: space-evenly;
+  }
+
+  .form-btn2 {
+    margin-top: 30px;
+  }
+
+  .update-btn,
+  .cancel-btn {
+    margin: 0;
+  }
 }
 </style>
