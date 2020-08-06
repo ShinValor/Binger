@@ -4,10 +4,6 @@
   color: white !important;
 }
 
-/* .ant-menu-item > a:hover {
-  color: lightpink !important;
-} */
-
 .ant-menu-item-selected {
   background-color: transparent !important;
 }
@@ -43,10 +39,7 @@
 /* .ant-dropdown-link {
   color:white;
 }
-
-.ant-dropdown-link:hover {
-  color: lightpink;
-} */
+*/
 
 /* ================== Layout ================== */
 
@@ -156,9 +149,9 @@
 } */
 
 .ant-tabs-tab {
-  color: white !important;
   margin: 0 0 2px 0 !important;
   padding: 12px 50px !important;
+  color: white !important;
 }
 
 .ant-tabs-tab:hover {
@@ -199,7 +192,7 @@
 /* ================== Button ================== */
 
 .ant-btn {
-  background-color: transparent !important;
+  background-color: #2a323d !important;
   border-color: #f3c669 !important;
   color: white !important;
 }
