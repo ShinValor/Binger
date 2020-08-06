@@ -118,15 +118,10 @@ const store = new Vuex.Store({
       const storageRef = await fb.storage.ref().child(userId);
 
       // Get the download URL
-      await storageRef
-        .getDownloadURL()
-        .then(url => {
-          // Set user profile in state
-          commit("setUserImage", url);
-        })
-        .catch(error => {
-          console.log(error.message);
-        });
+      await storageRef.getDownloadURL().then(url => {
+        // Set user profile in state
+        commit("setUserImage", url);
+      });
     },
     async fetchGenres({ commit }, userId) {
       // Fetch genre

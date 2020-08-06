@@ -1,6 +1,6 @@
 <template>
   <div class="search">
-    <div class="search-bar collapsible"   >
+    <div class="search-bar collapsible">
       <a-input-search
         placeholder="Search Movies"
         v-model="movieQuery"
@@ -8,10 +8,18 @@
         @search="onTitleSearch"
         :disabled="collapse"
       >
-        <a-icon slot="prefix" type="menu"  @click="toggle" :class="collapse ? 'active' : '' "/>
+        <a-icon
+          slot="prefix"
+          type="menu"
+          @click="toggle"
+          :class="collapse ? 'active' : ''"
+        />
       </a-input-search>
     </div>
-    <div class="genre-tags content" :class="collapse ? 'open-collapsable' : 'close-collapsable' ">
+    <div
+      class="genre-tags content"
+      :class="collapse ? 'open-collapsable' : 'close-collapsable'"
+    >
       <h4 class="genre-search-title">Genres</h4>
       <template v-for="tag in Genres">
         <a-checkable-tag
@@ -67,15 +75,20 @@ export default {
   },
   created() {
     if (this.$route.query.with_genres) {
-      console.log(this.$route.query.with_genres);
-      const nextSelectedTags = [...this.selectedTags, this.$route.query.with_genres];
+      // console.log(this.$route.query.with_genres);
+      const nextSelectedTags = [
+        ...this.selectedTags,
+        this.$route.query.with_genres
+      ];
       this.selectedTags = nextSelectedTags;
       this.toggle();
       // document.getElementsByClassName("collapsible")[0].nextElementSibling.style.display = "block";
       // document.getElementsByClassName("collapsible")[0].classList.toggle("active");
     }
   },
-  mounter(){this.toggle();},
+  mounter() {
+    this.toggle();
+  },
   methods: {
     toggle() {
       // var coll = document.getElementsByClassName("collapsible")[0];
@@ -118,7 +131,6 @@ export default {
   }
 };
 </script>
-
 
 <style scoped>
 /* .search-bar {
@@ -185,5 +197,4 @@ export default {
 .close-collapsable {
   display: none;
 }
-
 </style>
