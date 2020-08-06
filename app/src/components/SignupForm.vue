@@ -1,11 +1,5 @@
 <template>
-  <a-form
-    class="signup-form"
-    :form="form"
-    @submit="handleSubmit"
-    @submit.prevent
-  >
-    <!-- <h1 :style="{ color: 'white' }">Register Here !</h1> -->
+  <a-form :form="form" @submit="onSignup" @submit.prevent>
     <a-form-item>
       <a-input
         v-decorator="[
@@ -79,7 +73,7 @@ export default {
     this.form = this.$form.createForm(this, { name: "register" });
   },
   methods: {
-    handleSubmit() {
+    onSignup() {
       this.form.validateFields((err, values) => {
         if (!err) {
           if (values.password == values.confirmPassword) {
@@ -107,11 +101,6 @@ export default {
 </script>
 
 <style scoped>
-.signup-form {
-  width: 500px;
-  margin: 100px auto 0;
-}
-
 .signup-btn {
   background-color: transparent;
   width: 100%;
@@ -121,13 +110,5 @@ export default {
 
 .signup-btn:hover {
   background-color: #f3c669;
-}
-
-@media screen and (max-width: 500px) {
-  /* applies styles to any device screen sizes below 800px wide */
-
-  .signup-form {
-    width: 250px;
-  }
 }
 </style>

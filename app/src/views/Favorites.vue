@@ -1,5 +1,5 @@
 <template>
-  <a-layout :style="{ minHeight: '100%', overflow: 'auto' }">
+  <a-layout>
     <div :style="{ display: 'inline' }">
       <a-button class="swiper-btn" @click="toggleSwiper">
         Try Our Swiper
@@ -104,7 +104,6 @@ export default {
     return {
       swiperModal: false,
       config: {},
-      // eChartsOption
       recommendations: Array,
       movieModal: false,
       movieId: String,

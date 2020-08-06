@@ -1,5 +1,5 @@
 <template>
-  <a-layout-header class="nav-bar">
+  <a-layout-header class="navigation">
     <div class="section">
       <Menu />
       <h1 class="app-name">
@@ -75,7 +75,7 @@ export default {
 </script>
 
 <style scoped>
-.nav-bar {
+.navigation {
   width: 100%;
   padding: 0px;
   display: flex;

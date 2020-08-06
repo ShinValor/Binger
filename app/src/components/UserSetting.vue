@@ -1,6 +1,6 @@
 <template>
   <a-form-model
-    class="setting"
+    class="container"
     :model="form"
     :label-col="labelCol"
     :wrapper-col="wrapperCol"
@@ -57,9 +57,7 @@ export default {
 </script>
 
 <style scoped>
-.setting {
-  width: 700px;
-  margin: 50px 20px;
+.container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -76,14 +74,5 @@ export default {
 .update-btn:hover,
 .cancel-btn:hover {
   background-color: #f3c669;
-}
-
-@media screen and (max-width: 500px) {
-  /* applies styles to any device screen sizes below 800px wide */
-
-  .setting {
-    width: 250px;
-    margin: 0 auto;
-  }
 }
 </style>

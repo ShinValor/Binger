@@ -1,7 +1,7 @@
 <template>
   <a-layout class="container">
     <SearchBar class="search-bar" />
-    <div :style="{ width: '90%', margin: '0 auto' }">
+    <div class="recommendation-list">
       <div class="header">
         <h1 class="title">Random</h1>
         <a-button class="view-btn" @click="onMore('/random', true)">
@@ -103,11 +103,14 @@ export default {
 
 <style scoped>
 .container {
-  min-height: 100%;
-  overflow: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.recommendation-list {
+  width: 90%;
+  margin: 0 auto;
 }
 
 .search-bar {
@@ -146,7 +149,7 @@ export default {
 
   .search-bar {
     width: 75%;
-    margin: 15px auto;
+    margin: 25px auto;
   }
 
   .title {

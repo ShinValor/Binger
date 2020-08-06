@@ -1,5 +1,6 @@
 <template>
-  <a-card class="card" hoverable>
+  <!-- <a-card class="card" hoverable> -->
+  <a-card class="card">
     <div class="container">
       <img
         class="large-image"

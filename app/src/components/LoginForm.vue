@@ -1,10 +1,5 @@
 <template>
-  <a-form
-    class="login-form"
-    :form="form"
-    @submit="handleSubmit"
-    @submit.prevent
-  >
+  <a-form :form="form" @submit="onLogin" @submit.prevent>
     <a-form-item>
       <a-input
         v-decorator="[
@@ -65,7 +60,7 @@ export default {
     this.form = this.$form.createForm(this, { name: "normal_login" });
   },
   methods: {
-    handleSubmit() {
+    onLogin() {
       this.form.validateFields((err, values) => {
         if (!err) {
           this.$store
@@ -88,13 +83,15 @@ export default {
 </script>
 
 <style scoped>
-.login-form {
-  width: 500px;
-  margin: 100px auto 0;
+.login-btn {
+  background-color: transparent;
+  width: 100%;
+  color: white;
+  border-color: #f3c669;
 }
 
-.remember-btn {
-  float: left;
+.login-btn:hover {
+  background-color: #f3c669;
 }
 
 .forget-btn {
@@ -114,22 +111,7 @@ export default {
   color: #f3c669;
 }
 
-.login-btn {
-  background-color: transparent;
-  width: 100%;
-  color: white;
-  border-color: #f3c669;
-}
-
-.login-btn:hover {
-  background-color: #f3c669;
-}
-
-@media screen and (max-width: 500px) {
-  /* applies styles to any device screen sizes below 800px wide */
-
-  .login-form {
-    width: 250px;
-  }
+.remember-btn {
+  float: left;
 }
 </style>
