@@ -1,22 +1,20 @@
 <template>
-  <a-form-model :model="form">
+  <a-form-model>
     <div class="form">
       <h1 class="label">Name</h1>
-      <a-input v-model="form.name" />
+      <a-input @input="changeName($event.target.value)" :value="username" />
     </div>
     <div class="form">
       <h1 class="label">Introduction</h1>
       <a-input
         class="introduction-input"
-        v-model="form.description"
+        @input="changeDesc($event.target.value)"
+        :value="description"
         type="textarea"
       />
     </div>
     <div class="form-btn">
-      <a-button
-        class="update-btn"
-        @click="onUpdate(form.name, form.description)"
-      >
+      <a-button class="update-btn" @click="onUpdate()">
         Update
       </a-button>
       <a-button class="cancel-btn">
@@ -41,15 +39,22 @@ export default {
   name: "UserSetting",
   data() {
     return {
-      form: {
-        name: this.username,
-        description: this.description
-      }
+      name: "",
+      desc: ""
     };
   },
   methods: {
-    onUpdate(name, description) {
-      this.$store.dispatch("updateProfile", { name, description });
+    changeName(change) {
+      this.name = change;
+    },
+    changeDesc(change) {
+      this.desc = change;
+    },
+    onUpdate() {
+      this.$store.dispatch("updateProfile", {
+        name: this.name,
+        description: this.desc
+      });
     },
     onDelete() {
       this.$confirm({
@@ -62,12 +67,12 @@ export default {
     }
   },
   computed: {
-    // username() {
-    //   return this.$store.state.userProfile["name"];
-    // },
-    // description() {
-    //   return this.$store.state.userProfile["description"];
-    // }
+    username() {
+      return this.$store.state.userProfile["name"];
+    },
+    description() {
+      return this.$store.state.userProfile["description"];
+    }
   }
 };
 </script>
